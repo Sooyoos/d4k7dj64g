@@ -1,0 +1,11 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+    - ssh deploy@tools.sooyoos.com "cd /home/deploy/docaret/sparkplant && cap $CI_BUILD_REF_NAME deploy"
+  only:
+    - testing
+    - preproduction
+    - production
