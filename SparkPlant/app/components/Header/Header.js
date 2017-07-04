@@ -10,16 +10,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 let styles = StyleSheet.create({
     header: {
-        flex: 0.8,
+        flex:0.5,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
     },
     title:{
-        flex : 9.2,
+        flex : 8.4,
         margin:5,
         fontSize:20,
         color: '#FFFFFF',
+        textAlign: 'center',
     },
     logout:{
         flex:0.8,
@@ -27,37 +28,30 @@ let styles = StyleSheet.create({
     logoutIcon:{
         color:'#ffffff',
         fontSize: 20,
+    },
+    menu:{
+        flex:0.8,
+        alignItems: 'center',
+    },
+    menuIcon:{
+        color:'#ffffff',
+        fontSize: 20,
     }
 });
 
 export default class Header extends Component {
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
-        this.state = {currentPage : 'Login'};
     }
 
     logout()
     {
-        AsyncStorage.setItem('@SparkPlant:currentPage', 'Login');
-    }
 
-    componentDidMount()
-    {
-        AsyncStorage.getItem("@SparkPlant:currentPage").then(currentPage => {
-                this.setState({
-                    currentPage:currentPage
-                });
-            }
-        );
     }
 
     render() {
-        let currentPage = this.state.currentPage;
-        if(currentPage == 'Login')
-        {
-            return (
+        return (
                 <View style={styles.header}>
                     <Text style={styles.title}>
                         SparkPlant
@@ -65,20 +59,4 @@ export default class Header extends Component {
                 </View>
             );
         }
-        else
-        {
-            return (
-                <View style={styles.header}>
-                    <Text style={styles.title}>
-                        SparkPlant
-                    </Text>
-                    <TouchableWithoutFeedback onPress={() => this.logout()}>
-                        <View style={styles.logout}>
-                            <Icon style={styles.logoutIcon} name="power-off" />
-                        </View>
-                    </TouchableWithoutFeedback>
-                </View>
-            );
-        }
-    }
 };

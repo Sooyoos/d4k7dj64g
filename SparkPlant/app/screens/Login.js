@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
+    Text,
+    TouchableWithoutFeedback,
+    Alert,
 } from 'react-native';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
 import LoginUsernameInput from '../components/LoginUsernameInput/LoginUserNameInput';
 import LoginPasswordInput from '../components/LoginPasswordInput/LoginPasswordInput';
 import LoginFactoryList from '../components/LoginFactoryList/LoginFactoryList';
-import LoginButton from '../components/LoginButton/LoginButton';
 
 let styles = StyleSheet.create({
     login: {
@@ -20,25 +20,57 @@ let styles = StyleSheet.create({
         alignItems:'center',
         justifyContent: 'center',
     },
+    button: {
+        width:280,
+        height:50,
+        backgroundColor: '#009688',
+        marginTop:20,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    buttonText : {
+        flex:9,
+        color:'#ffffff',
+        textAlign: 'center',
+        fontSize: 20,
+    }
 });
 
 export default class Login extends Component {
-    static navigationOptions = {
-        title: 'SparkPlant',
-    };
+
+    constructor(props)
+    {
+        super(props);
+    }
+
+    login()
+    {
+        // TODO something to check is we can authenticate
+        let login = true;
+        if(login)
+        {
+            this.props.navigation.navigate('Dashboard');
+        }
+        else
+        {
+            Alert.alert('Login incorrect');
+        }
+    }
 
     render() {
-        return (
-            <View style={styles.login}>
-                <Header />
-                <View style={styles.body}>
-                    <LoginFactoryList/>
-                    <LoginUsernameInput/>
-                    <LoginPasswordInput/>
-                    <LoginButton/>
+            return (
+                <View style={styles.login}>
+                    <View style={styles.body}>
+                        <LoginFactoryList/>
+                        <LoginUsernameInput/>
+                        <LoginPasswordInput />
+                        <TouchableWithoutFeedback onPress={this.login.bind(this)}>
+                            <View style={styles.button}>
+                                <Text style={styles.buttonText}>SE CONNECTER</Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </View>
                 </View>
-                <Footer/>
-            </View>
-        );
+            );
     }
 }

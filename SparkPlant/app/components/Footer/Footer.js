@@ -8,7 +8,7 @@ import FooterButton from "../FooterButton/FooterButton";
 
 let styles = StyleSheet.create({
     footer: {
-        flex: 0.8,
+        flex:0.1,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',

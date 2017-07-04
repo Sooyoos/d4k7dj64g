@@ -5,9 +5,12 @@ import {
     Text,
     Button,
     AsyncStorage,
+    TouchableWithoutFeedback,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
+import DashboardNavigation from '../components/Dashboard/DashboardNavigation';
+import DashboardNews from '../components/Dashboard/DashboardNews';
 
 let styles = StyleSheet.create({
     login: {
@@ -22,6 +25,14 @@ let styles = StyleSheet.create({
 });
 
 export default class Dashboard extends Component {
+
+    static navigationOptions = {
+        drawerLabel: 'HOME',
+        drawerIcon: ({tintColor}) => (
+            <Icon name='home' style={{fontSize : 24, color : '#757575'}}/>
+        ),
+    };
+
     constructor(props)
     {
         super(props);
@@ -37,12 +48,11 @@ export default class Dashboard extends Component {
     render() {
         return (
             <View style={styles.login}>
-                <Header />
+                <Header props={this.props}/>
                 <View style={styles.body}>
-                    <Text>Dashboard</Text>
-                    <Button title="retour" onPress={this._return.bind(this)}/>
+                    <DashboardNavigation/>
+                    <DashboardNews/>
                 </View>
-                <Footer/>
             </View>
         );
     }

@@ -29,7 +29,7 @@ export default class LoginPasswordInput extends Component {
 
     componentDidUpdate(prevProps, prevState)
     {
-        try{
+        /*try{
             AsyncStorage.setItem('@SparkPlant:LoginPassword', this.state.password);
         }
         catch(error)
@@ -44,7 +44,7 @@ export default class LoginPasswordInput extends Component {
             }
         } catch (error) {
             console.log('Could not retrieve password data : ' + error);
-        }
+        }*/
 
     }
 

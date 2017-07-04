@@ -28,7 +28,7 @@ export default class LoginUsernameInput extends Component {
 
     componentDidUpdate(prevProps, prevState)
     {
-        try{
+        /*try{
             AsyncStorage.setItem('@SparkPlant:LoginUsername', this.state.username);
         }
         catch(error)
@@ -43,7 +43,7 @@ export default class LoginUsernameInput extends Component {
             }
         } catch (error) {
             console.log('Could not retrieve username data : ' + error);
-        }
+        }*/
 
     }
 

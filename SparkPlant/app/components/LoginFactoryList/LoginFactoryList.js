@@ -33,7 +33,7 @@ export default class LoginFactoryList extends Component {
 
     componentDidUpdate(prevProps, prevState)
     {
-        try{
+       /* try{
             AsyncStorage.setItem('@SparkPlant:loginFactory', this.state.factory);
         }
         catch(error)
@@ -48,7 +48,7 @@ export default class LoginFactoryList extends Component {
             }
         } catch (error) {
             console.log('Could not retrieve factory data : ' + error);
-        }
+        }*/
 
     }
 
