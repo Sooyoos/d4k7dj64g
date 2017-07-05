@@ -17,7 +17,7 @@ export default class LoginUsernameInput extends Component {
     constructor(props)
     {
         super(props);
-        this.state = {username : AsyncStorage.getItem('@SparkPlant:LoginUsername')};
+        this.state = {username: null};
     }
 
     componentDidMount() {
