@@ -50,7 +50,7 @@ export default class Dashboard extends Component {
             <View style={styles.login}>
                 <Header props={this.props}/>
                 <View style={styles.body}>
-                    <DashboardNavigation/>
+                    <DashboardNavigation {... this.props} />
                     <DashboardNews/>
                 </View>
             </View>

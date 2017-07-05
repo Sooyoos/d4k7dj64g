@@ -3,8 +3,6 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableWithoutFeedback,
-    AsyncStorage,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -43,11 +41,6 @@ export default class Header extends Component {
 
     constructor(props) {
         super(props);
-    }
-
-    logout()
-    {
-
     }
 
     render() {

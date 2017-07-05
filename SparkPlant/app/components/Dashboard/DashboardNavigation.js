@@ -39,11 +39,31 @@ export default class DashboardNavigation extends Component {
         super(props);
     }
 
+    navigateToTags()
+    {
+        this.props.navigation.navigate('Tags');
+    }
+
+    navigateToChecklist()
+    {
+        this.props.navigation.navigate('Checklist');
+    }
+
+    navigateToNews()
+    {
+        this.props.navigation.navigate('News');
+    }
+
+    navigateToAnalytics()
+    {
+        this.props.navigation.navigate('Analytics');
+    }
+
     render() {
         return (
             <View style={styles.dashboardNav}>
                 <View style={styles.dashboardNavSection}>
-                    <TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={this.navigateToTags.bind(this)}>
                         <View>
                             <Icon style={styles.dashboardNavIcon} name="tag"/>
                             <Text style={styles.dashboardNavLabel}>
@@ -51,7 +71,7 @@ export default class DashboardNavigation extends Component {
                             </Text>
                         </View>
                     </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={this.navigateToChecklist.bind(this)}>
                         <View>
                             <Icon style={styles.dashboardNavIcon} name="check-square-o"/>
                             <Text style={styles.dashboardNavLabel}>
@@ -61,7 +81,7 @@ export default class DashboardNavigation extends Component {
                     </TouchableWithoutFeedback>
                 </View>
                 <View style={styles.dashboardNavSection}>
-                    <TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={this.navigateToNews.bind(this)}>
                         <View>
                             <Icon style={styles.dashboardNavIcon} name="newspaper-o"/>
                             <Text style={styles.dashboardNavLabel}>
@@ -69,7 +89,7 @@ export default class DashboardNavigation extends Component {
                             </Text>
                         </View>
                     </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={this.navigateToAnalytics.bind(this)}>
                         <View>
                             <Icon style={styles.dashboardNavIcon} name="bar-chart"/>
                             <Text style={styles.dashboardNavLabel}>
