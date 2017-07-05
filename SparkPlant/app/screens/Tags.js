@@ -33,6 +33,7 @@ let tags = [
         location : "Sableuse - îlot 4 - Atelier A",
         type : "S",
         id : "#00685",
+        description : 'Run a manual sweep of anomalous airborne or electromagnetic readings. Radiation levels in our atmosphere have increased by 3,000 percent.',
         author : {
             avatar : 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg',
             fullname : 'Mari Doucet',
@@ -44,6 +45,7 @@ let tags = [
         location : "Press 8 - îlot 5 - Atelier C",
         type : "E",
         id : "#00526",
+        description : 'Run a manual sweep of anomalous airborne or electromagnetic readings. Radiation levels in our atmosphere have increased by 3,000 percent.',
         author : {
             avatar : 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAOvAAAAJDQ4N2RlMzQ2LWNkMTItNDQ4Yy1hOGFmLWEzYzIwZTJlM2Q5NA.jpg',
             fullname : 'Guillaume Sondag',
@@ -55,6 +57,7 @@ let tags = [
         location : "Exterieurs",
         type : "S",
         id : "#00542",
+        description : 'Run a manual sweep of anomalous airborne or electromagnetic readings. Radiation levels in our atmosphere have increased by 3,000 percent.',
         author : {
             avatar : 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg',
             fullname : 'Mari Doucet',
@@ -66,6 +69,7 @@ let tags = [
         location : "Sableuse - îlot 4 - Atelier A",
         type : "S",
         id : "#00685",
+        description : 'Run a manual sweep of anomalous airborne or electromagnetic readings. Radiation levels in our atmosphere have increased by 3,000 percent.',
         author : {
             avatar : 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg',
             fullname : 'Mari Doucet',
@@ -77,6 +81,7 @@ let tags = [
         location : "Press 8 - îlot 5 - Atelier C",
         type : "E",
         id : "#00526",
+        description : 'Run a manual sweep of anomalous airborne or electromagnetic readings. Radiation levels in our atmosphere have increased by 3,000 percent.',
         author : {
             avatar : 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAOvAAAAJDQ4N2RlMzQ2LWNkMTItNDQ4Yy1hOGFmLWEzYzIwZTJlM2Q5NA.jpg',
             fullname : 'Guillaume Sondag',
@@ -88,6 +93,7 @@ let tags = [
         location : "Exterieurs",
         type : "S",
         id : "#00542",
+        description : 'Run a manual sweep of anomalous airborne or electromagnetic readings. Radiation levels in our atmosphere have increased by 3,000 percent.',
         author : {
             avatar : 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg',
             fullname : 'Mari Doucet',

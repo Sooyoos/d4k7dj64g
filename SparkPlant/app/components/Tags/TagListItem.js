@@ -91,9 +91,14 @@ export default class TagListItem extends Component {
         }
     }
 
+    goToDetails()
+    {
+        this.props.navigation.navigate('TagDetails', {tag : this.props.tag});
+    }
+
     render() {
         return (
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
                 <ElevatedView style={styles.item} elevation={4}>
                     <View style={styles.main}>
                         <Text style={styles.itemTitle}>

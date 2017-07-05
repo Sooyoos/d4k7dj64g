@@ -10,6 +10,9 @@ import Analytics from './app/screens/Analytics';
 import DrawerMenu from './app/components/Menu/Menu';
 import TagsFull from './app/screens/Tags/TagsFull';
 import FilterTag from './app/screens/Tags/FilterTag';
+import TagDetails from './app/screens/Tags/TagDetails';
+import TagHistory from './app/screens/Tags/TagHistory';
+import TagActions from './app/screens/Tags/TagActions';
 import CreateTagStep1 from './app/screens/Tags/CreateTag/CreateTagStep1';
 import CreateTagStep2 from './app/screens/Tags/CreateTag/CreateTagStep2';
 import CreateTagStep3 from './app/screens/Tags/CreateTag/CreateTagStep3';
@@ -58,7 +61,28 @@ const TagNavigation = StackNavigator(
             navigationOptions: {
                 header : null,
             }
-        }
+        },
+        TagDetails : {
+            screen: TagDetails,
+            path: 'tag/:tag',
+            navigationOptions: {
+                header : null,
+            }
+        },
+        TagHistory : {
+            screen: TagHistory,
+            path: 'tag/:tag',
+            navigationOptions: {
+                header : null,
+            }
+        },
+        TagActions : {
+            screen: TagActions,
+            path: 'tag/:tag',
+            navigationOptions: {
+                header : null,
+            }
+        },
     }
 );
 

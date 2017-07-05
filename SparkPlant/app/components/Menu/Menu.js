@@ -73,11 +73,9 @@ export default class DrawerMenu extends Component {
     {
         super(props);
         this.state = {userAvailable: true};
-        console.log(props);
     }
 
     setUserAvailable(value) {
-        console.log(value);
         AsyncStorage.setItem('@SparkPlant:userIsAvailable', JSON.stringify(value));
         this.setState({userAvailable: value});
     }

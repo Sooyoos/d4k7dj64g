@@ -15,7 +15,6 @@ export default class TagList extends Component {
 
     constructor(props) {
         super(props);
-        console.log(props);
     }
 
     buildList()
@@ -25,7 +24,7 @@ export default class TagList extends Component {
         for(var i = 0; i < this.props.items.length ; i++)
         {
             list.push(
-                <TagListItem key={i} tag={this.props.items[i]} />
+                <TagListItem {...this.props} key={i} tag={this.props.items[i]} />
             );
         }
 

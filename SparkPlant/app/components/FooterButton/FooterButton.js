@@ -44,7 +44,15 @@ export default class FooterButton extends Component {
 
     goToRoute()
     {
-        this.props.navigation.navigate(this.props.route);
+        if(this.props.tag)
+        {
+            this.props.navigation.navigate(this.props.route, {tag : this.props.tag});
+        }
+        else
+        {
+            this.props.navigation.navigate(this.props.route);
+        }
+
     }
 
     render() {
