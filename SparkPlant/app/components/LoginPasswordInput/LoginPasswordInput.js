@@ -4,11 +4,12 @@ import {
     StyleSheet,
     TextInput,
     AsyncStorage,
+    Dimensions,
 } from 'react-native';
 
 let styles = StyleSheet.create({
     input: {
-        width:280,
+        width:Dimensions.get('window').width / 2,
         height:50,
     }
 });

@@ -4,6 +4,7 @@ import {
     Text,
     StyleSheet,
     TouchableWithoutFeedback,
+    Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DashboardNewsItem from './DashboardNewsItem';
@@ -11,7 +12,7 @@ import DashboardNewsItem from './DashboardNewsItem';
 let styles = StyleSheet.create({
     dashboardNews: {
         flex:5,
-        width:420,
+        width:Dimensions.get('window').width,
     },
 });
 

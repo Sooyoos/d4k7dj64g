@@ -13,6 +13,10 @@ import FilterTag from './app/screens/Tags/FilterTag';
 import TagDetails from './app/screens/Tags/TagDetails';
 import TagHistory from './app/screens/Tags/TagHistory';
 import TagActions from './app/screens/Tags/TagActions';
+import CommentTag from './app/screens/Tags/CommentTag';
+import TransferTag from './app/screens/Tags/TransferTag';
+import TakePictureTag from './app/screens/Tags/TakePictureTag';
+import TakeVideoTag from './app/screens/Tags/TakeVideoTag';
 import CreateTagStep1 from './app/screens/Tags/CreateTag/CreateTagStep1';
 import CreateTagStep2 from './app/screens/Tags/CreateTag/CreateTagStep2';
 import CreateTagStep3 from './app/screens/Tags/CreateTag/CreateTagStep3';
@@ -79,6 +83,32 @@ const TagNavigation = StackNavigator(
         TagActions : {
             screen: TagActions,
             path: 'tag/:tag',
+            navigationOptions: {
+                header : null,
+            }
+        },
+        CommentTag : {
+            screen: CommentTag,
+            path: 'tag/:tag',
+            navigationOptions: {
+                header : null,
+            }
+        },
+        TransferTag : {
+            screen: TransferTag,
+            path: 'tag/:tag',
+            navigationOptions: {
+                header : null,
+            }
+        },
+        TakePictureTag : {
+            screen: TakePictureTag,
+            navigationOptions: {
+                header : null,
+            }
+        },
+        TakeVideoTag : {
+            screen: TakeVideoTag,
             navigationOptions: {
                 header : null,
             }

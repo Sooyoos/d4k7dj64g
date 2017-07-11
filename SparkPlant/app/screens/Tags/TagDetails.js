@@ -89,7 +89,7 @@ export default class TagDetails extends Component {
         let tag = this.props.navigation.state.params.tag;
         return (
             <View style={styles.login}>
-                <HeaderTagDetails {...this.props} headerTitle={tag.title} />
+                <HeaderTagDetails {...this.props} headerTitle={tag.id} />
                 <View style={styles.body}>
                     <ScrollView style={styles.slider} alignItems={'center'} horizontal={true} showsHorizontalScrollIndicator={false}>
                         <Image style={styles.sliderImage} source={{uri : "http://i1.go2yd.com/image.php?url=0GQ3kfitfC"}} />
@@ -175,9 +175,9 @@ export default class TagDetails extends Component {
                     </View>
                 </View>
                 <View style={styles.footer}>
-                    <FooterButton {...this.props} active={true} tag={this.tag} iconName="sticky-note-o" text="Contenu" route="TagDetails"/>
-                    <FooterButton {...this.props} active={false} tag={this.tag} iconName="info" text="Historique" route="TagHistory"/>
-                    <FooterButton {...this.props} active={false} tag={this.tag} iconName="exchange" text="Actions" route="TagActions"/>
+                    <FooterButton {...this.props} active={true} tag={tag} iconName="sticky-note-o" text="Contenu" route="TagDetails"/>
+                    <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route="TagHistory"/>
+                    <FooterButton {...this.props} active={false} tag={tag} iconName="exchange" text="Actions" route="TagActions"/>
                 </View>
             </View>
         );

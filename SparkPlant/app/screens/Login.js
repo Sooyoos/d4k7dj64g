@@ -5,6 +5,7 @@ import {
     Text,
     TouchableWithoutFeedback,
     Alert,
+    Dimensions,
 } from 'react-native';
 import LoginUsernameInput from '../components/LoginUsernameInput/LoginUserNameInput';
 import LoginPasswordInput from '../components/LoginPasswordInput/LoginPasswordInput';
@@ -21,7 +22,7 @@ let styles = StyleSheet.create({
         justifyContent: 'center',
     },
     button: {
-        width:280,
+        width:Dimensions.get('window').width / 2,
         height:50,
         backgroundColor: '#009688',
         marginTop:20,

@@ -4,30 +4,31 @@ import {
     Text,
     StyleSheet,
     TouchableWithoutFeedback,
+    Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 let styles = StyleSheet.create({
     dashboardNav: {
         flex:5,
-        width:420,
+        width:Dimensions.get('window').width,
         alignItems:'center',
     },
     dashboardNavSection: {
-        width:420,
+        width:Dimensions.get('window').width,
         flex:5,
         alignItems: 'center',
         flexDirection: 'row',
     },
     dashboardNavIcon : {
         textAlign : 'center',
-        width:210,
+        width:Dimensions.get('window').width / 2,
         color : '#3f51b5',
         fontSize : 60,
     },
     dashboardNavLabel : {
         textAlign : 'center',
-        width:210,
+        width:Dimensions.get('window').width / 2,
         color : '#000000',
         fontSize : 20,
     }

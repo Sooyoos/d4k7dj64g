@@ -3,11 +3,12 @@ import {
     StyleSheet,
     Picker,
     AsyncStorage,
+    Dimensions,
 } from 'react-native';
 
 let styles = StyleSheet.create({
     list : {
-        width:280,
+        width:Dimensions.get('window').width / 2,
         height:100,
     }
 });
