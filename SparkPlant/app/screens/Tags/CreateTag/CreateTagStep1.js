@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ElevatedView from 'react-native-elevated-view';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import HeaderTagDetails from "../../../components/Header/HeaderTagDetails";
 
 let styles = StyleSheet.create({
@@ -24,22 +25,22 @@ let styles = StyleSheet.create({
         alignItems: 'center',
     },
     cardHeaderIconView : {
-        width: 40,
-        height : 40,
-        borderRadius : 20,
+        width: responsiveWidth(10),
+        height : responsiveWidth(10),
+        borderRadius : responsiveWidth(5),
         backgroundColor: '#00bcd4',
         margin : 10,
         padding : 3,
     },
     cardHeaderIcon : {
         flex : 2,
-        fontSize : 30,
+        fontSize : responsiveFontSize(4.5),
         textAlign : 'center',
         color : '#ffffff',
     },
     cardHeaderTitle : {
         flex : 9,
-        fontSize : 20,
+        fontSize : responsiveFontSize(2),
         fontWeight: 'bold',
         color : '#212121',
     },
@@ -52,19 +53,20 @@ let styles = StyleSheet.create({
     locationPicker : {
         marginTop : 20,
         marginBottom : 20,
+        height : responsiveHeight(10),
     },
     buttonView : {
-        width: 50,
-        height : 50,
-        borderRadius : 25,
+        width: responsiveWidth(15),
+        height : responsiveWidth(15),
+        borderRadius : responsiveWidth(7.5),
         backgroundColor: '#00bcd4',
         padding : 3,
         margin : 15,
-        marginLeft:350,
+        marginLeft:responsiveWidth(80),
     },
     buttonIcon : {
         flex : 2,
-        fontSize : 40,
+        fontSize : responsiveFontSize(7.5),
         textAlign : 'center',
         color : '#ffffff',
     },
@@ -131,7 +133,7 @@ export default class CreateTagStep1 extends Component {
                                 <Picker.Item key={5} label={'Ilôt 3 - Atelier E'} value={'Ilôt 3 - Atelier E'} />
                                 <Picker.Item key={6} label={'Extérieurs'} value={'Extérieurs'} />
                             </Picker>
-                            <TextInput placeholder="Détails du lieu" maxLength={30} value={this.state.tagLocationDetails} onChangeText={(value) => this.saveLocationDetails(value)}/>
+                            <TextInput style={{fontSize : responsiveFontSize(1.6)}} placeholder="Détails du lieu" maxLength={30} value={this.state.tagLocationDetails} onChangeText={(value) => this.saveLocationDetails(value)}/>
                         </View>
                     </ElevatedView>
                     <ElevatedView style={styles.card} elevation={5}>
