@@ -5,34 +5,35 @@ import {
     Image,
     Text,
 } from 'react-native';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 let styles = StyleSheet.create({
     item: {
-        width:414 ,
+        width:responsiveWidth(100) ,
         flexDirection : 'row',
         borderBottomWidth: 1,
         borderBottomColor: '#bdbdbd',
         padding : 10,
     },
     imageSection : {
-        flex: 1,
+        width: responsiveWidth(12),
     },
     image : {
-        width:40,
-        height: 40,
-        borderRadius: 20,
+        width: responsiveWidth(8),
+        height: responsiveWidth(8),
+        borderRadius: responsiveWidth(4),
     },
     contentSection : {
-        flex : 4,
+        width: responsiveWidth(88),
         flexDirection: 'column',
     },
     contentFirst : {
         color : '#212121',
-        fontSize : 16,
+        fontSize : responsiveFontSize(1.6),
     },
     contentSecond : {
         color : '#212121',
-        fontSize : 14,
+        fontSize : responsiveFontSize(1.4),
     }
 });
 

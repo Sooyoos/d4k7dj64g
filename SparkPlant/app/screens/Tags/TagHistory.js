@@ -3,6 +3,7 @@ import {
     StyleSheet,
     View,
 } from 'react-native';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import FooterButton from "../../components/FooterButton/FooterButton";
 import HeaderTagDetails from "../../components/Header/HeaderTagDetails";
 import TagHistoryList from "../../components/Tags/TagHistoryList";
@@ -11,14 +12,17 @@ let styles = StyleSheet.create({
     login: {
         flex:1,
     },
+    header : {
+        height : responsiveHeight(7),
+    },
     list: {
-        flex:8,
+        height : responsiveHeight(83),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     footer: {
-        flex:1,
+        height : responsiveHeight(10),
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
