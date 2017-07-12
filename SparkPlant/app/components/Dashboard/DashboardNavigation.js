@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text,
     StyleSheet,
     TouchableWithoutFeedback,
-    Dimensions,
+    Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 let styles = StyleSheet.create({
     dashboardNav: {
         flex:5,
-        width:Dimensions.get('window').width,
+        width:responsiveWidth(100),
         alignItems:'center',
     },
     dashboardNavSection: {
-        width:Dimensions.get('window').width,
+        width:responsiveWidth(100),
         flex:5,
         alignItems: 'center',
         flexDirection: 'row',
     },
     dashboardNavIcon : {
         textAlign : 'center',
-        width:Dimensions.get('window').width / 2,
+        width:responsiveWidth(50),
         color : '#3f51b5',
-        fontSize : 60,
+        fontSize : responsiveFontSize(8),
     },
     dashboardNavLabel : {
         textAlign : 'center',
-        width:Dimensions.get('window').width / 2,
+        width:responsiveWidth(50),
         color : '#000000',
-        fontSize : 20,
+        fontSize : responsiveFontSize(2),
     }
 });
 
@@ -38,6 +38,11 @@ export default class DashboardNavigation extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount()
+    {
+
     }
 
     navigateToTags()

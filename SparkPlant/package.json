@@ -13,6 +13,7 @@
 		"react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
 		"react-native-elevated-view": "0.0.4",
 		"react-native-multiple-select": "^0.2.1",
+		"react-native-responsive-dimensions": "^1.0.1",
 		"react-native-text": "0.0.4",
 		"react-native-vector-icons": "^4.2.0",
 		"react-navigation": "^1.0.0-beta.11",
