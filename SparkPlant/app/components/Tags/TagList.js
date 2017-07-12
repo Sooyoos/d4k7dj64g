@@ -3,11 +3,14 @@ import {
     ScrollView,
     StyleSheet,
 } from 'react-native';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import TagListItem from './TagListItem';
 
 let styles = StyleSheet.create({
     list: {
-
+        height : responsiveHeight(80),
+        paddingTop : 20,
+        paddingBottom: 20,
     },
 });
 

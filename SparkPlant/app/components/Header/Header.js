@@ -4,7 +4,7 @@ import {
     Text,
     StyleSheet,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 let styles = StyleSheet.create({
     header: {
@@ -16,7 +16,7 @@ let styles = StyleSheet.create({
     title:{
         flex : 8.4,
         margin:5,
-        fontSize:20,
+        fontSize:responsiveFontSize(1.8),
         color: '#FFFFFF',
         textAlign: 'center',
     },

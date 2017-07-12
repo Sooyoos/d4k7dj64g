@@ -5,10 +5,11 @@ import {
     StyleSheet,
 } from 'react-native';
 import FooterButton from "../FooterButton/FooterButton";
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 let styles = StyleSheet.create({
     footer: {
-        flex:0.1,
+        height:responsiveHeight(8),
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',

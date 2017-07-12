@@ -5,6 +5,7 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 let styles = StyleSheet.create({
     button : {
@@ -14,7 +15,7 @@ let styles = StyleSheet.create({
     },
     buttonIcon : {
         color:'#ffffff',
-        fontSize: 24,
+        fontSize: responsiveFontSize(2.1),
     }
 });
 

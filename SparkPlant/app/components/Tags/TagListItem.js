@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 let styles = StyleSheet.create({
     item: {
@@ -16,28 +17,28 @@ let styles = StyleSheet.create({
         paddingRight: 20,
         paddingTop: 10,
         paddingBottom: 10,
-        margin: 5,
+        margin: 10,
         backgroundColor: '#ffffff',
         flexDirection: 'row',
     },
     main : {
-        width:300,
+        width:responsiveWidth(65),
         flexDirection: 'column',
         marginRight: 10,
     },
     aside : {
-        width: 50,
+        width: responsiveWidth(10),
         alignItems: 'center',
     },
     itemTitle : {
         flex : 1,
         color : '#212121',
-        fontSize:20,
+        fontSize:responsiveFontSize(1.8),
     },
     itemLocation : {
         flex : 1,
         color : '#757575',
-        fontSize:18,
+        fontSize:responsiveFontSize(1.6),
     },
     itemInfos : {
         flex : 1,
@@ -45,28 +46,28 @@ let styles = StyleSheet.create({
     },
     itemId : {
         color : '#757575',
-        fontSize:16,
+        fontSize:responsiveFontSize(1.4),
     },
     itemImage : {
-        width:20,
-        height:20,
-        borderRadius : 10,
+        width:responsiveWidth(3.8),
+        height:responsiveWidth(3.8),
+        borderRadius : responsiveWidth(1.9),
         marginLeft:3,
         marginRight:3,
     },
     itemFullname : {
         flex : 1,
         color : '#212121',
-        fontSize:16,
+        fontSize:responsiveFontSize(1.4),
     },
     itemType : {
         backgroundColor:'#00bcd4',
-        width:30,
-        height:30,
-        borderRadius : 15,
+        width:responsiveWidth(5),
+        height:responsiveWidth(5),
+        borderRadius : responsiveWidth(2.5),
     },
     itemStatus : {
-        marginTop : 2,
+        marginTop : 5,
     },
 });
 
@@ -119,12 +120,12 @@ export default class TagListItem extends Component {
                     </View>
                     <View style={styles.aside}>
                         <View style={styles.itemType}>
-                            <Text style={{color: '#ffffff', fontSize : 20, textAlign: 'center'}}>
+                            <Text style={{color: '#ffffff', fontSize : responsiveFontSize(1.8), textAlign: 'center'}}>
                                 {this.props.tag.type}
                             </Text>
                         </View>
                         <View style={styles.itemStatus}>
-                            <Icon name={this.getStatusIcon()} style={{fontSize: 34,}} />
+                            <Icon name={this.getStatusIcon()} style={{fontSize: responsiveFontSize(2.6)}} />
                         </View>
                     </View>
                 </ElevatedView>

@@ -3,6 +3,7 @@ import {
     View,
     StyleSheet,
 } from 'react-native';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import HeaderTags from "../../components/Header/HeaderTags";
 import FooterButton from "../../components/FooterButton/FooterButton";
 import TagList from "../../components/Tags/TagList";
@@ -11,14 +12,17 @@ let styles = StyleSheet.create({
     login: {
         flex:1,
     },
+    header : {
+        height : responsiveHeight(7),
+    },
     body: {
-        flex:8,
+        height : responsiveHeight(83),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     footer: {
-        flex:1,
+        height : responsiveHeight(10),
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
@@ -631,7 +635,7 @@ export default class TagsFull extends Component {
     render() {
         return (
             <View style={styles.login}>
-                <HeaderTags {...this.props} headerTitle="Tous les tags"/>
+                <HeaderTags {...this.props} style={styles.header} headerTitle="Tous les tags"/>
                 <View style={styles.body}>
                     <TagList {...this.props} items={tags} />
                 </View>

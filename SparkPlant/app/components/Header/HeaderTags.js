@@ -5,10 +5,11 @@ import {
     StyleSheet,
 } from 'react-native';
 import HeaderButton from '../HeaderButton/HeaderButton';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 let styles = StyleSheet.create({
     header: {
-        flex:0.5,
+        height : responsiveHeight(7),
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
@@ -17,7 +18,7 @@ let styles = StyleSheet.create({
     title : {
         color:'#ffffff',
         width: 200,
-        fontSize : 20,
+        fontSize : responsiveFontSize(1.8),
     }
 });
 
