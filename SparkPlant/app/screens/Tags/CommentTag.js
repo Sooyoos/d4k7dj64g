@@ -11,37 +11,43 @@ import FooterButton from "../../components/FooterButton/FooterButton";
 import HeaderTagDetails from "../../components/Header/HeaderTagDetails";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ElevatedView from "react-native-elevated-view";
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 let styles = StyleSheet.create({
     login: {
         flex:1,
     },
+    header : {
+        height : responsiveHeight(7),
+    },
     list: {
-        flex:8,
+        height : responsiveHeight(83),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     comment : {
-        width: 300,
-        height: 150,
+        width: responsiveWidth(75),
+        height: responsiveHeight(15),
+        fontSize : responsiveFontSize(1.6)
     },
     button : {
         marginTop : 30,
-        width : 90,
-        height: 90,
-        borderRadius: 45,
+        marginBottom: 30,
+        width : responsiveWidth(25),
+        height: responsiveWidth(25),
+        borderRadius: responsiveWidth(12.5),
         alignItems: 'center',
-        backgroundColor: '#00bcd4',
-        padding: 20,
+        backgroundColor: '#9c27b0',
+        padding: 30,
     },
     icon : {
         color: '#ffffff',
         textAlign: 'center',
-        fontSize : 45,
+        fontSize : responsiveFontSize(9),
     },
     footer: {
-        flex:1,
+        height : responsiveHeight(10),
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
@@ -77,7 +83,7 @@ export default class CommentTag extends Component {
             <View style={styles.login}>
                 <HeaderTagDetails {...this.props} headerTitle={tag.id + ' : ajouter un commentaire'} />
                 <View style={styles.list}>
-                    <Text style={{fontSize: 16, color : '#212121'}}>
+                    <Text style={{fontSize: responsiveFontSize(1.8), color : '#212121'}}>
                         Votre commentaire :
                     </Text>
                     <TextInput multiline={true} style={styles.comment} placeholder="Entrez votre commentaire..." maxLength={140}/>
@@ -86,9 +92,6 @@ export default class CommentTag extends Component {
                             <ElevatedView style={styles.button} elevation={9}>
                                 <Icon name="commenting-o" style={styles.icon} />
                             </ElevatedView>
-                            <Text style={{fontSize: 16, color : '#212121', textAlign:'center',}}>
-                                Ajouter
-                            </Text>
                         </View>
                     </TouchableWithoutFeedback>
                 </View>

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ElevatedView from "react-native-elevated-view";
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import FooterButton from "../../components/FooterButton/FooterButton";
 import HeaderTagDetails from "../../components/Header/HeaderTagDetails";
 
@@ -14,21 +15,25 @@ let styles = StyleSheet.create({
     login: {
         flex:1,
     },
+    header : {
+        height : responsiveHeight(7),
+    },
     list: {
-        flex:8,
+        height : responsiveHeight(83),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
+    /* the picker for Android cannot be styled using RN (https://stackoverflow.com/questions/38921492/how-to-style-the-standard-react-native-android-picker/39141949#39141949) */
     picker : {
-        width : 300,
-        height: 80,
+        width : responsiveWidth(80),
+        height: responsiveHeight(10),
     },
     button : {
         marginTop : 30,
-        width : 90,
-        height: 90,
-        borderRadius: 45,
+        width : responsiveWidth(25),
+        height: responsiveWidth(25),
+        borderRadius: responsiveWidth(12.5),
         alignItems: 'center',
         backgroundColor: '#00bcd4',
         padding: 20,
@@ -36,10 +41,10 @@ let styles = StyleSheet.create({
     icon : {
         color: '#ffffff',
         textAlign: 'center',
-        fontSize : 45,
+        fontSize : responsiveFontSize(10),
     },
     footer: {
-        flex:1,
+        height : responsiveHeight(10),
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
