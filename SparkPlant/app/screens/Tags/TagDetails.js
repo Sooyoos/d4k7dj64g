@@ -6,6 +6,7 @@ import {
     Image,
     Text,
 } from 'react-native';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import FooterButton from "../../components/FooterButton/FooterButton";
 import HeaderTagDetails from "../../components/Header/HeaderTagDetails";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -14,14 +15,17 @@ let styles = StyleSheet.create({
     login: {
         flex:1,
     },
+    header : {
+        height : responsiveHeight(7),
+    },
     body: {
-        flex:8,
+        height : responsiveHeight(83),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     footer: {
-        flex:1,
+        height : responsiveHeight(10),
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
@@ -31,8 +35,8 @@ let styles = StyleSheet.create({
         flexDirection : 'row',
     },
     sliderImage : {
-        width : 300,
-        height: 220,
+        width : responsiveWidth(70),
+        height: responsiveHeight(30),
         marginHorizontal: 25,
     },
     infos : {
@@ -40,24 +44,24 @@ let styles = StyleSheet.create({
         flexDirection : 'column',
     },
     section : {
-        flex: 1 ,
+        width: responsiveWidth(80) ,
         flexDirection : 'row',
         borderTopWidth: 1,
         borderTopColor: '#bdbdbd',
-        padding : 3,
+        padding : 10,
     },
     sectionVisual : {
-        width : 67,
+        width : responsiveWidth(15),
         alignItems: 'center',
         justifyContent: 'center',
     },
     sectionContent : {
-        width : 347,
+        width : responsiveWidth(65),
     },
     sectionVisualType : {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
+        width: responsiveWidth(8),
+        height: responsiveWidth(8),
+        borderRadius: responsiveWidth(4),
         backgroundColor : '#00bcd4'
     },
 });
@@ -100,14 +104,14 @@ export default class TagDetails extends Component {
                     <View style={styles.infos}>
                         <View style={styles.section}>
                             <View style={styles.sectionVisual}>
-                                <Icon name={this.getStatusIcon()} style={{fontSize:30}} />
+                                <Icon name={this.getStatusIcon()} style={{fontSize:responsiveFontSize(2.8)}} />
                             </View>
                             <View style={styles.sectionContent}>
                                 <View>
-                                    <Text style={{fontSize:16, color : '#212121'}}>
+                                    <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
                                         {tag.id} ouvert par {tag.author.fullname}
                                     </Text>
-                                    <Text style={{fontSize:20, color : '#212121'}}>
+                                    <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
                                         {tag.title}
                                     </Text>
                                 </View>
@@ -115,14 +119,14 @@ export default class TagDetails extends Component {
                         </View>
                         <View style={styles.section}>
                             <View style={styles.sectionVisual}>
-                                <Image source={{uri : tag.author.avatar}} style={{width:40, height:40, borderRadius:20}}/>
+                                <Image source={{uri : tag.author.avatar}} style={{width:responsiveWidth(8), height:responsiveWidth(8), borderRadius:responsiveWidth(4)}}/>
                             </View>
                             <View style={styles.sectionContent}>
                                 <View>
-                                    <Text style={{fontSize:16, color : '#757575'}}>
+                                    <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
                                         Responsable en charge
                                     </Text>
-                                    <Text style={{fontSize:20, color : '#212121'}}>
+                                    <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
                                         {tag.author.fullname}
                                     </Text>
                                 </View>
@@ -131,17 +135,17 @@ export default class TagDetails extends Component {
                         <View style={styles.section}>
                             <View style={styles.sectionVisual}>
                                 <View style={styles.sectionVisualType}>
-                                    <Text style={{color:'#ffffff', fontSize: 26, textAlign: 'center'}}>
+                                    <Text style={{color:'#ffffff', fontSize: responsiveFontSize(2.8), textAlign: 'center'}}>
                                         {tag.type}
                                     </Text>
                                 </View>
                             </View>
                             <View style={styles.sectionContent}>
                                 <View>
-                                    <Text style={{fontSize:16, color : '#757575'}}>
+                                    <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
                                         Nature
                                     </Text>
-                                    <Text style={{fontSize:20, color : '#212121'}}>
+                                    <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
                                         {tag.type}
                                     </Text>
                                 </View>
@@ -149,14 +153,14 @@ export default class TagDetails extends Component {
                         </View>
                         <View style={styles.section}>
                             <View style={styles.sectionVisual}>
-                                <Icon name="map" style={{fontSize:30}} />
+                                <Icon name="map" style={{fontSize:responsiveFontSize(2.8)}} />
                             </View>
                             <View style={styles.sectionContent}>
                                 <View>
-                                    <Text style={{fontSize:16, color : '#757575'}}>
+                                    <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
                                         Lieu
                                     </Text>
-                                    <Text style={{fontSize:20, color : '#212121'}}>
+                                    <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
                                         {tag.location}
                                     </Text>
                                 </View>
@@ -164,10 +168,10 @@ export default class TagDetails extends Component {
                         </View>
                         <View style={styles.section}>
                             <View style={styles.sectionVisual}>
-                                <Icon name="clipboard-text" style={{fontSize:30}} />
+                                <Icon name="clipboard-text" style={{fontSize:responsiveFontSize(2.8)}} />
                             </View>
                             <View style={styles.sectionContent}>
-                                <Text style={{fontSize:16, color : '#212121'}}>
+                                <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
                                     {tag.description}
                                 </Text>
                             </View>
