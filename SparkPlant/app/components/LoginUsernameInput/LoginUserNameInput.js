@@ -5,11 +5,13 @@ import {
     AsyncStorage,
     Dimensions,
 } from 'react-native';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 let styles = StyleSheet.create({
     input: {
-        width:Dimensions.get('window').width / 2,
-        height:50,
+        width:responsiveWidth(50),
+        height:responsiveHeight(8),
+        fontSize : responsiveFontSize(1.6),
     }
 });
 

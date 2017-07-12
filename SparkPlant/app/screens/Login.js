@@ -7,6 +7,9 @@ import {
     Alert,
     Dimensions,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import ElevatedView from 'react-native-elevated-view';
 import LoginUsernameInput from '../components/LoginUsernameInput/LoginUserNameInput';
 import LoginPasswordInput from '../components/LoginPasswordInput/LoginPasswordInput';
 import LoginFactoryList from '../components/LoginFactoryList/LoginFactoryList';
@@ -14,18 +17,22 @@ import LoginFactoryList from '../components/LoginFactoryList/LoginFactoryList';
 let styles = StyleSheet.create({
     login: {
         flex:1,
+        backgroundColor: '#FFFFFF',
+        alignItems : 'center',
+        justifyContent: 'center',
     },
     body: {
-        flex:8.4,
+        width : responsiveWidth(80),
+        height : responsiveHeight(40),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     button: {
-        width:Dimensions.get('window').width / 2,
-        height:50,
-        backgroundColor: '#009688',
-        marginTop:20,
+        width:responsiveWidth(40),
+        height:responsiveHeight(5),
+        backgroundColor: '#00bcd4',
+        marginTop:responsiveHeight(5),
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -33,7 +40,7 @@ let styles = StyleSheet.create({
         flex:9,
         color:'#ffffff',
         textAlign: 'center',
-        fontSize: 20,
+        fontSize: responsiveFontSize(1.8),
     }
 });
 
@@ -61,16 +68,18 @@ export default class Login extends Component {
     render() {
             return (
                 <View style={styles.login}>
-                    <View style={styles.body}>
+                    <ElevatedView elevation={5} style={styles.body}>
                         <LoginFactoryList/>
                         <LoginUsernameInput/>
                         <LoginPasswordInput />
-                        <TouchableWithoutFeedback onPress={this.login.bind(this)}>
-                            <View style={styles.button}>
-                                <Text style={styles.buttonText}>SE CONNECTER</Text>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    </View>
+                        <ElevatedView elevation={4} style={styles.button}>
+                            <TouchableWithoutFeedback onPress={this.login.bind(this)}>
+                                <View style={{width:responsiveWidth(40), height:responsiveHeight(5), justifyContent:'center', padding : 10}}>
+                                    <Text style={styles.buttonText}>SE CONNECTER</Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </ElevatedView>
+                    </ElevatedView>
                 </View>
             );
     }
