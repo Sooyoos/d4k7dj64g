@@ -5,7 +5,7 @@ import {
     TouchableWithoutFeedback,
     Text,
 } from 'react-native';
-
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import FooterButton from "../../components/FooterButton/FooterButton";
 import HeaderTagDetails from "../../components/Header/HeaderTagDetails";
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -15,8 +15,11 @@ let styles = StyleSheet.create({
     login: {
         flex:1,
     },
+    header : {
+        height : responsiveHeight(7),
+    },
     list: {
-        flex:8,
+        height : responsiveHeight(83),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
@@ -29,14 +32,14 @@ let styles = StyleSheet.create({
     },
     icon : {
         color: '#ffffff',
-        fontSize : 70,
+        fontSize : responsiveFontSize(11),
         textAlign: 'center',
     },
     buttonComment : {
-        width:140,
-        height:140,
+        width:responsiveWidth(30),
+        height:responsiveWidth(30),
         backgroundColor:'#9c27b0',
-        borderRadius: 70,
+        borderRadius: responsiveWidth(15),
         padding : 30,
         marginTop: 10,
         marginBottom: 20,
@@ -44,10 +47,10 @@ let styles = StyleSheet.create({
         marginRight: 20,
     },
     buttonTransfer : {
-        width:140,
-        height:140,
+        width:responsiveWidth(30),
+        height:responsiveWidth(30),
         backgroundColor:'#00bcd4',
-        borderRadius: 70,
+        borderRadius: responsiveWidth(15),
         padding : 30,
         marginTop: 10,
         marginBottom: 20,
@@ -55,10 +58,10 @@ let styles = StyleSheet.create({
         marginRight: 20,
     },
     buttonCheck : {
-        width:140,
-        height:140,
+        width:responsiveWidth(30),
+        height:responsiveWidth(30),
         backgroundColor:'#4caf50',
-        borderRadius: 70,
+        borderRadius: responsiveWidth(15),
         padding : 30,
         marginTop: 20,
         marginBottom: 10,
@@ -66,10 +69,10 @@ let styles = StyleSheet.create({
         marginRight: 20,
     },
     buttonClose : {
-        width:140,
-        height:140,
+        width:responsiveWidth(30),
+        height:responsiveWidth(30),
         backgroundColor:'#f44336',
-        borderRadius: 70,
+        borderRadius: responsiveWidth(15),
         padding : 30,
         marginTop: 20,
         marginBottom: 10,
@@ -77,7 +80,7 @@ let styles = StyleSheet.create({
         marginRight: 20,
     },
     footer: {
-        flex:1,
+        height : responsiveHeight(10),
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
@@ -124,7 +127,7 @@ export default class TagActions extends Component {
                                 <ElevatedView elevation={10} style={styles.buttonComment}>
                                     <Icon name="comment-o" style={styles.icon}/>
                                 </ElevatedView>
-                                <Text style={{textAlign: 'center', color : '#212121', fontSize : 16}}>
+                                <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
                                     Commenter
                                 </Text>
                             </View>
@@ -134,7 +137,7 @@ export default class TagActions extends Component {
                                 <ElevatedView elevation={10} style={styles.buttonTransfer}>
                                     <Icon name="mail-forward" style={styles.icon}/>
                                 </ElevatedView>
-                                <Text style={{textAlign: 'center', color : '#212121', fontSize : 16}}>
+                                <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
                                     Transférer
                                 </Text>
                             </View>
@@ -146,7 +149,7 @@ export default class TagActions extends Component {
                                 <ElevatedView elevation={10} style={styles.buttonCheck}>
                                     <Icon name="check" style={styles.icon}/>
                                 </ElevatedView>
-                                <Text style={{textAlign: 'center', color : '#212121', fontSize : 16}}>
+                                <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
                                     Résolu
                                 </Text>
                             </View>
@@ -156,7 +159,7 @@ export default class TagActions extends Component {
                                 <ElevatedView elevation={10} style={styles.buttonClose}>
                                     <Icon name="close" style={styles.icon}/>
                                 </ElevatedView>
-                                <Text style={{textAlign: 'center', color : '#212121', fontSize : 16}}>
+                                <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
                                     Non Résolu
                                 </Text>
                             </View>
