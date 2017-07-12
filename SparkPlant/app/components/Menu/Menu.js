@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { DrawerItems } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 let styles = StyleSheet.create({
     menu: {
@@ -16,45 +17,44 @@ let styles = StyleSheet.create({
         backgroundColor:'#ffffff',
     },
     menuHeader : {
-        height:250,
+        height:responsiveHeight(30),
         backgroundColor: '#3f51b5',
         padding:20,
     },
     menuHeaderIconView : {
-        height: 80,
+        height: responsiveHeight(8),
         marginTop: 20,
         flexDirection : 'row',
     },
     menuHeaderIcon : {
         color : '#ffffff',
-        fontSize : 30,
+        fontSize : responsiveFontSize(3),
         marginRight : 10,
     },
     menuHeaderIconText : {
-        fontSize : 20,
+        fontSize : responsiveFontSize(2),
         color : '#ffffff',
     },
     menuHeaderUserInfosView : {
-        height: 80,
-        marginTop: -30,
+        height: responsiveHeight(12),
         flexDirection : 'row',
     },
     menuHeaderUserImage : {
-        borderRadius : 40,
-        width : 80,
-        height: 80,
+        borderRadius : responsiveWidth(8),
+        width : responsiveWidth(16),
+        height: responsiveWidth(16),
         marginRight : 15,
     },
     menuHeaderUsername : {
         color : '#ffffff',
-        fontSize : 30,
+        fontSize : responsiveFontSize(2.8),
     },
     menuHeaderUserEmail : {
         color : '#ffffff',
-        fontSize : 20,
+        fontSize : responsiveFontSize(2),
     },
     menuHeaderAvailableView : {
-        height:80,
+        height:responsiveHeight(8),
         flexDirection : 'row',
     },
     menuHeaderAvailableSwitch : {
@@ -62,7 +62,7 @@ let styles = StyleSheet.create({
     },
     menuHeaderAvailableSwitchLabel : {
         color:'#ffffff',
-        fontSize : 20,
+        fontSize : responsiveFontSize(2),
         flex : 4,
         marginTop : 20,
     },
