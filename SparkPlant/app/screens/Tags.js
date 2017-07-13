@@ -16,7 +16,7 @@ let styles = StyleSheet.create({
     },
     body: {
         height:responsiveHeight(83),
-        backgroundColor: '#FFFFFF',
+        backgroundColor : "#efefef",
         alignItems:'center',
         justifyContent: 'center',
     },

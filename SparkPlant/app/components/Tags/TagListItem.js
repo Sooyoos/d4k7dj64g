@@ -13,18 +13,19 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 let styles = StyleSheet.create({
     item: {
         flex: 1,
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 10,
-        paddingBottom: 10,
-        margin: 10,
+        paddingLeft: responsiveWidth(3),
+        paddingRight: responsiveWidth(3),
+        paddingTop: responsiveHeight(1),
+        paddingBottom: responsiveHeight(1),
+        marginTop: responsiveHeight(1),
+        marginBottom: responsiveHeight(1.8),
         backgroundColor: '#ffffff',
         flexDirection: 'row',
     },
     main : {
         width:responsiveWidth(65),
         flexDirection: 'column',
-        marginRight: 10,
+        marginRight: responsiveWidth(1),
     },
     aside : {
         width: responsiveWidth(10),
@@ -52,8 +53,8 @@ let styles = StyleSheet.create({
         width:responsiveWidth(3.8),
         height:responsiveWidth(3.8),
         borderRadius : responsiveWidth(1.9),
-        marginLeft:3,
-        marginRight:3,
+        marginLeft:responsiveWidth(0.5),
+        marginRight:responsiveWidth(0.5),
     },
     itemFullname : {
         flex : 1,
@@ -67,7 +68,7 @@ let styles = StyleSheet.create({
         borderRadius : responsiveWidth(2.5),
     },
     itemStatus : {
-        marginTop : 5,
+        marginTop : responsiveHeight(1),
     },
 });
 
@@ -100,7 +101,7 @@ export default class TagListItem extends Component {
     render() {
         return (
             <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
-                <ElevatedView style={styles.item} elevation={4}>
+                <ElevatedView style={styles.item} elevation={2}>
                     <View style={styles.main}>
                         <Text style={styles.itemTitle}>
                             {this.props.tag.title}

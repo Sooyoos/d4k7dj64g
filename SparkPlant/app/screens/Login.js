@@ -5,7 +5,7 @@ import {
     Text,
     TouchableWithoutFeedback,
     Alert,
-    Dimensions,
+    Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
@@ -17,7 +17,7 @@ import LoginFactoryList from '../components/LoginFactoryList/LoginFactoryList';
 let styles = StyleSheet.create({
     login: {
         flex:1,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#efefef',
         alignItems : 'center',
         justifyContent: 'center',
     },
@@ -27,6 +27,10 @@ let styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
+    },
+    logo : {
+        width : responsiveWidth(75),
+        height : responsiveHeight(20),
     },
     button: {
         width:responsiveWidth(40),
@@ -69,6 +73,7 @@ export default class Login extends Component {
             return (
                 <View style={styles.login}>
                     <ElevatedView elevation={5} style={styles.body}>
+                        <Image source={require('../assets/img/logo.png')} style={styles.logo} />
                         <LoginFactoryList/>
                         <LoginUsernameInput/>
                         <LoginPasswordInput />
