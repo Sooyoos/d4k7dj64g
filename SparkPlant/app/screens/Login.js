@@ -23,7 +23,7 @@ let styles = StyleSheet.create({
     },
     body: {
         width : responsiveWidth(80),
-        height : responsiveHeight(40),
+        height : responsiveHeight(80),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
@@ -74,7 +74,7 @@ export default class Login extends Component {
                         <LoginPasswordInput />
                         <ElevatedView elevation={4} style={styles.button}>
                             <TouchableWithoutFeedback onPress={this.login.bind(this)}>
-                                <View style={{width:responsiveWidth(40), height:responsiveHeight(5), justifyContent:'center', padding : 10}}>
+                                <View style={{width:responsiveWidth(40), height:responsiveHeight(5), justifyContent:'center', padding : 5}}>
                                     <Text style={styles.buttonText}>SE CONNECTER</Text>
                                 </View>
                             </TouchableWithoutFeedback>
