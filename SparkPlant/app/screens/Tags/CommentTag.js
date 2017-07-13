@@ -39,7 +39,7 @@ let styles = StyleSheet.create({
         borderRadius: responsiveWidth(12.5),
         alignItems: 'center',
         backgroundColor: '#9c27b0',
-        padding: 30,
+        padding : responsiveWidth(3),
     },
     icon : {
         color: '#ffffff',
