@@ -51,6 +51,7 @@ let styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
+        paddingBottom : responsiveHeight(3),
     },
 });
 
