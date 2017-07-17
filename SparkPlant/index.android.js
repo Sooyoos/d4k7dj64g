@@ -50,18 +50,21 @@ const TagNavigation = StackNavigator(
         },
         CreateTagStep2 : {
             screen: CreateTagStep2,
+            path: 'tag/:tag',
             navigationOptions: {
                 header : null,
             }
         },
         CreateTagStep3 : {
             screen: CreateTagStep3,
+            path: 'tag/:tag',
             navigationOptions: {
                 header : null,
             }
         },
         CreateTagPreview : {
             screen: CreateTagPreview,
+            path: 'tag/:tag',
             navigationOptions: {
                 header : null,
             }

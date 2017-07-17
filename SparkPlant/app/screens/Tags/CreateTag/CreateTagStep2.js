@@ -16,6 +16,7 @@ let styles = StyleSheet.create({
     card : {
         flex : 1,
         margin : 10,
+        backgroundColor : '#ffffff',
     },
     cardHeader : {
         flex : 1,
@@ -98,9 +99,7 @@ export default class CreateTagStep2 extends Component {
         super(props);
         this.state = {
             tagTitle : null,
-            tagDescription : null,
-            tagPrimaryType : null,
-            tagSecondaryType : null,
+            tagDescription : null
         };
     }
 
@@ -114,16 +113,6 @@ export default class CreateTagStep2 extends Component {
         this.setState({tagDescription : details});
     }
 
-    savePrimaryType(type)
-    {
-        this.setState({tagPrimaryType : type});
-    }
-
-    saveSecondaryType(type)
-    {
-        this.setState({tagSecondaryType : type});
-    }
-
     goToTakePicture()
     {
         this.props.navigation.navigate('TakePictureTag');
@@ -131,7 +120,11 @@ export default class CreateTagStep2 extends Component {
 
     next()
     {
-        this.props.navigation.navigate('CreateTagStep2');
+        let tag = this.props.navigation.state.params.tag;
+        tag.title = this.state.tagTitle;
+        tag.description = this.state.tagDescription;
+
+        this.props.navigation.navigate('CreateTagStep3', {tag : tag});
     }
 
     render() {
@@ -139,7 +132,7 @@ export default class CreateTagStep2 extends Component {
             <View style={{flex : 1}}>
                 <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                 <View style={{flex : 7}}>
-                    <ElevatedView style={styles.card} elevation={5}>
+                    <ElevatedView style={styles.card} elevation={2}>
                         <ElevatedView style={styles.cardHeader} elevation={2}>
                             <View style={styles.cardHeaderIconView}>
                                 <Icon name="information-outline" style={styles.cardHeaderIcon} />
@@ -153,7 +146,7 @@ export default class CreateTagStep2 extends Component {
                             <TextInput style={styles.textInput} multiline={true} placeholder="Description" maxLength={140} value={this.state.tagDescription} onChangeText={(value) => this.saveDescription(value)}/>
                         </View>
                     </ElevatedView>
-                    <ElevatedView style={styles.card} elevation={5}>
+                    <ElevatedView style={styles.card} elevation={2}>
                         <ElevatedView style={styles.cardHeader} elevation={2}>
                             <View style={styles.cardHeaderIconView}>
                                 <Icon name="camera" style={styles.cardHeaderIcon} />
@@ -168,12 +161,12 @@ export default class CreateTagStep2 extends Component {
                             </View>
                             <View style={styles.actions}>
                                 <TouchableWithoutFeedback onPress={this.goToTakePicture.bind(this)}>
-                                    <ElevatedView style={styles.actionButtonView} elevation={10}>
+                                    <ElevatedView style={styles.actionButtonView} elevation={3}>
                                         <Icon name="camera" style={styles.actionButtonIcon} />
                                     </ElevatedView>
                                 </TouchableWithoutFeedback>
                                 <TouchableWithoutFeedback onPress={this.next.bind(this)}>
-                                    <ElevatedView style={styles.actionButtonView} elevation={10}>
+                                    <ElevatedView style={styles.actionButtonView} elevation={3}>
                                         <Icon name="video" style={styles.actionButtonIcon} />
                                     </ElevatedView>
                                 </TouchableWithoutFeedback>
@@ -183,7 +176,7 @@ export default class CreateTagStep2 extends Component {
                 </View>
                 <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
                     <TouchableWithoutFeedback onPress={this.next.bind(this)}>
-                        <ElevatedView style={styles.buttonView} elevation={10}>
+                        <ElevatedView style={styles.buttonView} elevation={7}>
                             <Icon name="arrow-right" style={styles.buttonIcon} />
                         </ElevatedView>
                     </TouchableWithoutFeedback>

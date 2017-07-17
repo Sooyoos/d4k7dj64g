@@ -15,7 +15,8 @@ import HeaderTagDetails from "../../../components/Header/HeaderTagDetails";
 let styles = StyleSheet.create({
     card : {
         flex : 1,
-        margin : 10,
+        margin : responsiveWidth(2),
+        backgroundColor: '#ffffff'
     },
     cardHeader : {
         flex : 1,
@@ -23,14 +24,15 @@ let styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         justifyContent: 'center',
         alignItems: 'center',
+        padding : responsiveWidth(2),
     },
     cardHeaderIconView : {
         width: responsiveWidth(10),
         height : responsiveWidth(10),
         borderRadius : responsiveWidth(5),
         backgroundColor: '#00bcd4',
-        margin : 10,
-        padding : 3,
+        margin : responsiveWidth(1.5),
+        padding : responsiveWidth(0.5),
     },
     cardHeaderIcon : {
         flex : 2,
@@ -48,7 +50,7 @@ let styles = StyleSheet.create({
         flex : 4,
         flexDirection: 'column',
         backgroundColor: '#ffffff',
-        padding : 5,
+        padding : responsiveWidth(4),
     },
     locationPicker : {
         marginTop : 20,
@@ -77,6 +79,7 @@ export default class CreateTagStep1 extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            tag : null,
             tagLocation : null,
             tagLocationDetails : null,
             tagPrimaryType : null,
@@ -106,15 +109,28 @@ export default class CreateTagStep1 extends Component {
 
     next()
     {
-        this.props.navigation.navigate('CreateTagStep2');
+        let tag = {
+            location : this.state.tagLocation,
+            locationDetails : this.state.tagLocationDetails,
+            primaryType : this.state.tagPrimaryType,
+            secondaryType : this.state.tagSecondaryType,
+            title : null,
+            description : null,
+            photos : null,
+            manager : null,
+            followers : null,
+            id : "#00042",
+        };
+
+        this.props.navigation.navigate('CreateTagStep2', {tag : tag});
     }
 
     render() {
         return (
-            <View style={{flex : 1}}>
+            <View style={{flex : 1, backgroundColor : '#efefef'}}>
                 <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                 <View style={{flex : 7}}>
-                    <ElevatedView style={styles.card} elevation={5}>
+                    <ElevatedView style={styles.card} elevation={2}>
                         <ElevatedView style={styles.cardHeader} elevation={2}>
                             <View style={styles.cardHeaderIconView}>
                                 <Icon name="map" style={styles.cardHeaderIcon} />
@@ -136,7 +152,7 @@ export default class CreateTagStep1 extends Component {
                             <TextInput style={{fontSize : responsiveFontSize(1.6)}} placeholder="Détails du lieu" maxLength={30} value={this.state.tagLocationDetails} onChangeText={(value) => this.saveLocationDetails(value)}/>
                         </View>
                     </ElevatedView>
-                    <ElevatedView style={styles.card} elevation={5}>
+                    <ElevatedView style={styles.card} elevation={2}>
                         <ElevatedView style={styles.cardHeader} elevation={2}>
                             <View style={styles.cardHeaderIconView}>
                                 <Icon name="information-outline" style={styles.cardHeaderIcon} />
