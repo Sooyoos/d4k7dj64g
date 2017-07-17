@@ -22,13 +22,6 @@ let styles = StyleSheet.create({
         alignItems:'center',
         justifyContent: 'center',
     },
-    footer: {
-        height : responsiveHeight(10),
-        alignItems: 'center',
-        backgroundColor: '#3f51b5',
-        flexDirection: 'row',
-        paddingBottom : responsiveHeight(3),
-    },
     slider : {
         flex :1,
         flexDirection : 'row',
@@ -111,7 +104,7 @@ export default class CreateTagPreview extends Component {
     render() {
         let tag = this.props.navigation.state.params.tag;
         return (
-            <View style={{flex : 1, backgroundColor : "#efefef"}}>
+            <View style={{flex : 1, backgroundColor : "#ffffff"}}>
                 <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                 <View style={styles.body}>
                     <ScrollView style={styles.slider} alignItems={'center'} horizontal={true} showsHorizontalScrollIndicator={false}>
