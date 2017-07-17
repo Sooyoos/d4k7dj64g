@@ -3,6 +3,7 @@ stages:
 
 deploy:
   stage: deploy
+  script: echo "build"
   only:
     - testing
     - preproduction
