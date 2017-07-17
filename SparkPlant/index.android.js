@@ -120,7 +120,7 @@ const TagNavigation = StackNavigator(
 );
 
 const Navigation = DrawerNavigator({
-        Dashboard: { screen: Dashboard },
+        Dashboard: { screen: Dashboard,path: 'token/:token', },
         Tags: { screen: TagNavigation},
         Checklist : { screen : Checklists},
         News : { screen : News},

@@ -7,7 +7,6 @@ import {
     Alert,
     Image,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import ElevatedView from 'react-native-elevated-view';
 import LoginUsernameInput from '../components/LoginUsernameInput/LoginUserNameInput';
@@ -57,16 +56,32 @@ export default class Login extends Component {
 
     login()
     {
-        // TODO something to check is we can authenticate
-        let login = true;
-        if(login)
-        {
-            this.props.navigation.navigate('Dashboard');
-        }
-        else
-        {
-            Alert.alert('Login incorrect');
-        }
+        let factory = "1";
+        let password = "test";
+        let username = "user1";
+        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
+        let body = new FormData();
+
+        body.append("factory", factory);
+        body.append("password", password);
+        body.append("idNumber", username);
+
+        fetch(baseUrl + "/token", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json',
+            },
+            body: body,
+            })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                if(responseJson.token)
+                {
+                    this.props.navigation.navigate('Dashboard', {token : responseJson.token});
+                }
+            })
+            .catch((error) => { Alert.alert("Login Incorrect"); });
     }
 
     render() {
