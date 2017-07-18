@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-
+    Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
@@ -29,7 +29,7 @@ let styles = StyleSheet.create({
     },
 });
 
-let tags = [
+let tagsStatic = [
     {
         title : "Flexible pneumatique fissuré",
         location : "Sableuse - îlot 4 - Atelier A",
@@ -329,6 +329,14 @@ let tags = [
     },
 ];
 
+let tags = [];
+
+function parseJwt(token){
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+};
+
 export default class Tags extends Component {
 
     static navigationOptions = {
@@ -341,6 +349,29 @@ export default class Tags extends Component {
     constructor(props)
     {
         super(props);
+        this.state = {
+            tags : null,
+        }
+    }
+
+    componentWillMount()
+    {
+        let tokenObj = parseJwt(this.props.navigation.state.params.token);
+        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
+
+        //Alert.alert(baseUrl + tokenObj["@id"] + "/tags");
+
+        fetch(baseUrl + tokenObj["@id"] + "/tags", {
+            method: 'GET',
+            headers: {
+                'Authorization' : 'Bearer ' + this.props.navigation.state.params.token,
+            },
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState({tags : responseJson["hydra:member"]});
+            })
+            .catch((error) => { Alert.alert("Erreur lors de la récupération des tags"); });
     }
 
     render() {

@@ -47,7 +47,7 @@ export default class DashboardNavigation extends Component {
 
     navigateToTags()
     {
-        this.props.navigation.navigate('Tags');
+        this.props.navigation.navigate('Tags', {token : this.props.token});
     }
 
     navigateToChecklist()

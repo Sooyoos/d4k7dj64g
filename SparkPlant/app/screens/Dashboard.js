@@ -6,6 +6,7 @@ import {
     Button,
     AsyncStorage,
     TouchableWithoutFeedback,
+    Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Header from '../components/Header/Header';
@@ -36,13 +37,6 @@ export default class Dashboard extends Component {
     constructor(props)
     {
         super(props);
-        this.state = {return : false}
-    }
-
-    _return()
-    {
-        AsyncStorage.setItem('@SparkPlant:currentPage', 'Login');
-        this.setState({return : true});
     }
 
     render() {
@@ -50,7 +44,7 @@ export default class Dashboard extends Component {
             <View style={styles.login}>
                 <Header props={this.props}/>
                 <View style={styles.body}>
-                    <DashboardNavigation {... this.props} />
+                    <DashboardNavigation token={this.props.navigation.state.params.token} {... this.props} />
                     <DashboardNews/>
                 </View>
             </View>
