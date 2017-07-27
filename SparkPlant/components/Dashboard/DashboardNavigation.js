@@ -60,7 +60,7 @@ class DashboardNavigation extends Component {
 
     navigateToNews()
     {
-        this.props.navigation.navigate('News');
+        this.props.goToNewsPage();
     }
 
     navigateToAnalytics()

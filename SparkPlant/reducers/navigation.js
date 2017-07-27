@@ -7,6 +7,13 @@ import DrawerMenu from '../components/Menu/Menu';
 import LoginScreen from '../containers/LoginScreen';
 import DashboardScreen from '../containers/DashboardScreen';
 import TagsScreen from '../containers/TagsScreen';
+import NewsScreen from '../containers/NewsScreen';
+import WaitingNews from '../containers/News/WaitingNews';
+import NewsDetail from '../containers/News/NewsDetail';
+import WaitingNewsDetail from '../containers/News/WaitingNewsDetail';
+import CreateNewsStep1 from '../containers/News/CreateNewsStep1';
+import CreateNewsStep2 from '../containers/News/CreateNewsStep2';
+import CreateNewsPreview from '../containers/News/CreateNewsPreview';
 import TagsFull from '../containers/Tags/TagsFull';
 import CommentTag from '../containers/Tags/CommentTag';
 import FilterTag from '../containers/Tags/FilterTag';
@@ -114,10 +121,58 @@ export const TagNavigator = StackNavigator(
     }
 );
 
+export const NewsNavigator = StackNavigator(
+    {
+        News: {
+            screen: NewsScreen,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        WaitingNews: {
+            screen: WaitingNews,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        NewsDetail: {
+            screen: NewsDetail,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        WaitingNewsDetail: {
+            screen: WaitingNewsDetail,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        CreateNewsStep1: {
+            screen: CreateNewsStep1,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        CreateNewsStep2: {
+            screen: CreateNewsStep2,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        CreateNewsPreview: {
+            screen: CreateNewsPreview,
+            navigationOptions : {
+                header : null,
+            }
+        },
+    }
+);
+
 export const MainNavigator = DrawerNavigator(
     {
         Dashboard: { screen: DashboardScreen},
         Tags: { screen: TagNavigator},
+        News : { screen : NewsNavigator},
     },
     {
         contentComponent: DrawerMenu,
