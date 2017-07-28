@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../actions';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
-import HeaderTags from "../components/Header/HeaderTags";
+import HeaderNews from "../components/Header/HeaderNews";
 import FooterButton from "../components/Footer/FooterButton";
 import NewsList from '../components/News/NewsList';
 
@@ -54,7 +54,7 @@ class NewsScreen extends Component {
     render() {
         return (
             <View style={styles.login}>
-                <HeaderTags {...this.props} headerTitle="News"/>
+                <HeaderNews {...this.props} headerTitle="News"/>
                 <View style={styles.body}>
                     <NewsList items={this.props.news.news} />
                 </View>

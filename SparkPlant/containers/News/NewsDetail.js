@@ -20,7 +20,7 @@ let styles = StyleSheet.create({
         height:responsiveHeight(7),
     },
     body: {
-        height:responsiveHeight(83),
+        height:responsiveHeight(93),
         backgroundColor : "#efefef",
         alignItems:'center',
         justifyContent: 'center',
@@ -33,7 +33,7 @@ let styles = StyleSheet.create({
         paddingBottom : responsiveHeight(3),
     },
     slider : {
-        height:responsiveHeight(83) * 0.45,
+        height:responsiveHeight(93) * 0.45,
         backgroundColor: "#ffffff",
     },
     image : {

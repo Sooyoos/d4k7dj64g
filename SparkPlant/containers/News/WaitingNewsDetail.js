@@ -224,7 +224,7 @@ class WaitingNewsDetail extends Component {
                         <ElevatedView style={styles.publish} elevation={4}>
                             <TouchableWithoutFeedback onPress={this.publish.bind(this)}>
                                 <View>
-                                    <Icon style={styles.icon} name="trash-o"/>
+                                    <Icon style={styles.icon} name="upload"/>
                                 </View>
                             </TouchableWithoutFeedback>
                         </ElevatedView>
@@ -238,7 +238,7 @@ class WaitingNewsDetail extends Component {
                         <ElevatedView style={styles.delete} elevation={4}>
                             <TouchableWithoutFeedback onPress={this.delete.bind(this)}>
                                 <View>
-                                    <Icon style={styles.icon} name="upload"/>
+                                    <Icon style={styles.icon} name="trash-o"/>
                                 </View>
                             </TouchableWithoutFeedback>
                         </ElevatedView>

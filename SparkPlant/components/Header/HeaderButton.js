@@ -39,6 +39,9 @@ class HeaderButton extends Component {
             case "CreateTagStep1" :
                 this.props.goToCreateTagStep1();
                 break;
+            case "CreateNewsStep1" :
+                this.props.goToCreateNewsStep1();
+                break;
             default :
                 break;
         }

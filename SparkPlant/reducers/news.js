@@ -8,9 +8,7 @@ const initialState = {
         content : null,
         visibility : null,
         unit : null,
-        media : [
-
-        ],
+        media : null,
     }
 };
 
