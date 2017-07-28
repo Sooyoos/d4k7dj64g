@@ -79,26 +79,54 @@ class NewsListItem extends Component {
         this.props.goToWaitingNewsDetail();
     }
 
+    getVisiblityIcon()
+    {
+        switch(this.props.item.visibility)
+        {
+            case "private" :
+                return "lock";
+                break;
+            case "open" :
+                return "unlock-alt";
+                break;
+            case "public" :
+                return "globe";
+                break;
+        }
+    }
+
+    getMainImage()
+    {
+        if(this.props.item.media && this.props.item.media.length > 0)
+        {
+            return this.props.item.media[0];
+        }
+        else
+        {
+            return "http://via.placeholder.com/500x500";
+        }
+    }
+
     render() {
         let item = this.props.item;
         return (
             <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
                 <ElevatedView style={styles.item} elevation={2}>
-                    <Image style={styles.image} source={{uri : item.imgSrc}} />
+                    <Image style={styles.image} source={{uri : this.getMainImage()}} />
                     <View style={styles.main}>
                         <View style={styles.content}>
                             <Text style={styles.textContent} numberOfLine={2}>
-                                {item.newsExcerpt}
+                                {item.title}
                             </Text>
                         </View>
                         <View style={styles.info}>
                             <View style={styles.data}>
                                 <Text  style={styles.textInfos}>
-                                    {item.newsDate} {item.newsAuthor}
+                                    dd/mm/yyyy Prénom Nom
                                 </Text>
                             </View>
                             <View style={styles.status}>
-                                <Icon name={item.iconName} style={styles.statusIcon} />
+                                <Icon name={this.getVisiblityIcon()} style={styles.statusIcon} />
                             </View>
                         </View>
                     </View>

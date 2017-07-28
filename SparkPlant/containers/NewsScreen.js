@@ -48,7 +48,7 @@ class NewsScreen extends Component {
 
     componentWillMount()
     {
-
+        this.props.tryUserNews(this.props.login);
     }
 
     render() {

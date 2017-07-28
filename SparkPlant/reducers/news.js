@@ -18,6 +18,12 @@ export const newsReducer = {
             case types.SET_CURRENT_NEWS: {
                 return Object.assign({}, state, {currentNews : action.news});
             }
+            case types.USER_NEWS_SUCCESS: {
+                return Object.assign({}, state, {news : action.news});
+            }
+            case types.USER_NEWS_FAILURE: {
+                return Object.assign({}, state, {news : null});
+            }
             default :
                 return state;
         }
