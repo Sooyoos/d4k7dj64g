@@ -41,7 +41,7 @@ class WaitingNews extends Component {
 
     componentWillMount()
     {
-        this.props.tryUserTags(this.props.login);
+        this.props.tryWaitingNews(this.props.login);
     }
 
     render() {
