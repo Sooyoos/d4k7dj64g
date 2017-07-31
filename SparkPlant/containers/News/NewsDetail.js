@@ -83,13 +83,6 @@ let styles = StyleSheet.create({
     }
 });
 
-let mediaTMP = [
-    "http://i1.go2yd.com/image.php?url=0GQ3kfitfC",
-    "http://saporifineflavors.com/userfiles/image/Portafilter%20Handles.jpg",
-    "https://i.ytimg.com/vi/PI96CzxFUPI/maxresdefault.jpg",
-    "https://i.ytimg.com/vi/w5CuDdhdess/maxresdefault.jpg",
-];
-
 class NewsDetail extends Component {
 
     constructor(props)
@@ -99,30 +92,30 @@ class NewsDetail extends Component {
 
     componentWillMount()
     {
-
+        console.log("plopiplop");
     }
 
     buildMediaList()
     {
         let medias = this.props.news.currentNews.media;
+        console.log(this.props.news.currentNews);
         let mediaList = [];
 
         if(medias)
         {
-            for(var i = 0; i < medias.length; i++)
+            if(medias.length > 0)
             {
-                mediaList.push(
-                    <Image key={i} style={styles.image} source={{uri : medias[i]}} />
-                );
+                for(var i = 0; i < medias.length; i++)
+                {
+                    mediaList.push(
+                        <Image key={i} style={styles.image} source={{uri : medias[i]}} />
+                    );
+                }
             }
-        }
-        else
-        {
-            medias = mediaTMP;
-            for(var i = 0; i < medias.length; i++)
+            else
             {
                 mediaList.push(
-                    <Image key={i} style={styles.image} source={{uri : medias[i]}} />
+                    <Image key={0} style={styles.image} source={{uri : "http://via.placeholder.com/1500x500"}} />
                 );
             }
         }
@@ -146,15 +139,15 @@ class NewsDetail extends Component {
                     <ElevatedView style={styles.content} elevation={2}>
                         <View style={styles.info}>
                             <Text style={styles.infoText}>
-                                Le 24/06/2017 par Mari Doucet
+                                Le dd/mm/yyyy par Prenom Nom
                             </Text>
                             <Image style={styles.infoImage} source={{uri : "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg"}}/>
                         </View>
                         <Text style={styles.title}>
-                            Titre de la News
+                            {item.title}
                         </Text>
                         <Text style={styles.contentText} numberOfLines={7}>
-                            We're acquainted with the wormhole phenomenon, but this...{"\n\n"}Is a remarkable piece of bio-electronic engineering by which I see much of the EM spectrum ranging from heat and infrared through radio waves, et cetera, and forgive me if I've said and listened to this a thousand times. This planet's interior heat provides an abundance of geothermal energy. We need to neutralize the homing signal.
+                            {item.content}
                         </Text>
                     </ElevatedView>
                 </View>

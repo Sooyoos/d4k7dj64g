@@ -76,7 +76,7 @@ class NewsListItem extends Component {
     goToDetails()
     {
         this.props.setCurrentNews(this.props.item);
-        this.props.goToWaitingNewsDetail();
+        this.props.goToNewsDetail();
     }
 
     getVisiblityIcon()
