@@ -56,7 +56,7 @@ class NewsScreen extends Component {
             <View style={styles.login}>
                 <HeaderNews {...this.props} headerTitle="News"/>
                 <View style={styles.body}>
-                    <NewsList items={this.props.news.news} />
+                    <NewsList itemRoute={this.props.goToNewsDetail} items={this.props.news.news} />
                 </View>
                 <View style={styles.footer}>
                     <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={this.props.goToNewsPage}/>

@@ -30,7 +30,7 @@ class NewsList extends Component {
             for(var i = 0; i < news.length; i++)
             {
                 list.push(
-                    <NewsListItem key={i} item={news[i]}/>
+                    <NewsListItem route={this.props.itemRoute} key={i} item={news[i]}/>
                 );
             }
         }
