@@ -90,11 +90,6 @@ class NewsDetail extends Component {
         super(props);
     }
 
-    componentWillMount()
-    {
-        console.log("plopiplop");
-    }
-
     buildMediaList()
     {
         let medias = this.props.news.currentNews.media;

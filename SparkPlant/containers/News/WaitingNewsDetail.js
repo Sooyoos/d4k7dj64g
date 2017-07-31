@@ -113,13 +113,6 @@ let styles = StyleSheet.create({
     }
 });
 
-let mediaTMP = [
-    "http://i1.go2yd.com/image.php?url=0GQ3kfitfC",
-    "http://saporifineflavors.com/userfiles/image/Portafilter%20Handles.jpg",
-    "https://i.ytimg.com/vi/PI96CzxFUPI/maxresdefault.jpg",
-    "https://i.ytimg.com/vi/w5CuDdhdess/maxresdefault.jpg",
-];
-
 class WaitingNewsDetail extends Component {
 
     constructor(props)
@@ -132,7 +125,7 @@ class WaitingNewsDetail extends Component {
         let medias = this.props.news.currentNews.media;
         let mediaList = [];
 
-        if(medias)
+        if(medias.length > 0)
         {
             for(var i = 0; i < medias.length; i++)
             {
@@ -143,13 +136,9 @@ class WaitingNewsDetail extends Component {
         }
         else
         {
-            medias = mediaTMP;
-            for(var i = 0; i < medias.length; i++)
-            {
-                mediaList.push(
-                    <Image key={i} style={styles.image} source={{uri : medias[i]}} />
+             mediaList.push(
+                    <Image key={0} style={styles.image} source={{uri : "http://via.placeholder.com/1500x500"}} />
                 );
-            }
         }
 
         return mediaList;
