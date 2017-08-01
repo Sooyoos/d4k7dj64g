@@ -86,7 +86,7 @@ class NewsListItem extends Component {
             case "private" :
                 return "lock";
                 break;
-            case "open" :
+            case "restricted" :
                 return "unlock-alt";
                 break;
             case "public" :

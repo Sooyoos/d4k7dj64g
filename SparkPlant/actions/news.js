@@ -114,7 +114,7 @@ function fetchPublishNews(login, news)
         dispatch(publishNewsRequested());
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/news" + news["@id"], {
+        fetch(baseUrl + news["@id"], {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -128,7 +128,7 @@ function fetchPublishNews(login, news)
             .then((response) => response.json())
             .then((responseJson) => {
                 console.log(responseJson);
-                dispatch(publishNewsSuccess(responseJson["hydra:member"]));
+                dispatch(publishNewsSuccess(responseJson));
             })
             .catch((error) => { dispatch(publishNewsFailure()); });
     }
@@ -163,20 +163,21 @@ export function tryPublishNews(login, news)
     }
 }
 
-function fetchTransferNews(login, news, unit)
+function fetchTransferNews(login, news)
 {
     return dispatch => {
         dispatch(transferNewsRequested());
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/news" + news["@id"], {
+        fetch(baseUrl + news["@id"] + "/transfer", {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type' : 'application/json',
             },
             body : JSON.stringify(
                 {
-                    unit : unit["@id"],
+
                 }
             )
         })
@@ -185,7 +186,7 @@ function fetchTransferNews(login, news, unit)
                 console.log(responseJson);
                 dispatch(transferNewsSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => { dispatch(transferNewsFailure()); });
+            .catch((error) => { console.log(error); dispatch(transferNewsFailure()); });
     }
 }
 
@@ -211,10 +212,10 @@ function transferNewsFailure()
     }
 }
 
-export function tryTransferNews(login, news, unit)
+export function tryTransferNews(login, news)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchTransferNews(login, news, unit));
+        return dispatch(fetchTransferNews(login, news));
     }
 }
 
@@ -224,16 +225,14 @@ function fetchDeleteNews(login, news)
         dispatch(deleteNewsRequested());
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/news" + news["@id"], {
+        fetch(baseUrl + news["@id"], {
             method: 'DELETE',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
             },
         })
-            .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
-                dispatch(deleteNewsSuccess(responseJson["hydra:member"]));
+                dispatch(deleteNewsSuccess(responseJson));
             })
             .catch((error) => { dispatch(deleteNewsFailure()); });
     }

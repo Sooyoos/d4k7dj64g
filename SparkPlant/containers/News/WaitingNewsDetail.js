@@ -7,6 +7,8 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
     Alert,
+    Modal,
+    Picker,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -16,6 +18,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 import HeaderTags from "../../components/Header/HeaderTags";
 import FooterButton from "../../components/Footer/FooterButton";
 import ElevatedView from "react-native-elevated-view";
+import Moment from 'moment';
 
 let styles = StyleSheet.create({
     login: {
@@ -110,7 +113,8 @@ let styles = StyleSheet.create({
     icon : {
         color: "#ffffff",
         fontSize: responsiveFontSize(4.75),
-    }
+    },
+
 });
 
 class WaitingNewsDetail extends Component {
@@ -118,6 +122,12 @@ class WaitingNewsDetail extends Component {
     constructor(props)
     {
         super(props);
+        this.state = {transferInput : false, unit : null};
+    }
+
+    componentWillMount()
+    {
+
     }
 
     buildMediaList()
@@ -151,7 +161,10 @@ class WaitingNewsDetail extends Component {
             'Êtes vous sûr de vouloir publier la news ?',
             [
                 {text: 'Annuler', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                {text: 'Publier', onPress: () => console.log('OK Pressed')},
+                {text: 'Publier', onPress: () => {
+                    this.props.tryPublishNews(this.props.login, this.props.news.currentNews);
+                    this.props.goToWaitingNews();
+                }},
             ],
             { cancelable: false }
         );
@@ -160,11 +173,11 @@ class WaitingNewsDetail extends Component {
     forward()
     {
         Alert.alert(
-            'Publier et transférer la news',
-            'Êtes vous sûr de vouloir publier et transférer la news ?',
+            'Transférer la news',
+            'Êtes vous sûr de vouloir transférer la news?',
             [
                 {text: 'Annuler', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                {text: 'Publier et Transférer', onPress: () => console.log('OK Pressed')},
+                {text: 'Transférer', onPress: () => {this.props.tryTransferNews(this.props.login, this.props.news.currentNews); this.props.goToWaitingNews();}},
             ],
             { cancelable: false }
         );
@@ -177,65 +190,72 @@ class WaitingNewsDetail extends Component {
             'Êtes vous sûr de vouloir supprimer la news ?',
             [
                 {text: 'Annuler', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                {text: 'Supprimer', onPress: () => console.log('OK Pressed')},
+                {text: 'Supprimer', onPress: () => {
+                    this.props.tryDeleteNews(this.props.login, this.props.news.currentNews);
+                    this.props.goToWaitingNews();
+                }},
             ],
             { cancelable: false }
         );
     }
 
     render() {
-        return (
-            <View style={styles.login}>
-                <HeaderTags {...this.props} headerTitle="Mes tags"/>
-                <View style={styles.body}>
-                    <ElevatedView elevation={2} style={styles.slider}>
-                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                            <View style={{flexDirection:'row'}}>
-                                {this.buildMediaList()}
-                            </View>
-                        </ScrollView>
-                    </ElevatedView>
-                    <ElevatedView style={styles.content} elevation={2}>
-                        <Text style={styles.title}>
-                            Titre de la News
-                        </Text>
-                        <View style={styles.info}>
-                            <Text style={styles.infoText}>
-                                Le 24/06/2017 par Mari Doucet
+        let item = this.props.news.currentNews;
+            return (
+                <View style={styles.login}>
+                    <HeaderTags {...this.props} headerTitle="Mes tags"/>
+                    <View style={styles.body}>
+                        <ElevatedView elevation={2} style={styles.slider}>
+                            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                                <View style={{flexDirection:'row'}}>
+                                    {this.buildMediaList()}
+                                </View>
+                            </ScrollView>
+                        </ElevatedView>
+                        <ElevatedView style={styles.content} elevation={2}>
+                            <Text style={styles.title}>
+                                {item.title}
                             </Text>
-                            <Image style={styles.infoImage} source={{uri : "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg"}}/>
+                            <View style={styles.info}>
+                                <Text style={styles.infoText}>
+                                    Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
+                                </Text>
+                                <Image style={styles.infoImage} source={{uri : item.user.avatar || "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg"}}/>
+                            </View>
+                            <Text style={styles.contentText} numberOfLines={12}>
+                                {item.content}
+                            </Text>
+                        </ElevatedView>
+                        <View style={styles.actions}>
+                            <ElevatedView style={styles.publish} elevation={4}>
+                                <TouchableWithoutFeedback onPress={this.publish.bind(this)}>
+                                    <View>
+                                        <Icon style={styles.icon} name="upload"/>
+                                    </View>
+                                </TouchableWithoutFeedback>
+                            </ElevatedView>
+                            <ElevatedView style={styles.forward} elevation={4}>
+                                <TouchableWithoutFeedback onPress={this.forward.bind(this)}>
+                                    <View>
+                                        <Icon style={styles.icon} name="mail-forward"/>
+                                    </View>
+                                </TouchableWithoutFeedback>
+                            </ElevatedView>
+                            <ElevatedView style={styles.delete} elevation={4}>
+                                <TouchableWithoutFeedback onPress={this.delete.bind(this)}>
+                                    <View>
+                                        <Icon style={styles.icon} name="trash-o"/>
+                                    </View>
+                                </TouchableWithoutFeedback>
+                            </ElevatedView>
                         </View>
-                        <Text style={styles.contentText} numberOfLines={12}>
-                            We're acquainted with the wormhole phenomenon, but this...{"\n\n"}Is a remarkable piece of bio-electronic engineering by which I see much of the EM spectrum ranging from heat and infrared through radio waves, et cetera, and forgive me if I've said and listened to this a thousand times. This planet's interior heat provides an abundance of geothermal energy. We need to neutralize the homing signal.
-                        </Text>
-                    </ElevatedView>
-                    <View style={styles.actions}>
-                        <ElevatedView style={styles.publish} elevation={4}>
-                            <TouchableWithoutFeedback onPress={this.publish.bind(this)}>
-                                <View>
-                                    <Icon style={styles.icon} name="upload"/>
-                                </View>
-                            </TouchableWithoutFeedback>
-                        </ElevatedView>
-                        <ElevatedView style={styles.forward} elevation={4}>
-                            <TouchableWithoutFeedback onPress={this.forward.bind(this)}>
-                                <View>
-                                    <Icon style={styles.icon} name="mail-forward"/>
-                                </View>
-                            </TouchableWithoutFeedback>
-                        </ElevatedView>
-                        <ElevatedView style={styles.delete} elevation={4}>
-                            <TouchableWithoutFeedback onPress={this.delete.bind(this)}>
-                                <View>
-                                    <Icon style={styles.icon} name="trash-o"/>
-                                </View>
-                            </TouchableWithoutFeedback>
-                        </ElevatedView>
                     </View>
                 </View>
-            </View>
-        );
-    }
+            );
+
+
+        }
+
 }
 
 function mapStateToProps(state) {
@@ -244,6 +264,7 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        utils : state.utils,
     };
 }
 
