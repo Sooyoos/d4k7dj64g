@@ -47,7 +47,7 @@ class WaitingNews extends Component {
     render() {
         return (
             <View style={styles.login}>
-                <HeaderTags {...this.props} headerTitle="News"/>
+                <HeaderNews {...this.props} headerTitle="News"/>
                 <View style={styles.body}>
                     <NewsList itemRoute={this.props.goToWaitingNewsDetail} items={this.props.news.waitingNews} />
                 </View>

@@ -122,7 +122,7 @@ class NewsDetail extends Component {
         let item = this.props.news.currentNews;
         return (
             <View style={styles.login}>
-                <HeaderTags {...this.props} headerTitle="News title"/>
+                <HeaderNews {...this.props} headerTitle="News"/>
                 <View style={styles.body}>
                     <ElevatedView elevation={2} style={styles.slider}>
                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>

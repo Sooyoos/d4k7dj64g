@@ -139,7 +139,7 @@ class CreateNewsPreview extends Component {
     render() {
         return (
             <View style={styles.login}>
-                <HeaderTags {...this.props} headerTitle="Mes tags"/>
+                <HeaderNews {...this.props} headerTitle="News"/>
                 <View style={styles.body}>
                     <ElevatedView elevation={2} style={styles.slider}>
                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
