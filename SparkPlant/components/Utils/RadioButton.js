@@ -44,22 +44,32 @@ class RadioButton extends Component {
     constructor(props)
     {
         super(props);
+        this.state = {selected : false};
+    }
+
+    select()
+    {
+        this.props.setCreationVisibility(this.props.value);
     }
 
     render() {
-        if(this.props.selected)
+        if(this.props.value === this.props.news.creation_current.visibility)
         {
             return (
-                <View style={this.props.style}>
-                    <View style={this.props.styleSelected}/>
-                </View>
+                <TouchableWithoutFeedback onPress={this.select.bind(this)}>
+                    <View style={this.props.style}>
+                        <View style={this.props.styleSelected}/>
+                    </View>
+                </TouchableWithoutFeedback>
             );
         }
         else
         {
             return (
-                <View style={this.props.style}>
-                </View>
+                <TouchableWithoutFeedback onPress={this.select.bind(this)}>
+                    <View style={this.props.style}>
+                    </View>
+                </TouchableWithoutFeedback>
             );
 
         }

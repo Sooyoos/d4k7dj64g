@@ -12,6 +12,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 import HeaderTags from "../../components/Header/HeaderTags";
 import FooterButton from "../../components/Footer/FooterButton";
 import NewsList from '../../components/News/NewsList';
+import HeaderNews from "../../components/Header/HeaderNews";
 
 let styles = StyleSheet.create({
     login: {

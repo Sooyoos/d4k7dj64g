@@ -285,6 +285,7 @@ function fetchCreateNews(login, news)
             method: 'POST',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type' : 'application/json',
             },
             body : JSON.stringify(news)
         })
@@ -323,5 +324,13 @@ export function tryCreateNews(login, news)
 {
     return (dispatch, getState) => {
         return dispatch(fetchCreateNews(login, news));
+    }
+}
+
+export function setCreationVisibility(visibility)
+{
+    return {
+        type : types.SET_CREATION_VISIBILITY,
+        visibility : visibility,
     }
 }

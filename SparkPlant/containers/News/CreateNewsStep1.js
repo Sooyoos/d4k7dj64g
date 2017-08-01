@@ -173,6 +173,91 @@ class CreateNewsStep1 extends Component {
     constructor(props)
     {
         super(props);
+        this.state = {
+            item : {
+                title : null,
+                content : null,
+                visibility : null,
+                unit : null,
+                media : null,
+            }
+        };
+    }
+
+    componentWillMount()
+    {
+        this.props.tryUnits(this.props.login);
+    }
+
+    buildUnitList()
+    {
+        let units = this.props.utils.units;
+        let unitList = [];
+
+        if(units && units.length > 0)
+        {
+            for(var i = 0; i < units.length; i++)
+            {
+                unitList.push(
+                    <Picker.Item label={units[i].name} value={units[i]["@id"]} key={i} />
+                );
+            }
+        }
+
+        return unitList;
+    }
+
+    setTitle(title)
+    {
+        let item = Object.assign({}, this.state.item, {title : title});
+        this.setState({item : item});
+    }
+
+    setContent(content)
+    {
+        let item = Object.assign({}, this.state.item, {content : content});
+        this.setState({item : item});
+    }
+
+    setUnit(unit)
+    {
+        let item = Object.assign({}, this.state.item, {unit : unit});
+        this.setState({item : item});
+    }
+
+    buildMediaList()
+    {
+        let medias = this.props.news.creation_current.media;
+        let mediaList = [];
+
+        if(medias && medias.length > 0)
+        {
+            for(var i = 0; i < medias.length; i++)
+            {
+                mediaList.push(
+                    <ElevatedView key={i} style={styles.mediaCard} elevation={4}>
+                        <Image style={styles.media} source={{uri : medias[i]}} />
+                    </ElevatedView>
+                );
+            }
+        }
+        else
+        {
+            mediaList.push(
+                <ElevatedView key={0} style={styles.mediaCard} elevation={4}>
+                    <Image style={styles.media} source={{uri : 'http://via.placeholder.com/750x500'}} />
+                </ElevatedView>
+            );
+        }
+
+        return mediaList;
+    }
+
+    preview()
+    {
+        console.log(this.state.item);
+        this.props.prepareNews(this.state.item);
+        this.props.goToCreateNewsPreview();
     }
 
     render() {
@@ -183,15 +268,7 @@ class CreateNewsStep1 extends Component {
                     <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
                         <ElevatedView style={styles.medias} elevation={2}>
                             <ScrollView style={styles.slider} horizontal={true} showsHorizontalScrollIndicator={false}>
-                                <ElevatedView style={styles.mediaCard} elevation={4}>
-                                    <Image style={styles.media} source={{uri : 'https://blog.nxp.com/wp-content/uploads/2016/11/post-11521-industry-4-960x425.jpg'}} />
-                                </ElevatedView>
-                                <ElevatedView style={styles.mediaCard} elevation={4}>
-                                    <Image style={styles.media} source={{uri : 'http://www.pwc.com/content/dam/pwc/gx/en/industries/industries-4.0/landing-page/related-content-industry-self-assessment.jpg'}} />
-                                </ElevatedView>
-                                <ElevatedView style={styles.mediaCard} elevation={4}>
-                                    <Image style={styles.media} source={{uri : 'http://i2.cdn.cnn.com/cnnnext/dam/assets/160318130751-foreign-imports-crush-u-s-steel-industry-exlarge-169.jpg'}} />
-                                </ElevatedView>
+                                {this.buildMediaList()}
                             </ScrollView>
                             <View style={styles.addMedia}>
                                 <ElevatedView style={styles.addMediaButton} elevation={4}>
@@ -205,41 +282,38 @@ class CreateNewsStep1 extends Component {
                             <Text style={styles.titleLabel}>
                                 Titre de la news
                             </Text>
-                            <TextInput style={styles.titleInput} placeholder="Titre"/>
+                            <TextInput style={styles.titleInput} placeholder="Titre" onChangeText={(text) => this.setTitle(text)} value={this.state.item.title}/>
                         </ElevatedView>
                         <ElevatedView style={styles.unit} elevation={2}>
-                            <Picker style={styles.unitPicker}>
+                            <Picker style={styles.unitPicker} selectedValue={this.state.item.unit} onValueChange={(value, index) => this.setUnit(value)}>
                                 <Picker.Item label="Sélectionnez l'unité" value={null} key={-1} />
-                                <Picker.Item label="Unit 1" value="/units/1" key={0} />
-                                <Picker.Item label="Unit 2" value="/units/2" key={1} />
-                                <Picker.Item label="Unit 3" value="/units/3" key={2} />
-                                <Picker.Item label="Unit 4" value="/units/4" key={3} />
+                                {this.buildUnitList()}
                             </Picker>
                         </ElevatedView>
                         <ElevatedView style={styles.content} elevation={2}>
                             <Text style={styles.contentLabel}>
                                 Texte de la news
                             </Text>
-                            <TextInput style={styles.contentInput} placeholder="Texte" multiline={true}/>
+                            <TextInput style={styles.contentInput} placeholder="Texte" multiline={true} onChangeText={(text) => this.setContent(text)} value={this.state.item.content}/>
                         </ElevatedView>
                         <ElevatedView style={styles.broadcast} elevation={2}>
                             <Text style={styles.broadcastLabel}>
                                 Diffusion
                             </Text>
                             <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
-                                <RadioButton selected={true} styleSelected={styles.rbSelected} style={styles.radioButton}/>
+                                <RadioButton value="private" styleSelected={styles.rbSelected} style={styles.radioButton}/>
                                 <Text style={styles.rbLabel}>
                                     Confidentielle
                                 </Text>
                             </View>
                             <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
-                                <RadioButton selected={false} styleSelected={styles.rbSelected} style={styles.radioButton}/>
+                                <RadioButton value="restricted" styleSelected={styles.rbSelected} style={styles.radioButton}/>
                                 <Text style={styles.rbLabel}>
                                     Restreinte
                                 </Text>
                             </View>
                             <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
-                                <RadioButton selected={false} styleSelected={styles.rbSelected} style={styles.radioButton}/>
+                                <RadioButton value="public" styleSelected={styles.rbSelected} style={styles.radioButton}/>
                                 <Text style={styles.rbLabel}>
                                     Publique
                                 </Text>
@@ -247,7 +321,7 @@ class CreateNewsStep1 extends Component {
                         </ElevatedView>
                         <View style={{flexDirection : 'row', alignContent : 'flex-end', justifyContent: 'flex-end', width : responsiveWidth(90)}}>
                             <ElevatedView style={styles.nextButton} elevation={4}>
-                                <TouchableWithoutFeedback>
+                                <TouchableWithoutFeedback onPress={this.preview.bind(this)}>
                                     <Icon style={styles.nextButtonIcon} name="eye"/>
                                 </TouchableWithoutFeedback>
                             </ElevatedView>
@@ -265,6 +339,7 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        utils : state.utils,
     };
 }
 

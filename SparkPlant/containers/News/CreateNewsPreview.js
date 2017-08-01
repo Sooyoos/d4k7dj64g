@@ -15,6 +15,8 @@ import { ActionCreators } from '../../actions';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import HeaderTags from "../../components/Header/HeaderTags";
 import ElevatedView from "react-native-elevated-view";
+import HeaderNews from "../../components/Header/HeaderNews";
+import Moment from 'moment';
 
 let styles = StyleSheet.create({
     login: {
@@ -95,10 +97,7 @@ let styles = StyleSheet.create({
 });
 
 let mediaTMP = [
-    "http://i1.go2yd.com/image.php?url=0GQ3kfitfC",
-    "http://saporifineflavors.com/userfiles/image/Portafilter%20Handles.jpg",
-    "https://i.ytimg.com/vi/PI96CzxFUPI/maxresdefault.jpg",
-    "https://i.ytimg.com/vi/w5CuDdhdess/maxresdefault.jpg",
+    "http://via.placeholder.com/1500x500",
 ];
 
 class CreateNewsPreview extends Component {
@@ -113,7 +112,7 @@ class CreateNewsPreview extends Component {
         let medias = this.props.news.creation_current.media;
         let mediaList = [];
 
-        if(medias)
+        if(medias && medias.length > 0)
         {
             for(var i = 0; i < medias.length; i++)
             {
@@ -136,7 +135,14 @@ class CreateNewsPreview extends Component {
         return mediaList;
     }
 
+    create()
+    {
+        this.props.tryCreateNews(this.props.login, this.props.news.creation_current);
+        this.props.goToNewsPage();
+    }
+
     render() {
+        let item = this.props.news.creation_current;
         return (
             <View style={styles.login}>
                 <HeaderNews {...this.props} headerTitle="News"/>
@@ -150,21 +156,15 @@ class CreateNewsPreview extends Component {
                     </ElevatedView>
                     <ElevatedView style={styles.content} elevation={2}>
                         <Text style={styles.title}>
-                            Titre de la News
+                            {item.title}
                         </Text>
-                        <View style={styles.info}>
-                            <Text style={styles.infoText}>
-                                Le 24/06/2017 par Mari Doucet
-                            </Text>
-                            <Image style={styles.infoImage} source={{uri : "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg"}}/>
-                        </View>
                         <Text style={styles.contentText} numberOfLines={12}>
-                            We're acquainted with the wormhole phenomenon, but this...{"\n\n"}Is a remarkable piece of bio-electronic engineering by which I see much of the EM spectrum ranging from heat and infrared through radio waves, et cetera, and forgive me if I've said and listened to this a thousand times. This planet's interior heat provides an abundance of geothermal energy. We need to neutralize the homing signal.
+                            {item.content}
                         </Text>
                     </ElevatedView>
                     <View style={styles.actions}>
                         <ElevatedView style={styles.forward} elevation={4}>
-                            <TouchableWithoutFeedback onPress={null}>
+                            <TouchableWithoutFeedback onPress={this.create.bind(this)}>
                                 <View>
                                     <Icon style={styles.icon} name="check"/>
                                 </View>

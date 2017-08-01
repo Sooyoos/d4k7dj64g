@@ -8,7 +8,10 @@ const initialState = {
         content : null,
         visibility : null,
         unit : null,
-        media : null,
+        media : [
+
+        ],
+        published : false,
     }
 };
 
@@ -49,14 +52,27 @@ export const newsReducer = {
                 return state;
             }
             case types.PREPARE_NEWS: {
-                let creationCurrent = Object.assign({}, state.creation_current, action.news);
+                let obj = Object.assign({}, action.news, {visibility : state.creation_current.visibility, media : []});
+                let creationCurrent = Object.assign({}, state.creation_current, obj);
                 return Object.assign({}, state, {creation_current : creationCurrent});
             }
             case types.CREATE_NEWS_SUCCESS: {
-                return Object.assign({}, state, {creation_current : null});
+                return Object.assign({}, state, {creation_current : {
+                    title : null,
+                    content : null,
+                    unit : null,
+                    media : [
+
+                    ],
+                    published : false,
+                }});
             }
             case types.CREATE_NEWS_FAILURE: {
                 return state;
+            }
+            case types.SET_CREATION_VISIBILITY : {
+                let creationCurrent = Object.assign({}, state.creation_current, {visibility : action.visibility});
+                return Object.assign({}, state, {creation_current : creationCurrent});
             }
             default :
                 return state;
