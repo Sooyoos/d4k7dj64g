@@ -15,6 +15,7 @@ import HeaderTags from "../../components/Header/HeaderTags";
 import FooterButton from "../../components/Footer/FooterButton";
 import ElevatedView from "react-native-elevated-view";
 import HeaderNews from "../../components/Header/HeaderNews";
+import Moment from 'moment';
 
 let styles = StyleSheet.create({
     login: {
@@ -135,14 +136,14 @@ class NewsDetail extends Component {
                     <ElevatedView style={styles.content} elevation={2}>
                         <View style={styles.info}>
                             <Text style={styles.infoText}>
-                                Le dd/mm/yyyy par Prenom Nom
+                                Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
                             </Text>
                             <Image style={styles.infoImage} source={{uri : "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg"}}/>
                         </View>
                         <Text style={styles.title}>
                             {item.title}
                         </Text>
-                        <Text style={styles.contentText} numberOfLines={7}>
+                        <Text style={styles.contentText} numberOfLines={12}>
                             {item.content}
                         </Text>
                     </ElevatedView>
