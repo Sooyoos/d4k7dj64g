@@ -18,6 +18,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 import HeaderNews from "../../components/Header/HeaderNews";
 import ElevatedView from "react-native-elevated-view";
 import RadioButton from "../../components/Utils/RadioButton";
+import ImagePicker from 'react-native-image-picker';
 
 let styles = StyleSheet.create({
     login: {
@@ -179,13 +180,16 @@ class CreateNewsStep1 extends Component {
                 content : null,
                 visibility : null,
                 unit : null,
-                media : null,
+                media : [
+
+                ],
             }
         };
     }
 
     componentWillMount()
     {
+        this.setState({item : this.props.news.creation_current});
         this.props.tryUnits(this.props.login);
     }
 
@@ -227,7 +231,7 @@ class CreateNewsStep1 extends Component {
 
     buildMediaList()
     {
-        let medias = this.props.news.creation_current.media;
+        let medias = this.state.item.media;
         let mediaList = [];
 
         if(medias && medias.length > 0)
@@ -255,9 +259,39 @@ class CreateNewsStep1 extends Component {
 
     preview()
     {
-        console.log(this.state.item);
         this.props.prepareNews(this.state.item);
         this.props.goToCreateNewsPreview();
+    }
+
+    pickMedia()
+    {
+        var options = {
+            title: 'Ajouter une image',
+            storageOptions: {
+                skipBackup: true,
+                path: 'images'
+            },
+            takePhotoButtonTitle : "Depuis l'appareil",
+            chooseFromLibraryButtonTitle : "Depuis la gallerie",
+        };
+
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            }
+            else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            }
+            else {
+                let source = { uri: response.uri };
+
+                let medias = this.state.item.media;
+                medias.push(source.uri);
+                this.setState(Object.assign({}, this.state.item, {media : medias}));
+            }
+        });
     }
 
     render() {
@@ -272,7 +306,7 @@ class CreateNewsStep1 extends Component {
                             </ScrollView>
                             <View style={styles.addMedia}>
                                 <ElevatedView style={styles.addMediaButton} elevation={4}>
-                                    <TouchableWithoutFeedback>
+                                    <TouchableWithoutFeedback onPress={this.pickMedia.bind(this)}>
                                         <Icon style={styles.addMediaButtonIcon} name="camera"/>
                                     </TouchableWithoutFeedback>
                                 </ElevatedView>

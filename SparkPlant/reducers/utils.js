@@ -12,6 +12,12 @@ export const utilsReducer = {
             case types.GET_UNITS_FAILURE: {
                 return state;
             }
+            case types.UPLOAD_MEDIA_SUCCESS: {
+                return state;
+            }
+            case types.UPLOAD_MEDIA_FAILURE: {
+                return state;
+            }
             default :
                 return state;
         }

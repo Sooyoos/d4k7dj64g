@@ -52,7 +52,7 @@ export const newsReducer = {
                 return state;
             }
             case types.PREPARE_NEWS: {
-                let obj = Object.assign({}, action.news, {visibility : state.creation_current.visibility, media : []});
+                let obj = Object.assign({}, action.news, {visibility : state.creation_current.visibility});
                 let creationCurrent = Object.assign({}, state.creation_current, obj);
                 return Object.assign({}, state, {creation_current : creationCurrent});
             }

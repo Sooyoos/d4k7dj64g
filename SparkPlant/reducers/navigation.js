@@ -168,6 +168,35 @@ export const NewsNavigator = StackNavigator(
     }
 );
 
+/*export const ChecklistNavigator = StackNavigator(
+    {
+        Checklist: {
+            screen: ChecklistScreen,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        ChecklistLibrary: {
+            screen: ChecklistLibrary,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        ChecklistTemplateDetail: {
+            screen: ChecklistTemplateDetail,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        ChecklistCreateStep1: {
+            screen: ChecklistCreateStep1,
+            navigationOptions : {
+                header : null,
+            }
+        },
+    }
+);*/
+
 export const MainNavigator = DrawerNavigator(
     {
         Dashboard: { screen: DashboardScreen},

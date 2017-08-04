@@ -12,6 +12,7 @@ import { ActionCreators } from '../../actions';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Moment from 'moment';
 
 let styles = StyleSheet.create({
     item : {
@@ -122,7 +123,7 @@ class NewsListItem extends Component {
                         <View style={styles.info}>
                             <View style={styles.data}>
                                 <Text  style={styles.textInfos}>
-                                    dd/mm/yyyy Prénom Nom
+                                    Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
                                 </Text>
                             </View>
                             <View style={styles.status}>

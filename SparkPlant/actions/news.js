@@ -1,4 +1,6 @@
 import * as types from './types';
+import * as utils from './utils';
+import {tryUploadMedia} from "./utils";
 
 export function setCurrentNews(news)
 {
@@ -279,6 +281,14 @@ function fetchCreateNews(login, news)
 {
     return dispatch => {
         dispatch(createNewsRequested());
+
+        let medias = news.media;
+
+        for(var i = 0; i < medias.length; i++)
+        {
+            dispatch(tryUploadMedia(login, medias[i]));
+        }
+
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
         fetch(baseUrl + "/news", {
