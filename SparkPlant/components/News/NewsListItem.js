@@ -100,7 +100,7 @@ class NewsListItem extends Component {
     {
         if(this.props.item.media && this.props.item.media.length > 0)
         {
-            return this.props.item.media[0];
+            return this.props.item.media[0].path;
         }
         else
         {

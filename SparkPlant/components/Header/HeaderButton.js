@@ -42,6 +42,9 @@ class HeaderButton extends Component {
             case "CreateNewsStep1" :
                 this.props.goToCreateNewsStep1();
                 break;
+            case "SearchNews" :
+                this.props.goToSearchNews();
+                break;
             default :
                 break;
         }

@@ -14,6 +14,8 @@ import WaitingNewsDetail from '../containers/News/WaitingNewsDetail';
 import CreateNewsStep1 from '../containers/News/CreateNewsStep1';
 import CreateNewsStep2 from '../containers/News/CreateNewsStep2';
 import CreateNewsPreview from '../containers/News/CreateNewsPreview';
+import SearchNews from '../containers/News/SearchNews';
+import SearchWaitingNews from '../containers/News/SearchWaitingNews';
 import TagsFull from '../containers/Tags/TagsFull';
 import CommentTag from '../containers/Tags/CommentTag';
 import FilterTag from '../containers/Tags/FilterTag';
@@ -161,6 +163,18 @@ export const NewsNavigator = StackNavigator(
         },
         CreateNewsPreview: {
             screen: CreateNewsPreview,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        SearchNews: {
+            screen: SearchNews,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        SearchWaitingNews: {
+            screen: SearchWaitingNews,
             navigationOptions : {
                 header : null,
             }

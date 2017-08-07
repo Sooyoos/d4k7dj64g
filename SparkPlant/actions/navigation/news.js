@@ -53,3 +53,19 @@ export function goToCreateNewsPreview()
         routeName: 'CreateNewsPreview',
     };
 }
+
+export function goToSearchNews()
+{
+    return {
+        type: 'Navigation/NAVIGATE',
+        routeName: 'SearchNews',
+    };
+}
+
+export function goToSearchWaitingNews()
+{
+    return {
+        type: 'Navigation/NAVIGATE',
+        routeName: 'SearchWaitingNews',
+    };
+}

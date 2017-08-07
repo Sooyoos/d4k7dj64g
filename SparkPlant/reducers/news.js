@@ -12,6 +12,10 @@ const initialState = {
 
         ],
         published : false,
+        search : null,
+        searchWaiting : null,
+        searchResults : null,
+        searchResultsWaiting : null,
     }
 };
 
