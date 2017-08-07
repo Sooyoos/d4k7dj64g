@@ -32,15 +32,30 @@ class HeaderNews extends Component {
     }
 
     render() {
-        return (
-            <View style={styles.header}>
-                <Text style={styles.title}>
-                    {this.props.headerTitle}
-                </Text>
-                <HeaderButton {... this.props} iconName="plus" route="CreateNewsStep1" />
-                <HeaderButton {... this.props} iconName="search" route="SearchNews" />
-            </View>
-        );
+        if(this.props.waiting)
+        {
+            return (
+                <View style={styles.header}>
+                    <Text style={styles.title}>
+                        {this.props.headerTitle}
+                    </Text>
+                    <HeaderButton {... this.props} iconName="plus" route="CreateNewsStep1" />
+                    <HeaderButton {... this.props} iconName="search" route="SearchWaitingNews" />
+                </View>
+            );
+        }
+        else
+        {
+            return (
+                <View style={styles.header}>
+                    <Text style={styles.title}>
+                        {this.props.headerTitle}
+                    </Text>
+                    <HeaderButton {... this.props} iconName="plus" route="CreateNewsStep1" />
+                    <HeaderButton {... this.props} iconName="search" route="SearchNews" />
+                </View>
+            );
+        }
     }
 };
 

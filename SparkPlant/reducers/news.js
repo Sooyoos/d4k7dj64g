@@ -113,6 +113,12 @@ export const newsReducer = {
             case types.NEWS_UPLOAD_MEDIA_FAILURE : {
                 return state;
             }
+            case types.NEWS_SEARCH : {
+                return Object.assign({}, state, {searchResults : action.news, search : action.search});
+            }
+            case types.NEWS_WAITING_SEARCH : {
+                return Object.assign({}, state, {searchResultsWaiting : action.news, searchWaiting : action.search});
+            }
             default :
                 return state;
         }

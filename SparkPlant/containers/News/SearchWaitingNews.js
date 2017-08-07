@@ -36,6 +36,7 @@ let styles = StyleSheet.create({
         paddingHorizontal: responsiveWidth(5),
         paddingVertical: responsiveHeight(1),
         flexDirection: "row",
+        justifyContent : 'center',
     },
     searchField : {
         width : responsiveWidth(60),
@@ -43,6 +44,18 @@ let styles = StyleSheet.create({
         marginHorizontal: responsiveWidth(5),
         marginVertical: responsiveHeight(2),
         fontSize : responsiveFontSize(1.8),
+    },
+    searchButton : {
+        backgroundColor: "#00bcd4",
+        width : responsiveHeight(8),
+        height : responsiveHeight(8),
+        borderRadius : responsiveHeight(4),
+        justifyContent: 'center',
+    },
+    searchIcon : {
+        color : "#ffffff",
+        fontSize : responsiveFontSize(3.4),
+        textAlign : 'center',
     },
     footer: {
         height:responsiveHeight(10),
@@ -68,15 +81,32 @@ class SearchWaitingNews extends Component {
         this.props.tryWaitingNews(this.props.login);
     }
 
+    search()
+    {
+        let fullList = this.props.news.waitingNews;
+        let shortList = [];
+
+        for(var i = 0; i < fullList.length; i++)
+        {
+            if(fullList[i].title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+            {
+                shortList.push(fullList[i]);
+            }
+        }
+
+        this.props.searchWaitingNews(shortList, this.state.search);
+    }
+
     render() {
         return (
             <View style={styles.login}>
                 <HeaderNews {...this.props} headerTitle="News"/>
                 <View style={styles.body}>
                     <ElevatedView style={styles.searchView} elevation={2}>
-                        <TextInput placeholder="Rechercher" style={styles.searchField} value={this.state.search} onTextChange={(value) => this.setState({search : value})}/>
-                        <TouchableWithoutFeedback>
-                            <ElevatedView style={styles.searchButton} elevation={2}>
+                        <TextInput placeholder="Rechercher" style={styles.searchField} value={this.state.search} onChangeText={(value) => this.setState({search : value})}/>
+                        <TouchableWithoutFeedback onPress={this.search.bind(this)}>
+                            <ElevatedView style={styles.searchButton} elevation={6}>
+                                <Icon name="search" style={styles.searchIcon}/>
                             </ElevatedView>
                         </TouchableWithoutFeedback>
                     </ElevatedView>

@@ -404,3 +404,21 @@ export function tryNewsUploadMedia(login, file)
         return dispatch(fetchNewsUploadMedia(login, file));
     }
 }
+
+export function searchNews(news, search)
+{
+    return {
+        type : types.NEWS_SEARCH,
+        news : news,
+        search : search,
+    }
+}
+
+export function searchWaitingNews(news, search)
+{
+    return {
+        type : types.NEWS_WAITING_SEARCH,
+        news : news,
+        search : search,
+    }
+}
