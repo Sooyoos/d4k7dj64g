@@ -20,7 +20,7 @@ let styles = StyleSheet.create({
     },
     title : {
         color:'#ffffff',
-        width: 200,
+        width: responsiveWidth(50),
         fontSize : responsiveFontSize(1.8),
     }
 });
@@ -38,7 +38,6 @@ class HeaderNews extends Component {
                     {this.props.headerTitle}
                 </Text>
                 <HeaderButton {... this.props} iconName="plus" route="CreateNewsStep1" />
-                <HeaderButton {... this.props} iconName="sort-amount-desc" route="FilterNews" />
                 <HeaderButton {... this.props} iconName="search" route="SearchNews" />
             </View>
         );
