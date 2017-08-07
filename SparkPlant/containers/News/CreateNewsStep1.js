@@ -240,7 +240,7 @@ class CreateNewsStep1 extends Component {
             {
                 mediaList.push(
                     <ElevatedView key={i} style={styles.mediaCard} elevation={4}>
-                        <Image style={styles.media} source={{uri : medias[i]}} />
+                        <Image style={styles.media} source={{uri : medias[i].uri}} />
                     </ElevatedView>
                 );
             }
@@ -259,6 +259,11 @@ class CreateNewsStep1 extends Component {
 
     preview()
     {
+        let medias = this.state.item.media;
+        for(var i = 0; i < medias.length; i++)
+        {
+            this.props.tryNewsUploadMedia(this.props.login, medias[i]);
+        }
         this.props.prepareNews(this.state.item);
         this.props.goToCreateNewsPreview();
     }
@@ -285,10 +290,10 @@ class CreateNewsStep1 extends Component {
                 console.log('ImagePicker Error: ', response.error);
             }
             else {
-                let source = { uri: response.uri };
+                let source = { uri: response.uri, type: response.type, name: response.fileName };
 
                 let medias = this.state.item.media;
-                medias.push(source.uri);
+                medias.push(source);
                 this.setState(Object.assign({}, this.state.item, {media : medias}));
             }
         });

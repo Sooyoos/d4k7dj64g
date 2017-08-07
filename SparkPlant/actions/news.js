@@ -283,11 +283,14 @@ function fetchCreateNews(login, news)
         dispatch(createNewsRequested());
 
         let medias = news.media;
+        let media = [];
 
         for(var i = 0; i < medias.length; i++)
         {
-            dispatch(tryUploadMedia(login, medias[i]));
+            media.push(medias[i].id);
         }
+
+        news.media = media;
 
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
@@ -342,5 +345,62 @@ export function setCreationVisibility(visibility)
     return {
         type : types.SET_CREATION_VISIBILITY,
         visibility : visibility,
+    }
+}
+
+function fetchNewsUploadMedia(login, file)
+{
+    return dispatch => {
+        dispatch(newsUploadMediaRequested());
+        let baseUrl = "http://sparkplant-api-testing.sooyoos.com/fileUpload";
+        let body = new FormData();
+
+        console.log(file);
+
+        body.append("file", file);
+
+        fetch(baseUrl, {
+            method: 'POST',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'multipart/form-data',
+            },
+            body : body,
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                dispatch(newsUploadMediaSuccess(responseJson));
+            })
+            .catch((error) => { console.log(error); dispatch(newsUploadMediaFailure()); });
+    }
+}
+
+function newsUploadMediaRequested()
+{
+    return {
+        type : types.NEWS_UPLOAD_MEDIA_REQUESTED,
+    }
+}
+
+function newsUploadMediaSuccess(media)
+{
+    return {
+        type : types.NEWS_UPLOAD_MEDIA_SUCCESS,
+        media : media,
+    }
+}
+
+function newsUploadMediaFailure()
+{
+    return {
+        type : types.NEWS_UPLOAD_MEDIA_FAILURE,
+    }
+}
+
+export function tryNewsUploadMedia(login, file)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchNewsUploadMedia(login, file));
     }
 }

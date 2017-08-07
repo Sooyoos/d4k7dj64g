@@ -15,6 +15,23 @@ const initialState = {
     }
 };
 
+function getCurrentCreationMediaIndex(state, filename)
+{
+    let medias = state.creation_current.media;
+
+    console.log(medias);
+
+    for(var i = 0; i < medias.length; i++)
+    {
+        if(medias[i].name === filename)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 export const newsReducer = {
     news : (state = initialState, action) => {
         switch (action.type) {
@@ -73,6 +90,24 @@ export const newsReducer = {
             case types.SET_CREATION_VISIBILITY : {
                 let creationCurrent = Object.assign({}, state.creation_current, {visibility : action.visibility});
                 return Object.assign({}, state, {creation_current : creationCurrent});
+            }
+            case types.NEWS_UPLOAD_MEDIA_SUCCESS: {
+                let index = getCurrentCreationMediaIndex(state, action.media.originalFilename);
+                console.log(index);
+                if(index !== -1)
+                {
+                    let medias = state.creation_current.media;
+                    let original = medias[index].uri;
+                    medias[index] = {
+                        id : action.media["@id"],
+                        uri : original
+                    };
+                    let creationCurrent = Object.assign({}, state.creation_current, {visibility : action.visibility, media : medias});
+                    return Object.assign({}, state, {creation_current : creationCurrent});
+                }
+            }
+            case types.NEWS_UPLOAD_MEDIA_FAILURE : {
+                return state;
             }
             default :
                 return state;
