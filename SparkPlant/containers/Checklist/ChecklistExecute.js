@@ -81,10 +81,10 @@ let styles = StyleSheet.create({
         height : responsiveHeight(10),
         padding : responsiveHeight(1),
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent : "center",
     },
     taskInput : {
-        width : responsiveWidth(50),
+        width : responsiveWidth(60),
         height : responsiveHeight(8),
         fontSize : responsiveFontSize(1.8),
         color : "#212121",
@@ -94,7 +94,6 @@ let styles = StyleSheet.create({
         fontSize : responsiveFontSize(1.8),
         color : "#757575",
         fontWeight : "bold",
-        justifyContent : "flex-end",
     },
     taskActions : {
         width : responsiveWidth(84),
@@ -139,6 +138,25 @@ let styles = StyleSheet.create({
         fontSize : responsiveFontSize(1.8),
         textAlign : "center",
         fontWeight: "bold",
+    },
+    taskFlags : {
+        width : responsiveWidth(12),
+        height : responsiveHeight(10),
+        padding : responsiveHeight(2),
+        justifyContent : "center",
+        alignItems: "center",
+    },
+    taskFlagOk : {
+        width : responsiveHeight(4),
+        height : responsiveHeight(4),
+        borderRadius: responsiveHeight(2),
+        backgroundColor : "#4caf50",
+    },
+    taskFlagNOk : {
+        width : responsiveHeight(2),
+        height : responsiveHeight(2),
+        borderRadius: responsiveHeight(1),
+        backgroundColor : "#f44336",
     }
 });
 
@@ -243,6 +261,10 @@ class ChecklistExecute extends Component {
                                     </View>
                                 </View>
                                 <View style={styles.taskMesures}>
+                                    <View style={styles.taskFlags}>
+                                        <View style={styles.taskFlagOk}>
+                                        </View>
+                                    </View>
                                     <TextInput style={styles.taskInput} placeholder="Mesure"/>
                                     <Text style={styles.taskMetric}>mm</Text>
                                 </View>
