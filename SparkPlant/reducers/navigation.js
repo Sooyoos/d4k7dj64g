@@ -8,6 +8,11 @@ import LoginScreen from '../containers/LoginScreen';
 import DashboardScreen from '../containers/DashboardScreen';
 import TagsScreen from '../containers/TagsScreen';
 import NewsScreen from '../containers/NewsScreen';
+import ChecklistScreen from '../containers/ChecklistScreen';
+import ChecklistLibrary from '../containers/Checklist/ChecklistLibrary';
+import ChecklistDetails from '../containers/Checklist/ChecklistDetails';
+import ChecklistCreateStep1 from '../containers/Checklist/ChecklistCreateStep1';
+import ChecklistExecute from '../containers/Checklist/ChecklistExecute';
 import WaitingNews from '../containers/News/WaitingNews';
 import NewsDetail from '../containers/News/NewsDetail';
 import WaitingNewsDetail from '../containers/News/WaitingNewsDetail';
@@ -182,7 +187,7 @@ export const NewsNavigator = StackNavigator(
     }
 );
 
-/*export const ChecklistNavigator = StackNavigator(
+export const ChecklistNavigator = StackNavigator(
     {
         Checklist: {
             screen: ChecklistScreen,
@@ -196,26 +201,33 @@ export const NewsNavigator = StackNavigator(
                 header : null,
             }
         },
-        ChecklistTemplateDetail: {
-            screen: ChecklistTemplateDetail,
+        ChecklistDetails: {
+            screen: ChecklistDetails,
             navigationOptions : {
                 header : null,
             }
         },
-        ChecklistCreateStep1: {
+        CreateChecklistStep1: {
             screen: ChecklistCreateStep1,
             navigationOptions : {
                 header : null,
             }
         },
+        ChecklistExecute: {
+            screen: ChecklistExecute,
+            navigationOptions : {
+                header : null,
+            }
+        }
     }
-);*/
+);
 
 export const MainNavigator = DrawerNavigator(
     {
         Dashboard: { screen: DashboardScreen},
         Tags: { screen: TagNavigator},
         News : { screen : NewsNavigator},
+        Checklists : { screen : ChecklistNavigator},
     },
     {
         contentComponent: DrawerMenu,
@@ -224,7 +236,7 @@ export const MainNavigator = DrawerNavigator(
 
 export const AppNavigator = StackNavigator({
         LoginTab: {
-            screen: LoginScreen,
+            screen: ChecklistExecute,
             navigationOptions : {
                 header : null,
             }

@@ -55,7 +55,7 @@ class DashboardNavigation extends Component {
 
     navigateToChecklist()
     {
-        this.props.navigation.navigate('Checklist');
+        this.props.goToChecklistPage();
     }
 
     navigateToNews()
