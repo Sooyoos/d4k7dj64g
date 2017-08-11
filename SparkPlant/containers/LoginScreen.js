@@ -7,6 +7,7 @@ import {
     Image,
     ToastAndroid,
     Alert,
+    ActivityIndicator
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -66,23 +67,35 @@ class LoginScreen extends Component {
     }
 
     render() {
-        return (
-            <View style={styles.login}>
-                <ElevatedView elevation={5} style={styles.body}>
-                    <Image source={require('../assets/img/logo.png')} style={styles.logo} />
-                    <LoginFactoryList/>
-                    <LoginUsernameInput/>
-                    <LoginPasswordInput />
-                    <ElevatedView elevation={4} style={styles.button}>
-                        <TouchableWithoutFeedback onPress={this.login}>
-                            <View style={{width:responsiveWidth(40), height:responsiveHeight(5), justifyContent:'center', padding : 5}}>
-                                <Text style={styles.buttonText}>SE CONNECTER</Text>
-                            </View>
-                        </TouchableWithoutFeedback>
+        if(this.props.login.loading === false)
+        {
+            return (
+                <View style={styles.login}>
+                    <ElevatedView elevation={5} style={styles.body}>
+                        <Image source={require('../assets/img/logo.png')} style={styles.logo} />
+                        <LoginFactoryList/>
+                        <LoginUsernameInput/>
+                        <LoginPasswordInput />
+                        <ElevatedView elevation={4} style={styles.button}>
+                            <TouchableWithoutFeedback onPress={this.login}>
+                                <View style={{width:responsiveWidth(40), height:responsiveHeight(5), justifyContent:'center', padding : 5}}>
+                                    <Text style={styles.buttonText}>SE CONNECTER</Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </ElevatedView>
                     </ElevatedView>
-                </ElevatedView>
-            </View>
-        );
+                </View>
+            );
+        }
+        else
+        {
+            return(
+                <View style={styles.login}>
+                    <ActivityIndicator color="#3f51b5" size="large"/>
+                </View>
+            );
+        }
+
     }
 }
 

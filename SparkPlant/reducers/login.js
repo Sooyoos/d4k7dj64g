@@ -5,17 +5,21 @@ const initialState = {
     username : null,
     password : null,
     tokenString : null,
+    loading : false,
 };
 
 export const loginReducer = {
     login : (state = initialState, action) => {
         switch (action.type) {
+            case types.LOGIN_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
             case types.LOGIN_SUCCESS: {
-                return Object.assign({}, state, {userToken : action.token, tokenString: action.tokenString});
+                return Object.assign({}, state, {userToken : action.token, tokenString: action.tokenString, loading :false});
             }
             case types.LOGIN_FAILURE: {
                 state.userToken = null;
-                return Object.assign({}, state, {userToken : null, tokenString: null});
+                return Object.assign({}, state, {userToken : null, tokenString: null, loading : false});
             }
             case types.SET_LOGIN_FACTORY: {
                 return Object.assign({}, state, {factory : action.factory});

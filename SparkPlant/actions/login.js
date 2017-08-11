@@ -34,8 +34,8 @@ function fetchLogin(factory, username, password)
             .then((responseJson) => {
                 if(responseJson.token)
                 {
-                    dispatch(loginSuccess(responseJson));
                     dispatch(goToHomepage());
+                    dispatch(loginSuccess(responseJson));
                 }
             })
             .catch((error) => { console.log(error); dispatch(loginFailure())});

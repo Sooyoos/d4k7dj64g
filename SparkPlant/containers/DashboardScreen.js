@@ -7,6 +7,7 @@ import {
     AsyncStorage,
     TouchableWithoutFeedback,
     Alert,
+    ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -43,16 +44,27 @@ class DashboardScreen extends Component {
     }
 
     render() {
-
-        return (
-            <View style={styles.login}>
-                <Header props={this.props}/>
-                <View style={styles.body}>
-                    <DashboardNavigation {... this.props} />
-                    <DashboardNews/>
+        if(this.props.login.loading === false)
+        {
+            return (
+                <View style={styles.login}>
+                    <Header props={this.props}/>
+                    <View style={styles.body}>
+                        <DashboardNavigation {... this.props} />
+                        <DashboardNews/>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
+        else
+        {
+            return(
+                <View style={styles.login}>
+                    <ActivityIndicator color="#3f51b5" size="large"/>
+                </View>
+            );
+        }
+
     }
 }
 

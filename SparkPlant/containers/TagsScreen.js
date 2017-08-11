@@ -3,6 +3,7 @@ import {
     View,
     StyleSheet,
     Alert,
+    ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -52,18 +53,37 @@ class TagsScreen extends Component {
     }
 
     render() {
-        return (
-            <View style={styles.login}>
-                <HeaderTags {...this.props} headerTitle="Mes tags"/>
-                <View style={styles.body}>
-                    <TagList {...this.props} items={this.props.tags.userTags} />
+        if(this.props.tags.loading === false)
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderTags {...this.props} headerTitle="Mes tags"/>
+                    <View style={styles.body}>
+                        <TagList {...this.props} items={this.props.tags.userTags} />
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={true} iconName="eye" text="Suivis" route={this.props.goToTagsPage}/>
+                        <FooterButton {...this.props} active={false} iconName="tags" text="Tous" route={this.props.goToTagsFull}/>
+                    </View>
                 </View>
-                <View style={styles.footer}>
-                    <FooterButton {...this.props} active={true} iconName="eye" text="Suivis" route={this.props.goToTagsPage}/>
-                    <FooterButton {...this.props} active={false} iconName="tags" text="Tous" route={this.props.goToTagsFull}/>
+            );
+        }
+        else
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderTags {...this.props} headerTitle="Mes tags"/>
+                    <View style={styles.body}>
+                        <ActivityIndicator color="#3f51b5" size="large"/>
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={true} iconName="eye" text="Suivis" route={this.props.goToTagsPage}/>
+                        <FooterButton {...this.props} active={false} iconName="tags" text="Tous" route={this.props.goToTagsFull}/>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
+
     }
 }
 
