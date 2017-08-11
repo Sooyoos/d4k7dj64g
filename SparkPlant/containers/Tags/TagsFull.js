@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
+    ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -45,18 +46,37 @@ class TagsFull extends Component {
     }
 
     render() {
-        return (
-            <View style={styles.login}>
-                <HeaderTags {...this.props} style={styles.header} headerTitle="Tous les tags"/>
-                <View style={styles.body}>
-                    <TagList {...this.props} items={this.props.tags.allTags} />
+        if(this.props.tags.loading === false)
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderTags {...this.props} style={styles.header} headerTitle="Tous les tags"/>
+                    <View style={styles.body}>
+                        <TagList {...this.props} items={this.props.tags.allTags} />
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={false} iconName="eye" text="Suivis" route={this.props.goToTagsPage}/>
+                        <FooterButton {...this.props} active={true} iconName="tags" text="Tous" route={this.props.goToTagsFull}/>
+                    </View>
                 </View>
-                <View style={styles.footer}>
-                    <FooterButton {...this.props} active={false} iconName="eye" text="Suivis" route={this.props.goToTagsPage}/>
-                    <FooterButton {...this.props} active={true} iconName="tags" text="Tous" route={this.props.goToTagsFull}/>
+            );
+        }
+        else
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderTags {...this.props} style={styles.header} headerTitle="Tous les tags"/>
+                    <View style={styles.body}>
+                        <ActivityIndicator color="#3f51b5" size="large"/>
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={false} iconName="eye" text="Suivis" route={this.props.goToTagsPage}/>
+                        <FooterButton {...this.props} active={true} iconName="tags" text="Tous" route={this.props.goToTagsFull}/>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
+
     }
 };
 
