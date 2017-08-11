@@ -1,9 +1,10 @@
 import * as types from './types';
+import Base64 from 'base-64';
 
 function parseJwt(token){
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace('-', '+').replace('_', '/');
-    return JSON.parse(window.atob(base64));
+    return JSON.parse(Base64.decode(base64));
 };
 
 function fetchLogin(factory, username, password)
@@ -37,7 +38,7 @@ function fetchLogin(factory, username, password)
                     dispatch(goToHomepage());
                 }
             })
-            .catch((error) => { dispatch(loginFailure())});
+            .catch((error) => { console.log(error); dispatch(loginFailure())});
     }
 
 }
