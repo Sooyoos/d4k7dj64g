@@ -62,6 +62,7 @@ class LoginScreen extends Component {
 
     login()
     {
+        ToastAndroid.show("Login tried", ToastAndroid.LONG);
         this.props.tryLogin(this.props.login.factory, this.props.login.username, this.props.login.password);
     }
 
