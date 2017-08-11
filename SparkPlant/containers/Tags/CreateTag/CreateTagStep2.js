@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ElevatedView from 'react-native-elevated-view';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
+import ImagePicker from 'react-native-image-picker';
 
 let styles = StyleSheet.create({
     card : {
@@ -102,7 +103,12 @@ class CreateTagStep2 extends Component {
         super(props);
         this.state = {
             tagTitle : null,
-            tagDescription : null
+            tagDescription : null,
+            tag : {
+                media : [
+
+                ]
+            }
         };
     }
 
@@ -118,7 +124,33 @@ class CreateTagStep2 extends Component {
 
     goToTakePicture()
     {
-        this.props.navigation.navigate('TakePictureTag');
+            var options = {
+                title: 'Ajouter une image',
+                storageOptions: {
+                    skipBackup: true,
+                    path: 'images'
+                },
+                takePhotoButtonTitle : "Depuis l'appareil",
+                chooseFromLibraryButtonTitle : "Depuis la gallerie",
+            };
+
+            ImagePicker.showImagePicker(options, (response) => {
+                console.log('Response = ', response);
+
+                if (response.didCancel) {
+                    console.log('User cancelled image picker');
+                }
+                else if (response.error) {
+                    console.log('ImagePicker Error: ', response.error);
+                }
+                else {
+                    let source = { uri: response.uri, type: response.type, name: response.fileName };
+
+                    let medias = this.state.item.media;
+                    medias.push(source);
+                    this.setState(Object.assign({}, this.state.tag, {media : medias}));
+                }
+            });
     }
 
     next()

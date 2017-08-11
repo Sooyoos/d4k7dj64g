@@ -236,7 +236,7 @@ export const MainNavigator = DrawerNavigator(
 
 export const AppNavigator = StackNavigator({
         LoginTab: {
-            screen: ChecklistExecute,
+            screen: LoginScreen,
             navigationOptions : {
                 header : null,
             }
