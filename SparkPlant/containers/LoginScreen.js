@@ -67,6 +67,7 @@ class LoginScreen extends Component {
     }
 
     render() {
+        ToastAndroid.show(this.props.login.userToken, ToastAndroid.LONG);
         return (
             <View style={styles.login}>
                 <ElevatedView elevation={5} style={styles.body}>
