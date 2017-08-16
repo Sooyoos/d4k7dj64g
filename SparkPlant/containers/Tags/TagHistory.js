@@ -3,6 +3,7 @@ import {
     StyleSheet,
     View,
     ActivityIndicator,
+    ToastAndroid,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -52,6 +53,7 @@ class TagHistory extends Component {
 
     render() {
         console.log(this.props.currentTag);
+        ToastAndroid.show(JSON.stringify(this.props.tags.currentTag.history), ToastAndroid.LONG);
 
         if(this.props.tags.loading === true)
         {
