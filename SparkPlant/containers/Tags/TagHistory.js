@@ -53,7 +53,6 @@ class TagHistory extends Component {
 
     render() {
         console.log(this.props.currentTag);
-        ToastAndroid.show(JSON.stringify(this.props.tags.currentTag.history), ToastAndroid.LONG);
 
         if(this.props.tags.loading === true)
         {
@@ -68,19 +67,22 @@ class TagHistory extends Component {
         else
         {
             let tag = this.props.tags.currentTag;
-            return (
-                <View style={styles.login}>
-                    <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
-                    <View style={styles.list}>
-                        <TagHistoryList {...this.props} items={tag.history} />
+            if(tag)
+            {
+                return (
+                    <View style={styles.login}>
+                        <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
+                        <View style={styles.list}>
+                            <TagHistoryList {...this.props} items={tag.history} />
+                        </View>
+                        <View style={styles.footer}>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
+                            <FooterButton {...this.props} active={true} tag={tag} iconName="info" text="Historique" route={this.props.goToTagHistory}/>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="exchange" text="Actions" route={this.props.goToTagAction}/>
+                        </View>
                     </View>
-                    <View style={styles.footer}>
-                        <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
-                        <FooterButton {...this.props} active={true} tag={tag} iconName="info" text="Historique" route={this.props.goToTagHistory}/>
-                        <FooterButton {...this.props} active={false} tag={tag} iconName="exchange" text="Actions" route={this.props.goToTagAction}/>
-                    </View>
-                </View>
-            );
+                );
+            }
         }
     }
 };
