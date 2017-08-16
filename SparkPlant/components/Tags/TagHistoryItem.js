@@ -49,7 +49,7 @@ class TagListItem extends Component {
 
     getFirstLine()
     {
-        if(this.props.item.typeAction === "tag_by_responsable")
+        if(this.props.item.type === "change_tag_supervisor")
         {
             return this.props.item.user.firstName + " " + this.props.item.user.lastName + " adresse le tag à " + this.props.item.assignedTo.firstName + " " + this.props.item.assignedTo.lastName;
         }
@@ -83,7 +83,7 @@ class TagListItem extends Component {
         Moment.locale('fr');
         if(this.props.item.type === "add_tag_comment")
         {
-            return this.props.item.content;
+            return this.props.item.tagComment.content;
         }
         else
         {
@@ -92,6 +92,7 @@ class TagListItem extends Component {
     }
 
     render() {
+        console.log(this.props.item);
         return (
             <View style={styles.item}>
                 <View style={styles.imageSection}>
