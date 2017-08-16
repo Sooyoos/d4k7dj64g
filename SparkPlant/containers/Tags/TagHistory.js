@@ -71,7 +71,7 @@ class TagHistory extends Component {
             {
                 return (
                     <View style={styles.login}>
-                        <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
+                        <HeaderTagDetails {...this.props} headerTitle={"#" /*+ lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)*/} />
                         <View style={styles.list}>
                             <TagHistoryList {...this.props} items={tag.history} />
                         </View>
