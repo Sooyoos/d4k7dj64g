@@ -42,7 +42,7 @@ let styles = StyleSheet.create({
     }
 });
 
-class TagListItem extends Component {
+class TagHistoryItem extends Component {
 
     constructor(props) {
         super(props);
@@ -108,4 +108,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(TagListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(TagHistoryItem);
