@@ -4,6 +4,7 @@ import {
     StyleSheet,
     Image,
     Text,
+    ToastAndroid,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -76,7 +77,7 @@ class TagListItem extends Component {
     }
 
     render() {
-        console.log(this.props.item);
+        ToastAndroid.show(JSON.stringify(this.props.item.type), ToastAndroid.LONG);
         return (
             <View style={styles.item}>
                 <View style={styles.imageSection}>

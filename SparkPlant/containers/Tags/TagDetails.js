@@ -97,7 +97,6 @@ class TagDetails extends Component {
     }
 
     render() {
-        console.log(this.props);
         let tag = this.props.tags.currentTag;
         if(tag)
         {

@@ -52,10 +52,9 @@ class TagHistory extends Component {
     }
 
     render() {
-        console.log(this.props.currentTag);
-
-        if(this.props.tags.loading === true)
+        if(this.props.tags.loading === true || this.props.tags.currentTag === null)
         {
+            ToastAndroid.show("LOADING", ToastAndroid.SHORT);
             return (
                 <View style={styles.login}>
                     <View style={styles.list}>
@@ -66,6 +65,7 @@ class TagHistory extends Component {
         }
         else
         {
+            ToastAndroid.show("READY", ToastAndroid.SHORT);
             let tag = this.props.tags.currentTag;
             if(tag)
             {
