@@ -4,6 +4,7 @@ import {
     View,
     ActivityIndicator,
     ToastAndroid,
+    Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -52,7 +53,7 @@ class TagHistory extends Component {
     }
 
     render() {
-        if(this.props.tags.loading === true || this.props.tags.currentTag === null)
+        if(this.props.tags.loading === true)
         {
             ToastAndroid.show("LOADING", ToastAndroid.SHORT);
             return (
@@ -65,7 +66,7 @@ class TagHistory extends Component {
         }
         else
         {
-            ToastAndroid.show("READY", ToastAndroid.SHORT);
+            Alert.alert("READY");
             let tag = this.props.tags.currentTag;
             if(tag)
             {
