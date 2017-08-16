@@ -36,10 +36,10 @@ let styles = StyleSheet.create({
     },
 });
 
-/*function lpad(value, padding) {
+function lpad(value, padding) {
     var zeroes = new Array(padding+1).join("0");
     return (zeroes + value).slice(-padding);
-}*/
+}
 
 class TagHistory extends Component {
 
@@ -66,13 +66,12 @@ class TagHistory extends Component {
         }
         else
         {
-            Alert.alert("READY");
             let tag = this.props.tags.currentTag;
             if(tag)
             {
                 return (
                     <View style={styles.login}>
-                        <HeaderTagDetails {...this.props} headerTitle={"#" /*+ lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)*/} />
+                        <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
                         <View style={styles.list}>
                             <TagHistoryList {...this.props} items={tag.history} />
                         </View>

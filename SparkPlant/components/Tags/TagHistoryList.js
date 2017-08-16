@@ -39,7 +39,6 @@ class TagHistoryList extends Component {
     }
 
     render() {
-        Alert.alert("TAG HISTORY LIST");
         return (
             <ScrollView style={styles.list} showsVerticalScrollIndicator={false}>
                 {this.buildList()}

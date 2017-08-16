@@ -66,7 +66,6 @@ class TagHistoryItem extends Component {
 
     getSecondLine()
     {
-        Moment.locale('fr');
         if(this.props.item.type === "add_tag_comment")
         {
             return this.props.item.tagComment.content;
@@ -78,7 +77,6 @@ class TagHistoryItem extends Component {
     }
 
     render() {
-        Alert.alert("TAG HISTORY ITEM");
         return (
             <View style={styles.item}>
                 <View style={styles.imageSection}>
