@@ -124,7 +124,7 @@ export const tagsReducer = {
                 return Object.assign({}, state, {creation_current : creation_current, loading : false});
             }
             case types.SET_CURRENT_TAG: {
-                return Object.assign({}, state, {currentTag : action.tag});
+                return Object.assign({}, state, {currentTag : action.tag, loading : true});
             }
             case types.TAG_HISTORY_REQUESTED: {
                 return Object.assign({}, state, {loading : true});

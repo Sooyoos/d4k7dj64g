@@ -77,7 +77,6 @@ class TagListItem extends Component {
     }
 
     render() {
-        ToastAndroid.show(JSON.stringify(this.props.item.type), ToastAndroid.LONG);
         return (
             <View style={styles.item}>
                 <View style={styles.imageSection}>
