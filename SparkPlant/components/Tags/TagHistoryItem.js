@@ -77,6 +77,7 @@ class TagHistoryItem extends Component {
     }
 
     render() {
+        Alert.alert("TAG HISTORY ITEM");
         return (
             <View style={styles.item}>
                 <View style={styles.imageSection}>

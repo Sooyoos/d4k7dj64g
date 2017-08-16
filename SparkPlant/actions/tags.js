@@ -1,4 +1,5 @@
 import * as types from './types';
+import * as navigation from './navigation/tags';
 
 function fetchUserTags(login)
 {
@@ -513,9 +514,13 @@ function createTagFailure()
 
 export function setCurrentTag(tag)
 {
-    return {
-        type : types.SET_CURRENT_TAG,
-        tag : tag,
+    return (dispatch, getState) =>
+    {
+        dispatch(navigation.goToTagDetails(tag));
+        return {
+            type : types.SET_CURRENT_TAG,
+            tag : tag,
+        }
     }
 }
 
