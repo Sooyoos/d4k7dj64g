@@ -105,7 +105,7 @@ class NewsDetail extends Component {
                 for(var i = 0; i < medias.length; i++)
                 {
                     mediaList.push(
-                        <Image key={i} style={styles.image} source={{uri : medias[i]}} />
+                        <Image key={i} style={styles.image} source={{uri : medias[i].path}} />
                     );
                 }
             }
