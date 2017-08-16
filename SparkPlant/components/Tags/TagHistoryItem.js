@@ -95,7 +95,7 @@ class TagListItem extends Component {
         return (
             <View style={styles.item}>
                 <View style={styles.imageSection}>
-                    <Image style={styles.image} source={{uri : "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg"}} />
+                    <Image style={styles.image} source={{uri : "http://via.placeholder.com/100x100"}} />
                 </View>
                 <View style={styles.contentSection}>
                     <Text style={styles.contentFirst}>
