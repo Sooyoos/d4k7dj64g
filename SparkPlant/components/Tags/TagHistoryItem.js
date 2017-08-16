@@ -5,6 +5,7 @@ import {
     Image,
     Text,
     ToastAndroid,
+    Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

@@ -100,7 +100,7 @@ class TagListItem extends Component {
 
     goToDetails()
     {
-        this.props.setCurrentTag(this.props.tag);
+        this.props.trySetCurrentTag(this.props.tag);
     }
 
     render() {

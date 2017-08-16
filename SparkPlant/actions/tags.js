@@ -512,15 +512,20 @@ function createTagFailure()
     }
 }
 
-export function setCurrentTag(tag)
+function setCurrentTag(tag)
+{
+    return {
+        type : types.SET_CURRENT_TAG,
+        tag : tag,
+    }
+}
+
+export function trySetCurrentTag(tag)
 {
     return (dispatch, getState) =>
     {
         dispatch(navigation.goToTagDetails(tag));
-        return {
-            type : types.SET_CURRENT_TAG,
-            tag : tag,
-        }
+        dispatch(setCurrentTag(tag));
     }
 }
 

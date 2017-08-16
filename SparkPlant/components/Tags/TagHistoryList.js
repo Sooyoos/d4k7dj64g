@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     ScrollView,
     StyleSheet,
+    Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
