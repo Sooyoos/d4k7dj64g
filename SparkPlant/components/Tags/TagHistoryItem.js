@@ -58,24 +58,8 @@ class TagListItem extends Component {
         {
             return "Commentaire de " + this.props.item.user.firstName + " " + this.props.item.user.lastName;
         }
-        /*switch(this.props.item.typeAction)
-        {
-            case "tag_by_responsable" :
-                return this.props.item.user.firstName + " " + this.props.item.user.lastName + " adresse le tag à " + this.props.item.assignedTo.firstName + " " + this.props.item.assignedTo.lastName;
-                break;
-            case "add_tag_comment" :
-                return "Commentaire de " + this.props.item.user.firstName + " " + this.props.item.user.lastName;
-                break;
-            case "transfer" :
-                return this.props.item.user.firstName + " " + this.props.item.user.lastName + " a transféré le tag à " + this.props.item.assignedTo.firstName + " " + this.props.item.assignedTo.lastName;
-                break;
-            case "resolve" :
-                return this.props.item.user.firstName + " " + this.props.item.user.lastName + " a clos le tag Résolu";
-                break;
-            case "closed" :
-                return this.props.item.user.firstName + " " + this.props.item.user.lastName + " a clos le tag Non Résolu";
-                break;
-        }*/
+
+        return "";
     }
 
     getSecondLine()

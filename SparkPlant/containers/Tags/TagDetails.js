@@ -5,6 +5,7 @@ import {
     ScrollView,
     Image,
     Text,
+    ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -199,14 +200,8 @@ class TagDetails extends Component {
         {
             return (
                 <View style={styles.login}>
-                    <HeaderTagDetails {...this.props} headerTitle={tag} />
                     <View style={styles.body}>
-
-                    </View>
-                    <View style={styles.footer}>
-                        <FooterButton {...this.props} active={true} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
-                        <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={this.props.goToTagHistory}/>
-                        <FooterButton {...this.props} active={false} tag={tag} iconName="exchange" text="Actions" route={this.props.goToTagAction}/>
+                        <ActivityIndicator color="#3f51b5" size="large"/>
                     </View>
                 </View>
             );

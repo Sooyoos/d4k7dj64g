@@ -14,11 +14,6 @@ let styles = StyleSheet.create({
     },
 });
 
-function lpad(value, padding) {
-    var zeroes = new Array(padding+1).join("0");
-    return (zeroes + value).slice(-padding);
-}
-
 class TagHistoryList extends Component {
 
     constructor(props) {
