@@ -26,7 +26,11 @@ function storeLogin(data)
 
             if(flag === false)
             {
-                list.pop();
+                if(list.length === 5)
+                {
+                    list.pop();
+                }
+
                 list.unshift(data);
                 AsyncStorage.setItem('@SparkPlant:previousUsers', JSON.stringify(list), (err, result) => {
                     console.log('Previous users list saved');
