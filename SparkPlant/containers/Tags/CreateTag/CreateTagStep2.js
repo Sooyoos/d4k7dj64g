@@ -6,6 +6,8 @@ import {
     Picker,
     TextInput,
     TouchableWithoutFeedback,
+    Image,
+    ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -89,12 +91,25 @@ let styles = StyleSheet.create({
     },
     mediaList : {
         flex : 5,
+        padding : responsiveHeight(1),
+        flexDirection : "row",
     },
     actions : {
         flex : 1,
         flexDirection : 'row',
         padding : 20,
-    }
+    },
+    mediaCard : {
+        height : responsiveHeight(10),
+        width : responsiveWidth(25),
+        marginHorizontal: responsiveWidth(2),
+        marginVertical : responsiveWidth(2),
+        backgroundColor : "#ffffff",
+    },
+    media : {
+        height : responsiveHeight(10),
+        width : responsiveWidth(25),
+    },
 });
 
 class CreateTagStep2 extends Component {
@@ -186,6 +201,34 @@ class CreateTagStep2 extends Component {
             });
     }
 
+    buildMediaList()
+    {
+        let medias = this.state.tag.media;
+        let mediaList = [];
+
+        if(medias && medias.length > 0)
+        {
+            for(var i = 0; i < medias.length; i++)
+            {
+                mediaList.push(
+                    <ElevatedView key={i} style={styles.mediaCard} elevation={4}>
+                        <Image style={styles.media} source={{uri : medias[i].uri}} />
+                    </ElevatedView>
+                );
+            }
+        }
+        else
+        {
+            mediaList.push(
+                <ElevatedView key={0} style={styles.mediaCard} elevation={4}>
+                    <Image style={styles.media} source={{uri : 'http://via.placeholder.com/750x500'}} />
+                </ElevatedView>
+            );
+        }
+
+        return mediaList;
+    }
+
     next()
     {
         this.props.goToCreateTagStep3();
@@ -220,9 +263,9 @@ class CreateTagStep2 extends Component {
                             </Text>
                         </ElevatedView>
                         <View style={styles.cardContent}>
-                            <View style={styles.mediaList}>
-
-                            </View>
+                            <ScrollView style={styles.mediaList} horizontal={true} showsHorizontalScrollIndicator={false}>
+                                {this.buildMediaList()}
+                            </ScrollView>
                             <View style={styles.actions}>
                                 <TouchableWithoutFeedback onPress={this.goToTakePicture.bind(this)}>
                                     <ElevatedView style={styles.actionButtonView} elevation={3}>
