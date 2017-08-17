@@ -105,6 +105,22 @@ class CreateTagPreview extends Component {
         this.props.goToTagsPage();
     }
 
+    buildMediaList(medias)
+    {
+        let list = [];
+
+        if(medias.length > 0)
+        {
+            for(var i = 0; i < medias.length; i++)
+            {
+                list.push(
+                    <Image key={i} style={styles.sliderImage} source={{uri : medias[i]}} />
+                )
+            }
+        }
+
+    }
+
     render() {
         let tag = this.props.tags.creation_current;
         return (
@@ -112,7 +128,7 @@ class CreateTagPreview extends Component {
                 <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                 <View style={styles.body}>
                     <ScrollView style={styles.slider} alignItems={'center'} horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <Image style={styles.sliderImage} source={{uri : "http://i1.go2yd.com/image.php?url=0GQ3kfitfC"}} />
+
                         <Image style={styles.sliderImage} source={{uri : "http://saporifineflavors.com/userfiles/image/Portafilter%20Handles.jpg"}} />
                         <Image style={styles.sliderImage} source={{uri : "https://i.ytimg.com/vi/PI96CzxFUPI/maxresdefault.jpg"}} />
                         <Image style={styles.sliderImage} source={{uri : "https://i.ytimg.com/vi/w5CuDdhdess/maxresdefault.jpg"}} />

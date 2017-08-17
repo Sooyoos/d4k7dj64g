@@ -30,6 +30,23 @@ const initialState = {
     loading : false,
 };
 
+function getCurrentCreationMediaIndex(state, filename)
+{
+    let medias = state.creation_current.media;
+
+    console.log(medias);
+
+    for(var i = 0; i < medias.length; i++)
+    {
+        if(medias[i].name === filename)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 export const tagsReducer = {
     tags : (state = initialState, action) => {
         switch (action.type) {
@@ -179,6 +196,17 @@ export const tagsReducer = {
             case types.TAG_TRANSFER_USERS_FAILURE: {
                 return Object.assign({}, state, {users : null, loading : false});
             }
+            case types.TAG_CREATE_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
+            case types.TAG_CREATE_SUCCESS: {
+                let creationCurrent = Object.assign({}, state.creation_current, initialState.creation_current);
+                return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
+            }
+            case types.TAG_CREATE_FAILURE: {
+                let creationCurrent = Object.assign({}, state.creation_current, initialState.creation_current);
+                return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
+            }
             case types.TAG_TRANSFER_REQUESTED: {
                 return Object.assign({}, state, {loading : true});
             }
@@ -187,6 +215,38 @@ export const tagsReducer = {
                 return Object.assign({}, state, {currentTag : currentTag, loading : false});
             }
             case types.TAG_TRANSFER_FAILURE: {
+                return Object.assign({}, state, {loading : false});
+            }
+            case types.TAGS_UPLOAD_MEDIA_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
+            case types.TAGS_UPLOAD_MEDIA_SUCCESS: {
+                let index = getCurrentCreationMediaIndex(state, action.media.originalFilename);
+                console.log(index);
+                if(index !== -1)
+                {
+                    let medias = state.creation_current.media;
+                    let original = medias[index].uri;
+                    medias[index] = {
+                        id : action.media["@id"],
+                        uri : original
+                    };
+                    let creationCurrent = Object.assign({}, state.creation_current, {visibility : action.visibility, media : medias});
+                    return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
+                }
+                else
+                {
+                    let medias = state.creation_current.media;
+                    medias.push(
+                        {
+                            id : action.media["@id"],
+                        }
+                    );
+                    let creationCurrent = Object.assign({}, state.creation_current, {visibility : action.visibility, media : medias});
+                    return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
+                }
+            }
+            case types.TAGS_UPLOAD_MEDIA_FAILURE : {
                 return Object.assign({}, state, {loading : false});
             }
             default :

@@ -457,9 +457,7 @@ function fetchCreateTag(login, tag)
             placeDetails: tag.placeDetails,
             placeDetailsAudio: tag.placeDetailsAudio,
             primaryAxis: tag.primaryAxis["@id"],
-            media : [
-
-            ],
+            media : tag.media,
             supervisor: tag.supervisor["@id"],
             users : [
 
@@ -478,6 +476,7 @@ function fetchCreateTag(login, tag)
         })
             .then((response) => response.json())
             .then((responseJson) => {
+                console.log(responseJson);
                 dispatch(addUsersToTag(login, tag, responseJson["@id"]));
             })
             .catch((error) => { dispatch(createTagFailure()); });
@@ -845,5 +844,62 @@ function tagTransferFailure()
 {
     return {
         type : types.TAG_TRANSFER_FAILURE,
+    }
+}
+
+function fetchTagsUploadMedia(login, file)
+{
+    return dispatch => {
+        dispatch(tagsUploadMediaRequested());
+        let baseUrl = "http://sparkplant-api-testing.sooyoos.com/fileUpload";
+        let body = new FormData();
+
+        console.log(file);
+
+        body.append("file", file);
+
+        fetch(baseUrl, {
+            method: 'POST',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'multipart/form-data',
+            },
+            body : body,
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                dispatch(tagsUploadMediaSuccess(responseJson));
+            })
+            .catch((error) => { console.log(error); dispatch(tagsUploadMediaFailure()); });
+    }
+}
+
+function tagsUploadMediaRequested()
+{
+    return {
+        type : types.TAGS_UPLOAD_MEDIA_REQUESTED,
+    }
+}
+
+function tagsUploadMediaSuccess(media)
+{
+    return {
+        type : types.TAGS_UPLOAD_MEDIA_SUCCESS,
+        media : media,
+    }
+}
+
+function tagsUploadMediaFailure()
+{
+    return {
+        type : types.TAGS_UPLOAD_MEDIA_FAILURE,
+    }
+}
+
+export function tryTagsUploadMedia(login, file)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchTagsUploadMedia(login, file));
     }
 }

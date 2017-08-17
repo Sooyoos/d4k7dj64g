@@ -242,6 +242,11 @@ class CreateTagStep2 extends Component {
 
     next()
     {
+        let medias = this.state.tag.media;
+        for(var i = 0; i < medias.length; i++)
+        {
+            this.props.tryTagsUploadMedia(this.props.login, medias[i]);
+        }
         this.props.goToCreateTagStep3();
     }
 
