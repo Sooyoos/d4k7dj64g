@@ -7,6 +7,7 @@ import {
     Image,
     ToastAndroid,
     Alert,
+    Picker,
     ActivityIndicator
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -50,6 +51,15 @@ let styles = StyleSheet.create({
         color:'#ffffff',
         textAlign: 'center',
         fontSize: responsiveFontSize(1.8),
+    },
+    loginCard : {
+        width: responsiveWidth(75),
+        height : responsiveHeight(15),
+        backgroundColor : "#ffffff",
+    },
+    userSelect : {
+        width: responsiveWidth(50),
+        height : responsiveHeight(5),
     }
 });
 
@@ -58,35 +68,91 @@ class LoginScreen extends Component {
     constructor(props)
     {
         super(props);
+        this.state = {
+            new : false,
+        };
         this.login = this.login.bind(this);
         this.props.tryPreviousLogin();
     }
 
-    login()
+    login(factory = this.props.login.factory, username = this.props.login.username, password = this.props.login.password)
     {
-        this.props.tryLogin(this.props.login.factory, this.props.login.username, this.props.login.password);
+        this.props.tryLogin(factory, username, password);
     }
+
+    autoLogin(index, value)
+    {
+        console.log(index);
+        if(value !== "new" && index >= 0)
+        {
+            let users = this.props.login.previousUsers;
+            this.props.tryLogin(users[index - 2].factory, users[index - 2].username, users[index - 2].password);
+        }
+        else
+        {
+            this.setState({new : true});
+        }
+    }
+
+    buildUsersList() {
+        let users = this.props.login.previousUsers;
+        let list = [];
+
+        list.push(
+            <Picker.Item key={-2} label={"Utilisateur"} value={null} />
+        );
+
+        list.push(
+            <Picker.Item key={-1} label={"Nouvel utilisateur"} value={"new"} />
+        );
+
+        for(var i = 0; i < users.length; i++)
+        {
+            list.push(
+                <Picker.Item key={i} label={"Usine : " + users[i].factory + " - " + users[i].username} value={users[i]} />
+            );
+        }
+
+        return list;
+    }
+
 
     render() {
         if(this.props.login.loading === false)
         {
-            return (
-                <View style={styles.login}>
-                    <ElevatedView elevation={5} style={styles.body}>
-                        <Image source={require('../assets/img/logo.png')} style={styles.logo} />
-                        <LoginFactoryList/>
-                        <LoginUsernameInput/>
-                        <LoginPasswordInput />
-                        <ElevatedView elevation={4} style={styles.button}>
-                            <TouchableWithoutFeedback onPress={this.login}>
-                                <View style={{width:responsiveWidth(40), height:responsiveHeight(5), justifyContent:'center', padding : 5}}>
-                                    <Text style={styles.buttonText}>SE CONNECTER</Text>
-                                </View>
-                            </TouchableWithoutFeedback>
+            if(this.props.login.previousUsers.length > 0 && this.state.new !== true)
+            {
+                return (
+                    <View style={styles.login}>
+                        <ElevatedView elevation={2} style={styles.body}>
+                            <Image source={require('../assets/img/logo.png')} style={styles.logo} />
+                            <Picker style={styles.userSelect} onValueChange={(value, index) => {this.autoLogin(index, value);}} >
+                                {this.buildUsersList()}
+                            </Picker>
                         </ElevatedView>
-                    </ElevatedView>
-                </View>
-            );
+                    </View>
+                );
+            }
+            else
+            {
+                return (
+                    <View style={styles.login}>
+                        <ElevatedView elevation={2} style={styles.body}>
+                            <Image source={require('../assets/img/logo.png')} style={styles.logo} />
+                            <LoginFactoryList/>
+                            <LoginUsernameInput/>
+                            <LoginPasswordInput />
+                            <ElevatedView elevation={4} style={styles.button}>
+                                <TouchableWithoutFeedback onPress={this.login}>
+                                    <View style={{width:responsiveWidth(40), height:responsiveHeight(5), justifyContent:'center', padding : 5}}>
+                                        <Text style={styles.buttonText}>SE CONNECTER</Text>
+                                    </View>
+                                </TouchableWithoutFeedback>
+                            </ElevatedView>
+                        </ElevatedView>
+                    </View>
+                );
+            }
         }
         else
         {
