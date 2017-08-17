@@ -90,3 +90,19 @@ export function goToTagTransfer(tag)
         tag : tag,
     };
 }
+
+export function goToSearchTags()
+{
+    return {
+        type: 'Navigation/NAVIGATE',
+        routeName: 'SearchTags',
+    };
+}
+
+export function goToFilterTags()
+{
+    return {
+        type: 'Navigation/NAVIGATE',
+        routeName: 'FilterTag',
+    };
+}

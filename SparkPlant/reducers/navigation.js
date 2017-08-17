@@ -24,6 +24,7 @@ import SearchWaitingNews from '../containers/News/SearchWaitingNews';
 import TagsFull from '../containers/Tags/TagsFull';
 import CommentTag from '../containers/Tags/CommentTag';
 import FilterTag from '../containers/Tags/FilterTag';
+import SearchTags from '../containers/Tags/SearchTags';
 import TagActions from '../containers/Tags/TagActions';
 import TagDetails from '../containers/Tags/TagDetails';
 import TagHistory from '../containers/Tags/TagHistory';
@@ -121,6 +122,12 @@ export const TagNavigator = StackNavigator(
         },
         FilterTag: {
             screen: FilterTag,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        SearchTags: {
+            screen: SearchTags,
             navigationOptions : {
                 header : null,
             }

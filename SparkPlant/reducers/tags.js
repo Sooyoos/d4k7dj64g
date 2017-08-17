@@ -28,6 +28,8 @@ const initialState = {
     },
     currentTag : null,
     loading : false,
+    search : null,
+    searchResults : null,
 };
 
 function getCurrentCreationMediaIndex(state, filename)
@@ -248,6 +250,9 @@ export const tagsReducer = {
             }
             case types.TAGS_UPLOAD_MEDIA_FAILURE : {
                 return Object.assign({}, state, {loading : false});
+            }
+            case types.TAGS_SEARCH : {
+                return Object.assign({}, state, {searchResults : action.tags, search : action.search});
             }
             default :
                 return state;

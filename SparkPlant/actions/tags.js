@@ -903,3 +903,12 @@ export function tryTagsUploadMedia(login, file)
         return dispatch(fetchTagsUploadMedia(login, file));
     }
 }
+
+export function searchTags(tags, search)
+{
+    return {
+        type : types.TAGS_SEARCH,
+        tags : tags,
+        search : search,
+    }
+}
