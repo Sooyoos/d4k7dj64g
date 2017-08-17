@@ -122,6 +122,38 @@ class CreateTagStep2 extends Component {
         this.props.setCurrentCreationDescription(description);
     }
 
+    goToTakeVideo()
+    {
+        var options = {
+            title: 'Ajouter une vidéo',
+            storageOptions: {
+                skipBackup: true,
+                path: 'images'
+            },
+            mediaType : 'video',
+            takePhotoButtonTitle : "Depuis l'appareil",
+            chooseFromLibraryButtonTitle : "Depuis la gallerie",
+        };
+
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            }
+            else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            }
+            else {
+                let source = { uri: response.uri, type: response.type, name: response.fileName };
+
+                let medias = this.state.tag.media;
+                medias.push(source);
+                this.setState(Object.assign({}, this.state.tag, {media : medias}));
+            }
+        });
+    }
+
     goToTakePicture()
     {
             var options = {
@@ -130,6 +162,7 @@ class CreateTagStep2 extends Component {
                     skipBackup: true,
                     path: 'images'
                 },
+                mediaType : 'photo',
                 takePhotoButtonTitle : "Depuis l'appareil",
                 chooseFromLibraryButtonTitle : "Depuis la gallerie",
             };
@@ -146,7 +179,7 @@ class CreateTagStep2 extends Component {
                 else {
                     let source = { uri: response.uri, type: response.type, name: response.fileName };
 
-                    let medias = this.state.item.media;
+                    let medias = this.state.tag.media;
                     medias.push(source);
                     this.setState(Object.assign({}, this.state.tag, {media : medias}));
                 }
@@ -196,7 +229,7 @@ class CreateTagStep2 extends Component {
                                         <Icon name="camera" style={styles.actionButtonIcon} />
                                     </ElevatedView>
                                 </TouchableWithoutFeedback>
-                                <TouchableWithoutFeedback onPress={this.next.bind(this)}>
+                                <TouchableWithoutFeedback onPress={this.goToTakeVideo.bind(this)}>
                                     <ElevatedView style={styles.actionButtonView} elevation={3}>
                                         <Icon name="video" style={styles.actionButtonIcon} />
                                     </ElevatedView>
