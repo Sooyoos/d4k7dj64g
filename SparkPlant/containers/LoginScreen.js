@@ -8,7 +8,8 @@ import {
     ToastAndroid,
     Alert,
     Picker,
-    ActivityIndicator
+    ActivityIndicator,
+    BackHandler,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -73,6 +74,15 @@ class LoginScreen extends Component {
         };
         this.login = this.login.bind(this);
         this.props.tryPreviousLogin();
+    }
+
+    componentWillMount()
+    {
+        let props = this.props;
+        BackHandler.addEventListener('hardwareBackPress', function(){
+            props.navigateBack();
+            return true;
+        });
     }
 
     login(factory = this.props.login.factory, username = this.props.login.username, password = this.props.login.password)

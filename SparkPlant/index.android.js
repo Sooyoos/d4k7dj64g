@@ -31,8 +31,8 @@ const AppWithNavigationState = connect(state => ({
 
 
 const App = () => (
-<Provider store={configureStore({})}>
-    <AppWithNavigationState />
+    <Provider store={configureStore({})}>
+        <AppWithNavigationState />
     </Provider>
 );
 

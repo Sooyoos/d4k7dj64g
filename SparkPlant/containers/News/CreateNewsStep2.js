@@ -33,13 +33,6 @@ let styles = StyleSheet.create({
 
 class CreateNewsStep2 extends Component {
 
-    static navigationOptions = {
-        drawerLabel: 'NEWS',
-        drawerIcon: ({tintColor}) => (
-            <Icon name='tag' style={{fontSize : 24, color : '#757575'}}/>
-        ),
-    };
-
     constructor(props)
     {
         super(props);
