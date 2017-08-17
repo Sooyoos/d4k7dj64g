@@ -210,11 +210,22 @@ class CreateTagStep2 extends Component {
         {
             for(var i = 0; i < medias.length; i++)
             {
-                mediaList.push(
-                    <ElevatedView key={i} style={styles.mediaCard} elevation={4}>
-                        <Image style={styles.media} source={{uri : medias[i].uri}} />
-                    </ElevatedView>
-                );
+                if(!medias[i].data)
+                {
+                    mediaList.push(
+                        <ElevatedView key={i} style={styles.mediaCard} elevation={4}>
+                            <Image style={styles.media} source={{uri : medias[i].uri}} />
+                        </ElevatedView>
+                    );
+                }
+                else
+                {
+                    mediaList.push(
+                        <ElevatedView key={i} style={styles.mediaCard} elevation={4}>
+                            <Image style={styles.media} source={{uri : 'http://via.placeholder.com/750x500/3f51b5/ffffff?text=Video'}} />
+                        </ElevatedView>
+                    );
+                }
             }
         }
         else
