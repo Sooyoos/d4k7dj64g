@@ -1,11 +1,48 @@
 import * as types from './types';
 import Base64 from 'base-64';
+import { AsyncStorage } from 'react-native';
 
 function parseJwt(token){
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace('-', '+').replace('_', '/');
     return JSON.parse(Base64.decode(base64));
 };
+
+function storeLogin(data)
+{
+    AsyncStorage.getItem('@SparkPlant:previousUsers', (err, result) => {
+        let list = JSON.parse(result);
+        let flag = false;
+
+        if(list !== null)
+        {
+            for(var i = 0; i < list.length; i++)
+            {
+                if(list[i].username === data.username)
+                {
+                    flag = true;
+                }
+            }
+
+            if(flag === false)
+            {
+                list.pop();
+                list.unshift(data);
+                AsyncStorage.setItem('@SparkPlant:previousUsers', JSON.stringify(list), (err, result) => {
+                    console.log('Previous users list saved');
+                });
+            }
+        }
+        else
+        {
+            list = [];
+            list.unshift(data);
+            AsyncStorage.setItem('@SparkPlant:previousUsers', JSON.stringify(list), (err, result) => {
+                console.log('Previous users list saved');
+            });
+        }
+    })
+}
 
 function fetchLogin(factory, username, password)
 {
@@ -14,13 +51,13 @@ function fetchLogin(factory, username, password)
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
         let body = new FormData();
 
-       /* body.append("factory", factory);
-        body.append("password", password);
-        body.append("idNumber", username);*/
+       factory = "1";
+       password = "test";
+       username = "user1";
 
-        body.append("factory", "1");
-        body.append("password", "test");
-        body.append("idNumber", "user1");
+        body.append("factory", factory);
+        body.append("password", password);
+        body.append("idNumber", username);
 
         fetch(baseUrl + "/token", {
             method: 'POST',
@@ -34,6 +71,8 @@ function fetchLogin(factory, username, password)
             .then((responseJson) => {
                 if(responseJson.token)
                 {
+                    // store in async storage
+                    storeLogin({factory : factory, username : username, password : password});
                     dispatch(goToHomepage());
                     dispatch(loginSuccess(responseJson));
                 }
@@ -102,4 +141,49 @@ function goToHomepage()
         type: 'Navigation/NAVIGATE',
         routeName: 'HomeTab',
     };
+}
+
+function fetchPreviousLogin()
+{
+    return dispatch => {
+        dispatch(previousLoginRequested());
+        try{
+            AsyncStorage.getItem('@SparkPlant:previousUsers', (err, result) => {
+                console.log(JSON.parse(result));
+                dispatch(previousLoginSuccess(result));
+            })
+        }
+        catch(error)
+        {
+            dispatch(previousLoginFailure())
+        }
+    }
+}
+
+function previousLoginRequested()
+{
+    return {
+        type : types.PREVIOUS_LOGIN_REQUESTED,
+    }
+}
+
+export function previousLoginSuccess(response)
+{
+    return {
+        type: types.PREVIOUS_LOGIN_SUCCESS,
+        previousUsers : JSON.parse(response)
+    }
+}
+
+export function previousLoginFailure()
+{
+    return {
+        type: types.PREVIOUS_LOGIN_FAILURE,
+    }
+}
+
+export function tryPreviousLogin(){
+    return (dispatch, getState) => {
+        return dispatch(fetchPreviousLogin());
+    }
 }

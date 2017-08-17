@@ -59,6 +59,7 @@ class LoginScreen extends Component {
     {
         super(props);
         this.login = this.login.bind(this);
+        this.props.tryPreviousLogin();
     }
 
     login()

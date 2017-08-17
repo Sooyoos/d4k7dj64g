@@ -6,6 +6,9 @@ const initialState = {
     password : null,
     tokenString : null,
     loading : false,
+    previousUsers : [
+
+    ]
 };
 
 export const loginReducer = {
@@ -29,6 +32,16 @@ export const loginReducer = {
             }
             case types.SET_LOGIN_PASSWORD: {
                 return Object.assign({}, state, {password : action.password});
+            }
+            case types.PREVIOUS_LOGIN_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
+            case types.PREVIOUS_LOGIN_SUCCESS: {
+                return Object.assign({}, state, {previousUsers: action.previousUsers, loading :false});
+            }
+            case types.PREVIOUS_LOGIN_FAILURE: {
+                state.userToken = null;
+                return Object.assign({}, state, {previousUsers : [], loading : false});
             }
             default :
                 return state;
