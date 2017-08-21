@@ -442,11 +442,20 @@ function fetchCreateTag(login, tag)
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
         let users = [];
+        let medias = [];
 
         for(var i = 0; i < tag.users.length -1; i++)
         {
             users.push(tag.users[i]["@id"]);
         }
+
+        for(var i = 0; i < tag.media.length; i++)
+        {
+            medias.push(tag.media[i].id);
+        }
+
+        console.log("CREATION DU TAG");
+        console.log(medias);
 
         let body = {
             title : tag.title,
@@ -457,7 +466,7 @@ function fetchCreateTag(login, tag)
             placeDetails: tag.placeDetails,
             placeDetailsAudio: tag.placeDetailsAudio,
             primaryAxis: tag.primaryAxis["@id"],
-            media : tag.media,
+            media : medias,
             supervisor: tag.supervisor["@id"],
             users : [
 
