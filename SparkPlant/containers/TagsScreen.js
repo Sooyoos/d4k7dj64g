@@ -50,23 +50,46 @@ class TagsScreen extends Component {
     componentWillMount()
     {
         this.props.tryUserTags(this.props.login);
+        this.props.tryAllTags(this.props.login);
+        if(this.props.tags.filters.status.length > 0 || this.props.tags.filters.axis.length > 0 || this.props.tags.filters.units.length > 0)
+        {
+            this.props.filterTags();
+        }
     }
 
     render() {
         if(this.props.tags.loading === false)
         {
-            return (
-                <View style={styles.login}>
-                    <HeaderTags {...this.props} headerTitle="Mes tags"/>
-                    <View style={styles.body}>
-                        <TagList {...this.props} items={this.props.tags.userTags} />
+            if(this.props.tags.filterResults !== null)
+            {
+                return (
+                    <View style={styles.login}>
+                        <HeaderTags {...this.props} headerTitle="Mes tags"/>
+                        <View style={styles.body}>
+                            <TagList {...this.props} items={this.props.tags.filterResults} />
+                        </View>
+                        <View style={styles.footer}>
+                            <FooterButton {...this.props} active={true} iconName="eye" text="Suivis" route={this.props.goToTagsPage}/>
+                            <FooterButton {...this.props} active={false} iconName="tags" text="Tous" route={this.props.goToTagsFull}/>
+                        </View>
                     </View>
-                    <View style={styles.footer}>
-                        <FooterButton {...this.props} active={true} iconName="eye" text="Suivis" route={this.props.goToTagsPage}/>
-                        <FooterButton {...this.props} active={false} iconName="tags" text="Tous" route={this.props.goToTagsFull}/>
+                );
+            }
+            else
+            {
+                return (
+                    <View style={styles.login}>
+                        <HeaderTags {...this.props} headerTitle="Mes tags"/>
+                        <View style={styles.body}>
+                            <TagList {...this.props} items={this.props.tags.userTags} />
+                        </View>
+                        <View style={styles.footer}>
+                            <FooterButton {...this.props} active={true} iconName="eye" text="Suivis" route={this.props.goToTagsPage}/>
+                            <FooterButton {...this.props} active={false} iconName="tags" text="Tous" route={this.props.goToTagsFull}/>
+                        </View>
                     </View>
-                </View>
-            );
+                );
+            }
         }
         else
         {

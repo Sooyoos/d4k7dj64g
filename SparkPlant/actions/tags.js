@@ -912,3 +912,35 @@ export function searchTags(tags, search)
         search : search,
     }
 }
+
+export function addTagsFilter(filterList, filter)
+{
+    return {
+        type : types.ADD_TAGS_FILTER,
+        filter : filter,
+        filterList : filterList,
+    }
+}
+
+export function removeTagsFilter(filterList, filter)
+{
+    return {
+        type : types.REMOVE_TAGS_FILTER,
+        filter : filter,
+        filterList : filterList,
+    }
+}
+
+export function filterTags()
+{
+    return {
+        type : types.FILTER_TAGS,
+    }
+}
+
+export function filterFullTags()
+{
+    return {
+        type : types.FILTER_FULL_TAGS,
+    }
+}

@@ -30,6 +30,19 @@ const initialState = {
     loading : false,
     search : null,
     searchResults : null,
+    filters : {
+        status : [
+
+        ],
+        axis : [
+
+        ],
+        units : [
+
+        ]
+    },
+    filterResults : null,
+    filterFullResults : null,
 };
 
 function getCurrentCreationMediaIndex(state, filename)
@@ -47,6 +60,88 @@ function getCurrentCreationMediaIndex(state, filename)
     }
 
     return -1;
+}
+
+function filterFullTags(list, filters)
+{
+    let shortList = [];
+
+    for(var i = 0; i < list.length; i++)
+    {
+        let flag = false;
+
+        for(var j = 0; j < filters.status.length; j++)
+        {
+            if(list[i].status === filters.status[j])
+            {
+                flag = true;
+            }
+        }
+
+        for(var j = 0; j < filters.units.length; j++)
+        {
+            if(list[i].unit["@id"] === filters.units[j])
+            {
+                flag = true;
+            }
+        }
+
+        for(var j = 0; j < filters.axis.length; j++)
+        {
+            if(list[i].primaryAxis["@id"] === filters.axis[j])
+            {
+                flag = true;
+            }
+        }
+
+        if(flag === true)
+        {
+            shortList.push(list[i]);
+        }
+    }
+
+    return shortList;
+}
+
+function filterTags(list, filters)
+{
+    let shortList = [];
+
+    for(var i = 0; i < list.length; i++)
+    {
+        let flag = false;
+
+        for(var j = 0; j < filters.status.length; j++)
+        {
+            if(list[i].tag.status === filters.status[j])
+            {
+                flag = true;
+            }
+        }
+
+        for(var j = 0; j < filters.units.length; j++)
+        {
+            if(list[i].tag.unit["@id"] === filters.units[j])
+            {
+                flag = true;
+            }
+        }
+
+        for(var j = 0; j < filters.axis.length; j++)
+        {
+            if(list[i].tag.primaryAxis["@id"] === filters.axis[j])
+            {
+                flag = true;
+            }
+        }
+
+        if(flag === true)
+        {
+            shortList.push(list[i]);
+        }
+    }
+
+    return shortList;
 }
 
 export const tagsReducer = {
@@ -253,6 +348,60 @@ export const tagsReducer = {
             }
             case types.TAGS_SEARCH : {
                 return Object.assign({}, state, {searchResults : action.tags, search : action.search});
+            }
+            case types.ADD_TAGS_FILTER : {
+                let filters = [];
+                let filtersObj = null;
+                switch(action.filterList)
+                {
+                    case "status" :
+                        filters = state.filters.status;
+                        filters.push(action.filter);
+                        filtersObj = Object.assign({}, state.filters, {status : filters});
+                        break;
+                    case "axis" :
+                        filters = state.filters.axis;
+                        filters.push(action.filter);
+                        filtersObj = Object.assign({}, state.filters, {axis : filters});
+                        break;
+                    case "units" :
+                        filters = state.filters.units;
+                        filters.push(action.filter);
+                        filtersObj = Object.assign({}, state.filters, {units : filters});
+                        break;
+                }
+                return Object.assign({}, state, {filters : filtersObj});
+            }
+            case types.REMOVE_TAGS_FILTER : {
+                let filters = [];
+                let filtersObj = null;
+                switch(action.filterList)
+                {
+                    case "status" :
+                        filters = state.filters.status;
+                        filters.splice(filters.indexOf(action.filter), 1);
+                        filtersObj = Object.assign({}, state.filters, {status : filters});
+                        break;
+                    case "axis" :
+                        filters = state.filters.axis;
+                        filters.splice(filters.indexOf(action.filter), 1);
+                        filtersObj = Object.assign({}, state.filters, {axis : filters});
+                        break;
+                    case "units" :
+                        filters = state.filters.units;
+                        filters.splice(filters.indexOf(action.filter), 1);
+                        filtersObj = Object.assign({}, state.filters, {units : filters});
+                        break;
+                }
+                return Object.assign({}, state, {filters : filtersObj});
+            }
+            case types.FILTER_TAGS : {
+                let filtered = filterTags(state.userTags, state.filters);
+                return Object.assign({}, state, {filterResults : filtered});
+            }
+            case types.FILTER_FULL_TAGS : {
+                let filtered = filterFullTags(state.allTags, state.filters);
+                return Object.assign({}, state, {filterFullResults : filtered});
             }
             default :
                 return state;
