@@ -75,6 +75,20 @@ let styles = StyleSheet.create({
         textAlign : 'center',
         color : '#ffffff',
     },
+    actionButtonView : {
+        width: responsiveWidth(8),
+        height : responsiveWidth(8),
+        borderRadius : responsiveWidth(4),
+        backgroundColor: '#00bcd4',
+        padding : 3,
+        marginVertical : 10,
+        marginHorizontal : 5,
+    },
+    actionButtonIcon : {
+        fontSize : responsiveFontSize(3.5),
+        textAlign : 'center',
+        color : '#ffffff',
+    },
 });
 
 class CreateTagStep1 extends Component {
@@ -157,6 +171,14 @@ class CreateTagStep1 extends Component {
                                 { this.buildPlacesList() }
                             </Picker>
                             <TextInput style={{fontSize : responsiveFontSize(1.6)}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
+                            <TouchableWithoutFeedback onPress={() => {
+                                this.props.setToRecord("place");
+                                this.props.goToRecordAudio();
+                            }}>
+                                <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                    <Icon name="microphone" style={styles.actionButtonIcon} />
+                                </ElevatedView>
+                            </TouchableWithoutFeedback>
                         </View>
                     </ElevatedView>
                     <ElevatedView style={styles.card} elevation={2}>

@@ -953,3 +953,11 @@ export function filterFullTags()
         type : types.FILTER_FULL_TAGS,
     }
 }
+
+export function setToRecord(value)
+{
+    return {
+        type : types.SET_TO_RECORD,
+        value : value,
+    }
+}

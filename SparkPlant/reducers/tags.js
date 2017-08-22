@@ -43,6 +43,7 @@ const initialState = {
     },
     filterResults : null,
     filterFullResults : null,
+    toRecord : null,
 };
 
 function getCurrentCreationMediaIndex(state, filename)
@@ -402,6 +403,9 @@ export const tagsReducer = {
             case types.FILTER_FULL_TAGS : {
                 let filtered = filterFullTags(state.allTags, state.filters);
                 return Object.assign({}, state, {filterFullResults : filtered});
+            }
+            case types.SET_TO_RECORD : {
+                return Object.assign({}, state, {toRecord : action.value});
             }
             default :
                 return state;

@@ -11,6 +11,8 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.imagepicker.ImagePickerPackage;
 import com.brentvatne.react.ReactVideoPackage;
+import com.rnim.rn.audio.ReactNativeAudioPackage;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +32,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RCTCameraPackage(),
             new VectorIconsPackage(),
             new ImagePickerPackage(),
-            new ReactVideoPackage()
+            new ReactVideoPackage(),
+            new ReactNativeAudioPackage()
       );
     }
   };

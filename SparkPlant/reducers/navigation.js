@@ -35,6 +35,7 @@ import CreateTagStep1 from '../containers/Tags/CreateTag/CreateTagStep1';
 import CreateTagStep2 from '../containers/Tags/CreateTag/CreateTagStep2';
 import CreateTagStep3 from '../containers/Tags/CreateTag/CreateTagStep3';
 import CreateTagPreview from '../containers/Tags/CreateTag/CreateTagPreview';
+import RecordAudio from '../containers/Tags/CreateTag/RecordAudio';
 import * as types from '../actions/types';
 
 export const TagNavigator = StackNavigator(
@@ -128,6 +129,12 @@ export const TagNavigator = StackNavigator(
         },
         SearchTags: {
             screen: SearchTags,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        RecordAudio: {
+            screen: RecordAudio,
             navigationOptions : {
                 header : null,
             }

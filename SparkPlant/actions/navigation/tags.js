@@ -106,3 +106,11 @@ export function goToFilterTags()
         routeName: 'FilterTag',
     };
 }
+
+export function goToRecordAudio()
+{
+    return {
+        type: 'Navigation/NAVIGATE',
+        routeName: 'RecordAudio',
+    };
+}
