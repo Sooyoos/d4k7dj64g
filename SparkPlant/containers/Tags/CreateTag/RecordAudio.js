@@ -74,18 +74,32 @@ class RecordAudio extends Component {
 
     async stop()
     {
+        let mode = this.props.tags.toRecord;
+
         const filePath = await AudioRecorder.stopRecording();
-        this.props.tryTagsUploadPlaceAudio(this.props.login, {
-            uri: "file://" + filePath,
-            type: "audio/aac",
-            name: filePath.substring(filePath.lastIndexOf("/"))
-        });
-        this.props.goToCreateTagStep1();
+
+        if(mode === "place")
+        {
+            this.props.tryTagsUploadPlaceAudio(this.props.login, {
+                uri: "file://" + filePath,
+                type: "audio/aac",
+                name: filePath.substring(filePath.lastIndexOf("/"))
+            });
+            this.props.goToCreateTagStep1();
+        }
+        else
+        {
+            this.props.tryTagsUploadDescriptionAudio(this.props.login, {
+                uri: "file://" + filePath,
+                type: "audio/aac",
+                name: filePath.substring(filePath.lastIndexOf("/"))
+            });
+            this.props.goToCreateTagStep2();
+        }
     }
 
     render() {
         let tag = this.props.tags.creation_current;
-        let mode = this.props.tags.toRecord;
 
         return (
             <View style={{flex : 1, backgroundColor : "#ffffff"}}>

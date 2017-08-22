@@ -8,7 +8,7 @@ const initialState = {
     creation_current : {
         id : null,
         title : null,
-        description : null,
+        description : "",
         descriptionAudio : null,
         status : "ongoing",
         placeDetails : null,
@@ -415,6 +415,16 @@ export const tagsReducer = {
                 return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
             }
             case types.TAGS_UPLOAD_PLACE_AUDIO_FAILURE : {
+                return Object.assign({}, state, {loading : false});
+            }
+            case types.TAGS_UPLOAD_DESCRIPTION_AUDIO_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
+            case types.TAGS_UPLOAD_DESCRIPTION_AUDIO_SUCCESS: {
+                let creationCurrent = Object.assign({}, state.creation_current, {descriptionAudio : action.media["@id"]});
+                return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
+            }
+            case types.TAGS_UPLOAD_DESCRIPTION_AUDIO_FAILURE : {
                 return Object.assign({}, state, {loading : false});
             }
             default :

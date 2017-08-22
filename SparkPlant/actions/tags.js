@@ -485,10 +485,10 @@ function fetchCreateTag(login, tag)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
+                console.warn(responseJson);
                 dispatch(addUsersToTag(login, tag, responseJson["@id"]));
             })
-            .catch((error) => { dispatch(createTagFailure()); });
+            .catch((error) => { console.warn(error); dispatch(createTagFailure()); });
     }
 }
 
@@ -983,17 +983,17 @@ function fetchTagsUploadPlaceAudio(login, file)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
+                console.warn(responseJson);
                 dispatch(tagsUploadPlaceAudioSuccess(responseJson));
             })
-            .catch((error) => { console.log(error); dispatch(tagsUploadPlaceAudioFailure()); });
+            .catch((error) => { console.warn(error); dispatch(tagsUploadPlaceAudioFailure()); });
     }
 }
 
 function tagsUploadPlaceAudioRequested()
 {
     return {
-        type : types.TAGS_UPLOAD_MEDIA_REQUESTED,
+        type : types.TAGS_UPLOAD_PLACE_AUDIO_REQUESTED,
     }
 }
 
@@ -1015,6 +1015,63 @@ function tagsUploadPlaceAudioFailure()
 export function tryTagsUploadPlaceAudio(login, file)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchTagsUploadMedia(login, file));
+        return dispatch(fetchTagsUploadPlaceAudio(login, file));
+    }
+}
+
+function fetchTagsUploadDescriptionAudio(login, file)
+{
+    return dispatch => {
+        dispatch(tagsUploadDescriptionAudioRequested());
+        let baseUrl = "http://sparkplant-api-testing.sooyoos.com/fileUpload";
+        let body = new FormData();
+
+        console.log(file);
+
+        body.append("file", file);
+
+        fetch(baseUrl, {
+            method: 'POST',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'multipart/form-data',
+            },
+            body : body,
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.warn(responseJson);
+                dispatch(tagsUploadDescriptionAudioSuccess(responseJson));
+            })
+            .catch((error) => { console.warn(error); dispatch(tagsUploadDescriptionAudioFailure()); });
+    }
+}
+
+function tagsUploadDescriptionAudioRequested()
+{
+    return {
+        type : types.TAGS_UPLOAD_DESCRIPTION_AUDIO_REQUESTED,
+    }
+}
+
+function tagsUploadDescriptionAudioSuccess(media)
+{
+    return {
+        type : types.TAGS_UPLOAD_DESCRIPTION_AUDIO_SUCCESS,
+        media : media,
+    }
+}
+
+function tagsUploadDescriptionAudioFailure()
+{
+    return {
+        type : types.TAGS_UPLOAD_DESCRIPTION_AUDIO_FAILURE,
+    }
+}
+
+export function tryTagsUploadDescriptionAudio(login, file)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchTagsUploadDescriptionAudio(login, file));
     }
 }
