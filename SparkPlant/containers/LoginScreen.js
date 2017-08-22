@@ -130,7 +130,7 @@ class LoginScreen extends Component {
     render() {
         if(this.props.login.loading === false)
         {
-            if(this.props.login.previousUsers.length > 0 && this.state.new !== true)
+            if(this.props.login.previousUsers && this.props.login.previousUsers.length > 0 && this.state.new !== true)
             {
                 return (
                     <View style={styles.login}>
