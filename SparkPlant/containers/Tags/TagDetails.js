@@ -6,6 +6,7 @@ import {
     Image,
     Text,
     ActivityIndicator,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -14,7 +15,9 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 import FooterButton from "../../components/Footer/FooterButton";
 import HeaderTagDetails from "../../components/Header/HeaderTags";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconA from 'react-native-vector-icons/FontAwesome';
 import VideoPlayer from 'react-native-video-player';
+import Sound from 'react-native-sound';
 
 let styles = StyleSheet.create({
     login: {
@@ -135,6 +138,51 @@ class TagDetails extends Component {
         return list;
     }
 
+    playAudio(file)
+    {
+        console.log("play audio");
+        let sound = new Sound(file, Sound.MAIN_BUNDLE, (error) => {
+            if (error) {
+                console.log('failed to load the sound', error);
+            }
+
+            sound.play((success) => {
+                if (success) {
+                    console.log('successfully finished playing');
+                    sound.release();
+                } else {
+                    console.log('playback failed due to audio decoding errors');
+                    sound.release();
+                }
+            });
+
+        });
+    }
+
+    renderPlaceAudioIcon()
+    {
+        if(this.props.tags.currentTag.placeDetailsAudio !== null)
+        {
+            return(
+                <TouchableWithoutFeedback onPress={() => {this.playAudio(this.props.tags.currentTag.placeDetailsAudio.path)}}>
+                    <IconA name="volume-up" style={{ color : "#757575", fontSize : responsiveFontSize(2.5) }}/>
+                </TouchableWithoutFeedback>
+            );
+        }
+    }
+
+    renderDescriptionAudioIcon()
+    {
+        if(this.props.tags.currentTag.descriptionAudio !== null)
+        {
+            return(
+                <TouchableWithoutFeedback onPress={() => {this.playAudio(this.props.tags.currentTag.descriptionAudio.path)}}>
+                    <IconA name="volume-up" style={{ color : "#757575", fontSize : responsiveFontSize(2.5) }}/>
+                </TouchableWithoutFeedback>
+            );
+        }
+    }
+
     render() {
         let tag = this.props.tags.currentTag;
         if(tag)
@@ -208,6 +256,7 @@ class TagDetails extends Component {
                                         <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
                                             {tag.place.name}
                                         </Text>
+                                        {this.renderPlaceAudioIcon()}
                                     </View>
                                 </View>
                             </View>
@@ -219,6 +268,7 @@ class TagDetails extends Component {
                                     <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
                                         {tag.description}
                                     </Text>
+                                    {this.renderDescriptionAudioIcon()}
                                 </View>
                             </View>
                         </View>

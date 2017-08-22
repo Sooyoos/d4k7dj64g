@@ -14,6 +14,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 import ElevatedView from 'react-native-elevated-view';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import VideoPlayer from 'react-native-video-player';
 
 let styles = StyleSheet.create({
     header : {
@@ -105,20 +106,42 @@ class CreateTagPreview extends Component {
         this.props.goToTagsPage();
     }
 
-    buildMediaList(medias)
+    buildMediaList()
     {
+        let medias = this.props.tags.currentTag.media;
         let list = [];
 
         if(medias.length > 0)
         {
             for(var i = 0; i < medias.length; i++)
             {
-                list.push(
-                    <Image key={i} style={styles.sliderImage} source={{uri : medias[i]}} />
-                )
+                if(medias[i].filetype.indexOf("video") === -1)
+                {
+                    list.push(
+                        <Image key={i} style={styles.sliderImage} source={{uri : medias[i].path}} />
+                    );
+                }
+                else
+                {
+                    let thumbnail = "http://via.placeholder.com/" + Math.round(responsiveWidth(70)) + "x" + Math.round(responsiveHeight(30)) + "/000000.png";
+                    console.log(thumbnail);
+                    list.push(
+                        <VideoPlayer
+                            style={{width : responsiveWidth(70), height : responsiveHeight(30)}}
+                            key={i}
+                            video={{ uri: medias[i].path }}
+                            videoWidth={Math.round(responsiveWidth(70))}
+                            videoHeight={Math.round(responsiveHeight(30))}
+                            thumbnail={{uri : thumbnail}}
+                            endWithThumbnail
+                        />
+                    );
+                }
             }
         }
 
+        console.log(list);
+        return list;
     }
 
     render() {
@@ -128,10 +151,7 @@ class CreateTagPreview extends Component {
                 <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                 <View style={styles.body}>
                     <ScrollView style={styles.slider} alignItems={'center'} horizontal={true} showsHorizontalScrollIndicator={false}>
-
-                        <Image style={styles.sliderImage} source={{uri : "http://saporifineflavors.com/userfiles/image/Portafilter%20Handles.jpg"}} />
-                        <Image style={styles.sliderImage} source={{uri : "https://i.ytimg.com/vi/PI96CzxFUPI/maxresdefault.jpg"}} />
-                        <Image style={styles.sliderImage} source={{uri : "https://i.ytimg.com/vi/w5CuDdhdess/maxresdefault.jpg"}} />
+                        {this.buildMediaList()}
                     </ScrollView>
                     <View style={styles.infos}>
                         <View style={styles.section}>

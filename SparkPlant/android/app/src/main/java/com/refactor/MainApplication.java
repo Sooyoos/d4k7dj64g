@@ -12,6 +12,7 @@ import com.facebook.soloader.SoLoader;
 import com.imagepicker.ImagePickerPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
+import com.zmxv.RNSound.RNSoundPackage;
 
 
 import java.util.Arrays;
@@ -33,7 +34,8 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new ImagePickerPackage(),
             new ReactVideoPackage(),
-            new ReactNativeAudioPackage()
+            new ReactNativeAudioPackage(),
+            new RNSoundPackage()
       );
     }
   };
