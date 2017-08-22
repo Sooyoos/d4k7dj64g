@@ -407,6 +407,16 @@ export const tagsReducer = {
             case types.SET_TO_RECORD : {
                 return Object.assign({}, state, {toRecord : action.value});
             }
+            case types.TAGS_UPLOAD_PLACE_AUDIO_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
+            case types.TAGS_UPLOAD_PLACE_AUDIO_SUCCESS: {
+                let creationCurrent = Object.assign({}, state.creation_current, {placeDetailsAudio : action.media["@id"]});
+                return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
+            }
+            case types.TAGS_UPLOAD_PLACE_AUDIO_FAILURE : {
+                return Object.assign({}, state, {loading : false});
+            }
             default :
                 return state;
         }

@@ -961,3 +961,60 @@ export function setToRecord(value)
         value : value,
     }
 }
+
+function fetchTagsUploadPlaceAudio(login, file)
+{
+    return dispatch => {
+        dispatch(tagsUploadPlaceAudioRequested());
+        let baseUrl = "http://sparkplant-api-testing.sooyoos.com/fileUpload";
+        let body = new FormData();
+
+        console.log(file);
+
+        body.append("file", file);
+
+        fetch(baseUrl, {
+            method: 'POST',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'multipart/form-data',
+            },
+            body : body,
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                dispatch(tagsUploadPlaceAudioSuccess(responseJson));
+            })
+            .catch((error) => { console.log(error); dispatch(tagsUploadPlaceAudioFailure()); });
+    }
+}
+
+function tagsUploadPlaceAudioRequested()
+{
+    return {
+        type : types.TAGS_UPLOAD_MEDIA_REQUESTED,
+    }
+}
+
+function tagsUploadPlaceAudioSuccess(media)
+{
+    return {
+        type : types.TAGS_UPLOAD_PLACE_AUDIO_SUCCESS,
+        media : media,
+    }
+}
+
+function tagsUploadPlaceAudioFailure()
+{
+    return {
+        type : types.TAGS_UPLOAD_PLACE_AUDIO_FAILURE,
+    }
+}
+
+export function tryTagsUploadPlaceAudio(login, file)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchTagsUploadMedia(login, file));
+    }
+}
