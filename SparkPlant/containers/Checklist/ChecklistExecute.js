@@ -49,6 +49,13 @@ let styles = StyleSheet.create({
         marginVertical: responsiveHeight(2),
         backgroundColor : "#ffffff",
     },
+    taskSmall : {
+        width : responsiveWidth(84),
+        height : responsiveHeight(15),
+        marginHorizontal: responsiveWidth(3),
+        marginVertical: responsiveHeight(2),
+        backgroundColor : "#ffffff",
+    },
     taskIndex : {
         height : responsiveHeight(12),
         width : responsiveHeight(12),
@@ -165,11 +172,82 @@ class ChecklistExecute extends Component {
     constructor(props)
     {
         super(props);
+        this.state = {
+            tasks : this.props.checklists.currentChecklist.checklistInstanceTasks,
+            currentTask : 0,
+            mesure : null,
+        }
     }
 
     componentWillMount()
     {
 
+    }
+
+    executeTaskOk()
+    {
+        let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : "OK", status : "done"});
+        let array = this.state.tasks;
+        array[this.state.currentTask] = task;
+        this.setState(
+            {
+                tasks : array,
+                currentTask: this.state.currentTask + 1,
+            }
+        )
+    }
+
+    executeTaskNok()
+    {
+        let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : "NOK", status : "done"});
+        let array = this.state.tasks;
+        array[this.state.currentTask] = task;
+        this.setState(
+            {
+                tasks : array,
+                currentTask: this.state.currentTask + 1,
+            }
+        )
+    }
+
+    executeTaskMesure()
+    {
+        let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : this.state.mesure, status : "done"});
+        let array = this.state.tasks;
+        array[this.state.currentTask] = task;
+        this.setState(
+            {
+                tasks : array,
+                currentTask: this.state.currentTask + 1,
+                mesure : null,
+            }
+        )
+    }
+
+    executeTaskCorrige()
+    {
+        let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : "CORRIGE", status : "done"});
+        let array = this.state.tasks;
+        array[this.state.currentTask] = task;
+        this.setState(
+            {
+                tasks : array,
+                currentTask: this.state.currentTask + 1,
+            }
+        )
+    }
+
+    executeTaskPaliatif()
+    {
+        let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : "PALIATIF", status : "done"});
+        let array = this.state.tasks;
+        array[this.state.currentTask] = task;
+        this.setState(
+            {
+                tasks : array,
+                currentTask: this.state.currentTask + 1,
+            }
+        )
     }
 
     buildTasksList()
@@ -181,110 +259,194 @@ class ChecklistExecute extends Component {
         {
             if(tasks[i].task.type === "oknok")
             {
-                list.push(
-                    <ElevatedView key={i} elevation={8} style={styles.task}>
-                        <View style={{flexDirection:"row"}}>
-                            <View style={styles.taskIndex}>
-                                <View style={styles.taskIndexButton}>
-                                    <Text style={styles.taskIndexText}>
-                                        { i + 1}
+                if(i !== this.state.currentTask)
+                {
+                    list.push(
+                        <ElevatedView key={i} elevation={8} style={styles.taskSmall}>
+                            <View style={{flexDirection:"row"}}>
+                                <View style={styles.taskIndex}>
+                                    <View style={styles.taskIndexButton}>
+                                        <Text style={styles.taskIndexText}>
+                                            { i + 1}
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.taskInfo}>
+                                    <Text style={styles.taskName}>
+                                        {tasks[i].task.title}
                                     </Text>
                                 </View>
                             </View>
-                            <View style={styles.taskInfo}>
-                                <Text style={styles.taskName}>
-                                    {tasks[i].task.title}
-                                </Text>
+                        </ElevatedView>
+                    );
+                }
+                else
+                {
+                    list.push(
+                        <ElevatedView key={i} elevation={8} style={styles.task}>
+                            <View style={{flexDirection:"row"}}>
+                                <View style={styles.taskIndex}>
+                                    <View style={styles.taskIndexButton}>
+                                        <Text style={styles.taskIndexText}>
+                                            { i + 1}
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.taskInfo}>
+                                    <Text style={styles.taskName}>
+                                        {tasks[i].task.title}
+                                    </Text>
+                                </View>
                             </View>
-                        </View>
-                        <View style={styles.taskActions}>
-                            <ElevatedView elevation={10} style={styles.taskOkButton}>
-                                <Text style={styles.taskButtonText}>
-                                    OK
-                                </Text>
-                            </ElevatedView>
-                            <ElevatedView elevation={10} style={styles.taskNOkButton}>
-                                <Text style={styles.taskButtonText}>
-                                    NOK
-                                </Text>
-                            </ElevatedView>
-                        </View>
-                    </ElevatedView>
-                );
+                            <View style={styles.taskActions}>
+                                <TouchableWithoutFeedback onPress={this.executeTaskOk.bind(this)}>
+                                    <ElevatedView elevation={10} style={styles.taskOkButton}>
+                                        <Text style={styles.taskButtonText}>
+                                            OK
+                                        </Text>
+                                    </ElevatedView>
+                                </TouchableWithoutFeedback>
+                                <TouchableWithoutFeedback onPress={this.executeTaskNok.bind(this)}>
+                                    <ElevatedView elevation={10} style={styles.taskNOkButton}>
+                                        <Text style={styles.taskButtonText}>
+                                            NOK
+                                        </Text>
+                                    </ElevatedView>
+                                </TouchableWithoutFeedback>
+                            </View>
+                        </ElevatedView>
+                    );
+                }
             }
             else if(tasks[i].task.type === "paliatif")
             {
-                list.push(
-                    <ElevatedView key={i} elevation={8} style={styles.task}>
-                        <View style={{flexDirection:"row"}}>
-                            <View style={styles.taskIndex}>
-                                <View style={styles.taskIndexButton}>
-                                    <Text style={styles.taskIndexText}>
-                                        { i + 1}
+                if(i !== this.state.currentTask)
+                {
+                    list.push(
+                        <ElevatedView key={i} elevation={8} style={styles.taskSmall}>
+                            <View style={{flexDirection:"row"}}>
+                                <View style={styles.taskIndex}>
+                                    <View style={styles.taskIndexButton}>
+                                        <Text style={styles.taskIndexText}>
+                                            { i + 1}
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.taskInfo}>
+                                    <Text style={styles.taskName}>
+                                        {tasks[i].task.title}
                                     </Text>
                                 </View>
                             </View>
-                            <View style={styles.taskInfo}>
-                                <Text style={styles.taskName}>
-                                    {tasks[i].task.title}
-                                </Text>
+                        </ElevatedView>
+                    );
+                }
+                else
+                {
+                    list.push(
+                        <ElevatedView key={i} elevation={8} style={styles.task}>
+                            <View style={{flexDirection:"row"}}>
+                                <View style={styles.taskIndex}>
+                                    <View style={styles.taskIndexButton}>
+                                        <Text style={styles.taskIndexText}>
+                                            { i + 1}
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.taskInfo}>
+                                    <Text style={styles.taskName}>
+                                        {tasks[i].task.title}
+                                    </Text>
+                                </View>
                             </View>
-                        </View>
-                        <View style={styles.taskActions}>
-                            <ElevatedView elevation={10} style={styles.taskOkButton}>
-                                <Text style={styles.taskButtonText}>
-                                    Corrigé
-                                </Text>
-                            </ElevatedView>
-                            <ElevatedView elevation={10} style={styles.taskMehButton}>
-                                <Text style={styles.taskButtonText}>
-                                    Paliatif
-                                </Text>
-                            </ElevatedView>
-                            <ElevatedView elevation={10} style={styles.taskNOkButton}>
-                                <Text style={styles.taskButtonText}>
-                                    NOK
-                                </Text>
-                            </ElevatedView>
-                        </View>
-                    </ElevatedView>
-                );
+                            <View style={styles.taskActions}>
+                                <TouchableWithoutFeedback onPress={this.executeTaskCorrige.bind(this)}>
+                                    <ElevatedView elevation={10} style={styles.taskOkButton}>
+                                        <Text style={styles.taskButtonText}>
+                                            Corrigé
+                                        </Text>
+                                    </ElevatedView>
+                                </TouchableWithoutFeedback>
+                                <TouchableWithoutFeedback onPress={this.executeTaskPaliatif.bind(this)}>
+                                    <ElevatedView elevation={10} style={styles.taskMehButton}>
+                                        <Text style={styles.taskButtonText}>
+                                            Paliatif
+                                        </Text>
+                                    </ElevatedView>
+                                </TouchableWithoutFeedback>
+                                <TouchableWithoutFeedback onPress={this.executeTaskNok.bind(this)}>
+                                    <ElevatedView elevation={10} style={styles.taskNOkButton}>
+                                        <Text style={styles.taskButtonText}>
+                                            NOK
+                                        </Text>
+                                    </ElevatedView>
+                                </TouchableWithoutFeedback>
+                            </View>
+                        </ElevatedView>
+                    );
+                }
             }
             else if(tasks[i].task.type === "mesure")
             {
-                list.push(
-                    <ElevatedView key={i} elevation={8} style={styles.task}>
-                        <View style={{flexDirection:"row"}}>
-                            <View style={styles.taskIndex}>
-                                <View style={styles.taskIndexButton}>
-                                    <Text style={styles.taskIndexText}>
-                                        {i + 1}
+                if(i !== this.state.currentTask)
+                {
+                    list.push(
+                        <ElevatedView key={i} elevation={8} style={styles.taskSmall}>
+                            <View style={{flexDirection:"row"}}>
+                                <View style={styles.taskIndex}>
+                                    <View style={styles.taskIndexButton}>
+                                        <Text style={styles.taskIndexText}>
+                                            {i + 1}
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.taskInfo}>
+                                    <Text style={styles.taskName}>
+                                        {tasks[i].task.title}
                                     </Text>
                                 </View>
                             </View>
-                            <View style={styles.taskInfo}>
-                                <Text style={styles.taskName}>
-                                    {tasks[i].task.title}
-                                </Text>
-                            </View>
-                        </View>
-                        <View style={styles.taskMesures}>
-                            <View style={styles.taskFlags}>
-                                <View style={styles.taskFlagOk}>
+                        </ElevatedView>
+                    );
+                }
+                else
+                {
+                    list.push(
+                        <ElevatedView key={i} elevation={8} style={styles.task}>
+                            <View style={{flexDirection:"row"}}>
+                                <View style={styles.taskIndex}>
+                                    <View style={styles.taskIndexButton}>
+                                        <Text style={styles.taskIndexText}>
+                                            {i + 1}
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.taskInfo}>
+                                    <Text style={styles.taskName}>
+                                        {tasks[i].task.title}
+                                    </Text>
                                 </View>
                             </View>
-                            <TextInput style={styles.taskInput} placeholder="Mesure"/>
-                            <Text style={styles.taskMetric}>mm</Text>
-                        </View>
-                        <View style={styles.taskActions}>
-                            <ElevatedView elevation={10} style={styles.taskSaveButton}>
-                                <Text style={styles.taskButtonText}>
-                                    Enregistrer
-                                </Text>
-                            </ElevatedView>
-                        </View>
-                    </ElevatedView>
-                );
+                            <View style={styles.taskMesures}>
+                                <View style={styles.taskFlags}>
+                                    <View style={styles.taskFlagOk}>
+                                    </View>
+                                </View>
+                                <TextInput style={styles.taskInput} placeholder="Mesure" onChangeText={(value) => {this.setState({mesure : value})}}/>
+                                <Text style={styles.taskMetric}>mm</Text>
+                            </View>
+                            <View style={styles.taskActions}>
+                                <TouchableWithoutFeedback onPress={this.executeTaskMesure.bind(this)}>
+                                    <ElevatedView elevation={10} style={styles.taskSaveButton}>
+                                        <Text style={styles.taskButtonText}>
+                                            Enregistrer
+                                        </Text>
+                                    </ElevatedView>
+                                </TouchableWithoutFeedback>
+                            </View>
+                        </ElevatedView>
+                    );
+                }
             }
         }
 
