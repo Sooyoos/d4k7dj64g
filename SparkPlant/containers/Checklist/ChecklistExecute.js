@@ -194,7 +194,14 @@ class ChecklistExecute extends Component {
                 tasks : array,
                 currentTask: this.state.currentTask + 1,
             }
-        )
+        );
+
+        console.log(this.state.currentTask + " / " + this.state.tasks.length);
+
+        if(this.state.currentTask === this.state.tasks.length - 1)
+        {
+            this.props.goToChecklistPage();
+        }
     }
 
     executeTaskNok()
@@ -207,7 +214,14 @@ class ChecklistExecute extends Component {
                 tasks : array,
                 currentTask: this.state.currentTask + 1,
             }
-        )
+        );
+
+        console.log(this.state.currentTask + " / " + this.state.tasks.length);
+
+        if(this.state.currentTask === this.state.tasks.length - 1)
+        {
+            this.props.goToChecklistPage();
+        }
     }
 
     executeTaskMesure()
@@ -221,7 +235,14 @@ class ChecklistExecute extends Component {
                 currentTask: this.state.currentTask + 1,
                 mesure : null,
             }
-        )
+        );
+
+        console.log(this.state.currentTask + " / " + this.state.tasks.length);
+
+        if(this.state.currentTask === this.state.tasks.length - 1)
+        {
+            this.props.goToChecklistPage();
+        }
     }
 
     executeTaskCorrige()
@@ -234,7 +255,14 @@ class ChecklistExecute extends Component {
                 tasks : array,
                 currentTask: this.state.currentTask + 1,
             }
-        )
+        );
+
+        console.log(this.state.currentTask + " / " + this.state.tasks.length);
+
+        if(this.state.currentTask === this.state.tasks.length - 1)
+        {
+            this.props.goToChecklistPage();
+        }
     }
 
     executeTaskPaliatif()
@@ -247,7 +275,14 @@ class ChecklistExecute extends Component {
                 tasks : array,
                 currentTask: this.state.currentTask + 1,
             }
-        )
+        );
+
+        console.log(this.state.currentTask + " / " + this.state.tasks.length);
+
+        if(this.state.currentTask === this.state.tasks.length - 1)
+        {
+            this.props.goToChecklistPage();
+        }
     }
 
     buildTasksList()
@@ -433,7 +468,7 @@ class ChecklistExecute extends Component {
                                     </View>
                                 </View>
                                 <TextInput style={styles.taskInput} placeholder="Mesure" onChangeText={(value) => {this.setState({mesure : value})}}/>
-                                <Text style={styles.taskMetric}>mm</Text>
+                                <Text style={styles.taskMetric}>{tasks[i].task.mesure}</Text>
                             </View>
                             <View style={styles.taskActions}>
                                 <TouchableWithoutFeedback onPress={this.executeTaskMesure.bind(this)}>
