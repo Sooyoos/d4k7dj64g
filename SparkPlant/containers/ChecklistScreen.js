@@ -32,45 +32,6 @@ let styles = StyleSheet.create({
     },
 });
 
-let items = [
-    {
-        type : "M",
-        status: "OK",
-        checklist: {
-            name: "Nettoyage des presses",
-            description: "Nettoyage des presses de l'atelier 1",
-            recurrence : "hebdomadaire",
-        },
-    },
-    {
-        type : "S",
-        status: "KO",
-        checklist: {
-            name: "Mesure de la pression interne",
-            description: "Pompe atelier 8",
-            recurrence : "hebdomadaire",
-        },
-    },
-    {
-        type : "M",
-        status: "KO",
-        checklist: {
-            name: "Tour de vérification",
-            description: "Vérifier l'intégrité des clotûres exterieures",
-            recurrence : "quotidien",
-        },
-    },
-    {
-        type : "S",
-        status: "OK",
-        checklist: {
-            name: "Vérifier la température",
-            description: "Vérifier la température du réacteur 3",
-            recurrence : "quotidien",
-        },
-    }
-];
-
 class ChecklistScreen extends Component {
 
     static navigationOptions = {
@@ -87,7 +48,8 @@ class ChecklistScreen extends Component {
 
     componentWillMount()
     {
-
+        this.props.tryUserChecklists(this.props.login);
+        this.props.tryChecklistsTemplates(this.props.login);
     }
 
     render() {
@@ -95,7 +57,7 @@ class ChecklistScreen extends Component {
             <View style={styles.login}>
                 <HeaderChecklist {...this.props} headerTitle="Checklists"/>
                 <View style={styles.body}>
-                    <ChecklistList itemRoute={this.props.goToBeginChecklist} items={items} />
+                    <ChecklistList itemRoute={this.props.goToChecklistExecute} items={this.props.checklists.checklists} />
                 </View>
                 <View style={styles.footer}>
                     <FooterButton {...this.props} active={true} iconName="check-square-o" text="Mes listes" route={this.props.goToChecklistPage}/>
@@ -112,6 +74,7 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        checklists : state.checklists,
     };
 }
 

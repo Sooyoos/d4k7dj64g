@@ -4,6 +4,7 @@ import { loginReducer } from './login';
 import { tagsReducer } from './tags';
 import { newsReducer } from './news';
 import { utilsReducer } from './utils';
+import { checklistsReducer } from './checklists';
 
 export default combineReducers(Object.assign(
     navigationReducer,
@@ -11,4 +12,5 @@ export default combineReducers(Object.assign(
     tagsReducer,
     newsReducer,
     utilsReducer,
+    checklistsReducer,
 ));

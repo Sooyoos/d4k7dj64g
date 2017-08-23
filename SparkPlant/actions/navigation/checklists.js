@@ -37,11 +37,3 @@ export function goToChecklistExecute()
         routeName: 'ChecklistExecute',
     };
 }
-
-export function goToBeginChecklist()
-{
-    return {
-        type: 'Navigation/NAVIGATE',
-        routeName: 'ChecklistLibrary',
-    };
-}

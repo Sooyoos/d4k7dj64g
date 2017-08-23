@@ -22,15 +22,15 @@ class ChecklistList extends Component {
 
     buildList()
     {
-        let news = this.props.items;
+        let lists = this.props.items;
         let list = [];
 
-        if(news)
+        if(lists)
         {
-            for(var i = 0; i < news.length; i++)
+            for(var i = 0; i < lists.length; i++)
             {
                 list.push(
-                    <ChecklistListItem route={this.props.itemRoute} key={i} item={news[i]}/>
+                    <ChecklistListItem route={this.props.itemRoute} key={i} item={lists[i]}/>
                 );
             }
         }
@@ -52,6 +52,7 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        checklists : state.checklists,
     };
 }
 

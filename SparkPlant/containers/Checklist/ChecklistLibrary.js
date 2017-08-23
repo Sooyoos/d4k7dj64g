@@ -32,73 +32,6 @@ let styles = StyleSheet.create({
     },
 });
 
-let items = [
-    {
-        type : "M",
-        checklist: {
-            name: "Nettoyage des presses",
-            description: "Nettoyage des presses de l'atelier 1",
-            recurrence : "hebdomadaire",
-        },
-    },
-    {
-        type : "S",
-        checklist: {
-            name: "Mesure de la pression interne",
-            description: "Pompe atelier 8",
-            recurrence : "hebdomadaire",
-        },
-    },
-    {
-        type : "M",
-        checklist: {
-            name: "Tour de vérification",
-            description: "Vérifier l'intégrité des clotûres exterieures",
-            recurrence : "quotidien",
-        },
-    },
-    {
-        type : "S",
-        checklist: {
-            name: "Vérifier la température",
-            description: "Vérifier la température du réacteur 3",
-            recurrence : "quotidien",
-        },
-    },
-    {
-        type : "M",
-        checklist: {
-            name: "Nettoyage des presses",
-            description: "Nettoyage des presses de l'atelier 1",
-            recurrence : "hebdomadaire",
-        },
-    },
-    {
-        type : "S",
-        checklist: {
-            name: "Mesure de la pression interne",
-            description: "Pompe atelier 8",
-            recurrence : "hebdomadaire",
-        },
-    },
-    {
-        type : "M",
-        checklist: {
-            name: "Tour de vérification",
-            description: "Vérifier l'intégrité des clotûres exterieures",
-            recurrence : "quotidien",
-        },
-    },
-    {
-        type : "S",
-        checklist: {
-            name: "Vérifier la température",
-            description: "Vérifier la température du réacteur 3",
-            recurrence : "quotidien",
-        },
-    }
-];
-
 class ChecklistLibrary extends Component {
 
     constructor(props)
@@ -108,7 +41,7 @@ class ChecklistLibrary extends Component {
 
     componentWillMount()
     {
-
+        this.props.tryChecklistsTemplates(this.props.login);
     }
 
     render() {
@@ -116,11 +49,11 @@ class ChecklistLibrary extends Component {
             <View style={styles.login}>
                 <HeaderChecklist {...this.props} headerTitle="Checklists"/>
                 <View style={styles.body}>
-                    <ChecklistList itemRoute={this.props.goToBeginChecklist} items={items} />
+                    <ChecklistList itemRoute={this.props.goToBeginChecklist} items={this.props.checklists.templates} />
                 </View>
                 <View style={styles.footer}>
-                    <FooterButton {...this.props} active={true} iconName="check-square-o" text="Mes listes" route={this.props.goToChecklistPage}/>
-                    <FooterButton {...this.props} active={false} iconName="folder-open" text="Modèles" route={this.props.goToChecklistLibrary}/>
+                    <FooterButton {...this.props} active={false} iconName="check-square-o" text="Mes listes" route={this.props.goToChecklistPage}/>
+                    <FooterButton {...this.props} active={true} iconName="folder-open" text="Modèles" route={this.props.goToChecklistLibrary}/>
                 </View>
             </View>
         );
@@ -133,6 +66,7 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        checklists : state.checklists,
     };
 }
 

@@ -172,110 +172,139 @@ class ChecklistExecute extends Component {
 
     }
 
+    buildTasksList()
+    {
+        let tasks = this.props.checklists.currentChecklist.checklistInstanceTasks;
+        let list = [];
+
+        for(var i = 0; i < tasks.length; i++)
+        {
+            if(tasks[i].task.type === "oknok")
+            {
+                list.push(
+                    <ElevatedView key={i} elevation={8} style={styles.task}>
+                        <View style={{flexDirection:"row"}}>
+                            <View style={styles.taskIndex}>
+                                <View style={styles.taskIndexButton}>
+                                    <Text style={styles.taskIndexText}>
+                                        { i + 1}
+                                    </Text>
+                                </View>
+                            </View>
+                            <View style={styles.taskInfo}>
+                                <Text style={styles.taskName}>
+                                    {tasks[i].task.title}
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={styles.taskActions}>
+                            <ElevatedView elevation={10} style={styles.taskOkButton}>
+                                <Text style={styles.taskButtonText}>
+                                    OK
+                                </Text>
+                            </ElevatedView>
+                            <ElevatedView elevation={10} style={styles.taskNOkButton}>
+                                <Text style={styles.taskButtonText}>
+                                    NOK
+                                </Text>
+                            </ElevatedView>
+                        </View>
+                    </ElevatedView>
+                );
+            }
+            else if(tasks[i].task.type === "paliatif")
+            {
+                list.push(
+                    <ElevatedView key={i} elevation={8} style={styles.task}>
+                        <View style={{flexDirection:"row"}}>
+                            <View style={styles.taskIndex}>
+                                <View style={styles.taskIndexButton}>
+                                    <Text style={styles.taskIndexText}>
+                                        { i + 1}
+                                    </Text>
+                                </View>
+                            </View>
+                            <View style={styles.taskInfo}>
+                                <Text style={styles.taskName}>
+                                    {tasks[i].task.title}
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={styles.taskActions}>
+                            <ElevatedView elevation={10} style={styles.taskOkButton}>
+                                <Text style={styles.taskButtonText}>
+                                    Corrigé
+                                </Text>
+                            </ElevatedView>
+                            <ElevatedView elevation={10} style={styles.taskMehButton}>
+                                <Text style={styles.taskButtonText}>
+                                    Paliatif
+                                </Text>
+                            </ElevatedView>
+                            <ElevatedView elevation={10} style={styles.taskNOkButton}>
+                                <Text style={styles.taskButtonText}>
+                                    NOK
+                                </Text>
+                            </ElevatedView>
+                        </View>
+                    </ElevatedView>
+                );
+            }
+            else if(tasks[i].task.type === "mesure")
+            {
+                list.push(
+                    <ElevatedView key={i} elevation={8} style={styles.task}>
+                        <View style={{flexDirection:"row"}}>
+                            <View style={styles.taskIndex}>
+                                <View style={styles.taskIndexButton}>
+                                    <Text style={styles.taskIndexText}>
+                                        {i + 1}
+                                    </Text>
+                                </View>
+                            </View>
+                            <View style={styles.taskInfo}>
+                                <Text style={styles.taskName}>
+                                    {tasks[i].task.title}
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={styles.taskMesures}>
+                            <View style={styles.taskFlags}>
+                                <View style={styles.taskFlagOk}>
+                                </View>
+                            </View>
+                            <TextInput style={styles.taskInput} placeholder="Mesure"/>
+                            <Text style={styles.taskMetric}>mm</Text>
+                        </View>
+                        <View style={styles.taskActions}>
+                            <ElevatedView elevation={10} style={styles.taskSaveButton}>
+                                <Text style={styles.taskButtonText}>
+                                    Enregistrer
+                                </Text>
+                            </ElevatedView>
+                        </View>
+                    </ElevatedView>
+                );
+            }
+        }
+
+        return list;
+    }
+
     render() {
+        let item = this.props.checklists.currentChecklist;
         return (
             <View style={styles.login}>
                 <HeaderChecklist {...this.props} headerTitle="Checklist en cours"/>
                 <View style={styles.body}>
                     <ElevatedView style={styles.listInfos} elevation={2}>
                         <Text style={styles.listInfosText}>
-                            Titre de la Checklist
+                            {item.checklist.name}
                         </Text>
                     </ElevatedView>
                     <ElevatedView elevation={2} style={styles.listTasks}>
                         <ScrollView>
-                            <ElevatedView elevation={8} style={styles.task}>
-                                <View style={{flexDirection:"row"}}>
-                                    <View style={styles.taskIndex}>
-                                        <View style={styles.taskIndexButton}>
-                                            <Text style={styles.taskIndexText}>
-                                                1
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.taskInfo}>
-                                        <Text style={styles.taskName}>
-                                            Nom de la tâche
-                                        </Text>
-                                    </View>
-                                </View>
-                                <View style={styles.taskActions}>
-                                    <ElevatedView elevation={10} style={styles.taskOkButton}>
-                                        <Text style={styles.taskButtonText}>
-                                            OK
-                                        </Text>
-                                    </ElevatedView>
-                                    <ElevatedView elevation={10} style={styles.taskNOkButton}>
-                                        <Text style={styles.taskButtonText}>
-                                            NOK
-                                        </Text>
-                                    </ElevatedView>
-                                </View>
-                            </ElevatedView>
-                            <ElevatedView elevation={8} style={styles.task}>
-                                <View style={{flexDirection:"row"}}>
-                                    <View style={styles.taskIndex}>
-                                        <View style={styles.taskIndexButton}>
-                                            <Text style={styles.taskIndexText}>
-                                                2
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.taskInfo}>
-                                        <Text style={styles.taskName}>
-                                            Nom de la tâche
-                                        </Text>
-                                    </View>
-                                </View>
-                                <View style={styles.taskActions}>
-                                    <ElevatedView elevation={10} style={styles.taskOkButton}>
-                                        <Text style={styles.taskButtonText}>
-                                            Corrigé
-                                        </Text>
-                                    </ElevatedView>
-                                    <ElevatedView elevation={10} style={styles.taskMehButton}>
-                                        <Text style={styles.taskButtonText}>
-                                            Paliatif
-                                        </Text>
-                                    </ElevatedView>
-                                    <ElevatedView elevation={10} style={styles.taskNOkButton}>
-                                        <Text style={styles.taskButtonText}>
-                                            NOK
-                                        </Text>
-                                    </ElevatedView>
-                                </View>
-                            </ElevatedView>
-                            <ElevatedView elevation={8} style={styles.task}>
-                                <View style={{flexDirection:"row"}}>
-                                    <View style={styles.taskIndex}>
-                                        <View style={styles.taskIndexButton}>
-                                            <Text style={styles.taskIndexText}>
-                                                3
-                                            </Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.taskInfo}>
-                                        <Text style={styles.taskName}>
-                                            Nom de la tâche
-                                        </Text>
-                                    </View>
-                                </View>
-                                <View style={styles.taskMesures}>
-                                    <View style={styles.taskFlags}>
-                                        <View style={styles.taskFlagOk}>
-                                        </View>
-                                    </View>
-                                    <TextInput style={styles.taskInput} placeholder="Mesure"/>
-                                    <Text style={styles.taskMetric}>mm</Text>
-                                </View>
-                                <View style={styles.taskActions}>
-                                    <ElevatedView elevation={10} style={styles.taskSaveButton}>
-                                        <Text style={styles.taskButtonText}>
-                                            Enregistrer
-                                        </Text>
-                                    </ElevatedView>
-                                </View>
-                            </ElevatedView>
+                            {this.buildTasksList()}
                         </ScrollView>
                     </ElevatedView>
                 </View>
@@ -290,6 +319,7 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        checklists : state.checklists,
     };
 }
 

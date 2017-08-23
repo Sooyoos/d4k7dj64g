@@ -83,14 +83,62 @@ class ChecklistListItem extends Component {
 
     goToDetails()
     {
-        this.props.setCurrentNews(this.props.item);
+        this.props.setCurrentChecklist(this.props.item);
         this.props.route();
+    }
+
+    getCategory(item)
+    {
+        if(item["@type"] === "ChecklistInstance")
+        {
+            return item.checklist.category.name;
+        }
+        else
+        {
+            return item.category.name;
+        }
+    }
+
+    getTitle(item)
+    {
+        if(item["@type"] === "ChecklistInstance")
+        {
+            return item.checklist.name;
+        }
+        else
+        {
+            return item.name;
+        }
+    }
+
+    getDescription(item)
+    {
+        if(item["@type"] === "ChecklistInstance")
+        {
+            return item.checklist.description;
+        }
+        else
+        {
+            return item.description;
+        }
+    }
+
+    getFrequency(item)
+    {
+        if(item["@type"] === "ChecklistInstance")
+        {
+            return item.checklist.frequency;
+        }
+        else
+        {
+            return item.frequency;
+        }
     }
 
     render() {
         let item = this.props.item;
 
-        if(item.status && item.status === "OK")
+        if(item.status && item.status === "done")
         {
             return (
                 <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
@@ -98,19 +146,19 @@ class ChecklistListItem extends Component {
                         <View style={styles.listTypeView}>
                             <View style={styles.listTypeButton}>
                                 <Text style={styles.listType}>
-                                    {item.type}
+                                    {this.getCategory(item)}
                                 </Text>
                             </View>
                         </View>
                         <View style={styles.listContentView}>
                             <Text style={styles.listName}>
-                                {item.checklist.name}
+                                {this.getTitle(item)}
                             </Text>
                             <Text style={styles.listDescription} numberOfLine={2}>
-                                {item.checklist.description}
+                                {this.getDescription(item)}
                             </Text>
                             <Text style={styles.listRecurrence}>
-                                ({item.checklist.recurrence})
+                                ({this.getFrequency(item)})
                             </Text>
                         </View>
                     </ElevatedView>
@@ -125,19 +173,19 @@ class ChecklistListItem extends Component {
                         <View style={styles.listTypeView}>
                             <View style={styles.listTypeButton}>
                                 <Text style={styles.listType}>
-                                    {item.type}
+                                    {this.getCategory(item)}
                                 </Text>
                             </View>
                         </View>
                         <View style={styles.listContentView}>
                             <Text style={styles.listName}>
-                                {item.checklist.name}
+                                {this.getTitle(item)}
                             </Text>
                             <Text style={styles.listDescription} numberOfLine={2}>
-                                {item.checklist.description}
+                                {this.getDescription(item)}
                             </Text>
                             <Text style={styles.listRecurrence}>
-                                ({item.checklist.recurrence})
+                                ({this.getFrequency(item)})
                             </Text>
                         </View>
                     </ElevatedView>
@@ -152,19 +200,19 @@ class ChecklistListItem extends Component {
                         <View style={styles.listTypeView}>
                             <View style={styles.listTypeButton}>
                                 <Text style={styles.listType}>
-                                    {item.type}
+                                    {this.getCategory(item)}
                                 </Text>
                             </View>
                         </View>
                         <View style={styles.listContentView}>
                             <Text style={styles.listNameKO}>
-                                {item.checklist.name}
+                                {this.getTitle(item)}
                             </Text>
                             <Text style={styles.listDescriptionKO} numberOfLine={2}>
-                                {item.checklist.description}
+                                {this.getDescription(item)}
                             </Text>
                             <Text style={styles.listRecurrenceKO}>
-                                ({item.checklist.recurrence})
+                                ({this.getFrequency(item)})
                             </Text>
                         </View>
                     </ElevatedView>
@@ -181,6 +229,7 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        checklists : state.checklists,
     };
 }
 
