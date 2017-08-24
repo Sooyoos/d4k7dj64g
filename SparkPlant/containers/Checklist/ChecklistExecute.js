@@ -172,10 +172,19 @@ class ChecklistExecute extends Component {
     constructor(props)
     {
         super(props);
-        this.state = {
-            tasks : this.props.checklists.currentChecklist.checklistInstanceTasks,
-            currentTask : 0,
-            mesure : null,
+
+        let tasks = this.props.checklists.currentChecklist.checklistInstanceTasks;
+        for(var i = 0; i < tasks.length; i++)
+        {
+            if(tasks[i].status === "todo")
+            {
+                this.state = {
+                    tasks : tasks,
+                    currentTask : i,
+                    mesure : null,
+                };
+                break;
+            }
         }
     }
 
@@ -189,14 +198,15 @@ class ChecklistExecute extends Component {
         let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : "OK", status : "done"});
         let array = this.state.tasks;
         array[this.state.currentTask] = task;
+
+        this.props.tryCompleteTask(this.props.login, this.state.tasks[this.state.currentTask]);
+
         this.setState(
             {
                 tasks : array,
                 currentTask: this.state.currentTask + 1,
             }
         );
-
-        console.log(this.state.currentTask + " / " + this.state.tasks.length);
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
@@ -206,17 +216,31 @@ class ChecklistExecute extends Component {
 
     executeTaskNok()
     {
+        let subtask = Object.assign({}, this.state.tasks[this.state.currentTask].task, {type : "paliatif"});
+        let task = Object.assign({}, this.state.tasks[this.state.currentTask], {task : subtask});
+        let array = this.state.tasks;
+        array[this.state.currentTask] = task;
+        this.setState(
+            {
+                tasks : array,
+            }
+        );
+    }
+
+    executeTaskStillNok()
+    {
         let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : "NOK", status : "done"});
         let array = this.state.tasks;
         array[this.state.currentTask] = task;
+
+        this.props.tryCompleteTask(this.props.login, this.state.tasks[this.state.currentTask]);
+
         this.setState(
             {
                 tasks : array,
                 currentTask: this.state.currentTask + 1,
             }
         );
-
-        console.log(this.state.currentTask + " / " + this.state.tasks.length);
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
@@ -229,6 +253,9 @@ class ChecklistExecute extends Component {
         let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : this.state.mesure, status : "done"});
         let array = this.state.tasks;
         array[this.state.currentTask] = task;
+
+        this.props.tryCompleteTask(this.props.login, this.state.tasks[this.state.currentTask]);
+
         this.setState(
             {
                 tasks : array,
@@ -236,8 +263,6 @@ class ChecklistExecute extends Component {
                 mesure : null,
             }
         );
-
-        console.log(this.state.currentTask + " / " + this.state.tasks.length);
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
@@ -250,14 +275,15 @@ class ChecklistExecute extends Component {
         let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : "CORRIGE", status : "done"});
         let array = this.state.tasks;
         array[this.state.currentTask] = task;
+
+        this.props.tryCompleteTask(this.props.login, this.state.tasks[this.state.currentTask]);
+
         this.setState(
             {
                 tasks : array,
                 currentTask: this.state.currentTask + 1,
             }
         );
-
-        console.log(this.state.currentTask + " / " + this.state.tasks.length);
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
@@ -270,14 +296,15 @@ class ChecklistExecute extends Component {
         let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : "PALIATIF", status : "done"});
         let array = this.state.tasks;
         array[this.state.currentTask] = task;
+
+        this.props.tryCompleteTask(this.props.login, this.state.tasks[this.state.currentTask]);
+
         this.setState(
             {
                 tasks : array,
                 currentTask: this.state.currentTask + 1,
             }
         );
-
-        console.log(this.state.currentTask + " / " + this.state.tasks.length);
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
@@ -409,7 +436,7 @@ class ChecklistExecute extends Component {
                                         </Text>
                                     </ElevatedView>
                                 </TouchableWithoutFeedback>
-                                <TouchableWithoutFeedback onPress={this.executeTaskNok.bind(this)}>
+                                <TouchableWithoutFeedback onPress={this.executeTaskStillNok.bind(this)}>
                                     <ElevatedView elevation={10} style={styles.taskNOkButton}>
                                         <Text style={styles.taskButtonText}>
                                             NOK

@@ -103,23 +103,25 @@ export function tryChecklistsTemplates(login)
 function fetchCompleteTask(login, task)
 {
     return dispatch => {
-        dispatch(checklistsTemplatesRequested());
+        dispatch(completeTaskRequested());
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
+        let status = "done";
+        let value = task.value;
 
-        fetch(baseUrl + "/checklists_instance_tasks" + task["@id"], {
+        fetch(baseUrl + task["@id"], {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
                 'Content-Type': 'application/json',
             },
-            body : JSON.stringify({status : "done", value : task.value})
+            body : JSON.stringify({status : status, value : value})
         })
             .then((response) => response.json())
             .then((responseJson) => {
                 console.log(responseJson);
-                dispatch(checklistsTemplatesSuccess(responseJson["hydra:member"]));
+                dispatch(completeTaskSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => {console.log(error); dispatch(checklistsTemplatesFailure()); });
+            .catch((error) => {console.log(error); dispatch(completeTaskFailure()); });
     }
 }
 
