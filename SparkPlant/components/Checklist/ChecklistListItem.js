@@ -169,7 +169,16 @@ class ChecklistListItem extends Component {
     }
 
     render() {
-        let item = this.hasToBeDone(this.props.item);
+        let item = null;
+
+        if(this.props.item.status)
+        {
+            item = this.hasToBeDone(this.props.item);
+        }
+        else
+        {
+            item = this.props.item;
+        }
 
         if(item.status && item.status === "done")
         {

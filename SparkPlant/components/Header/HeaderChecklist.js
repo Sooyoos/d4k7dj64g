@@ -37,8 +37,6 @@ class HeaderChecklist extends Component {
                 <Text style={styles.title}>
                     {this.props.headerTitle}
                 </Text>
-                <HeaderButton {... this.props} iconName="plus" route="CreateChecklistStep1" />
-                <HeaderButton {... this.props} iconName="sort-amount-desc" route="FilterChecklist" />
             </View>
         );
     }
