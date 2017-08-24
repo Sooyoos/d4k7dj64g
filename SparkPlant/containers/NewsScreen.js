@@ -51,19 +51,54 @@ class NewsScreen extends Component {
         this.props.tryUserNews(this.props.login);
     }
 
+    isResponsable()
+    {
+        let roles = this.props.users.loggedUser.rolesByUnit;
+
+        for(var i = 0; i < roles.length; i++)
+        {
+            if(roles[i].role.title === "Responsable")
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     render() {
-        return (
-            <View style={styles.login}>
-                <HeaderNews {...this.props} headerTitle="News"/>
-                <View style={styles.body}>
-                    <NewsList itemRoute={this.props.goToNewsDetail} items={this.props.news.news} />
+        let responsable = this.isResponsable();
+
+        if(responsable)
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderNews {...this.props} headerTitle="News"/>
+                    <View style={styles.body}>
+                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.props.news.news} />
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={this.props.goToNewsPage}/>
+                        <FooterButton {...this.props} active={false} iconName="clock-o" text="A valider" route={this.props.goToWaitingNews}/>
+                    </View>
                 </View>
-                <View style={styles.footer}>
-                    <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={this.props.goToNewsPage}/>
-                    <FooterButton {...this.props} active={false} iconName="clock-o" text="A valider" route={this.props.goToWaitingNews}/>
+            );
+        }
+        else
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderNews {...this.props} headerTitle="News"/>
+                    <View style={styles.body}>
+                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.props.news.news} />
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={false} iconName="newspaper-o" text="Publiées" route={this.props.goToNewsPage}/>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
+
     }
 }
 
@@ -73,6 +108,7 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        users : state.users,
     };
 }
 
