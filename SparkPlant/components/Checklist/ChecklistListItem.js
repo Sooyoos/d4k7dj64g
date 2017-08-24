@@ -83,7 +83,7 @@ class ChecklistListItem extends Component {
 
     goToDetails()
     {
-        if(this.props.item.type === "ChecklistInstance")
+        if(this.props.item["@type"] === "ChecklistInstance")
         {
             this.props.setCurrentChecklist(this.props.item);
         }
@@ -156,6 +156,7 @@ class ChecklistListItem extends Component {
             if(hoursPassed >= 24)
             {
                 item.status = "todo";
+
             }
         }
         else if(item.checklist.frequency === "hebdomadaire")

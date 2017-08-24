@@ -154,6 +154,60 @@ export function tryCompleteTask(login, task)
     }
 }
 
+function fetchResetTask(login, task)
+{
+    return dispatch => {
+        dispatch(resetTaskRequested());
+        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
+        let status = "todo";
+        let value = null;
+
+        fetch(baseUrl + task["@id"], {
+            method: 'PUT',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'application/json',
+            },
+            body : JSON.stringify({status : status, value : value})
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                dispatch(resetTaskSuccess(responseJson["hydra:member"]));
+            })
+            .catch((error) => {console.log(error); dispatch(resetTaskFailure()); });
+    }
+}
+
+function resetTaskRequested()
+{
+    return {
+        type : types.RESET_TASK_REQUESTED,
+    }
+}
+
+function resetTaskSuccess(task)
+{
+    return {
+        type : types.RESET_TASK_SUCCESS,
+        task : task,
+    }
+}
+
+function resetTaskFailure()
+{
+    return {
+        type : types.RESET_TASK_FAILURE,
+    }
+}
+
+export function tryResetTask(login, task)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchResetTask(login, task));
+    }
+}
+
 function fetchCompleteList(login, list)
 {
     return dispatch => {
@@ -207,19 +261,19 @@ export function tryCompleteList(login, list)
     }
 }
 
-function fetchAssignChecklists(login, task)
+function fetchAssignChecklists(login, instance)
 {
     return dispatch => {
         dispatch(assignChecklistsRequested());
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/checklists_instance_tasks" + task["@id"], {
-            method: 'PUT',
+        fetch(baseUrl + "/checklist_instances", {
+            method: 'POST',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
                 'Content-Type': 'application/json',
             },
-            body : JSON.stringify({status : "done", value : task.value})
+            body : JSON.stringify(instance)
         })
             .then((response) => response.json())
             .then((responseJson) => {
@@ -251,10 +305,10 @@ function assignChecklistsFailure()
     }
 }
 
-export function tryAssignChecklists(login, checklist, unit)
+export function tryAssignChecklists(login, instance)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchAssignChecklists(login, checklist, unit));
+        return dispatch(fetchAssignChecklists(login, instance));
     }
 }
 

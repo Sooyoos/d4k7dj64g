@@ -116,6 +116,9 @@ class ChecklistDetails extends Component {
     constructor(props)
     {
         super(props);
+        this.state = {
+            unit : null,
+        }
     }
 
     componentWillMount()
@@ -180,6 +183,10 @@ class ChecklistDetails extends Component {
         let full = this.props.utils.units;
         let list = [];
 
+        list.push(
+            <Picker.Item key={-1} label="Choisissez une unité" value={null} />
+        );
+
         for(var i = 0; i < full.length; i++)
         {
             list.push(
@@ -191,7 +198,15 @@ class ChecklistDetails extends Component {
 
     assignChecklist()
     {
+        let checklist = this.props.checklists.currentTemplate;
+        let unit = this.state.unit;
+        let checklistInstance = {
+            checklist : checklist["@id"],
+            unit : unit,
+        };
 
+        this.props.tryAssignChecklists(this.props.login, checklistInstance);
+        this.props.goToChecklistLibrary();
     }
 
     render() {
@@ -215,14 +230,14 @@ class ChecklistDetails extends Component {
                         </ScrollView>
                     </ElevatedView>
                     <ElevatedView style={styles.addListView} elevation={2}>
-                        <Picker style={styles.unitPicker} onValueChange={(value, index) => console.log(value)}>
+                        <Picker style={styles.unitPicker} onValueChange={(value, index) => this.setState({unit : value})}>
                             {this.buildUnitList()}
                         </Picker>
-                        <ElevatedView elevation={4} style={styles.unitButton}>
-                            <TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={this.assignChecklist.bind(this)}>
+                            <ElevatedView elevation={4} style={styles.unitButton}>
                                 <Icon style={styles.unitButtonIcon} name="arrow-right"/>
-                            </TouchableWithoutFeedback>
-                        </ElevatedView>
+                            </ElevatedView>
+                        </TouchableWithoutFeedback>
                     </ElevatedView>
                 </View>
             </View>

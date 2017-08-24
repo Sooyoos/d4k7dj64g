@@ -193,6 +193,16 @@ class ChecklistExecute extends Component {
 
     }
 
+    resetTasks()
+    {
+        let list = this.state.tasks;
+
+        for(var i = 0; i < list.length; i++)
+        {
+            this.props.tryResetTask(this.props.login, list[i]);
+        }
+    }
+
     executeTaskOk()
     {
         let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : "OK", status : "done"});
@@ -211,6 +221,7 @@ class ChecklistExecute extends Component {
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
             this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
+            this.resetTasks();
             this.props.goToChecklistPage();
         }
     }
@@ -246,6 +257,7 @@ class ChecklistExecute extends Component {
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
             this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
+            this.resetTasks();
             this.props.goToChecklistPage();
         }
     }
@@ -269,6 +281,7 @@ class ChecklistExecute extends Component {
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
             this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
+            this.resetTasks();
             this.props.goToChecklistPage();
         }
     }
@@ -291,6 +304,7 @@ class ChecklistExecute extends Component {
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
             this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
+            this.resetTasks();
             this.props.goToChecklistPage();
         }
     }
@@ -313,14 +327,13 @@ class ChecklistExecute extends Component {
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
             this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
+            this.resetTasks();
             this.props.goToChecklistPage();
         }
     }
 
     renderTaskFlag(value, ranges)
     {
-        console.log(value);
-        console.log(ranges);
         if(parseInt(value) > ranges[0].minValue && parseInt(value) < ranges[0].maxValue)
         {
             return(
