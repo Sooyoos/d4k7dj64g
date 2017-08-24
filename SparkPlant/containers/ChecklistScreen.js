@@ -48,6 +48,7 @@ class ChecklistScreen extends Component {
 
     componentWillMount()
     {
+        this.props.tryUnits(this.props.login);
         this.props.tryUserChecklists(this.props.login);
         this.props.tryChecklistsTemplates(this.props.login);
     }

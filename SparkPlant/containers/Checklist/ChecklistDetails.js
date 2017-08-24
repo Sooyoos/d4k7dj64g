@@ -88,6 +88,10 @@ let styles = StyleSheet.create({
         color : "#212121",
         fontSize : responsiveFontSize(2),
     },
+    taskContentRanges : {
+        color : "#212121",
+        fontSize : responsiveFontSize(1.6),
+    },
     unitPicker : {
         width : responsiveWidth(50),
         height : responsiveHeight(5),
@@ -119,86 +123,100 @@ class ChecklistDetails extends Component {
 
     }
 
+    buildTaskList(tasks)
+    {
+        let list = [];
+
+        for(var i = 0; i < tasks.length; i++)
+        {
+            if(tasks[i].type !== "mesure")
+            {
+                list.push(
+                    <ElevatedView key={i} elevation={4} style={styles.listTask}>
+                        <View style={styles.taskIndex}>
+                            <View style={styles.taskIndexButton}>
+                                <Text style={styles.taskIndexText}>
+                                    {i + 1}
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={styles.taskContent}>
+                            <Text style={styles.taskContentText} numberOfLine={2}>
+                                {tasks[i].title}
+                            </Text>
+                        </View>
+                    </ElevatedView>
+                );
+            }
+            else
+            {
+                list.push(
+                    <ElevatedView key={i} elevation={4} style={styles.listTask}>
+                        <View style={styles.taskIndex}>
+                            <View style={styles.taskIndexButton}>
+                                <Text style={styles.taskIndexText}>
+                                    {i + 1}
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={styles.taskContent}>
+                            <Text style={styles.taskContentText} numberOfLine={2}>
+                                {tasks[i].title}
+                            </Text>
+                            <Text style={styles.taskContentRanges} numberOfLine={1}>
+                                Min : {tasks[i].ranges[0].minValue} Max : {tasks[i].ranges[0].maxValue}
+                            </Text>
+                        </View>
+                    </ElevatedView>
+                );
+            }
+
+        }
+        return list;
+    }
+
+    buildUnitList()
+    {
+        let full = this.props.utils.units;
+        let list = [];
+
+        for(var i = 0; i < full.length; i++)
+        {
+            list.push(
+                <Picker.Item key={i} label={full[i].name} value={full[i]["@id"]} />
+            );
+        }
+        return list;
+    }
+
+    assignChecklist()
+    {
+
+    }
+
     render() {
+        let item = this.props.checklists.currentTemplate;
+
         return (
             <View style={styles.login}>
                 <HeaderChecklist {...this.props} headerTitle="Checklists"/>
                 <View style={styles.body}>
                     <ElevatedView style={styles.listInfos} elevation={2}>
                         <Text style={styles.listInfosText}>
-                            Titre de la Checklist
+                            {item.name}
                         </Text>
                         <Text style={styles.listInfosText}>
-                            hebdomadaire
+                            ({item.frequency})
                         </Text>
                     </ElevatedView>
                     <ElevatedView elevation={2} style={styles.listTasks}>
                         <ScrollView>
-                            <ElevatedView elevation={4} style={styles.listTask}>
-                                <View style={styles.taskIndex}>
-                                    <View style={styles.taskIndexButton}>
-                                        <Text style={styles.taskIndexText}>
-                                            1
-                                        </Text>
-                                    </View>
-                                </View>
-                                <View style={styles.taskContent}>
-                                    <Text style={styles.taskContentText} numberOfLine={2}>
-                                        Vérifier la pression de la pompe #2
-                                    </Text>
-                                </View>
-                            </ElevatedView>
-                            <ElevatedView elevation={4} style={styles.listTask}>
-                                <View style={styles.taskIndex}>
-                                    <View style={styles.taskIndexButton}>
-                                        <Text style={styles.taskIndexText}>
-                                            2
-                                        </Text>
-                                    </View>
-                                </View>
-                                <View style={styles.taskContent}>
-                                    <Text style={styles.taskContentText} numberOfLine={2}>
-                                        Vérifier le serrage des goupilles
-                                    </Text>
-                                </View>
-                            </ElevatedView>
-                            <ElevatedView elevation={4} style={styles.listTask}>
-                                <View style={styles.taskIndex}>
-                                    <View style={styles.taskIndexButton}>
-                                        <Text style={styles.taskIndexText}>
-                                            3
-                                        </Text>
-                                    </View>
-                                </View>
-                                <View style={styles.taskContent}>
-                                    <Text style={styles.taskContentText} numberOfLine={2}>
-                                        Vidanger l'huile du circuit
-                                    </Text>
-                                </View>
-                            </ElevatedView>
-                            <ElevatedView elevation={4} style={styles.listTask}>
-                                <View style={styles.taskIndex}>
-                                    <View style={styles.taskIndexButton}>
-                                        <Text style={styles.taskIndexText}>
-                                            4
-                                        </Text>
-                                    </View>
-                                </View>
-                                <View style={styles.taskContent}>
-                                    <Text style={styles.taskContentText} numberOfLine={2}>
-                                        Mesurer le jeu des écrous
-                                    </Text>
-                                </View>
-                            </ElevatedView>
+                            {this.buildTaskList(item.tasks)}
                         </ScrollView>
                     </ElevatedView>
                     <ElevatedView style={styles.addListView} elevation={2}>
                         <Picker style={styles.unitPicker} onValueChange={(value, index) => console.log(value)}>
-                            <Picker.Item key={0} label="Unité 1" value="/units/1" />
-                            <Picker.Item key={1} label="Unité 2" value="/units/2" />
-                            <Picker.Item key={2} label="Unité 3" value="/units/3" />
-                            <Picker.Item key={3} label="Unité 4" value="/units/4" />
-                            <Picker.Item key={4} label="Unité 5" value="/units/5" />
+                            {this.buildUnitList()}
                         </Picker>
                         <ElevatedView elevation={4} style={styles.unitButton}>
                             <TouchableWithoutFeedback>
@@ -218,6 +236,8 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        utils : state.utils,
+        checklists : state.checklists,
     };
 }
 

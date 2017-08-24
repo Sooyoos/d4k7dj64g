@@ -83,7 +83,15 @@ class ChecklistListItem extends Component {
 
     goToDetails()
     {
-        this.props.setCurrentChecklist(this.props.item);
+        if(this.props.item.type === "ChecklistInstance")
+        {
+            this.props.setCurrentChecklist(this.props.item);
+        }
+        else
+        {
+            this.props.setCurrentTemplate(this.props.item);
+        }
+
         this.props.route();
     }
 

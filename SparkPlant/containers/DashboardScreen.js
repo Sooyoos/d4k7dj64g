@@ -43,6 +43,11 @@ class DashboardScreen extends Component {
         super(props);
     }
 
+    componentWillMount()
+    {
+
+    }
+
     render() {
         if(this.props.login.loading === false)
         {
@@ -73,6 +78,7 @@ function mapStateToProps(state) {
         login: state.login,
         nav : state.nav,
         tags : state.tags,
+        utils : state.utils,
     };
 }
 
