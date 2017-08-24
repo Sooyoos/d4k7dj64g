@@ -92,7 +92,6 @@ class LoginScreen extends Component {
 
     autoLogin(index, value)
     {
-        console.log(index);
         if(value !== "new" && index >= 0)
         {
             let users = this.props.login.previousUsers;
@@ -180,6 +179,7 @@ function mapStateToProps(state) {
     return {
         login: state.login,
         nav : state.nav,
+        users : state.users,
     };
 }
 

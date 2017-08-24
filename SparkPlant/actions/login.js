@@ -1,4 +1,5 @@
 import * as types from './types';
+import { tryUser } from './users';
 import Base64 from 'base-64';
 import { AsyncStorage } from 'react-native';
 
@@ -99,12 +100,20 @@ function loginRequested()
     }
 }
 
-export function loginSuccess(response)
+function sendLoginSuccessResponse(response)
 {
     return {
         type: types.LOGIN_SUCCESS,
         token: parseJwt(response.token),
         tokenString : response.token,
+    }
+}
+
+export function loginSuccess(response)
+{
+    return dispatch => {
+        dispatch(tryUser(parseJwt(response.token), response.token));
+        dispatch(sendLoginSuccessResponse(response));
     }
 }
 
