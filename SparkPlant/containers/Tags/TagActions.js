@@ -122,64 +122,109 @@ class TagActions extends Component {
         this.props.tryTagClose(this.props.login, this.props.tags.currentTag);
     }
 
+    isSupervisor(tag)
+    {
+        if(tag.supervisor["@id"] === this.props.users.loggedUser["@id"])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     render() {
         let tag = this.props.tags.currentTag;
-        return (
-            <View style={styles.login}>
-                <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
-                <View style={styles.list}>
-                    <View style={styles.listLine}>
-                        <TouchableWithoutFeedback onPress={this.goToComment.bind(this)}>
-                            <View>
-                                <ElevatedView elevation={10} style={styles.buttonComment}>
-                                    <Icon name="comment-o" style={styles.icon}/>
-                                </ElevatedView>
-                                <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
-                                    Commenter
-                                </Text>
-                            </View>
-                        </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback onPress={this.goToTransfer.bind(this)}>
-                            <View>
-                                <ElevatedView elevation={10} style={styles.buttonTransfer}>
-                                    <Icon name="mail-forward" style={styles.icon}/>
-                                </ElevatedView>
-                                <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
-                                    Transférer
-                                </Text>
-                            </View>
-                        </TouchableWithoutFeedback>
+        let supervisor = this.isSupervisor(tag);
+
+        if(supervisor)
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
+                    <View style={styles.list}>
+                        <View style={styles.listLine}>
+                            <TouchableWithoutFeedback onPress={this.goToComment.bind(this)}>
+                                <View>
+                                    <ElevatedView elevation={10} style={styles.buttonComment}>
+                                        <Icon name="comment-o" style={styles.icon}/>
+                                    </ElevatedView>
+                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
+                                        Commenter
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            <TouchableWithoutFeedback onPress={this.goToTransfer.bind(this)}>
+                                <View>
+                                    <ElevatedView elevation={10} style={styles.buttonTransfer}>
+                                        <Icon name="mail-forward" style={styles.icon}/>
+                                    </ElevatedView>
+                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
+                                        Transférer
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </View>
+                        <View style={styles.listLine}>
+                            <TouchableWithoutFeedback onPress={this.resolve.bind(this)}>
+                                <View>
+                                    <ElevatedView elevation={10} style={styles.buttonCheck}>
+                                        <Icon name="check" style={styles.icon}/>
+                                    </ElevatedView>
+                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
+                                        Résolu
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            <TouchableWithoutFeedback onPress={this.abandon.bind(this)}>
+                                <View>
+                                    <ElevatedView elevation={10} style={styles.buttonClose}>
+                                        <Icon name="close" style={styles.icon}/>
+                                    </ElevatedView>
+                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
+                                        Non Résolu
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </View>
                     </View>
-                    <View style={styles.listLine}>
-                        <TouchableWithoutFeedback onPress={this.resolve.bind(this)}>
-                            <View>
-                                <ElevatedView elevation={10} style={styles.buttonCheck}>
-                                    <Icon name="check" style={styles.icon}/>
-                                </ElevatedView>
-                                <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
-                                    Résolu
-                                </Text>
-                            </View>
-                        </TouchableWithoutFeedback>
-                        <TouchableWithoutFeedback onPress={this.abandon.bind(this)}>
-                            <View>
-                                <ElevatedView elevation={10} style={styles.buttonClose}>
-                                    <Icon name="close" style={styles.icon}/>
-                                </ElevatedView>
-                                <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
-                                    Non Résolu
-                                </Text>
-                            </View>
-                        </TouchableWithoutFeedback>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
+                        <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={this.props.goToTagHistory}/>
+                        <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={this.props.goToTagAction}/>
                     </View>
                 </View>
-                <View style={styles.footer}>
-                    <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
-                    <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={this.props.goToTagHistory}/>
-                    <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={this.props.goToTagAction}/>
+            );
+        }
+        else
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
+                    <View style={styles.list}>
+                        <View style={styles.listLine}>
+                            <TouchableWithoutFeedback onPress={this.goToComment.bind(this)}>
+                                <View>
+                                    <ElevatedView elevation={10} style={styles.buttonComment}>
+                                        <Icon name="comment-o" style={styles.icon}/>
+                                    </ElevatedView>
+                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
+                                        Commenter
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
+                        <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={this.props.goToTagHistory}/>
+                        <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={this.props.goToTagAction}/>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
+
     }
 };
 
@@ -188,6 +233,7 @@ function mapStateToProps(state) {
         login: state.login,
         nav : state.nav,
         tags : state.tags,
+        users : state.users,
     };
 }
 
