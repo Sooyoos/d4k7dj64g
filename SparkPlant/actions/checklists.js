@@ -154,6 +154,59 @@ export function tryCompleteTask(login, task)
     }
 }
 
+function fetchCompleteList(login, list)
+{
+    return dispatch => {
+        dispatch(completeListRequested());
+        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
+        let status = "done";
+
+        fetch(baseUrl + list["@id"], {
+            method: 'PUT',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'application/json',
+            },
+            body : JSON.stringify({status : status})
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                dispatch(completeListSuccess(responseJson["hydra:member"]));
+            })
+            .catch((error) => {console.log(error); dispatch(completeListFailure()); });
+    }
+}
+
+function completeListRequested()
+{
+    return {
+        type : types.COMPLETE_LIST_REQUESTED,
+    }
+}
+
+function completeListSuccess(list)
+{
+    return {
+        type : types.COMPLETE_LIST_SUCCESS,
+        list : list,
+    }
+}
+
+function completeListFailure()
+{
+    return {
+        type : types.COMPLETE_LIST_FAILURE,
+    }
+}
+
+export function tryCompleteList(login, list)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchCompleteList(login, list));
+    }
+}
+
 function fetchAssignChecklists(login, task)
 {
     return dispatch => {

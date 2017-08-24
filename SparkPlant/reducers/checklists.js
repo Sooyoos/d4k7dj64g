@@ -38,6 +38,15 @@ export const checklistsReducer = {
             case types.COMPLETE_TASK_FAILURE: {
                 return Object.assign({}, state, {loading : false});
             }
+            case types.COMPLETE_LIST_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
+            case types.COMPLETE_LIST_SUCCESS: {
+                return Object.assign({}, state, {loading : false});
+            }
+            case types.COMPLETE_LIST_FAILURE: {
+                return Object.assign({}, state, {loading : false});
+            }
             case types.ASSIGN_CHECKLISTS_REQUESTED: {
                 return Object.assign({}, state, {loading : true});
             }

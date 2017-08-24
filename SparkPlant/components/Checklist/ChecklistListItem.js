@@ -135,8 +135,41 @@ class ChecklistListItem extends Component {
         }
     }
 
+    hasToBeDone(item)
+    {
+        let lastUpdate = Moment(item.updatedAt, Moment.ISO_8601);
+        let now = Moment(Date.now());
+        let timePassed = Moment.duration(now.diff(lastUpdate));
+        let hoursPassed = Math.round(timePassed.asHours());
+        let daysPassed = Math.round(timePassed.asDays());
+
+        if(item.checklist.frequency === "quotidien")
+        {
+            if(hoursPassed >= 24)
+            {
+                item.status = "todo";
+            }
+        }
+        else if(item.checklist.frequency === "hebdomadaire")
+        {
+            if(daysPassed >= 7)
+            {
+                item.status = "todo";
+            }
+        }
+        else if(item.checklist.frequency === "mensuel")
+        {
+            if(daysPassed >= 30)
+            {
+                item.status = "todo";
+            }
+        }
+
+        return item;
+    }
+
     render() {
-        let item = this.props.item;
+        let item = this.hasToBeDone(this.props.item);
 
         if(item.status && item.status === "done")
         {

@@ -160,9 +160,9 @@ let styles = StyleSheet.create({
         backgroundColor : "#4caf50",
     },
     taskFlagNOk : {
-        width : responsiveHeight(2),
-        height : responsiveHeight(2),
-        borderRadius: responsiveHeight(1),
+        width : responsiveHeight(4),
+        height : responsiveHeight(4),
+        borderRadius: responsiveHeight(2),
         backgroundColor : "#f44336",
     }
 });
@@ -210,6 +210,7 @@ class ChecklistExecute extends Component {
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
+            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
             this.props.goToChecklistPage();
         }
     }
@@ -244,6 +245,7 @@ class ChecklistExecute extends Component {
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
+            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
             this.props.goToChecklistPage();
         }
     }
@@ -266,6 +268,7 @@ class ChecklistExecute extends Component {
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
+            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
             this.props.goToChecklistPage();
         }
     }
@@ -287,6 +290,7 @@ class ChecklistExecute extends Component {
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
+            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
             this.props.goToChecklistPage();
         }
     }
@@ -308,7 +312,28 @@ class ChecklistExecute extends Component {
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
+            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
             this.props.goToChecklistPage();
+        }
+    }
+
+    renderTaskFlag(value, ranges)
+    {
+        console.log(value);
+        console.log(ranges);
+        if(parseInt(value) > ranges[0].minValue && parseInt(value) < ranges[0].maxValue)
+        {
+            return(
+                <View style={styles.taskFlagOk}>
+                </View>
+            );
+        }
+        else
+        {
+            return(
+                <View style={styles.taskFlagNOk}>
+                </View>
+            );
         }
     }
 
@@ -491,11 +516,10 @@ class ChecklistExecute extends Component {
                             </View>
                             <View style={styles.taskMesures}>
                                 <View style={styles.taskFlags}>
-                                    <View style={styles.taskFlagOk}>
-                                    </View>
+                                    {this.renderTaskFlag(this.state.mesure, tasks[i].task.ranges)}
                                 </View>
                                 <TextInput style={styles.taskInput} placeholder="Mesure" onChangeText={(value) => {this.setState({mesure : value})}}/>
-                                <Text style={styles.taskMetric}>{tasks[i].task.mesure}</Text>
+                                <Text style={styles.taskMetric}>{tasks[i].task.ranges[0].unit}</Text>
                             </View>
                             <View style={styles.taskActions}>
                                 <TouchableWithoutFeedback onPress={this.executeTaskMesure.bind(this)}>
@@ -516,6 +540,7 @@ class ChecklistExecute extends Component {
     }
 
     render() {
+        console.log(this.state);
         let item = this.props.checklists.currentChecklist;
         return (
             <View style={styles.login}>
