@@ -1,6 +1,22 @@
 import * as types from './types';
+import { storeLogin } from './login';
 
-function fetchUser(token, tokenString)
+function isResponsable(user)
+{
+    let roles = user.rolesByUnit;
+
+    for(var i = 0; i < roles.length; i++)
+    {
+        if(roles[i].role.title === "Responsable")
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function fetchUser(token, tokenString, data)
 {
     return dispatch => {
         dispatch(userRequested());
@@ -14,7 +30,8 @@ function fetchUser(token, tokenString)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
+                let info = Object.assign({}, data, {responsable : isResponsable(responseJson)});
+                storeLogin(info);
                 dispatch(userSuccess(responseJson));
             })
             .catch((error) => { dispatch(userFailure()); });
@@ -43,9 +60,9 @@ function userFailure()
     }
 }
 
-export function tryUser(token, tokenString)
+export function tryUser(token, tokenString, data)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchUser(token, tokenString));
+        return dispatch(fetchUser(token, tokenString, data));
     }
 }

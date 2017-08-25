@@ -9,7 +9,7 @@ function parseJwt(token){
     return JSON.parse(Base64.decode(base64));
 };
 
-function storeLogin(data)
+export function storeLogin(data)
 {
     AsyncStorage.getItem('@SparkPlant:previousUsers', (err, result) => {
         let list = JSON.parse(result);
@@ -76,10 +76,9 @@ function fetchLogin(factory, username, password)
             .then((responseJson) => {
                 if(responseJson.token)
                 {
-                    // store in async storage
-                    storeLogin({factory : factory, username : username, password : password});
+                    let data = {factory : factory, username : username, password : password};
                     dispatch(goToHomepage());
-                    dispatch(loginSuccess(responseJson));
+                    dispatch(loginSuccess(responseJson, data));
                 }
             })
             .catch((error) => { console.log(error); dispatch(loginFailure())});
@@ -109,10 +108,10 @@ function sendLoginSuccessResponse(response)
     }
 }
 
-export function loginSuccess(response)
+export function loginSuccess(response, data)
 {
     return dispatch => {
-        dispatch(tryUser(parseJwt(response.token), response.token));
+        dispatch(tryUser(parseJwt(response.token), response.token, data));
         dispatch(sendLoginSuccessResponse(response));
     }
 }
