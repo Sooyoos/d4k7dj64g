@@ -75,47 +75,105 @@ class DrawerMenu extends Component {
     constructor(props)
     {
         super(props);
-        this.state = {userAvailable: true};
+        this.state = {userAvailable: false};
     }
 
     setUserAvailable(value) {
-        AsyncStorage.setItem('@SparkPlant:userIsAvailable', JSON.stringify(value));
+        this.props.trySetAvailability(this.props.login, this.props.users.loggedUser, value);
         this.setState({userAvailable: value});
     }
 
+    renderAvatar(user, initials)
+    {
+        if(user.avatar)
+        {
+            return(
+                <Image style={styles.menuHeaderUserImage} source={{ uri : user.avatar.path}}/>
+            );
+        }
+        else
+        {
+            return(
+                <Image style={styles.menuHeaderUserImage} source={{ uri : 'http://via.placeholder.com/500x500/00bcd4/ffffff/?text=' + initials.toUpperCase()}}/>
+            );
+        }
+    }
+
     render() {
-        return (
-            <View style={styles.menu}>
-                <View style={styles.menuHeader}>
-                    <View style={styles.menuHeaderIconView}>
-                        <Icon style={styles.menuHeaderIcon} name="star" />
-                        <Text style={styles.menuHeaderIconText}>
-                            1142 points
-                        </Text>
-                    </View>
-                    <View style={styles.menuHeaderUserInfosView}>
-                        <Image style={styles.menuHeaderUserImage} source={{ uri : 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg'}}/>
-                        <View>
-                            <Text style={styles.menuHeaderUsername}>
-                            John Doe
-                            </Text>
-                            <Text style={styles.menuHeaderUserEmail}>
-                                john.doe@example.org
+        let user = this.props.users.loggedUser;
+        console.log(user);
+
+        if(user)
+        {
+            let initials = user.firstName.charAt(0) + user.lastName.charAt(0);
+            return (
+                <View style={styles.menu}>
+                    <View style={styles.menuHeader}>
+                        <View style={styles.menuHeaderIconView}>
+                            <Icon style={styles.menuHeaderIcon} name="star" />
+                            <Text style={styles.menuHeaderIconText}>
+                                {user.points} points
                             </Text>
                         </View>
+                        <View style={styles.menuHeaderUserInfosView}>
+                            {this.renderAvatar(user, initials)}
+                            <View>
+                                <Text style={styles.menuHeaderUsername}>
+                                    {user.firstName} {user.lastName}
+                                </Text>
+                                <Text style={styles.menuHeaderUserEmail}>
+                                    {user.email}
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={styles.menuHeaderAvailableView}>
+                            <Text style={styles.menuHeaderAvailableSwitchLabel}>
+                                Disponible
+                            </Text>
+                            <Switch style={styles.menuHeaderAvailableSwitch} value={this.props.users.loggedUser.available} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
+                        </View>
                     </View>
-                    <View style={styles.menuHeaderAvailableView}>
-                        <Text style={styles.menuHeaderAvailableSwitchLabel}>
-                            Disponible
-                        </Text>
-                        <Switch style={styles.menuHeaderAvailableSwitch} value={this.state.userAvailable} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
+                    <View>
+                        <DrawerItems {...this.props} />
                     </View>
                 </View>
-                <View>
-                    <DrawerItems {...this.props} />
-                </View>
-            </View>
             );
+        }
+        else
+        {
+            return (
+                <View style={styles.menu}>
+                    <View style={styles.menuHeader}>
+                        <View style={styles.menuHeaderIconView}>
+                            <Icon style={styles.menuHeaderIcon} name="star" />
+                            <Text style={styles.menuHeaderIconText}>
+                                ... points
+                            </Text>
+                        </View>
+                        <View style={styles.menuHeaderUserInfosView}>
+                            <Image style={styles.menuHeaderUserImage} source={{ uri : 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg'}}/>
+                            <View>
+                                <Text style={styles.menuHeaderUsername}>
+                                    ...
+                                </Text>
+                                <Text style={styles.menuHeaderUserEmail}>
+                                    ...
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={styles.menuHeaderAvailableView}>
+                            <Text style={styles.menuHeaderAvailableSwitchLabel}>
+                                Disponible
+                            </Text>
+                            <Switch style={styles.menuHeaderAvailableSwitch} value={this.state.userAvailable} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
+                        </View>
+                    </View>
+                    <View>
+                        <DrawerItems {...this.props} />
+                    </View>
+                </View>
+            );
+        }
     }
 };
 

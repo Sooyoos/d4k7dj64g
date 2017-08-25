@@ -18,6 +18,15 @@ export const usersReducer = {
             case types.GET_USER_FAILURE: {
                 return Object.assign({}, state, {loading : false});
             }
+            case types.SET_AVAILABILITY_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
+            case types.SET_AVAILABILITY_SUCCESS: {
+                return Object.assign({}, state, {loggedUser : action.user, loading : false});
+            }
+            case types.SET_AVAILABILITY_FAILURE: {
+                return Object.assign({}, state, {loading : false});
+            }
             default :
                 return state;
         }

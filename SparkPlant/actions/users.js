@@ -66,3 +66,57 @@ export function tryUser(token, tokenString, data)
         return dispatch(fetchUser(token, tokenString, data));
     }
 }
+
+function fetchSetAvailability(login, user, availability)
+{
+    return dispatch => {
+        dispatch(setAvailabilityRequested());
+        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
+
+        fetch(baseUrl + user["@id"], {
+            method: 'PUT',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'application/json',
+            },
+            body : JSON.stringify({
+                available : availability,
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                dispatch(setAvailabilitySuccess(responseJson));
+            })
+            .catch((error) => { console.log(error); dispatch(setAvailabilityFailure()); });
+    }
+}
+
+function setAvailabilityRequested()
+{
+    return {
+        type : types.SET_AVAILABILITY_REQUESTED,
+    }
+}
+
+function setAvailabilitySuccess(user)
+{
+    return {
+        type : types.SET_AVAILABILITY_SUCCESS,
+        user : user,
+    }
+}
+
+function setAvailabilityFailure()
+{
+    return {
+        type : types.SET_AVAILABILITY_FAILURE,
+    }
+}
+
+export function trySetAvailability(login, user, availability)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchSetAvailability(login, user, availability));
+    }
+}
