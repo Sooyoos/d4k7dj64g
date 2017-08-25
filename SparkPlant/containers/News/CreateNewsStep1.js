@@ -299,76 +299,145 @@ class CreateNewsStep1 extends Component {
         });
     }
 
+    isDirection()
+    {
+        let roles = this.props.users.loggedUser.rolesByUnit;
+
+        for(var i = 0; i < roles.length; i++)
+        {
+            if(roles[i].role.title === "Responsable" && roles[i].unit.parent === null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     render() {
-        return (
-            <View style={styles.login}>
-                <HeaderNews {...this.props} headerTitle="Créer une News"/>
-                <View style={styles.body}>
-                    <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
-                        <ElevatedView style={styles.medias} elevation={2}>
-                            <ScrollView style={styles.slider} horizontal={true} showsHorizontalScrollIndicator={false}>
-                                {this.buildMediaList()}
-                            </ScrollView>
-                            <View style={styles.addMedia}>
-                                <ElevatedView style={styles.addMediaButton} elevation={4}>
-                                    <TouchableWithoutFeedback onPress={this.pickMedia.bind(this)}>
-                                        <Icon style={styles.addMediaButtonIcon} name="camera"/>
+        let direction = this.isDirection();
+
+        if(direction === false)
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderNews {...this.props} headerTitle="Créer une News"/>
+                    <View style={styles.body}>
+                        <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
+                            <ElevatedView style={styles.medias} elevation={2}>
+                                <ScrollView style={styles.slider} horizontal={true} showsHorizontalScrollIndicator={false}>
+                                    {this.buildMediaList()}
+                                </ScrollView>
+                                <View style={styles.addMedia}>
+                                    <ElevatedView style={styles.addMediaButton} elevation={4}>
+                                        <TouchableWithoutFeedback onPress={this.pickMedia.bind(this)}>
+                                            <Icon style={styles.addMediaButtonIcon} name="camera"/>
+                                        </TouchableWithoutFeedback>
+                                    </ElevatedView>
+                                </View>
+                            </ElevatedView>
+                            <ElevatedView style={styles.title} elevation={2}>
+                                <Text style={styles.titleLabel}>
+                                    Titre de la news
+                                </Text>
+                                <TextInput style={styles.titleInput} placeholder="Titre" onChangeText={(text) => this.setTitle(text)} value={this.state.item.title}/>
+                            </ElevatedView>
+                            <ElevatedView style={styles.unit} elevation={2}>
+                                <Picker style={styles.unitPicker} selectedValue={this.state.item.unit} onValueChange={(value, index) => this.setUnit(value)}>
+                                    <Picker.Item label="Sélectionnez l'unité" value={null} key={-1} />
+                                    {this.buildUnitList()}
+                                </Picker>
+                            </ElevatedView>
+                            <ElevatedView style={styles.content} elevation={2}>
+                                <Text style={styles.contentLabel}>
+                                    Texte de la news
+                                </Text>
+                                <TextInput style={styles.contentInput} placeholder="Texte" multiline={true} onChangeText={(text) => this.setContent(text)} value={this.state.item.content}/>
+                            </ElevatedView>
+                            <View style={{flexDirection : 'row', alignContent : 'flex-end', justifyContent: 'flex-end', width : responsiveWidth(90)}}>
+                                <ElevatedView style={styles.nextButton} elevation={4}>
+                                    <TouchableWithoutFeedback onPress={this.preview.bind(this)}>
+                                        <Icon style={styles.nextButtonIcon} name="eye"/>
                                     </TouchableWithoutFeedback>
                                 </ElevatedView>
                             </View>
-                        </ElevatedView>
-                        <ElevatedView style={styles.title} elevation={2}>
-                            <Text style={styles.titleLabel}>
-                                Titre de la news
-                            </Text>
-                            <TextInput style={styles.titleInput} placeholder="Titre" onChangeText={(text) => this.setTitle(text)} value={this.state.item.title}/>
-                        </ElevatedView>
-                        <ElevatedView style={styles.unit} elevation={2}>
-                            <Picker style={styles.unitPicker} selectedValue={this.state.item.unit} onValueChange={(value, index) => this.setUnit(value)}>
-                                <Picker.Item label="Sélectionnez l'unité" value={null} key={-1} />
-                                {this.buildUnitList()}
-                            </Picker>
-                        </ElevatedView>
-                        <ElevatedView style={styles.content} elevation={2}>
-                            <Text style={styles.contentLabel}>
-                                Texte de la news
-                            </Text>
-                            <TextInput style={styles.contentInput} placeholder="Texte" multiline={true} onChangeText={(text) => this.setContent(text)} value={this.state.item.content}/>
-                        </ElevatedView>
-                        <ElevatedView style={styles.broadcast} elevation={2}>
-                            <Text style={styles.broadcastLabel}>
-                                Diffusion
-                            </Text>
-                            <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
-                                <RadioButton value="private" styleSelected={styles.rbSelected} style={styles.radioButton}/>
-                                <Text style={styles.rbLabel}>
-                                    Confidentielle
-                                </Text>
-                            </View>
-                            <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
-                                <RadioButton value="restricted" styleSelected={styles.rbSelected} style={styles.radioButton}/>
-                                <Text style={styles.rbLabel}>
-                                    Restreinte
-                                </Text>
-                            </View>
-                            <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
-                                <RadioButton value="public" styleSelected={styles.rbSelected} style={styles.radioButton}/>
-                                <Text style={styles.rbLabel}>
-                                    Publique
-                                </Text>
-                            </View>
-                        </ElevatedView>
-                        <View style={{flexDirection : 'row', alignContent : 'flex-end', justifyContent: 'flex-end', width : responsiveWidth(90)}}>
-                            <ElevatedView style={styles.nextButton} elevation={4}>
-                                <TouchableWithoutFeedback onPress={this.preview.bind(this)}>
-                                    <Icon style={styles.nextButtonIcon} name="eye"/>
-                                </TouchableWithoutFeedback>
-                            </ElevatedView>
-                        </View>
-                    </ScrollView>
+                        </ScrollView>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
+        else
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderNews {...this.props} headerTitle="Créer une News"/>
+                    <View style={styles.body}>
+                        <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
+                            <ElevatedView style={styles.medias} elevation={2}>
+                                <ScrollView style={styles.slider} horizontal={true} showsHorizontalScrollIndicator={false}>
+                                    {this.buildMediaList()}
+                                </ScrollView>
+                                <View style={styles.addMedia}>
+                                    <ElevatedView style={styles.addMediaButton} elevation={4}>
+                                        <TouchableWithoutFeedback onPress={this.pickMedia.bind(this)}>
+                                            <Icon style={styles.addMediaButtonIcon} name="camera"/>
+                                        </TouchableWithoutFeedback>
+                                    </ElevatedView>
+                                </View>
+                            </ElevatedView>
+                            <ElevatedView style={styles.title} elevation={2}>
+                                <Text style={styles.titleLabel}>
+                                    Titre de la news
+                                </Text>
+                                <TextInput style={styles.titleInput} placeholder="Titre" onChangeText={(text) => this.setTitle(text)} value={this.state.item.title}/>
+                            </ElevatedView>
+                            <ElevatedView style={styles.unit} elevation={2}>
+                                <Picker style={styles.unitPicker} selectedValue={this.state.item.unit} onValueChange={(value, index) => this.setUnit(value)}>
+                                    <Picker.Item label="Sélectionnez l'unité" value={null} key={-1} />
+                                    {this.buildUnitList()}
+                                </Picker>
+                            </ElevatedView>
+                            <ElevatedView style={styles.content} elevation={2}>
+                                <Text style={styles.contentLabel}>
+                                    Texte de la news
+                                </Text>
+                                <TextInput style={styles.contentInput} placeholder="Texte" multiline={true} onChangeText={(text) => this.setContent(text)} value={this.state.item.content}/>
+                            </ElevatedView>
+                            <ElevatedView style={styles.broadcast} elevation={2}>
+                                <Text style={styles.broadcastLabel}>
+                                    Diffusion
+                                </Text>
+                                <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
+                                    <RadioButton value="private" styleSelected={styles.rbSelected} style={styles.radioButton}/>
+                                    <Text style={styles.rbLabel}>
+                                        Confidentielle
+                                    </Text>
+                                </View>
+                                <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
+                                    <RadioButton value="restricted" styleSelected={styles.rbSelected} style={styles.radioButton}/>
+                                    <Text style={styles.rbLabel}>
+                                        Restreinte
+                                    </Text>
+                                </View>
+                                <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
+                                    <RadioButton value="public" styleSelected={styles.rbSelected} style={styles.radioButton}/>
+                                    <Text style={styles.rbLabel}>
+                                        Publique
+                                    </Text>
+                                </View>
+                            </ElevatedView>
+                            <View style={{flexDirection : 'row', alignContent : 'flex-end', justifyContent: 'flex-end', width : responsiveWidth(90)}}>
+                                <ElevatedView style={styles.nextButton} elevation={4}>
+                                    <TouchableWithoutFeedback onPress={this.preview.bind(this)}>
+                                        <Icon style={styles.nextButtonIcon} name="eye"/>
+                                    </TouchableWithoutFeedback>
+                                </ElevatedView>
+                            </View>
+                        </ScrollView>
+                    </View>
+                </View>
+            );
+        }
     }
 }
 
@@ -379,6 +448,7 @@ function mapStateToProps(state) {
         tags : state.tags,
         news : state.news,
         utils : state.utils,
+        users : state.users,
     };
 }
 
