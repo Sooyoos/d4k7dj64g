@@ -8,6 +8,9 @@ import {
     Image
 } from 'react-native';
 import { DrawerItems } from 'react-navigation';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../../actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
@@ -68,7 +71,7 @@ let styles = StyleSheet.create({
     },
 });
 
-export default class DrawerMenu extends Component {
+class DrawerMenu extends Component {
     constructor(props)
     {
         super(props);
@@ -115,3 +118,19 @@ export default class DrawerMenu extends Component {
             );
     }
 };
+
+function mapStateToProps(state) {
+    return {
+        login: state.login,
+        nav : state.nav,
+        tags : state.tags,
+        users : state.users,
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(ActionCreators, dispatch);
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(DrawerMenu);
