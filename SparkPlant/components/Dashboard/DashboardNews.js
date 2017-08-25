@@ -8,6 +8,10 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DashboardNewsItem from './DashboardNewsItem';
+import Moment from 'moment';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../../actions';
 
 let styles = StyleSheet.create({
     dashboardNews: {
@@ -16,43 +20,85 @@ let styles = StyleSheet.create({
     },
 });
 
-let news = [
-    {
-        imgSrc : 'https://blog.nxp.com/wp-content/uploads/2016/11/post-11521-industry-4-960x425.jpg',
-        newsExcerpt : 'Lorem ipsum dolor sit amet.',
-        newsDate : 'Le 26/10/2016',
-        newsAuthor : 'par Georges',
-        iconName : 'globe',
-    },
-    {
-        imgSrc : 'http://www.pwc.com/content/dam/pwc/gx/en/industries/industries-4.0/landing-page/related-content-industry-self-assessment.jpg',
-        newsExcerpt : 'Consectetur adipiscing elit, sed do eiusmod.',
-        newsDate : 'Le 18/10/2016',
-        newsAuthor : 'par Max',
-        iconName : 'unlock-alt',
-    },
-    {
-        imgSrc : 'http://i2.cdn.cnn.com/cnnnext/dam/assets/160318130751-foreign-imports-crush-u-s-steel-industry-exlarge-169.jpg',
-        newsExcerpt : 'Tempor incididunt ut labore et.',
-        newsDate : 'Le 13/10/2016',
-        newsAuthor : 'par Martin',
-        iconName : 'lock',
-    },
-];
-
-export default class DashboardNews extends Component {
+class DashboardNews extends Component {
 
     constructor(props) {
         super(props);
     }
 
+    componentWillMount()
+    {
+
+    }
+
+    getMainImage(item)
+    {
+        if(item.media && item.media.length > 0)
+        {
+            return item.media[0].path;
+        }
+        else
+        {
+            return "http://via.placeholder.com/500x500";
+        }
+    }
+
+    getVisiblityIcon(item)
+    {
+        switch(item.visibility)
+        {
+            case "private" :
+                return "lock";
+                break;
+            case "restricted" :
+                return "unlock-alt";
+                break;
+            case "public" :
+                return "globe";
+                break;
+        }
+    }
+
+    buildNewsList(news)
+    {
+        let list = [];
+
+        if(news)
+        {
+            for(var i = 0; i < 3; i++)
+            {
+                list.push(
+                    <DashboardNewsItem key={i} responsable={this.props.responsable} imgSrc={this.getMainImage(news[i])} newsExcerpt={news[i].title} newsDate={Moment(news[i].createdAt).format('DD/MM/YYYY')} newsAuthor={"par " + news[i].user.firstName + " " + news[i].user.lastName} iconName={this.getVisiblityIcon(news[i])} />
+                );
+            }
+        }
+
+        return list;
+    }
+
     render() {
         return (
             <View style={styles.dashboardNews}>
-                <DashboardNewsItem imgSrc={news[0].imgSrc} newsExcerpt={news[0].newsExcerpt} newsDate={news[0].newsDate} newsAuthor={news[0].newsAuthor} iconName={news[0].iconName} />
-                <DashboardNewsItem imgSrc={news[1].imgSrc} newsExcerpt={news[1].newsExcerpt} newsDate={news[1].newsDate} newsAuthor={news[1].newsAuthor} iconName={news[1].iconName} />
-                <DashboardNewsItem imgSrc={news[2].imgSrc} newsExcerpt={news[2].newsExcerpt} newsDate={news[2].newsDate} newsAuthor={news[2].newsAuthor} iconName={news[2].iconName} />
+                {this.buildNewsList(this.props.news.news)}
             </View>
         );
     }
 };
+
+function mapStateToProps(state) {
+    return {
+        login: state.login,
+        nav : state.nav,
+        tags : state.tags,
+        utils : state.utils,
+        news : state.news,
+        users : state.users,
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(ActionCreators, dispatch);
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardNews);

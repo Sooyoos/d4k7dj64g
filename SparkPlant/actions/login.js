@@ -1,5 +1,6 @@
 import * as types from './types';
 import { tryUser } from './users';
+import { tryUserNews } from './news';
 import Base64 from 'base-64';
 import { AsyncStorage } from 'react-native';
 
@@ -111,6 +112,7 @@ function sendLoginSuccessResponse(response)
 export function loginSuccess(response, data)
 {
     return dispatch => {
+        dispatch(tryUserNews({tokenString : response.token}));
         dispatch(tryUser(parseJwt(response.token), response.token, data));
         dispatch(sendLoginSuccessResponse(response));
     }

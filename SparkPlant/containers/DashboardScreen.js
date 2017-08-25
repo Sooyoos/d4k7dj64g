@@ -48,19 +48,38 @@ class DashboardScreen extends Component {
 
     }
 
+    isResponsable()
+    {
+        if(this.props.users.loggedUser)
+        {
+            let roles = this.props.users.loggedUser.rolesByUnit;
+
+            for(var i = 0; i < roles.length; i++)
+            {
+                if(roles[i].role.title === "Responsable")
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     render() {
-        if(this.props.login.loading === false)
+        if(this.props.login.loading === false && this.props.users.loading === false && this.props.news.loading === false)
         {
             return (
                 <View style={styles.login}>
                     <Header props={this.props}/>
                     <View style={styles.body}>
                         <DashboardNavigation {... this.props} />
-                        <DashboardNews/>
+                        <DashboardNews news={this.props.news.news} responsable={this.isResponsable()}/>
                     </View>
                 </View>
             );
         }
+
         else
         {
             return(
@@ -79,6 +98,8 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         utils : state.utils,
+        news : state.news,
+        users : state.users,
     };
 }
 

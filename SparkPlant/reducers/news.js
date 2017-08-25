@@ -16,7 +16,8 @@ const initialState = {
         searchWaiting : null,
         searchResults : null,
         searchResultsWaiting : null,
-    }
+    },
+    loading : false,
 };
 
 function getCurrentCreationMediaIndex(state, filename)
@@ -40,37 +41,52 @@ export const newsReducer = {
     news : (state = initialState, action) => {
         switch (action.type) {
             case types.SET_CURRENT_NEWS: {
-                return Object.assign({}, state, {currentNews : action.news});
+                return Object.assign({}, state, {currentNews : action.news, loading : false});
+            }
+            case types.USER_NEWS_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
             }
             case types.USER_NEWS_SUCCESS: {
-                return Object.assign({}, state, {news : action.news});
+                return Object.assign({}, state, {news : action.news, loading : false});
             }
             case types.USER_NEWS_FAILURE: {
-                return Object.assign({}, state, {news : null});
+                return Object.assign({}, state, {loading : false});
+            }
+            case types.WAITING_NEWS_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
             }
             case types.WAITING_NEWS_SUCCESS: {
-                return Object.assign({}, state, {waitingNews : action.news});
+                return Object.assign({}, state, {waitingNews : action.news, loading : false});
             }
             case types.WAITING_NEWS_FAILURE: {
-                return Object.assign({}, state, {waitingNews : null});
+                return Object.assign({}, state, {loading : false});
+            }
+            case types.PUBLISH_NEWS_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
             }
             case types.PUBLISH_NEWS_SUCCESS: {
-                return state;
+                return Object.assign({}, state, {loading : false});
             }
             case types.PUBLISH_NEWS_FAILURE: {
-                return state;
+                return Object.assign({}, state, {loading : false});
+            }
+            case types.TRANSFER_NEWS_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
             }
             case types.TRANSFER_NEWS_SUCCESS: {
-                return state;
+                return Object.assign({}, state, {loading : false});
             }
             case types.TRANSFER_NEWS_FAILURE: {
-                return state;
+                return Object.assign({}, state, {loading : false});
+            }
+            case types.DELETE_NEWS_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
             }
             case types.DELETE_NEWS_SUCCESS: {
-                return state;
+                return Object.assign({}, state, {loading : false});
             }
             case types.DELETE_NEWS_FAILURE: {
-                return state;
+                return Object.assign({}, state, {loading : false});
             }
             case types.PREPARE_NEWS: {
                 let obj = Object.assign({}, action.news, {visibility : state.creation_current.visibility});

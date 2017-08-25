@@ -51,25 +51,51 @@ export default class DashboardNewsItem extends Component {
     }
 
     render() {
-        return (
-            <View style={styles.dashboardNewsItem}>
-                <TouchableWithoutFeedback>
-                    <View style={{flexDirection : 'row'}}>
-                        <Image style={styles.itemImage} source={{uri : this.props.imgSrc }} />
-                        <View style={styles.itemData}>
-                            <Text style={styles.itemExcerpt} numberOfLines={2} adjustsFontSizeToFit={true}>
-                                {this.props.newsExcerpt}
-                            </Text>
-                            <View style={{flexDirection : 'row'}}>
-                                <Text style={styles.itemInfos} adjustsFontSizeToFit={true}>
-                                    {this.props.newsDate} {this.props.newsAuthor}
+        if(this.props.responsable)
+        {
+            return (
+                <View style={styles.dashboardNewsItem}>
+                    <TouchableWithoutFeedback>
+                        <View style={{flexDirection : 'row'}}>
+                            <Image style={styles.itemImage} source={{uri : this.props.imgSrc }} />
+                            <View style={styles.itemData}>
+                                <Text style={styles.itemExcerpt} numberOfLines={2} adjustsFontSizeToFit={true}>
+                                    {this.props.newsExcerpt}
                                 </Text>
-                                <Icon name={this.props.iconName} style={styles.itemIcon} />
+                                <View style={{flexDirection : 'row'}}>
+                                    <Text style={styles.itemInfos} adjustsFontSizeToFit={true}>
+                                        {this.props.newsDate} {this.props.newsAuthor}
+                                    </Text>
+                                    <Icon name={this.props.iconName} style={styles.itemIcon} />
+                                </View>
                             </View>
                         </View>
-                    </View>
-                </TouchableWithoutFeedback>
-            </View>
-        );
+                    </TouchableWithoutFeedback>
+                </View>
+            );
+        }
+        else
+        {
+            return (
+                <View style={styles.dashboardNewsItem}>
+                    <TouchableWithoutFeedback>
+                        <View style={{flexDirection : 'row'}}>
+                            <Image style={styles.itemImage} source={{uri : this.props.imgSrc }} />
+                            <View style={styles.itemData}>
+                                <Text style={styles.itemExcerpt} numberOfLines={2} adjustsFontSizeToFit={true}>
+                                    {this.props.newsExcerpt}
+                                </Text>
+                                <View style={{flexDirection : 'row'}}>
+                                    <Text style={styles.itemInfos} adjustsFontSizeToFit={true}>
+                                        {this.props.newsDate} {this.props.newsAuthor}
+                                    </Text>
+                                </View>
+                            </View>
+                        </View>
+                    </TouchableWithoutFeedback>
+                </View>
+            );
+        }
+
     }
 };
