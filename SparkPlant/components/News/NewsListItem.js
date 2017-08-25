@@ -108,32 +108,76 @@ class NewsListItem extends Component {
         }
     }
 
+    isResponsable()
+    {
+        let roles = this.props.users.loggedUser.rolesByUnit;
+
+        for(var i = 0; i < roles.length; i++)
+        {
+            if(roles[i].role.title === "Responsable")
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     render() {
         let item = this.props.item;
-        return (
-            <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
-                <ElevatedView style={styles.item} elevation={2}>
-                    <Image style={styles.image} source={{uri : this.getMainImage()}} />
-                    <View style={styles.main}>
-                        <View style={styles.content}>
-                            <Text style={styles.textContent} numberOfLine={2}>
-                                {item.title}
-                            </Text>
-                        </View>
-                        <View style={styles.info}>
-                            <View style={styles.data}>
-                                <Text  style={styles.textInfos}>
-                                    Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
+        let responsable = this.isResponsable();
+
+        if(responsable === false)
+        {
+            return (
+                <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
+                    <ElevatedView style={styles.item} elevation={2}>
+                        <Image style={styles.image} source={{uri : this.getMainImage()}} />
+                        <View style={styles.main}>
+                            <View style={styles.content}>
+                                <Text style={styles.textContent} numberOfLine={2}>
+                                    {item.title}
                                 </Text>
                             </View>
-                            <View style={styles.status}>
-                                <Icon name={this.getVisiblityIcon()} style={styles.statusIcon} />
+                            <View style={styles.info}>
+                                <View style={styles.data}>
+                                    <Text  style={styles.textInfos}>
+                                        Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
+                                    </Text>
+                                </View>
                             </View>
                         </View>
-                    </View>
-                </ElevatedView>
-            </TouchableWithoutFeedback>
-        );
+                    </ElevatedView>
+                </TouchableWithoutFeedback>
+            );
+        }
+        else
+        {
+            return (
+                <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
+                    <ElevatedView style={styles.item} elevation={2}>
+                        <Image style={styles.image} source={{uri : this.getMainImage()}} />
+                        <View style={styles.main}>
+                            <View style={styles.content}>
+                                <Text style={styles.textContent} numberOfLine={2}>
+                                    {item.title}
+                                </Text>
+                            </View>
+                            <View style={styles.info}>
+                                <View style={styles.data}>
+                                    <Text  style={styles.textInfos}>
+                                        Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
+                                    </Text>
+                                </View>
+                                <View style={styles.status}>
+                                    <Icon name={this.getVisiblityIcon()} style={styles.statusIcon} />
+                                </View>
+                            </View>
+                        </View>
+                    </ElevatedView>
+                </TouchableWithoutFeedback>
+            );
+        }
     }
 }
 
@@ -143,6 +187,7 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        users : state.users,
     };
 }
 
