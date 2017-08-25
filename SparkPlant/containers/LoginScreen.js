@@ -92,14 +92,25 @@ class LoginScreen extends Component {
 
     autoLogin(index, value)
     {
-        if(value !== "new" && index >= 0)
+        console.log(value);
+
+        if(value.responsable)
         {
-            let users = this.props.login.previousUsers;
-            this.props.tryLogin(users[index - 2].factory, users[index - 2].username, users[index - 2].password);
+            this.props.setLoginFactory(value.factory);
+            this.props.setLoginUsername(value.username);
+            this.setState({new : true});
         }
         else
         {
-            this.setState({new : true});
+            if(value !== "new" && index >= 0)
+            {
+                let users = this.props.login.previousUsers;
+                this.props.tryLogin(users[index - 2].factory, users[index - 2].username, users[index - 2].password);
+            }
+            else
+            {
+                this.setState({new : true});
+            }
         }
     }
 
