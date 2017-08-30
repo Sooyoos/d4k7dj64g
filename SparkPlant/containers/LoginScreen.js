@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import ElevatedView from 'react-native-elevated-view';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { ActionCreators } from '../actions';
 import LoginUsernameInput from '../components/Login/LoginUserNameInput';
 import LoginPasswordInput from '../components/Login/LoginPasswordInput';
@@ -162,6 +163,7 @@ class LoginScreen extends Component {
                             <LoginFactoryList/>
                             <LoginUsernameInput/>
                             <LoginPasswordInput />
+                            <KeyboardSpacer/>
                             <ElevatedView elevation={4} style={styles.button}>
                                 <TouchableWithoutFeedback onPress={this.login}>
                                     <View style={{width:responsiveWidth(40), height:responsiveHeight(5), justifyContent:'center', padding : 5}}>
