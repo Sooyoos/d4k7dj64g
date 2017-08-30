@@ -17,6 +17,7 @@ import ElevatedView from 'react-native-elevated-view';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
 import ImagePicker from 'react-native-image-picker';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 let styles = StyleSheet.create({
     card : {
@@ -267,6 +268,7 @@ class CreateTagStep2 extends Component {
                         <View style={styles.cardContent}>
                             <TextInput style={styles.textInput} placeholder="Titre" maxLength={40} value={this.state.tagTitle} onChangeText={(value) => this.saveTitle(value)}/>
                             <TextInput style={styles.textInput} multiline={true} placeholder="Description" maxLength={140} value={this.state.tagDescription} onChangeText={(value) => this.saveDescription(value)}/>
+                            <KeyboardSpacer/>
                             <TouchableWithoutFeedback onPress={() => {
                                 this.props.setToRecord("description");
                                 this.props.goToRecordAudio();

@@ -13,6 +13,7 @@ import { ActionCreators } from '../../../actions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ElevatedView from 'react-native-elevated-view';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
 
 let styles = StyleSheet.create({
@@ -171,6 +172,7 @@ class CreateTagStep1 extends Component {
                                 { this.buildPlacesList() }
                             </Picker>
                             <TextInput style={{fontSize : responsiveFontSize(1.6)}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
+                            <KeyboardSpacer/>
                             <TouchableWithoutFeedback onPress={() => {
                                 this.props.setToRecord("place");
                                 this.props.goToRecordAudio();
