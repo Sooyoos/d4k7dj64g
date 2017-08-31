@@ -33,16 +33,16 @@ let styles = StyleSheet.create({
         alignItems: 'center',
     },
     cardHeaderIconView : {
-        width: responsiveWidth(10),
-        height : responsiveWidth(10),
-        borderRadius : responsiveWidth(5),
-        backgroundColor: '#00bcd4',
-        margin : 10,
-        padding : 3,
+        width: responsiveWidth(8),
+        height : responsiveWidth(8),
+        borderRadius : responsiveWidth(4),
+        backgroundColor: '#3f51b5',
+        margin : responsiveWidth(1.5),
+        padding : responsiveWidth(0.5),
     },
     cardHeaderIcon : {
         flex : 2,
-        fontSize : responsiveFontSize(4.5),
+        fontSize : responsiveFontSize(3.5),
         textAlign : 'center',
         color : '#ffffff',
     },
@@ -267,8 +267,7 @@ class CreateTagStep2 extends Component {
                         </ElevatedView>
                         <View style={styles.cardContent}>
                             <TextInput style={styles.textInput} placeholder="Titre" maxLength={40} value={this.state.tagTitle} onChangeText={(value) => this.saveTitle(value)}/>
-                            <TextInput style={styles.textInput} multiline={true} placeholder="Description" maxLength={140} value={this.state.tagDescription} onChangeText={(value) => this.saveDescription(value)}/>
-                            <KeyboardSpacer/>
+                            <TextInput style={styles.textInput} placeholder="Description" maxLength={140} value={this.state.tagDescription} onChangeText={(value) => this.saveDescription(value)}/>
                             <TouchableWithoutFeedback onPress={() => {
                                 this.props.setToRecord("description");
                                 this.props.goToRecordAudio();
@@ -277,6 +276,7 @@ class CreateTagStep2 extends Component {
                                     <Icon name="microphone" style={styles.actionButtonIcon} />
                                 </ElevatedView>
                             </TouchableWithoutFeedback>
+                            <KeyboardSpacer/>
                         </View>
                     </ElevatedView>
                     <ElevatedView style={styles.card} elevation={2}>

@@ -31,16 +31,16 @@ let styles = StyleSheet.create({
         padding : responsiveWidth(2),
     },
     cardHeaderIconView : {
-        width: responsiveWidth(10),
-        height : responsiveWidth(10),
-        borderRadius : responsiveWidth(5),
-        backgroundColor: '#00bcd4',
+        width: responsiveWidth(8),
+        height : responsiveWidth(8),
+        borderRadius : responsiveWidth(4),
+        backgroundColor: '#3f51b5',
         margin : responsiveWidth(1.5),
         padding : responsiveWidth(0.5),
     },
     cardHeaderIcon : {
         flex : 2,
-        fontSize : responsiveFontSize(4.5),
+        fontSize : responsiveFontSize(3.5),
         textAlign : 'center',
         color : '#ffffff',
     },
@@ -172,7 +172,6 @@ class CreateTagStep1 extends Component {
                                 { this.buildPlacesList() }
                             </Picker>
                             <TextInput style={{fontSize : responsiveFontSize(1.6)}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
-                            <KeyboardSpacer/>
                             <TouchableWithoutFeedback onPress={() => {
                                 this.props.setToRecord("place");
                                 this.props.goToRecordAudio();
@@ -181,6 +180,7 @@ class CreateTagStep1 extends Component {
                                     <Icon name="microphone" style={styles.actionButtonIcon} />
                                 </ElevatedView>
                             </TouchableWithoutFeedback>
+                            <KeyboardSpacer/>
                         </View>
                     </ElevatedView>
                     <ElevatedView style={styles.card} elevation={2}>

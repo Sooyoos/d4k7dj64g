@@ -163,7 +163,6 @@ class LoginScreen extends Component {
                             <LoginFactoryList/>
                             <LoginUsernameInput/>
                             <LoginPasswordInput />
-                            <KeyboardSpacer/>
                             <ElevatedView elevation={4} style={styles.button}>
                                 <TouchableWithoutFeedback onPress={this.login}>
                                     <View style={{width:responsiveWidth(40), height:responsiveHeight(5), justifyContent:'center', padding : 5}}>
@@ -171,6 +170,7 @@ class LoginScreen extends Component {
                                     </View>
                                 </TouchableWithoutFeedback>
                             </ElevatedView>
+                            <KeyboardSpacer/>
                         </ElevatedView>
                     </View>
                 );
