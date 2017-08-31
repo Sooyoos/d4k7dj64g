@@ -37,8 +37,9 @@ let styles = StyleSheet.create({
         justifyContent: 'center',
     },
     logo : {
-        width : responsiveWidth(75),
-        height : responsiveHeight(20),
+        margin: responsiveWidth(5),
+        width : responsiveWidth(70),
+        resizeMode : 'contain',
     },
     button: {
         width:responsiveWidth(40),
@@ -146,7 +147,7 @@ class LoginScreen extends Component {
                 return (
                     <View style={styles.login}>
                         <ElevatedView elevation={2} style={styles.body}>
-                            <Image source={require('../assets/img/logo.png')} style={styles.logo} />
+                            <Image source={require('../assets/img/Logo-sparkplant.png')} style={styles.logo} />
                             <Picker style={styles.userSelect} onValueChange={(value, index) => {this.autoLogin(index, value);}} >
                                 {this.buildUsersList()}
                             </Picker>
@@ -159,7 +160,7 @@ class LoginScreen extends Component {
                 return (
                     <View style={styles.login}>
                         <ElevatedView elevation={2} style={styles.body}>
-                            <Image source={require('../assets/img/logo.png')} style={styles.logo} />
+                            <Image source={require('../assets/img/Logo-sparkplant.png')} style={styles.logo} />
                             <LoginFactoryList/>
                             <LoginUsernameInput/>
                             <LoginPasswordInput />
