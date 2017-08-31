@@ -278,6 +278,8 @@ const initialNavState = {
             routes: [
                 { key: 'LoginTab', routeName: 'LoginTab' },
                 { key: 'HomeTab', routeName: 'HomeTab' },
+                { key: 'DrawerOpen', routeName: 'DrawerOpen' },
+                { key: 'DrawerClose', routeName: 'DrawerClose' },
             ],
             index: 0,
         },

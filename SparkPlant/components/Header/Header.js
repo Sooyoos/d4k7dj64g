@@ -3,8 +3,13 @@ import {
     View,
     Text,
     StyleSheet,
+    TouchableWithoutFeedback,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../../actions';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 let styles = StyleSheet.create({
     header: {
@@ -20,24 +25,16 @@ let styles = StyleSheet.create({
         color: '#FFFFFF',
         textAlign: 'center',
     },
-    logout:{
-        flex:0.8,
+    menuButton : {
+        padding : responsiveWidth(1),
     },
-    logoutIcon:{
-        color:'#ffffff',
-        fontSize: 20,
-    },
-    menu:{
-        flex:0.8,
-        alignItems: 'center',
-    },
-    menuIcon:{
-        color:'#ffffff',
-        fontSize: 20,
+    menuIcon : {
+        fontSize: responsiveFontSize(2.4),
+        color : "#ffffff",
     }
 });
 
-export default class Header extends Component {
+class Header extends Component {
 
     constructor(props) {
         super(props);
@@ -46,6 +43,11 @@ export default class Header extends Component {
     render() {
         return (
             <View style={styles.header}>
+                <TouchableWithoutFeedback onPress={() => {this.props.props.navigation.navigate('DrawerOpen');}}>
+                    <View style={styles.menuButton}>
+                        <Icon style={styles.menuIcon} name="menu"/>
+                    </View>
+                </TouchableWithoutFeedback>
                 <Text style={styles.title}>
                     SparkPlant
                 </Text>
@@ -53,3 +55,17 @@ export default class Header extends Component {
         );
     }
 };
+
+function mapStateToProps(state) {
+    return {
+        login: state.login,
+        nav : state.nav,
+        users : state.users,
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(ActionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
