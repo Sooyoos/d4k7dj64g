@@ -15,6 +15,7 @@ import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ActionCreators } from '../../actions';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import HeaderNews from "../../components/Header/HeaderNews";
 import ElevatedView from "react-native-elevated-view";
 import RadioButton from "../../components/Utils/RadioButton";
@@ -361,6 +362,7 @@ class CreateNewsStep1 extends Component {
                                     </TouchableWithoutFeedback>
                                 </ElevatedView>
                             </View>
+                            <KeyboardSpacer/>
                         </ScrollView>
                     </View>
                 </View>
@@ -433,6 +435,7 @@ class CreateNewsStep1 extends Component {
                                     </TouchableWithoutFeedback>
                                 </ElevatedView>
                             </View>
+                            <KeyboardSpacer/>
                         </ScrollView>
                     </View>
                 </View>

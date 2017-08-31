@@ -21,7 +21,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 let styles = StyleSheet.create({
     card : {
-        flex : 1,
+        height : responsiveHeight(40),
         margin : 10,
         backgroundColor : '#ffffff',
     },
@@ -33,16 +33,16 @@ let styles = StyleSheet.create({
         alignItems: 'center',
     },
     cardHeaderIconView : {
-        width: responsiveWidth(8),
-        height : responsiveWidth(8),
-        borderRadius : responsiveWidth(4),
+        width: responsiveWidth(10),
+        height : responsiveWidth(10),
+        borderRadius : responsiveWidth(5),
         backgroundColor: '#3f51b5',
         margin : responsiveWidth(1.5),
         padding : responsiveWidth(0.5),
     },
     cardHeaderIcon : {
         flex : 2,
-        fontSize : responsiveFontSize(3.5),
+        fontSize : responsiveFontSize(4.5),
         textAlign : 'center',
         color : '#ffffff',
     },
@@ -255,7 +255,7 @@ class CreateTagStep2 extends Component {
         return (
             <View style={{flex : 1}}>
                 <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
-                <View style={{flex : 7}}>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <ElevatedView style={styles.card} elevation={2}>
                         <ElevatedView style={styles.cardHeader} elevation={2}>
                             <View style={styles.cardHeaderIconView}>
@@ -276,7 +276,6 @@ class CreateTagStep2 extends Component {
                                     <Icon name="microphone" style={styles.actionButtonIcon} />
                                 </ElevatedView>
                             </TouchableWithoutFeedback>
-                            <KeyboardSpacer/>
                         </View>
                     </ElevatedView>
                     <ElevatedView style={styles.card} elevation={2}>
@@ -306,7 +305,8 @@ class CreateTagStep2 extends Component {
                             </View>
                         </View>
                     </ElevatedView>
-                </View>
+                    <KeyboardSpacer/>
+                </ScrollView>
                 <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
                     <TouchableWithoutFeedback onPress={this.next.bind(this)}>
                         <ElevatedView style={styles.buttonView} elevation={7}>
