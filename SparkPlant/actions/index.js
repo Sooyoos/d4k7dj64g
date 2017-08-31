@@ -7,6 +7,7 @@ import * as ChecklistsActions from './checklists';
 import * as UsersActions from './users';
 import * as TagsNavigation from './navigation/tags';
 import * as NewsNavigation from './navigation/news';
+import * as LoginNavigation from './navigation/login';
 import * as ChecklistsNavigation from './navigation/checklists';
 
 export const ActionCreators = Object.assign({},
@@ -18,6 +19,7 @@ export const ActionCreators = Object.assign({},
     NewsNavigation,
     UtilsActions,
     ChecklistsNavigation,
+    LoginNavigation,
     ChecklistsActions,
     UsersActions,
 );

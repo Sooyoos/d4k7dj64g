@@ -43,6 +43,10 @@ export const loginReducer = {
                 state.userToken = null;
                 return Object.assign({}, state, {previousUsers : [], loading : false});
             }
+            case types.LOGOUT: {
+                state.userToken = null;
+                return Object.assign({}, state, {tokenString : null, loading : false});
+            }
             default :
                 return state;
         }

@@ -75,12 +75,12 @@ class LoginScreen extends Component {
             new : false,
         };
         this.login = this.login.bind(this);
-        this.props.tryPreviousLogin();
     }
 
     componentWillMount()
     {
         let props = this.props;
+        this.props.tryPreviousLogin();
         BackHandler.addEventListener('hardwareBackPress', function(){
             props.navigateBack();
             return true;

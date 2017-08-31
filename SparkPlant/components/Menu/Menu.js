@@ -5,7 +5,8 @@ import {
     Switch,
     StyleSheet,
     AsyncStorage,
-    Image
+    Image,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import { DrawerItems } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -25,6 +26,7 @@ let styles = StyleSheet.create({
         padding:20,
     },
     menuHeaderIconView : {
+        width : responsiveWidth(80),
         height: responsiveHeight(8),
         marginTop: 20,
         flexDirection : 'row',
@@ -99,9 +101,14 @@ class DrawerMenu extends Component {
         }
     }
 
+    logout()
+    {
+        this.props.logout();
+        this.props.goToLogin();
+    }
+
     render() {
         let user = this.props.users.loggedUser;
-        console.log(user);
 
         if(user)
         {
@@ -109,11 +116,16 @@ class DrawerMenu extends Component {
             return (
                 <View style={styles.menu}>
                     <View style={styles.menuHeader}>
-                        <View style={styles.menuHeaderIconView}>
-                            <Icon style={styles.menuHeaderIcon} name="star" />
-                            <Text style={styles.menuHeaderIconText}>
-                                {user.points} points
-                            </Text>
+                        <View style={{flexDirection : 'row'}}>
+                            <View style={styles.menuHeaderIconView}>
+                                <Icon style={styles.menuHeaderIcon} name="star" />
+                                <Text style={styles.menuHeaderIconText}>
+                                    {user.points} points
+                                </Text>
+                            </View>
+                            <TouchableWithoutFeedback onPress={this.logout.bind(this)}>
+                                <Icon name="sign-out" style={{color : '#ffffff', fontSize : responsiveFontSize(3), marginTop: 20}}/>
+                            </TouchableWithoutFeedback>
                         </View>
                         <View style={styles.menuHeaderUserInfosView}>
                             {this.renderAvatar(user, initials)}

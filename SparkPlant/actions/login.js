@@ -1,6 +1,7 @@
 import * as types from './types';
 import { tryUser } from './users';
 import { tryUserNews } from './news';
+import { goToLogin } from './navigation/login';
 import Base64 from 'base-64';
 import { AsyncStorage } from 'react-native';
 
@@ -201,3 +202,18 @@ export function tryPreviousLogin(){
         return dispatch(fetchPreviousLogin());
     }
 }
+function logoutRequested()
+{
+    return {
+        type: types.LOGOUT,
+    }
+}
+
+export function logout()
+{
+    return (dispatch, getState) => {
+        dispatch(logoutRequested());
+        dispatch(goToLogin())
+    }
+}
+
