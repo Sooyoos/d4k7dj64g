@@ -42,8 +42,8 @@ let styles = StyleSheet.create({
         resizeMode : 'contain',
     },
     button: {
-        width:responsiveWidth(40),
-        height:responsiveHeight(5),
+        minWidth:responsiveWidth(40),
+        minHeight:responsiveHeight(5),
         backgroundColor: '#00bcd4',
         marginTop:responsiveHeight(5),
         flexDirection: 'row',
@@ -124,10 +124,6 @@ class LoginScreen extends Component {
             <Picker.Item key={-2} label={"Utilisateur"} value={null} />
         );
 
-        list.push(
-            <Picker.Item key={-1} label={"Nouvel utilisateur"} value={"new"} />
-        );
-
         for(var i = 0; i < users.length; i++)
         {
             list.push(
@@ -148,9 +144,22 @@ class LoginScreen extends Component {
                     <View style={styles.login}>
                         <ElevatedView elevation={2} style={styles.body}>
                             <Image source={require('../assets/img/Logo-sparkplant.png')} style={styles.logo} />
+                            <Text style={{fontSize: responsiveFontSize(1.5)}}>
+                                Connectez vous avec l'un des utilisateurs suivants :
+                            </Text>
                             <Picker style={styles.userSelect} onValueChange={(value, index) => {this.autoLogin(index, value);}} >
                                 {this.buildUsersList()}
                             </Picker>
+                            <Text style={{fontSize: responsiveFontSize(1.5)}}>
+                                Ou :
+                            </Text>
+                            <ElevatedView elevation={4} style={styles.button}>
+                                <TouchableWithoutFeedback onPress={() => {this.setState({new : true})}}>
+                                    <View style={{width:responsiveWidth(40), height:responsiveHeight(7), justifyContent:'center', padding : 5}}>
+                                        <Text style={styles.buttonText}>ENTREZ VOS INFORMATIONS</Text>
+                                    </View>
+                                </TouchableWithoutFeedback>
+                            </ElevatedView>
                         </ElevatedView>
                     </View>
                 );
