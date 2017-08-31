@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { ActionCreators } from '../../actions';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import HeaderChecklist from "../../components/Header/HeaderChecklist";
@@ -174,6 +175,11 @@ class ChecklistExecute extends Component {
         super(props);
 
         let tasks = this.props.checklists.currentChecklist.checklistInstanceTasks;
+        this.state = {
+            tasks : tasks,
+            currentTask : 0,
+            mesure : null,
+        };
         for(var i = 0; i < tasks.length; i++)
         {
             if(tasks[i].status === "todo")
@@ -567,6 +573,7 @@ class ChecklistExecute extends Component {
                     <ElevatedView elevation={2} style={styles.listTasks}>
                         <ScrollView>
                             {this.buildTasksList()}
+                            <KeyboardSpacer />
                         </ScrollView>
                     </ElevatedView>
                 </View>
