@@ -108,39 +108,42 @@ class CreateTagPreview extends Component {
 
     buildMediaList()
     {
-        let medias = this.props.tags.currentTag.media;
         let list = [];
 
-        if(medias.length > 0)
+        if(this.props.tags.currentTag)
         {
-            for(var i = 0; i < medias.length; i++)
+            let medias = this.props.tags.currentTag.media;
+
+            if(medias.length > 0)
             {
-                if(medias[i].filetype.indexOf("video") === -1)
+                for(var i = 0; i < medias.length; i++)
                 {
-                    list.push(
-                        <Image key={i} style={styles.sliderImage} source={{uri : medias[i].path}} />
-                    );
-                }
-                else
-                {
-                    let thumbnail = "http://via.placeholder.com/" + Math.round(responsiveWidth(70)) + "x" + Math.round(responsiveHeight(30)) + "/000000.png";
-                    console.log(thumbnail);
-                    list.push(
-                        <VideoPlayer
-                            style={{width : responsiveWidth(70), height : responsiveHeight(30)}}
-                            key={i}
-                            video={{ uri: medias[i].path }}
-                            videoWidth={Math.round(responsiveWidth(70))}
-                            videoHeight={Math.round(responsiveHeight(30))}
-                            thumbnail={{uri : thumbnail}}
-                            endWithThumbnail
-                        />
-                    );
+                    if(medias[i].filetype.indexOf("video") === -1)
+                    {
+                        list.push(
+                            <Image key={i} style={styles.sliderImage} source={{uri : medias[i].path}} />
+                        );
+                    }
+                    else
+                    {
+                        let thumbnail = "http://via.placeholder.com/" + Math.round(responsiveWidth(70)) + "x" + Math.round(responsiveHeight(30)) + "/000000.png";
+                        console.log(thumbnail);
+                        list.push(
+                            <VideoPlayer
+                                style={{width : responsiveWidth(70), height : responsiveHeight(30)}}
+                                key={i}
+                                video={{ uri: medias[i].path }}
+                                videoWidth={Math.round(responsiveWidth(70))}
+                                videoHeight={Math.round(responsiveHeight(30))}
+                                thumbnail={{uri : thumbnail}}
+                                endWithThumbnail
+                            />
+                        );
+                    }
                 }
             }
         }
 
-        console.log(list);
         return list;
     }
 
