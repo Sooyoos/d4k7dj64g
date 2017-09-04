@@ -55,11 +55,16 @@ class TagHistory extends Component {
     render() {
         if(this.props.tags.loading === true)
         {
-            ToastAndroid.show("LOADING", ToastAndroid.SHORT);
             return (
                 <View style={styles.login}>
+                    <HeaderTagDetails {...this.props} headerTitle="Chargement" />
                     <View style={styles.list}>
                         <ActivityIndicator color="#3f51b5" size="large"/>
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={false} tag={null} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
+                        <FooterButton {...this.props} active={true} tag={null} iconName="info" text="Historique" route={this.props.goToTagHistory}/>
+                        <FooterButton {...this.props} active={false} tag={null} iconName="exchange" text="Actions" route={this.props.goToTagAction}/>
                     </View>
                 </View>
             );
