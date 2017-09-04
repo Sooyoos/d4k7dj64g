@@ -133,8 +133,6 @@ class TagDetails extends Component {
                 }
             }
         }
-
-        console.log(list);
         return list;
     }
 

@@ -6,6 +6,7 @@ import {
     Image,
     Text,
     TouchableWithoutFeedback,
+    ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -149,99 +150,142 @@ class CreateTagPreview extends Component {
 
     render() {
         let tag = this.props.tags.creation_current;
-        return (
-            <View style={{flex : 1, backgroundColor : "#ffffff"}}>
-                <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
-                <View style={styles.body}>
-                    <ScrollView style={styles.slider} alignItems={'center'} horizontal={true} showsHorizontalScrollIndicator={false}>
-                        {this.buildMediaList()}
-                    </ScrollView>
-                    <View style={styles.infos}>
-                        <View style={styles.section}>
-                            <View style={styles.sectionVisual}>
-                                <Icon name={this.getStatusIcon()} style={{fontSize:responsiveFontSize(2.8)}} />
+        if(tag !== null)
+        {
+            return (
+                <View style={{flex : 1, backgroundColor : "#ffffff"}}>
+                    <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
+                    <View style={styles.body}>
+                        <ScrollView style={styles.slider} alignItems={'center'} horizontal={true} showsHorizontalScrollIndicator={false}>
+                            {this.buildMediaList()}
+                        </ScrollView>
+                        <View style={styles.infos}>
+                            <View style={styles.section}>
+                                <View style={styles.sectionVisual}>
+                                    <Icon name={this.getStatusIcon()} style={{fontSize:responsiveFontSize(2.8)}} />
+                                </View>
+                                <View style={styles.sectionContent}>
+                                    <View>
+                                        <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
+                                            ? ouvert par "TBD"
+                                        </Text>
+                                        <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
+                                            {tag.title}
+                                        </Text>
+                                    </View>
+                                </View>
                             </View>
-                            <View style={styles.sectionContent}>
-                                <View>
+                            <View style={styles.section}>
+                                <View style={styles.sectionVisual}>
+                                    <Image source={{uri : "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg"}} style={{width:responsiveWidth(8), height:responsiveWidth(8), borderRadius:responsiveWidth(4)}}/>
+                                </View>
+                                <View style={styles.sectionContent}>
+                                    <View>
+                                        <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
+                                            Responsable en charge
+                                        </Text>
+                                        <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
+                                            {() => {
+                                                if(tag.supervisor)
+                                                {
+                                                    return(
+                                                        tag.supervisor.firstName + " " + tag.supervisor.lastName
+                                                    );
+                                                }
+                                            }}
+                                        </Text>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={styles.section}>
+                                <View style={styles.sectionVisual}>
+                                    <View style={styles.sectionVisualType}>
+                                        <Text style={{color:'#ffffff', fontSize: responsiveFontSize(2.8), textAlign: 'center'}}>
+                                            {() => {
+                                                if(tag.primaryAxis)
+                                                {
+                                                    return(
+                                                        tag.primaryAxis.code
+                                                    );
+                                                }
+                                            }}
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={styles.sectionContent}>
+                                    <View>
+                                        <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
+                                            Nature
+                                        </Text>
+                                        <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
+                                            {() => {
+                                                if(tag.primaryAxis)
+                                                {
+                                                    return(
+                                                        tag.primaryAxis.code
+                                                    );
+                                                }
+                                            }}
+                                        </Text>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={styles.section}>
+                                <View style={styles.sectionVisual}>
+                                    <Icon name="map" style={{fontSize:responsiveFontSize(2.8)}} />
+                                </View>
+                                <View style={styles.sectionContent}>
+                                    <View>
+                                        <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
+                                            Lieu
+                                        </Text>
+                                        <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
+                                            {() => {
+                                                if(tag.place)
+                                                {
+                                                    return(
+                                                        tag.place.name
+                                                    );
+                                                }
+                                            }}
+                                        </Text>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={styles.section}>
+                                <View style={styles.sectionVisual}>
+                                    <Icon name="clipboard-text" style={{fontSize:responsiveFontSize(2.8)}} />
+                                </View>
+                                <View style={styles.sectionContent}>
                                     <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
-                                        ? ouvert par "TBD"
-                                    </Text>
-                                    <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
-                                        {tag.title}
+                                        {tag.description}
                                     </Text>
                                 </View>
-                            </View>
-                        </View>
-                        <View style={styles.section}>
-                            <View style={styles.sectionVisual}>
-                                <Image source={{uri : "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg"}} style={{width:responsiveWidth(8), height:responsiveWidth(8), borderRadius:responsiveWidth(4)}}/>
-                            </View>
-                            <View style={styles.sectionContent}>
-                                <View>
-                                    <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
-                                        Responsable en charge
-                                    </Text>
-                                    <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
-                                        {tag.supervisor.firstName} {tag.supervisor.lastName}
-                                    </Text>
-                                </View>
-                            </View>
-                        </View>
-                        <View style={styles.section}>
-                            <View style={styles.sectionVisual}>
-                                <View style={styles.sectionVisualType}>
-                                    <Text style={{color:'#ffffff', fontSize: responsiveFontSize(2.8), textAlign: 'center'}}>
-                                        {tag.primaryAxis.code}
-                                    </Text>
-                                </View>
-                            </View>
-                            <View style={styles.sectionContent}>
-                                <View>
-                                    <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
-                                        Nature
-                                    </Text>
-                                    <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
-                                        {tag.primaryAxis.name}
-                                    </Text>
-                                </View>
-                            </View>
-                        </View>
-                        <View style={styles.section}>
-                            <View style={styles.sectionVisual}>
-                                <Icon name="map" style={{fontSize:responsiveFontSize(2.8)}} />
-                            </View>
-                            <View style={styles.sectionContent}>
-                                <View>
-                                    <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
-                                        Lieu
-                                    </Text>
-                                    <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
-                                        {tag.place.name}
-                                    </Text>
-                                </View>
-                            </View>
-                        </View>
-                        <View style={styles.section}>
-                            <View style={styles.sectionVisual}>
-                                <Icon name="clipboard-text" style={{fontSize:responsiveFontSize(2.8)}} />
-                            </View>
-                            <View style={styles.sectionContent}>
-                                <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
-                                    {tag.description}
-                                </Text>
                             </View>
                         </View>
                     </View>
+                    <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
+                        <TouchableWithoutFeedback onPress={this.create.bind(this)}>
+                            <ElevatedView style={styles.buttonView} elevation={7}>
+                                <Icon name="check" style={styles.buttonIcon} />
+                            </ElevatedView>
+                        </TouchableWithoutFeedback>
+                    </View>
                 </View>
-                <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
-                    <TouchableWithoutFeedback onPress={this.create.bind(this)}>
-                        <ElevatedView style={styles.buttonView} elevation={7}>
-                            <Icon name="check" style={styles.buttonIcon} />
-                        </ElevatedView>
-                    </TouchableWithoutFeedback>
+            );
+        }
+        else
+        {
+            return (
+                <View style={{flex : 1, backgroundColor : "#ffffff"}}>
+                    <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
+                    <View style={styles.body}>
+                        <ActivityIndicator color="#3f51b5" size="large"/>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
+
     }
 };
 

@@ -106,7 +106,6 @@ class TagsScreen extends Component {
                 </View>
             );
         }
-
     }
 }
 

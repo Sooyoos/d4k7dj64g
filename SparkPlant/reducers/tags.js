@@ -152,7 +152,7 @@ export const tagsReducer = {
                 return Object.assign({}, state, {loading : true});
             }
             case types.GET_USER_TAGS_SUCCESS: {
-                return Object.assign({}, state, {userTags : action.tags, loading : false});
+                return Object.assign({}, state, {userTags : action.tags, loading : false, creation_current : initialState.creation_current});
             }
             case types.GET_USER_TAGS_FAILURE: {
                 return Object.assign({}, state, {userTags : null, loading : false});
