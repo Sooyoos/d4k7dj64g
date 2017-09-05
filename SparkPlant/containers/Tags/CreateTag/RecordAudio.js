@@ -6,6 +6,7 @@ import {
     Image,
     Text,
     TouchableWithoutFeedback,
+    ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -27,9 +28,9 @@ let styles = StyleSheet.create({
         justifyContent: 'center',
     },
     actionButtonView : {
-        width: responsiveWidth(8),
-        height : responsiveWidth(8),
-        borderRadius : responsiveWidth(4),
+        width: responsiveWidth(16),
+        height : responsiveWidth(16),
+        borderRadius : responsiveWidth(8),
         backgroundColor: '#00bcd4',
         padding : 3,
         marginVertical : 10,
@@ -37,7 +38,7 @@ let styles = StyleSheet.create({
         justifyContent: "center",
     },
     actionButtonIcon : {
-        fontSize : responsiveFontSize(2.8),
+        fontSize : responsiveFontSize(5),
         textAlign : 'center',
         color : '#ffffff',
     },
@@ -82,53 +83,67 @@ class RecordAudio extends Component {
 
         if(mode === "place")
         {
+            this.props.goToCreateTagStep1();
             this.props.tryTagsUploadPlaceAudio(this.props.login, {
                 uri: "file://" + filePath,
                 type: "audio/aac",
                 name: filePath.substring(filePath.lastIndexOf("/"))
             });
-            this.props.goToCreateTagStep1();
         }
         else
         {
+            this.props.goToCreateTagStep2();
             this.props.tryTagsUploadDescriptionAudio(this.props.login, {
                 uri: "file://" + filePath,
                 type: "audio/aac",
                 name: filePath.substring(filePath.lastIndexOf("/"))
             });
-            this.props.goToCreateTagStep2();
         }
     }
 
     render() {
         let tag = this.props.tags.creation_current;
 
-        if(this.state.recording)
+        if(this.props.tags.loading === false)
         {
-            return (
-                <View style={{flex : 1, backgroundColor : "#ffffff"}}>
-                    <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
-                    <View style={styles.body}>
-                        <TouchableWithoutFeedback onPress={() => {this.stop()}}>
-                            <ElevatedView style={styles.actionButtonView} elevation={3}>
-                                <Icon name="microphone-slash" style={styles.actionButtonIcon} />
-                            </ElevatedView>
-                        </TouchableWithoutFeedback>
+            if(this.state.recording)
+            {
+                return (
+                    <View style={{flex : 1, backgroundColor : "#ffffff"}}>
+                        <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
+                        <View style={styles.body}>
+                            <TouchableWithoutFeedback onPress={() => {this.stop()}}>
+                                <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                    <Icon name="stop" style={styles.actionButtonIcon} />
+                                </ElevatedView>
+                            </TouchableWithoutFeedback>
+                        </View>
                     </View>
-                </View>
-            );
+                );
+            }
+            else
+            {
+                return (
+                    <View style={{flex : 1, backgroundColor : "#ffffff"}}>
+                        <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
+                        <View style={styles.body}>
+                            <TouchableWithoutFeedback onPress={() => {this.record()}}>
+                                <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                    <Icon name="microphone" style={styles.actionButtonIcon} />
+                                </ElevatedView>
+                            </TouchableWithoutFeedback>
+                        </View>
+                    </View>
+                );
+            }
         }
         else
         {
-            return (
+            return(
                 <View style={{flex : 1, backgroundColor : "#ffffff"}}>
                     <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                     <View style={styles.body}>
-                        <TouchableWithoutFeedback onPress={() => {this.record()}}>
-                            <ElevatedView style={styles.actionButtonView} elevation={3}>
-                                <Icon name="microphone" style={styles.actionButtonIcon} />
-                            </ElevatedView>
-                        </TouchableWithoutFeedback>
+                        <ActivityIndicator color="#3f51b5" size="large"/>
                     </View>
                 </View>
             );

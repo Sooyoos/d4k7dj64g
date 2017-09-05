@@ -983,10 +983,9 @@ function fetchTagsUploadPlaceAudio(login, file)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.warn(responseJson);
                 dispatch(tagsUploadPlaceAudioSuccess(responseJson));
             })
-            .catch((error) => { console.warn(error); dispatch(tagsUploadPlaceAudioFailure()); });
+            .catch((error) => { dispatch(tagsUploadPlaceAudioFailure()); });
     }
 }
 
@@ -1040,10 +1039,9 @@ function fetchTagsUploadDescriptionAudio(login, file)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.warn(responseJson);
                 dispatch(tagsUploadDescriptionAudioSuccess(responseJson));
             })
-            .catch((error) => { console.warn(error); dispatch(tagsUploadDescriptionAudioFailure()); });
+            .catch((error) => { console.log(error); dispatch(tagsUploadDescriptionAudioFailure()); });
     }
 }
 
