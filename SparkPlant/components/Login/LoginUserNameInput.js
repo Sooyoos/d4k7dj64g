@@ -27,7 +27,7 @@ class LoginUsernameInput extends Component {
 
     render() {
         return (
-            <TextInput style={styles.input} placeholder="Username" value={this.props.login.username} onChangeText={(username) => this.props.setLoginUsername(username)}/>
+            <TextInput style={styles.input} placeholder="Utilisateur" value={this.props.login.username} onChangeText={(username) => this.props.setLoginUsername(username)}/>
         );
     }
 };
