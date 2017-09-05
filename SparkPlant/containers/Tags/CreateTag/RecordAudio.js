@@ -69,11 +69,13 @@ class RecordAudio extends Component {
 
     async record()
     {
+        this.setState({recording : true});
         const filePath = await AudioRecorder.startRecording();
     }
 
     async stop()
     {
+        this.setState({recording : false});
         let mode = this.props.tags.toRecord;
 
         const filePath = await AudioRecorder.stopRecording();
@@ -101,23 +103,36 @@ class RecordAudio extends Component {
     render() {
         let tag = this.props.tags.creation_current;
 
-        return (
-            <View style={{flex : 1, backgroundColor : "#ffffff"}}>
-                <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
-                <View style={styles.body}>
-                    <TouchableWithoutFeedback onPress={() => {this.record()}}>
-                        <ElevatedView style={styles.actionButtonView} elevation={3}>
-                            <Icon name="microphone" style={styles.actionButtonIcon} />
-                        </ElevatedView>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={() => {this.stop()}}>
-                        <ElevatedView style={styles.actionButtonView} elevation={3}>
-                            <Icon name="microphone-slash" style={styles.actionButtonIcon} />
-                        </ElevatedView>
-                    </TouchableWithoutFeedback>
+        if(this.state.recording)
+        {
+            return (
+                <View style={{flex : 1, backgroundColor : "#ffffff"}}>
+                    <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
+                    <View style={styles.body}>
+                        <TouchableWithoutFeedback onPress={() => {this.stop()}}>
+                            <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                <Icon name="microphone-slash" style={styles.actionButtonIcon} />
+                            </ElevatedView>
+                        </TouchableWithoutFeedback>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
+        else
+        {
+            return (
+                <View style={{flex : 1, backgroundColor : "#ffffff"}}>
+                    <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
+                    <View style={styles.body}>
+                        <TouchableWithoutFeedback onPress={() => {this.record()}}>
+                            <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                <Icon name="microphone" style={styles.actionButtonIcon} />
+                            </ElevatedView>
+                        </TouchableWithoutFeedback>
+                    </View>
+                </View>
+            );
+        }
     }
 };
 
