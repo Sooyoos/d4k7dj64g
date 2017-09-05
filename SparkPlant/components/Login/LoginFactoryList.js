@@ -16,7 +16,6 @@ let styles = StyleSheet.create({
 });
 
 let factories = [
-    {value : 0, label : "Sélectionnez votre usine"},
     {value : 1, label : "PSA Aulnay"},
     {value : 2, label : "PSA Rennes"},
     {value : 3, label : "Keroler Betton"},
@@ -39,7 +38,7 @@ class LoginFactoryList extends Component {
         }
 
         return(
-            <Picker prompt='Select your factory' style={styles.list} selectedValue={this.props.login.factory} onValueChange={(itemValue, itemIndex) => this.props.setLoginFactory(itemValue)}>
+            <Picker prompt='Selectionnez votre usine' style={styles.list} selectedValue={this.props.login.factory} onValueChange={(itemValue, itemIndex) => this.props.setLoginFactory(itemValue)}>
                 {factoryList}
             </Picker>
         );
