@@ -118,7 +118,7 @@ class TagListItem extends Component {
                             <Text style={styles.itemId}>
                                 #{lpad(this.props.tag["@id"].substr(this.props.tag["@id"].lastIndexOf("/") +1), 6)}
                             </Text>
-                            <Image style={styles.itemImage} source={ { uri : "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg"}} />
+                            <Image style={styles.itemImage} source={{uri : this.props.tag.supervisor.avatar ? this.props.tag.supervisor.avatar.path : "http://via.placeholder.com/50x50" }} />
                             <Text style={styles.itemFullname}>
                                 {this.props.tag.supervisor.firstName} {this.props.tag.supervisor.lastName}
                             </Text>

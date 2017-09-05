@@ -138,7 +138,7 @@ class NewsDetail extends Component {
                             <Text style={styles.infoText}>
                                 Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
                             </Text>
-                            <Image style={styles.infoImage} source={{uri : "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg"}}/>
+                            <Image style={styles.infoImage} source={{uri : item.user.avatar ? item.user.avatar.path : "http://via.placeholder.com/50x50" }}/>
                         </View>
                         <Text style={styles.title}>
                             {item.title}

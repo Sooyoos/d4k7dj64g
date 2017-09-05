@@ -80,7 +80,7 @@ class TagHistoryItem extends Component {
         return (
             <View style={styles.item}>
                 <View style={styles.imageSection}>
-                    <Image style={styles.image} source={{uri : "http://via.placeholder.com/100x100"}} />
+                    <Image style={styles.image} source={{uri : this.props.item.user.avatar ? this.props.item.user.avatar.path : "http://via.placeholder.com/50x50" }} />
                 </View>
                 <View style={styles.contentSection}>
                     <Text style={styles.contentFirst}>
