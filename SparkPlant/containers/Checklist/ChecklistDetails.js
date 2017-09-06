@@ -113,6 +113,13 @@ let styles = StyleSheet.create({
 
 class ChecklistDetails extends Component {
 
+    static navigationOptions = {
+        drawerLabel: 'CHECKLISTS',
+        drawerIcon: ({tintColor}) => (
+            <Icon name='check-square-o' style={{fontSize : 24, color : '#757575'}}/>
+        ),
+    };
+
     constructor(props)
     {
         super(props);
