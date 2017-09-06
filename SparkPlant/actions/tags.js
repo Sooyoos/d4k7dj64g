@@ -7,7 +7,7 @@ function fetchUserTags(login)
         dispatch(userTagsRequested());
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + login.userToken["@id"] + "/tags", {
+        fetch(baseUrl + login.userToken["@id"] + "/tags?order[tag.createdAt]=desc", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -55,7 +55,7 @@ function fetchAllTags(login)
         dispatch(allTagsRequested());
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/tags", {
+        fetch(baseUrl + "/tags?order[createdAt]=desc", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -543,7 +543,7 @@ function fetchTagHistory(login, tag)
         dispatch(tagHistoryRequested());
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + tag["@id"] + "/logs", {
+        fetch(baseUrl + tag["@id"] + "/logs?order[createdAt]=desc", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,

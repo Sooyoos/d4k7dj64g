@@ -86,7 +86,7 @@ class TagDetails extends Component {
         title : 'TAGS',
         drawerLabel: "TAGS",
         drawerIcon: ({tintColor}) => (
-            <Icon name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
+            <IconA name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
         ),
     };
 

@@ -11,6 +11,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 import HeaderTags from "../../components/Header/HeaderTags";
 import FooterButton from "../../components/Footer/FooterButton";
 import TagList from "../../components/Tags/TagList";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 let styles = StyleSheet.create({
     login: {
