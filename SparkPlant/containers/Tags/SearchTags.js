@@ -59,6 +59,14 @@ let styles = StyleSheet.create({
 
 class SearchTags extends Component {
 
+    static navigationOptions = {
+        title : 'TAGS',
+        drawerLabel: "TAGS",
+        drawerIcon: ({tintColor}) => (
+            <Icon name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
+        ),
+    };
+
     constructor(props)
     {
         super(props);

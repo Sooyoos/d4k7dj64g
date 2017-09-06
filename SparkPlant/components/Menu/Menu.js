@@ -146,7 +146,7 @@ class DrawerMenu extends Component {
                         </View>
                     </View>
                     <View>
-                        <DrawerItems {...this.props} />
+                        <DrawerItems contentOptions={{activeTintColor : '#00bcd4'}} {...this.props} />
                     </View>
                 </View>
             );

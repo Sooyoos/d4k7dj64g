@@ -4,6 +4,7 @@ import {
     StyleSheet,
     Alert,
     ActivityIndicator,
+    Text,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -36,9 +37,10 @@ let styles = StyleSheet.create({
 class TagsScreen extends Component {
 
     static navigationOptions = {
-        drawerLabel: 'TAGS',
+        title : 'TAGS',
+        drawerLabel: "TAGS",
         drawerIcon: ({tintColor}) => (
-            <Icon name='tag' style={{fontSize : 24, color : '#757575'}}/>
+            <Icon name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
         ),
     };
 

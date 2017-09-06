@@ -80,6 +80,13 @@ let styles = StyleSheet.create({
 
 class CreateTagPreview extends Component {
 
+    static navigationOptions = {
+        drawerLabel: 'TAGS',
+        drawerIcon: ({tintColor}) => (
+            <Icon name='tag' style={{fontSize : 24, color : '#757575'}}/>
+        ),
+    };
+
     constructor(props) {
         super(props);
     }
