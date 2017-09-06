@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
     Text,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -153,7 +153,7 @@ class TagActions extends Component {
                     <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
                     <View style={styles.list}>
                         <View style={styles.listLine}>
-                            <TouchableWithoutFeedback onPress={this.goToComment.bind(this)}>
+                            <TouchableOpacity onPress={this.goToComment.bind(this)}>
                                 <View>
                                     <ElevatedView elevation={10} style={styles.buttonComment}>
                                         <Icon name="comment-o" style={styles.icon}/>
@@ -162,8 +162,8 @@ class TagActions extends Component {
                                         Commenter
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={this.goToTransfer.bind(this)}>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={this.goToTransfer.bind(this)}>
                                 <View>
                                     <ElevatedView elevation={10} style={styles.buttonTransfer}>
                                         <Icon name="mail-forward" style={styles.icon}/>
@@ -172,10 +172,10 @@ class TagActions extends Component {
                                         Transférer
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </View>
                         <View style={styles.listLine}>
-                            <TouchableWithoutFeedback onPress={this.resolve.bind(this)}>
+                            <TouchableOpacity onPress={this.resolve.bind(this)}>
                                 <View>
                                     <ElevatedView elevation={10} style={styles.buttonCheck}>
                                         <Icon name="check" style={styles.icon}/>
@@ -184,8 +184,8 @@ class TagActions extends Component {
                                         Résolu
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={this.abandon.bind(this)}>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={this.abandon.bind(this)}>
                                 <View>
                                     <ElevatedView elevation={10} style={styles.buttonClose}>
                                         <Icon name="close" style={styles.icon}/>
@@ -194,7 +194,7 @@ class TagActions extends Component {
                                         Non Résolu
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View style={styles.footer}>
@@ -212,7 +212,7 @@ class TagActions extends Component {
                     <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
                     <View style={styles.list}>
                         <View style={styles.listLine}>
-                            <TouchableWithoutFeedback onPress={this.goToComment.bind(this)}>
+                            <TouchableOpacity onPress={this.goToComment.bind(this)}>
                                 <View>
                                     <ElevatedView elevation={10} style={styles.buttonComment}>
                                         <Icon name="comment-o" style={styles.icon}/>
@@ -221,7 +221,7 @@ class TagActions extends Component {
                                         Commenter
                                     </Text>
                                 </View>
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View style={styles.footer}>

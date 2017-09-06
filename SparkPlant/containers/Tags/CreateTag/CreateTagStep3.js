@@ -3,7 +3,7 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -156,9 +156,9 @@ class CreateTagStep3 extends Component {
                                 </Text>
                             </View>
                             <View style={{justifyContent : 'center'}}>
-                                <TouchableWithoutFeedback>
+                                <TouchableOpacity>
                                     <Icon name="close" style={styles.cardPeopleIcon} />
-                                </TouchableWithoutFeedback>
+                                </TouchableOpacity>
                             </View>
                         </ElevatedView>
                     );
@@ -198,11 +198,11 @@ class CreateTagStep3 extends Component {
                         </View>
                     </ElevatedView>
                     <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
-                        <TouchableWithoutFeedback onPress={this.preview.bind(this)}>
+                        <TouchableOpacity onPress={this.preview.bind(this)}>
                             <ElevatedView style={styles.buttonView} elevation={7}>
                                 <Icon name="eye" style={styles.buttonIcon} />
                             </ElevatedView>
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     </View>
                 </View>
             );

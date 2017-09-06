@@ -3,7 +3,7 @@ import {
     StyleSheet,
     View,
     TextInput,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
     Keyboard,
     Text,
 } from 'react-native';
@@ -95,13 +95,13 @@ class CommentTag extends Component {
                         Votre commentaire :
                     </Text>
                     <TextInput multiline={true} style={styles.comment} placeholder="Entrez votre commentaire..." maxLength={140} onChangeText={(value) => this.setState({value : value})}/>
-                    <TouchableWithoutFeedback onPress={this.sendComment.bind(this)}>
+                    <TouchableOpacity onPress={this.sendComment.bind(this)}>
                         <View>
                             <ElevatedView style={styles.button} elevation={9}>
                                 <Icon name="commenting-o" style={styles.icon} />
                             </ElevatedView>
                         </View>
-                    </TouchableWithoutFeedback>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.footer}>
                     <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>

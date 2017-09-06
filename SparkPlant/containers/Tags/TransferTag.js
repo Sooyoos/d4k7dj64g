@@ -3,7 +3,7 @@ import {
     StyleSheet,
     View,
     Picker,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -75,6 +75,11 @@ class TransferTag extends Component {
         this.props.tryTagTransferUsers(this.props.login);
     }
 
+    componentDidMount()
+    {
+
+    }
+
     refresh(user)
     {
         this.setState({selected : user});
@@ -108,11 +113,11 @@ class TransferTag extends Component {
                             <Picker.Item key={-1} label={'Séléctionnez le destinataire'} value={null} />
                             {userList}
                         </Picker>
-                        <TouchableWithoutFeedback onPress={this.forward.bind(this)}>
+                        <TouchableOpacity onPress={this.forward.bind(this)} underlayColor="white">
                             <ElevatedView style={styles.button} elevation={9}>
                                 <Icon name="mail-forward" style={styles.icon} />
                             </ElevatedView>
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.footer}>
                         <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
@@ -131,11 +136,11 @@ class TransferTag extends Component {
                         <Picker style={styles.picker} selectedValue={this.state.selected} prompt='Select the user' mode="dropdown" onValueChange={(value) => this.refresh(value)}>
                             <Picker.Item key={-1} label={'Sélectionnez le destinataire'} value={null} />
                         </Picker>
-                        <TouchableWithoutFeedback onPress={this.forward.bind(this)}>
+                        <TouchableOpacity onPress={this.forward.bind(this)} activeOpacity={0.8}>
                             <ElevatedView style={styles.button} elevation={9}>
                                 <Icon name="mail-forward" style={styles.icon} />
                             </ElevatedView>
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.footer}>
                         <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>

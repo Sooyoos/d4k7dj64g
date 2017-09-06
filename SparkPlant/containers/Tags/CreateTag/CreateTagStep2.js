@@ -5,7 +5,7 @@ import {
     StyleSheet,
     Picker,
     TextInput,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
     Image,
     ScrollView,
 } from 'react-native';
@@ -275,14 +275,14 @@ class CreateTagStep2 extends Component {
                         <View style={styles.cardContent}>
                             <TextInput style={styles.textInput} placeholder="Titre" maxLength={40} value={this.state.tagTitle} onChangeText={(value) => this.saveTitle(value)}/>
                             <TextInput style={styles.textInput} placeholder="Description" maxLength={140} value={this.state.tagDescription} onChangeText={(value) => this.saveDescription(value)}/>
-                            <TouchableWithoutFeedback onPress={() => {
+                            <TouchableOpacity onPress={() => {
                                 this.props.setToRecord("description");
                                 this.props.goToRecordAudio();
                             }}>
                                 <ElevatedView style={styles.actionButtonView} elevation={3}>
                                     <Icon name="microphone" style={styles.actionButtonIcon} />
                                 </ElevatedView>
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </View>
                     </ElevatedView>
                     <ElevatedView style={styles.card} elevation={2}>
@@ -299,27 +299,27 @@ class CreateTagStep2 extends Component {
                                 {this.buildMediaList()}
                             </ScrollView>
                             <View style={styles.actions}>
-                                <TouchableWithoutFeedback onPress={this.goToTakePicture.bind(this)}>
+                                <TouchableOpacity onPress={this.goToTakePicture.bind(this)}>
                                     <ElevatedView style={styles.actionButtonView} elevation={3}>
                                         <Icon name="camera" style={styles.actionButtonIcon} />
                                     </ElevatedView>
-                                </TouchableWithoutFeedback>
-                                <TouchableWithoutFeedback onPress={this.goToTakeVideo.bind(this)}>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={this.goToTakeVideo.bind(this)}>
                                     <ElevatedView style={styles.actionButtonView} elevation={3}>
                                         <Icon name="video" style={styles.actionButtonIcon} />
                                     </ElevatedView>
-                                </TouchableWithoutFeedback>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </ElevatedView>
                     <KeyboardSpacer/>
                 </ScrollView>
                 <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
-                    <TouchableWithoutFeedback onPress={this.next.bind(this)}>
+                    <TouchableOpacity onPress={this.next.bind(this)}>
                         <ElevatedView style={styles.buttonView} elevation={7}>
                             <Icon name="arrow-right" style={styles.buttonIcon} />
                         </ElevatedView>
-                    </TouchableWithoutFeedback>
+                    </TouchableOpacity>
                 </View>
             </View>
         );

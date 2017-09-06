@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Alert,
     TextInput,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -103,11 +103,11 @@ class SearchTags extends Component {
                 <View style={styles.body}>
                     <ElevatedView style={styles.searchView} elevation={2}>
                         <TextInput placeholder="Rechercher" style={styles.searchField} value={this.state.search} onChangeText={(value) => this.setState({search : value})}/>
-                        <TouchableWithoutFeedback onPress={this.search.bind(this)}>
+                        <TouchableOpacity onPress={this.search.bind(this)}>
                             <ElevatedView style={styles.searchButton} elevation={6}>
                                 <Icon name="search" style={styles.searchIcon}/>
                             </ElevatedView>
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     </ElevatedView>
                     <TagList {...this.props} items={this.props.tags.searchResults} />
                 </View>

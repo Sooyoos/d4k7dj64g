@@ -5,7 +5,7 @@ import {
     ScrollView,
     Image,
     Text,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
     ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -272,11 +272,11 @@ class CreateTagPreview extends Component {
                         </View>
                     </View>
                     <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
-                        <TouchableWithoutFeedback onPress={this.create.bind(this)}>
+                        <TouchableOpacity onPress={this.create.bind(this)}>
                             <ElevatedView style={styles.buttonView} elevation={7}>
                                 <Icon name="check" style={styles.buttonIcon} />
                             </ElevatedView>
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     </View>
                 </View>
             );
