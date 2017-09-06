@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import ElevatedView from 'react-native-elevated-view';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 
 let styles = StyleSheet.create({
@@ -88,13 +88,13 @@ class TagListItem extends Component {
 
     getStatusIcon() {
         if (this.props.tag.status === "closed_resolved") {
-            return 'comment-check-outline';
+            return 'star';
         }
         else if (this.props.tag.status === "ongoing") {
-            return 'comment-alert-outline';
+            return 'star-half-o';
         }
         else if (this.props.tag.status === "closed_unresolved") {
-            return 'comment-remove-outline';
+            return 'star';
         }
     }
 

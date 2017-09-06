@@ -98,13 +98,13 @@ class TagDetails extends Component {
         let tag = this.props.tags.currentTag;
 
         if (tag.status === "closed_resolved") {
-            return 'comment-check-outline';
+            return 'star';
         }
         else if (tag.status === "ongoing") {
-            return 'comment-alert-outline';
+            return 'star-half-o';
         }
         else if (tag.status === "closed_unresolved") {
-            return 'comment-remove-outline';
+            return 'star';
         }
     }
 
@@ -203,7 +203,7 @@ class TagDetails extends Component {
                         <View style={styles.infos}>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <Icon name={this.getStatusIcon()} style={{fontSize:responsiveFontSize(2.8)}} />
+                                    <IconA name={this.getStatusIcon()} style={{fontSize:responsiveFontSize(2.8)}} />
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
