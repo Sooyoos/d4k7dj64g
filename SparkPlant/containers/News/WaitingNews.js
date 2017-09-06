@@ -35,6 +35,13 @@ let styles = StyleSheet.create({
 
 class WaitingNews extends Component {
 
+    static navigationOptions = {
+        drawerLabel: 'NEWS',
+        drawerIcon: ({tintColor}) => (
+            <Icon name='newspaper-o' style={{fontSize : 24, color : '#757575'}}/>
+        ),
+    };
+
     constructor(props)
     {
         super(props);
