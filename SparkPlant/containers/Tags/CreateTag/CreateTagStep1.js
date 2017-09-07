@@ -243,14 +243,14 @@ class CreateTagStep1 extends Component {
                                 <View style={styles.cardContent}>
                                     <ActivityIndicator color="#3f51b5" size="large"/>
                                     <TextInput style={{fontSize : responsiveFontSize(1.6)}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
-                                    <TouchableWithoutFeedback onPress={() => {
+                                    <TouchableOpacity onPress={() => {
                                         this.props.setToRecord("place");
                                         this.props.goToRecordAudio();
                                     }}>
                                         <ElevatedView style={styles.actionButtonView} elevation={3}>
                                             <Icon name="microphone" style={styles.actionButtonIcon} />
                                         </ElevatedView>
-                                    </TouchableWithoutFeedback>
+                                    </TouchableOpacity>
                                 </View>
                             </ElevatedView>
                             <ElevatedView style={styles.card} elevation={2}>
@@ -274,11 +274,11 @@ class CreateTagStep1 extends Component {
                             <KeyboardSpacer/>
                         </ScrollView>
                         <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
-                            <TouchableWithoutFeedback onPress={this.next.bind(this)}>
+                            <TouchableOpacity onPress={this.next.bind(this)}>
                                 <ElevatedView style={styles.buttonView} elevation={10}>
                                     <Icon name="arrow-right" style={styles.buttonIcon} />
                                 </ElevatedView>
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 );
