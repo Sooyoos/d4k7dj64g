@@ -1073,3 +1073,11 @@ export function tryTagsUploadDescriptionAudio(login, file)
         return dispatch(fetchTagsUploadDescriptionAudio(login, file));
     }
 }
+
+export function trySetTagFollowers(followers)
+{
+    return {
+        type : types.SET_TAG_FOLLOWERS,
+        followers : followers,
+    }
+}

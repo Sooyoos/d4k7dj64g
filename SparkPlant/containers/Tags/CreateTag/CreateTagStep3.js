@@ -4,6 +4,7 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -125,6 +126,9 @@ class CreateTagStep3 extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            followers : this.props.tags.creation_current.users
+        }
     }
 
     componentWillMount()
@@ -133,8 +137,17 @@ class CreateTagStep3 extends Component {
         this.props.tryTagFollowers(this.props.login, this.props.tags.creation_current);
     }
 
+    deleteFollower(index)
+    {
+        console.log(index);
+        let followers = this.props.tags.creation_current.users;
+        followers.splice(index, 1);
+        this.setState({followers : followers});
+    }
+
     preview()
     {
+        this.props.trySetTagFollowers(this.state.followers);
         this.props.goToCreateTagPreview();
     }
 
@@ -144,7 +157,7 @@ class CreateTagStep3 extends Component {
         if(supervisor !== null && followers !== null)
         {
             let users = [];
-            for(var i = 0; i < followers.length; i++)
+            for(let i = 0; i < followers.length; i++)
             {
                 if(supervisor["@id"] !== followers[i]["@id"])
                 {
@@ -156,7 +169,7 @@ class CreateTagStep3 extends Component {
                                 </Text>
                             </View>
                             <View style={{justifyContent : 'center'}}>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() =>{this.deleteFollower(i)}}>
                                     <Icon name="close" style={styles.cardPeopleIcon} />
                                 </TouchableOpacity>
                             </View>
@@ -257,11 +270,11 @@ class CreateTagStep3 extends Component {
                         </View>
                     </ElevatedView>
                     <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
-                        <TouchableWithoutFeedback onPress={this.preview.bind(this)}>
+                        <TouchableOpacity onPress={this.preview.bind(this)}>
                             <ElevatedView style={styles.buttonView} elevation={7}>
                                 <Icon name="eye" style={styles.buttonIcon} />
                             </ElevatedView>
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     </View>
                 </View>
             );
@@ -295,11 +308,11 @@ class CreateTagStep3 extends Component {
                         </View>
                     </ElevatedView>
                     <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
-                        <TouchableWithoutFeedback onPress={this.preview.bind(this)}>
-                            <ElevatedView style={styles.buttonView} elevation={7}>
+                        <TouchableOpacity onPress={this.preview.bind(this)}>
+                            <ElevatedView style={styles.buttonView} elevation={10}>
                                 <Icon name="eye" style={styles.buttonIcon} />
                             </ElevatedView>
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     </View>
                 </View>
             );

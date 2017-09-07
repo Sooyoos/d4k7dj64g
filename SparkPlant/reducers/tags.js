@@ -427,6 +427,10 @@ export const tagsReducer = {
             case types.TAGS_UPLOAD_DESCRIPTION_AUDIO_FAILURE : {
                 return Object.assign({}, state, {loading : false});
             }
+            case types.SET_TAG_FOLLOWERS : {
+                let creationCurrent = Object.assign({}, state.creation_current, {users : action.followers});
+                return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
+            }
             default :
                 return state;
         }
