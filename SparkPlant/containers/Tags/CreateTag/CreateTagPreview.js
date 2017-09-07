@@ -15,7 +15,9 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 import ElevatedView from 'react-native-elevated-view';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconA from 'react-native-vector-icons/FontAwesome';
 import VideoPlayer from 'react-native-video-player';
+import Moment from 'moment';
 
 let styles = StyleSheet.create({
     header : {
@@ -83,7 +85,7 @@ class CreateTagPreview extends Component {
     static navigationOptions = {
         drawerLabel: 'TAGS',
         drawerIcon: ({tintColor}) => (
-            <Icon name='tag' style={{fontSize : 24, color : '#757575'}}/>
+            <IconA name='tag' style={{fontSize : 24, color : '#757575'}}/>
         ),
     };
 
@@ -94,17 +96,17 @@ class CreateTagPreview extends Component {
     getStatusIcon() {
         let tag = this.props.tags.creation_current;
 
-        if (tag.status == "OK") {
-            return 'comment-check-outline';
+        if (tag.status == "new") {
+            return 'star-o';
         }
-        else if (tag.status == "New") {
-            return 'comment-alert-outline';
+        else if (tag.status == "ongoing") {
+            return 'star-half-o';
         }
-        else if (tag.status == "Abandoned") {
-            return 'comment-remove-outline';
+        else if (tag.status == "closed_resolved") {
+            return 'star';
         }
-        else if (tag.status == "NOK") {
-            return 'comment-processing-outline';
+        else if (tag.status == "closed_unresolved") {
+            return 'star';
         }
     }
 
@@ -116,43 +118,9 @@ class CreateTagPreview extends Component {
 
     buildMediaList()
     {
-        let list = [];
-
-        if(this.props.tags.currentTag)
-        {
-            let medias = this.props.tags.currentTag.media;
-
-            if(medias.length > 0)
-            {
-                for(var i = 0; i < medias.length; i++)
-                {
-                    if(medias[i].filetype.indexOf("video") === -1)
-                    {
-                        list.push(
-                            <Image key={i} style={styles.sliderImage} source={{uri : medias[i].path}} />
-                        );
-                    }
-                    else
-                    {
-                        let thumbnail = "http://via.placeholder.com/" + Math.round(responsiveWidth(70)) + "x" + Math.round(responsiveHeight(30)) + "/000000.png";
-                        console.log(thumbnail);
-                        list.push(
-                            <VideoPlayer
-                                style={{width : responsiveWidth(70), height : responsiveHeight(30)}}
-                                key={i}
-                                video={{ uri: medias[i].path }}
-                                videoWidth={Math.round(responsiveWidth(70))}
-                                videoHeight={Math.round(responsiveHeight(30))}
-                                thumbnail={{uri : thumbnail}}
-                                endWithThumbnail
-                            />
-                        );
-                    }
-                }
-            }
-        }
-
-        return list;
+        return(
+            <Image style={styles.sliderImage} source={{uri : "http://via.placeholder.com/" + Math.round(responsiveWidth(70)) + "x" + Math.round(responsiveHeight(30)) + "/000000.jpg"}} />
+        );
     }
 
     render() {
@@ -169,12 +137,12 @@ class CreateTagPreview extends Component {
                         <View style={styles.infos}>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <Icon name={this.getStatusIcon()} style={{fontSize:responsiveFontSize(2.8)}} />
+                                    <IconA name={this.getStatusIcon()} style={{fontSize:responsiveFontSize(2.8)}} />
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
                                         <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
-                                            ? ouvert par "TBD"
+                                            { Moment().format("DD/MM/YYYY") } ouvert par { this.props.users.loggedUser.firstName } { this.props.users.loggedUser.lastName }
                                         </Text>
                                         <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
                                             {tag.title}
@@ -192,14 +160,9 @@ class CreateTagPreview extends Component {
                                             Responsable en charge
                                         </Text>
                                         <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
-                                            {() => {
-                                                if(tag.supervisor)
-                                                {
-                                                    return(
-                                                        tag.supervisor.firstName + " " + tag.supervisor.lastName
-                                                    );
-                                                }
-                                            }}
+                                            {
+                                                tag.supervisor ? tag.supervisor.firstName + " " + tag.supervisor.lastName : " "
+                                            }
                                         </Text>
                                     </View>
                                 </View>
@@ -208,14 +171,9 @@ class CreateTagPreview extends Component {
                                 <View style={styles.sectionVisual}>
                                     <View style={styles.sectionVisualType}>
                                         <Text style={{color:'#ffffff', fontSize: responsiveFontSize(2.8), textAlign: 'center'}}>
-                                            {() => {
-                                                if(tag.primaryAxis)
-                                                {
-                                                    return(
-                                                        tag.primaryAxis.code
-                                                    );
-                                                }
-                                            }}
+                                            {
+                                                tag.primaryAxis ? tag.primaryAxis.code : " "
+                                            }
                                         </Text>
                                     </View>
                                 </View>
@@ -225,14 +183,9 @@ class CreateTagPreview extends Component {
                                             Nature
                                         </Text>
                                         <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
-                                            {() => {
-                                                if(tag.primaryAxis)
-                                                {
-                                                    return(
-                                                        tag.primaryAxis.code
-                                                    );
-                                                }
-                                            }}
+                                            {
+                                                tag.primaryAxis ? tag.primaryAxis.code : " "
+                                            }
                                         </Text>
                                     </View>
                                 </View>
@@ -247,14 +200,9 @@ class CreateTagPreview extends Component {
                                             Lieu
                                         </Text>
                                         <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
-                                            {() => {
-                                                if(tag.place)
-                                                {
-                                                    return(
-                                                        tag.place.name
-                                                    );
-                                                }
-                                            }}
+                                            {
+                                                tag.place ? tag.place.name : " "
+                                            }
                                         </Text>
                                     </View>
                                 </View>
@@ -301,6 +249,7 @@ function mapStateToProps(state) {
         login: state.login,
         nav : state.nav,
         tags : state.tags,
+        users : state.users,
     };
 }
 
