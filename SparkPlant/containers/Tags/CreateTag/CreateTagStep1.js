@@ -165,7 +165,7 @@ class CreateTagStep1 extends Component {
     render() {
         if(this.props.tags.loading === false)
         {
-            if(this.props.tags.places !== null)
+            if(this.props.tags.places !== null && this.props.tags.axis !== null)
             {
                 return (
                     <View style={{flex : 1, backgroundColor : '#efefef'}}>
@@ -263,12 +263,8 @@ class CreateTagStep1 extends Component {
                                     </Text>
                                 </ElevatedView>
                                 <View style={styles.cardContent}>
-                                    <Picker style={styles.locationPicker} prompt="Sélectionnez le type principal" selectedValue={this.props.tags.creation_current.primaryAxis} onValueChange={(value) => this.props.setCurrentCreationPrimaryAxis(value)}>
-                                        {this.buildAxisList()}
-                                    </Picker>
-                                    <Picker style={styles.locationPicker} prompt="Sélectionnez les types secondaires" selectedValue={this.props.tags.creation_current.secondaryAxis} onValueChange={(value) => this.props.setCurrentCreationSecondaryAxis(value)}>
-                                        {this.buildAxisList()}
-                                    </Picker>
+                                    <ActivityIndicator color="#3f51b5" size="large"/>
+                                    <ActivityIndicator color="#3f51b5" size="large"/>
                                 </View>
                             </ElevatedView>
                             <KeyboardSpacer/>
@@ -289,9 +285,7 @@ class CreateTagStep1 extends Component {
             return(
                 <View style={{flex : 1, backgroundColor : '#efefef'}}>
                     <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
-                    <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
-                        <ActivityIndicator color="#3f51b5" size="large"/>
-                    </View>
+                    <ActivityIndicator color="#3f51b5" size="large"/>
                 </View>
             );
         }

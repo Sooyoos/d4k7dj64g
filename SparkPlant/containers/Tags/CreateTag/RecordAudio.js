@@ -83,7 +83,7 @@ class RecordAudio extends Component {
 
         if(mode === "place")
         {
-            this.props.goToCreateTagStep1();
+            //this.props.goToCreateTagStep1();
             this.props.tryTagsUploadPlaceAudio(this.props.login, {
                 uri: "file://" + filePath,
                 type: "audio/aac",
@@ -92,13 +92,15 @@ class RecordAudio extends Component {
         }
         else
         {
-            this.props.goToCreateTagStep2();
+            //this.props.goToCreateTagStep2();
             this.props.tryTagsUploadDescriptionAudio(this.props.login, {
                 uri: "file://" + filePath,
                 type: "audio/aac",
                 name: filePath.substring(filePath.lastIndexOf("/"))
             });
         }
+
+        this.props.navigateBack();
     }
 
     render() {

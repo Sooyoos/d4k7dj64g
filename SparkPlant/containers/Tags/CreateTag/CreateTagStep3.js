@@ -5,6 +5,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     TouchableWithoutFeedback,
+    ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -154,7 +155,7 @@ class CreateTagStep3 extends Component {
     render() {
         let supervisor = this.props.tags.creation_current.supervisor;
         let followers = this.props.tags.creation_current.users;
-        if(supervisor !== null && followers !== null)
+        if(supervisor !== null && followers.length > 0)
         {
             let users = [];
             for(let i = 0; i < followers.length; i++)
@@ -220,7 +221,7 @@ class CreateTagStep3 extends Component {
                 </View>
             );
         }
-        else if(supervisor === null && followers !== null)
+        else if(supervisor === null && followers.length > 0)
         {
             let users = [];
             for(var i = 0; i < followers.length; i++)
@@ -253,7 +254,9 @@ class CreateTagStep3 extends Component {
                             </Text>
                         </ElevatedView>
                         <View style={styles.cardManagerContent}>
-
+                            <ElevatedView elevation={3} style={styles.cardManagerContentView}>
+                                <ActivityIndicator color="#3f51b5" size="large"/>
+                            </ElevatedView>
                         </View>
                     </ElevatedView>
                     <ElevatedView style={styles.peopleCard} elevation={2}>
@@ -293,6 +296,11 @@ class CreateTagStep3 extends Component {
                                 Responsable
                             </Text>
                         </ElevatedView>
+                        <View style={styles.cardManagerContent}>
+                            <ElevatedView elevation={3} style={styles.cardManagerContentView}>
+                                <ActivityIndicator color="#3f51b5" size="large"/>
+                            </ElevatedView>
+                        </View>
                     </ElevatedView>
                     <ElevatedView style={styles.peopleCard} elevation={2}>
                         <ElevatedView style={styles.cardHeader} elevation={2}>
@@ -304,7 +312,7 @@ class CreateTagStep3 extends Component {
                             </Text>
                         </ElevatedView>
                         <View style={styles.cardPeopleContent}>
-
+                            <ActivityIndicator color="#3f51b5" size="large"/>
                         </View>
                     </ElevatedView>
                     <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
