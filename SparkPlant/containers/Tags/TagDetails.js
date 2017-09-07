@@ -100,6 +100,9 @@ class TagDetails extends Component {
         if (tag.status === "closed_resolved") {
             return 'star';
         }
+        else if (tag.status === "new") {
+            return 'star-o';
+        }
         else if (tag.status === "ongoing") {
             return 'star-half-o';
         }
@@ -112,6 +115,8 @@ class TagDetails extends Component {
     {
         let medias = this.props.tags.currentTag.media;
         let list = [];
+
+        console.log(medias);
 
         if(medias.length > 0)
         {
@@ -140,6 +145,12 @@ class TagDetails extends Component {
                     );
                 }
             }
+        }
+        else
+        {
+            list.push(
+                <Image key={0} style={styles.sliderImage} source={{uri : "http://via.placeholder.com/750x500"}} />
+            );
         }
         return list;
     }
