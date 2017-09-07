@@ -61,6 +61,11 @@ class TagHistoryItem extends Component {
             return "Commentaire de " + this.props.item.user.firstName + " " + this.props.item.user.lastName;
         }
 
+        if(this.props.item.type === "add_tag")
+        {
+            return this.props.item.user.firstName + " " + this.props.item.user.lastName + " adresse le tag à " + this.props.item.assignedTo.firstName + " " + this.props.item.assignedTo.lastName;
+        }
+
         return "";
     }
 
