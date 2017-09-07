@@ -68,7 +68,7 @@ let styles = StyleSheet.create({
     },
     peopleCard : {
         width : responsiveWidth(90),
-        height : responsiveHeight(55),
+        height : responsiveHeight(45),
         margin: responsiveWidth(5),
         backgroundColor: '#ffffff',
     },
@@ -212,7 +212,7 @@ class CreateTagStep3 extends Component {
                     </ElevatedView>
                     <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
                         <TouchableOpacity onPress={this.preview.bind(this)}>
-                            <ElevatedView style={styles.buttonView} elevation={7}>
+                            <ElevatedView style={styles.buttonView} elevation={20}>
                                 <Icon name="eye" style={styles.buttonIcon} />
                             </ElevatedView>
                         </TouchableOpacity>
@@ -271,7 +271,7 @@ class CreateTagStep3 extends Component {
                     </ElevatedView>
                     <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
                         <TouchableOpacity onPress={this.preview.bind(this)}>
-                            <ElevatedView style={styles.buttonView} elevation={7}>
+                            <ElevatedView style={styles.buttonView} elevation={20}>
                                 <Icon name="eye" style={styles.buttonIcon} />
                             </ElevatedView>
                         </TouchableOpacity>
@@ -309,7 +309,7 @@ class CreateTagStep3 extends Component {
                     </ElevatedView>
                     <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
                         <TouchableOpacity onPress={this.preview.bind(this)}>
-                            <ElevatedView style={styles.buttonView} elevation={10}>
+                            <ElevatedView style={styles.buttonView} elevation={20}>
                                 <Icon name="eye" style={styles.buttonIcon} />
                             </ElevatedView>
                         </TouchableOpacity>
