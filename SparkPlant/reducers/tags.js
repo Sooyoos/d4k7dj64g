@@ -10,7 +10,7 @@ const initialState = {
         title : null,
         description : "",
         descriptionAudio : null,
-        status : "ongoing",
+        status : "new",
         placeDetails : null,
         placeDetailsAudio : null,
         place : null,
