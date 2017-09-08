@@ -552,7 +552,7 @@ class ChecklistExecute extends Component {
                                 <View style={styles.taskFlags}>
                                     {this.renderTaskFlag(this.state.mesure, tasks[i].task.ranges)}
                                 </View>
-                                <TextInput style={styles.taskInput} placeholder="Mesure" onChangeText={(value) => {this.setState({mesure : value})}}/>
+                                <TextInput style={styles.taskInput} placeholder={"OK : " + tasks[i].task.ranges[0].minValue + " - " + tasks[i].task.ranges[0].maxValue} onChangeText={(value) => {this.setState({mesure : value})}}/>
                                 <Text style={styles.taskMetric}>{tasks[i].task.ranges[0].unit}</Text>
                             </View>
                             <View style={styles.taskActions}>
