@@ -134,8 +134,11 @@ class CreateTagStep3 extends Component {
 
     componentWillMount()
     {
-        this.props.tryTagSupervisor(this.props.login, this.props.tags.creation_current);
-        this.props.tryTagFollowers(this.props.login, this.props.tags.creation_current);
+        if(this.props.tags.creation_current.place !== null)
+        {
+            this.props.tryTagSupervisor(this.props.login, this.props.tags.creation_current);
+            this.props.tryTagFollowers(this.props.login, this.props.tags.creation_current);
+        }
     }
 
     deleteFollower(index)
