@@ -107,7 +107,7 @@ class LoginScreen extends Component {
             if(value !== "new" && index >= 0)
             {
                 let users = this.props.login.previousUsers;
-                this.props.tryLogin(users[index].factory, users[index].username, users[index].password);
+                this.props.tryLogin(users[index - 1].factory, users[index - 1].username, users[index - 1].password);
             }
             else
             {
@@ -121,7 +121,7 @@ class LoginScreen extends Component {
         let list = [];
 
         list.push(
-            <Picker.Item key={-2} label={"Utilisateur"} value={null} />
+            <Picker.Item key={-1} label={"Utilisateur"} value={null} />
         );
 
         for(var i = 0; i < users.length; i++)
