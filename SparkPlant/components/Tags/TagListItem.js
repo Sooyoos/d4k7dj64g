@@ -90,6 +90,10 @@ class TagListItem extends Component {
         if (this.props.tag.status === "closed_resolved") {
             return 'star';
         }
+        else if(this.props.tag.status === "new")
+        {
+            return 'star-o';
+        }
         else if (this.props.tag.status === "ongoing") {
             return 'star-half-o';
         }
