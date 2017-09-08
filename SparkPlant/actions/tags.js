@@ -487,6 +487,7 @@ function fetchCreateTag(login, tag)
             .then((responseJson) => {
                 console.log(responseJson);
                 dispatch(addUsersToTag(login, tag, responseJson["@id"]));
+                dispatch(tryUserTags(login));
             })
             .catch((error) => { console.warn(error); dispatch(createTagFailure()); });
     }
