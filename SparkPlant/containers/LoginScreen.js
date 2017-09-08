@@ -107,7 +107,7 @@ class LoginScreen extends Component {
             if(value !== "new" && index >= 0)
             {
                 let users = this.props.login.previousUsers;
-                this.props.tryLogin(users[index - 2].factory, users[index - 2].username, users[index - 2].password);
+                this.props.tryLogin(users[index].factory, users[index].username, users[index].password);
             }
             else
             {
