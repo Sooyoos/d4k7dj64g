@@ -151,12 +151,13 @@ class ChecklistListItem extends Component {
         let hoursPassed = Math.round(timePassed.asHours());
         let daysPassed = Math.round(timePassed.asDays());
 
+        console.log(hoursPassed);
+
         if(item.checklist.frequency === "quotidien")
         {
             if(hoursPassed >= 24)
             {
                 item.status = "todo";
-
             }
         }
         else if(item.checklist.frequency === "hebdomadaire")

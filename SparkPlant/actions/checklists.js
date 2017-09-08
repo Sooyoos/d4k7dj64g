@@ -208,12 +208,11 @@ export function tryResetTask(login, task)
     }
 }
 
-function fetchCompleteList(login, list)
+function fetchCompleteList(login, list, status)
 {
     return dispatch => {
         dispatch(completeListRequested());
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
-        let status = "done";
 
         fetch(baseUrl + list["@id"], {
             method: 'PUT',
@@ -254,10 +253,10 @@ function completeListFailure()
     }
 }
 
-export function tryCompleteList(login, list)
+export function tryCompleteList(login, list, status)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchCompleteList(login, list));
+        return dispatch(fetchCompleteList(login, list, status));
     }
 }
 

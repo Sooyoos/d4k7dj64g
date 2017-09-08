@@ -216,6 +216,14 @@ class ChecklistExecute extends Component {
         }
     }
 
+    getStatus(status)
+    {
+        if(status === "todo")
+            return "done";
+        else
+            return "todo";
+    }
+
     executeTaskOk()
     {
         let task = Object.assign({}, this.state.tasks[this.state.currentTask], {value : "OK", status : "done"});
@@ -233,7 +241,7 @@ class ChecklistExecute extends Component {
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
-            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
+            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist, this.getStatus(this.props.checklists.currentChecklist.status));
             this.resetTasks();
             this.props.goToChecklistPage();
         }
@@ -269,7 +277,7 @@ class ChecklistExecute extends Component {
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
-            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
+            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist, this.getStatus(this.props.checklists.currentChecklist.status));
             this.resetTasks();
             this.props.goToChecklistPage();
         }
@@ -293,7 +301,7 @@ class ChecklistExecute extends Component {
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
-            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
+            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist, this.getStatus(this.props.checklists.currentChecklist.status));
             this.resetTasks();
             this.props.goToChecklistPage();
         }
@@ -316,7 +324,7 @@ class ChecklistExecute extends Component {
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
-            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
+            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist, this.getStatus(this.props.checklists.currentChecklist.status));
             this.resetTasks();
             this.props.goToChecklistPage();
         }
@@ -339,7 +347,7 @@ class ChecklistExecute extends Component {
 
         if(this.state.currentTask === this.state.tasks.length - 1)
         {
-            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist);
+            this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist, this.getStatus(this.props.checklists.currentChecklist.status));
             this.resetTasks();
             this.props.goToChecklistPage();
         }
