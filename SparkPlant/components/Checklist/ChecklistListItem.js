@@ -151,27 +151,25 @@ class ChecklistListItem extends Component {
         let hoursPassed = Math.round(timePassed.asHours());
         let daysPassed = Math.round(timePassed.asDays());
 
-        console.log(hoursPassed);
-
         if(item.checklist.frequency === "quotidien")
         {
             if(hoursPassed >= 24)
             {
-                item.status = "todo";
+                item.todo = true;
             }
         }
         else if(item.checklist.frequency === "hebdomadaire")
         {
             if(daysPassed >= 7)
             {
-                item.status = "todo";
+                item.todo = true;
             }
         }
         else if(item.checklist.frequency === "mensuel")
         {
             if(daysPassed >= 30)
             {
-                item.status = "todo";
+                item.todo = true;
             }
         }
 
@@ -190,7 +188,7 @@ class ChecklistListItem extends Component {
             item = this.props.item;
         }
 
-        if(item.status && item.status === "done")
+        if(item.status && item.todo === false)
         {
             return (
                 <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
@@ -217,7 +215,7 @@ class ChecklistListItem extends Component {
                 </TouchableWithoutFeedback>
             );
         }
-        else if(!item.status)
+        else if(!item.todo)
         {
             return (
                 <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>

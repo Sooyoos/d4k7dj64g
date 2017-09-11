@@ -214,6 +214,9 @@ function fetchCompleteList(login, list, status)
         dispatch(completeListRequested());
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
+        console.log("REQUEST COMPLETE LIST");
+        console.log(list);
+
         fetch(baseUrl + list["@id"], {
             method: 'PUT',
             headers: {
@@ -224,7 +227,8 @@ function fetchCompleteList(login, list, status)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
+            console.log("RESPONSE COMPLETE LIST");
+            console.log(responseJson);
                 dispatch(completeListSuccess(responseJson["hydra:member"]));
             })
             .catch((error) => {console.log(error); dispatch(completeListFailure()); });
