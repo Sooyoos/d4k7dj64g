@@ -120,6 +120,7 @@ function fetchPublishNews(login, news)
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type' : 'application/json',
             },
             body : JSON.stringify(
                 {
@@ -132,7 +133,7 @@ function fetchPublishNews(login, news)
                 console.log(responseJson);
                 dispatch(publishNewsSuccess(responseJson));
             })
-            .catch((error) => { dispatch(publishNewsFailure()); });
+            .catch((error) => { console.log(error); dispatch(publishNewsFailure()); });
     }
 }
 
