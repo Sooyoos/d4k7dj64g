@@ -36,7 +36,19 @@ import CreateTagStep2 from '../containers/Tags/CreateTag/CreateTagStep2';
 import CreateTagStep3 from '../containers/Tags/CreateTag/CreateTagStep3';
 import CreateTagPreview from '../containers/Tags/CreateTag/CreateTagPreview';
 import RecordAudio from '../containers/Tags/CreateTag/RecordAudio';
+import ChartsScreen from '../containers/ChartsScreen';
 import * as types from '../actions/types';
+
+export const ChartsNavigator = StackNavigator(
+    {
+        Charts: {
+            screen: ChartsScreen,
+            navigationOptions: {
+                header: null,
+            }
+        },
+    }
+);
 
 export const TagNavigator = StackNavigator(
     {
@@ -242,6 +254,7 @@ export const MainNavigator = DrawerNavigator(
         Tags: { screen: TagNavigator},
         News : { screen : NewsNavigator},
         Checklists : { screen : ChecklistNavigator},
+        Charts : { screen : ChartsNavigator},
     },
     {
         contentComponent: DrawerMenu,
