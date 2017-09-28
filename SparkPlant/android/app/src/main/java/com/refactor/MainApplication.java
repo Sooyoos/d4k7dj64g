@@ -13,6 +13,7 @@ import com.imagepicker.ImagePickerPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.zmxv.RNSound.RNSoundPackage;
+import com.horcrux.svg.SvgPackage;
 
 
 import java.util.Arrays;
@@ -35,7 +36,8 @@ public class MainApplication extends Application implements ReactApplication {
             new ImagePickerPackage(),
             new ReactVideoPackage(),
             new ReactNativeAudioPackage(),
-            new RNSoundPackage()
+            new RNSoundPackage(),
+            new SvgPackage()
       );
     }
   };
