@@ -69,6 +69,7 @@ export function tryUser(token, tokenString, data)
 
 function fetchSetAvailability(login, user, availability)
 {
+    console.log(availability);
     return dispatch => {
         dispatch(setAvailabilityRequested());
         let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
