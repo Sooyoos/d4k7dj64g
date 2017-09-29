@@ -5,6 +5,7 @@ import * as NewsActions from './news';
 import * as UtilsActions from './utils';
 import * as ChecklistsActions from './checklists';
 import * as UsersActions from './users';
+import * as ChartsActions from './charts';
 import * as TagsNavigation from './navigation/tags';
 import * as NewsNavigation from './navigation/news';
 import * as LoginNavigation from './navigation/login';
@@ -18,6 +19,7 @@ export const ActionCreators = Object.assign({},
     TagsNavigation,
     NewsNavigation,
     UtilsActions,
+    ChartsActions,
     ChecklistsNavigation,
     LoginNavigation,
     ChecklistsActions,

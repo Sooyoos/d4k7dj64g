@@ -13,87 +13,13 @@ import { ActionCreators } from '../actions';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import Header from "../components/Header/Header";
 import { Bar } from 'react-native-pathjs-charts';
+import moment from 'moment';
 
-let styles = StyleSheet.create({
-    login: {
-        flex:1,
-    },
-    body: {
-        flex:8.4,
-        backgroundColor: '#FFFFFF',
-        alignItems:'center',
-        justifyContent: 'center',
-    },
-    title : {
-        color : "#232323",
-        fontWeight: "bold",
-        textAlign : "center",
-        fontSize : responsiveFontSize(2.2),
-    },
-    chartView : {
-        height : responsiveHeight(82),
-        width : responsiveWidth(100),
-        paddingHorizontal: responsiveWidth(5),
-    },
-    chartTitle : {
-        color : "#232323",
-        fontWeight: "bold",
-        textAlign : "center",
-        fontSize : responsiveFontSize(1.8),
-    },
-});
-
-let data = [
-    [
-        {
-            value : 128,
-            name : "J - 7"
-        },
-
-    ],
-    [
-        {
-            value : 248,
-            name : "J - 6"
-        },
-    ],
-    [
-        {
-            value : 29,
-            name : "J - 5"
-        },
-    ],
-    [
-        {
-            value : 437,
-            name : "J - 4"
-        },
-    ],
-    [
-        {
-            value : 148,
-            name : "J - 3"
-        },
-    ],
-    [
-        {
-            value : 365,
-            name : "J - 2"
-        },
-    ],
-    [
-        {
-            value : 172,
-            name : "J - 1"
-        },
-    ],
-];
-
-let options1 = {
+let solvedTagOptions = {
     width: responsiveWidth(75),
     height: responsiveHeight(25),
     margin: {
-        top: responsiveHeight(6),
+        top: responsiveHeight(8),
         left: responsiveWidth(6),
         bottom: responsiveHeight(6),
         right: responsiveWidth(6)
@@ -135,11 +61,11 @@ let options1 = {
     }
 };
 
-let options2 = {
+let unsolvedTagOptions = {
     width: responsiveWidth(75),
     height: responsiveHeight(25),
     margin: {
-        top: responsiveHeight(6),
+        top: responsiveHeight(8),
         left: responsiveWidth(6),
         bottom: responsiveHeight(6),
         right: responsiveWidth(6)
@@ -181,6 +107,35 @@ let options2 = {
     }
 };
 
+let styles = StyleSheet.create({
+    login: {
+        flex:1,
+    },
+    body: {
+        flex:8.4,
+        backgroundColor: '#FFFFFF',
+        alignItems:'center',
+        justifyContent: 'center',
+    },
+    title : {
+        color : "#232323",
+        fontWeight: "bold",
+        textAlign : "center",
+        fontSize : responsiveFontSize(2.2),
+    },
+    chartView : {
+        height : responsiveHeight(82),
+        width : responsiveWidth(100),
+        paddingHorizontal: responsiveWidth(5),
+    },
+    chartTitle : {
+        color : "#232323",
+        fontWeight: "bold",
+        textAlign : "center",
+        fontSize : responsiveFontSize(1.8),
+    },
+});
+
 class ChartsScreen extends Component {
 
     static navigationOptions = {
@@ -194,36 +149,139 @@ class ChartsScreen extends Component {
     constructor(props)
     {
         super(props);
+        this.state = {
+            beginDate : moment().subtract(8,'d').format("YYYY-MM-DD HH:mm:ss"),
+            endDate : moment().subtract(1,'d').format("YYYY-MM-DD HH:mm:ss"),
+        }
+    }
+
+    formatTagList(begin, list)
+    {
+        let sortedList = [];
+
+        for(var i = 0; i < 7; i++)
+        {
+            let beginDate = moment(begin,"YYYY-MM-DD HH:mm:ss");
+            let date = beginDate.add(i, 'd').format("DD/MM/YYYY");
+            sortedList[i] = [];
+
+            for(var j = 0; j < list.length; j++)
+            {
+                let tagDate = moment(list[j].updatedAt, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY");
+
+                if(date === tagDate)
+                {
+                    sortedList[i].push(list[j]);
+                }
+            }
+        }
+
+        return(
+            [
+                [
+                    {
+                        value : sortedList[0].length,
+                        name : "J - 7",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[1].length,
+                        name : "J - 6",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[2].length,
+                        name : "J - 5",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[3].length,
+                        name : "J - 4",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[4].length,
+                        name : "J - 3",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[5].length,
+                        name : "J - 2",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[6].length,
+                        name : "J - 1",
+                    }
+                ],
+            ]
+        )
     }
 
     componentWillMount()
     {
-
+        this.props.loadSolvedTags(this.props.login, this.state.beginDate, this.state.endDate);
+        this.props.loadUnsolvedTags(this.props.login, this.state.beginDate, this.state.endDate);
     }
 
     render() {
-        return (
-            <View style={styles.login}>
-                <Header props={this.props} />
-                <View style={styles.body}>
-                    <View style={{height : responsiveHeight(8), width : responsiveWidth(100)}}>
-                        <Text style={styles.title}>
-                            Activité des tags sur les 7 derniers jours
-                        </Text>
-                    </View>
-                    <View style={styles.chartView}>
-                        <Text style={styles.chartTitle}>
-                            Tags résolus
-                        </Text>
-                        <Bar data={data} options={options1} accessorKey='value'/>
-                        <Text style={styles.chartTitle}>
-                            Tags non résolus
-                        </Text>
-                        <Bar data={data} options={options2} accessorKey='value'/>
+
+        if(this.props.charts.loading === true || this.props.charts.solvedTags === null || this.props.charts.unsolvedTags === null)
+        {
+            return (
+                <View style={styles.login}>
+                    <Header props={this.props} />
+                    <View style={styles.body}>
+                        <View style={{height : responsiveHeight(8), width : responsiveWidth(100)}}>
+                            <Text style={styles.title}>
+                                Activité des tags sur les 7 derniers jours
+                            </Text>
+                        </View>
+                        <View style={styles.chartView}>
+                            <Text style={styles.chartTitle}>
+                                Tags résolus
+                            </Text>
+                            <ActivityIndicator color="#3f51b5" size="large"/>
+                            <Text style={styles.chartTitle}>
+                                Tags non résolus
+                            </Text>
+                            <ActivityIndicator color="#3f51b5" size="large"/>
+                        </View>
                     </View>
                 </View>
-            </View>
-        );
+            );
+        }
+        else
+        {
+            return (
+                <View style={styles.login}>
+                    <Header props={this.props} />
+                    <View style={styles.body}>
+                        <View style={{height : responsiveHeight(8), width : responsiveWidth(100)}}>
+                            <Text style={styles.title}>
+                                Activité des tags sur les 7 derniers jours
+                            </Text>
+                        </View>
+                        <View style={styles.chartView}>
+                            <Text style={styles.chartTitle}>
+                                Tags résolus
+                            </Text>
+                            <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.solvedTags)} options={solvedTagOptions} accessorKey='value'/>
+                            <Text style={styles.chartTitle}>
+                                Tags non résolus
+                            </Text>
+                            <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.unsolvedTags)} options={unsolvedTagOptions} accessorKey='value'/>
+                        </View>
+                    </View>
+                </View>
+            );
+        }
     }
 }
 

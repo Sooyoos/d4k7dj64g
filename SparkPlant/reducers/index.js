@@ -6,6 +6,7 @@ import { newsReducer } from './news';
 import { utilsReducer } from './utils';
 import { checklistsReducer } from './checklists';
 import { usersReducer } from './users';
+import { chartsReducer } from './charts';
 
 export default combineReducers(Object.assign(
     navigationReducer,
@@ -15,4 +16,5 @@ export default combineReducers(Object.assign(
     utilsReducer,
     checklistsReducer,
     usersReducer,
+    chartsReducer,
 ));
