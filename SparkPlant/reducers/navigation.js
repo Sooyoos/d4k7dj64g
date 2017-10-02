@@ -37,6 +37,7 @@ import CreateTagStep3 from '../containers/Tags/CreateTag/CreateTagStep3';
 import CreateTagPreview from '../containers/Tags/CreateTag/CreateTagPreview';
 import RecordAudio from '../containers/Tags/CreateTag/RecordAudio';
 import ChartsScreen from '../containers/ChartsScreen';
+import ScoringScreen from '../containers/ScoringScreen';
 import * as types from '../actions/types';
 
 export const ChartsNavigator = StackNavigator(
@@ -274,11 +275,16 @@ export const AppNavigator = StackNavigator({
                 header : null,
             }
         },
+        Scoring: {
+            screen: ScoringScreen,
+            navigationOptions : {
+                header : null,
+        }},
         Tags: {
         screen: TagNavigator,
         navigationOptions : {
             header : null,
-        }
+        },
     }
 });
 

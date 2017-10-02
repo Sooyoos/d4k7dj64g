@@ -77,7 +77,14 @@ class DrawerMenu extends Component {
     constructor(props)
     {
         super(props);
-        this.state = {userAvailable: false};
+        if(this.props.users.loggedUser)
+        {
+            this.state = {userAvailable: this.props.users.loggedUser.availability};
+        }
+        else
+        {
+            this.state = {userAvailable: null};
+        }
     }
 
     setUserAvailable(value) {
@@ -107,6 +114,11 @@ class DrawerMenu extends Component {
         this.props.goToLogin();
     }
 
+    scoring()
+    {
+        this.props.navigation.navigate('Scoring');
+    }
+
     render() {
         let user = this.props.users.loggedUser;
 
@@ -117,12 +129,14 @@ class DrawerMenu extends Component {
                 <View style={styles.menu}>
                     <View style={styles.menuHeader}>
                         <View style={{flexDirection : 'row'}}>
-                            <View style={styles.menuHeaderIconView}>
-                                <Icon style={styles.menuHeaderIcon} name="star" />
-                                <Text style={styles.menuHeaderIconText}>
-                                    {user.points} points
-                                </Text>
-                            </View>
+                            <TouchableWithoutFeedback onPress={this.scoring.bind(this)}>
+                                <View style={styles.menuHeaderIconView}>
+                                    <Icon style={styles.menuHeaderIcon} name="star" />
+                                    <Text style={styles.menuHeaderIconText}>
+                                        {user.points} points
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
                             <TouchableWithoutFeedback onPress={this.logout.bind(this)}>
                                 <Icon name="sign-out" style={{color : '#ffffff', fontSize : responsiveFontSize(3), marginTop: 20}}/>
                             </TouchableWithoutFeedback>
@@ -142,7 +156,7 @@ class DrawerMenu extends Component {
                             <Text style={styles.menuHeaderAvailableSwitchLabel}>
                                 Disponible
                             </Text>
-                            <Switch style={styles.menuHeaderAvailableSwitch} value={this.props.users.loggedUser.available} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
+                            <Switch style={styles.menuHeaderAvailableSwitch} value={this.state.userAvailable || this.props.users.loggedUser.availability} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
                         </View>
                     </View>
                     <View>
@@ -172,12 +186,6 @@ class DrawerMenu extends Component {
                                     ...
                                 </Text>
                             </View>
-                        </View>
-                        <View style={styles.menuHeaderAvailableView}>
-                            <Text style={styles.menuHeaderAvailableSwitchLabel}>
-                                Disponible
-                            </Text>
-                            <Switch style={styles.menuHeaderAvailableSwitch} value={this.state.userAvailable} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
                         </View>
                     </View>
                     <View>
