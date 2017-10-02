@@ -36,7 +36,6 @@
 		2DCD954D1E0B4F2C00145EB5 /* SparkPlantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SparkPlantTests.m */; };
 		3B013D090A8943808274116E /* libRNAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9765032A664C4BEBA2BAE038 /* libRNAudio.a */; };
 		3DF48FB3577745F899C40630 /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A97116E1EB294915B696C5FB /* libimageCropPicker.a */; };
-		3F8ED3CA904E4DA1976B90B7 /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A40246C1F51D45BCBC90A7EA /* libRNSVG-tvOS.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6F6C0391903F4B39985A0754 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8058D53CEB34AFE9365CE2D /* libRNImagePicker.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -369,7 +368,6 @@
 		7BCB7A8E3D284B0DBC3554D4 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9765032A664C4BEBA2BAE038 /* libRNAudio.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAudio.a; sourceTree = "<group>"; };
-		A40246C1F51D45BCBC90A7EA /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; };
 		A8058D53CEB34AFE9365CE2D /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		A97116E1EB294915B696C5FB /* libimageCropPicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libimageCropPicker.a; sourceTree = "<group>"; };
 		BF24320C1F82809F009BB114 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
@@ -413,7 +411,6 @@
 				3B013D090A8943808274116E /* libRNAudio.a in Frameworks */,
 				D9E16048851E42C4B57D8C28 /* libRNSound.a in Frameworks */,
 				8CDE0C5929944BF296306EF9 /* libRNSVG.a in Frameworks */,
-				3F8ED3CA904E4DA1976B90B7 /* libRNSVG-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1412,6 +1409,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = SparkPlant;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1440,6 +1438,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = SparkPlant;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
