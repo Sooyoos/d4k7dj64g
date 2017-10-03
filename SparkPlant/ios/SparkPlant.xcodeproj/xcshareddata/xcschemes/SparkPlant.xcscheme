@@ -28,6 +28,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "014A3B5B1C6CF33500B6D375"
+               BuildableName = "libRNImagePicker.a"
+               BlueprintName = "RNImagePicker"
+               ReferencedContainer = "container:../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "SparkPlant.app"
                BlueprintName = "SparkPlant"
