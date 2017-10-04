@@ -14,9 +14,8 @@ function fetchUserNews(login)
 {
     return dispatch => {
         dispatch(userNewsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/news?published=true", {
+        fetch(types.baseUrl + "/news?published=true", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -64,9 +63,8 @@ function fetchWaitingNews(login)
 {
     return dispatch => {
         dispatch(waitingNewsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/news?published=false", {
+        fetch(types.baseUrl + "/news?published=false", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -114,9 +112,8 @@ function fetchPublishNews(login, news)
 {
     return dispatch => {
         dispatch(publishNewsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + news["@id"], {
+        fetch(types.baseUrl + news["@id"], {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -170,9 +167,8 @@ function fetchTransferNews(login, news)
 {
     return dispatch => {
         dispatch(transferNewsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + news["@id"] + "/transfer", {
+        fetch(types.baseUrl + news["@id"] + "/transfer", {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -226,9 +222,8 @@ function fetchDeleteNews(login, news)
 {
     return dispatch => {
         dispatch(deleteNewsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + news["@id"], {
+        fetch(types.baseUrl + news["@id"], {
             method: 'DELETE',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -293,9 +288,7 @@ function fetchCreateNews(login, news)
 
         news.media = media;
 
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
-
-        fetch(baseUrl + "/news", {
+        fetch(types.baseUrl + "/news", {
             method: 'POST',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -353,14 +346,13 @@ function fetchNewsUploadMedia(login, file)
 {
     return dispatch => {
         dispatch(newsUploadMediaRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com/fileUpload";
         let body = new FormData();
 
         console.log(file);
 
         body.append("file", file);
 
-        fetch(baseUrl, {
+        fetch(types.baseUrl, {
             method: 'POST',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,

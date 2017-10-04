@@ -4,9 +4,8 @@ function fetchSolvedTags(login, beginDate, endDate)
 {
     return dispatch => {
         dispatch(solvedTagsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_resolved', {
+        fetch(types.baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_resolved', {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -55,9 +54,8 @@ function fetchUnsolvedTags(login, beginDate, endDate)
 {
     return dispatch => {
         dispatch(unsolvedTagsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_unresolved', {
+        fetch(types.baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_unresolved', {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,

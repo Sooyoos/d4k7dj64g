@@ -5,9 +5,8 @@ function fetchUserTags(login)
 {
     return dispatch => {
         dispatch(userTagsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + login.userToken["@id"] + "/tags?order[tag.createdAt]=desc", {
+        fetch(types.baseUrl + login.userToken["@id"] + "/tags?order[tag.createdAt]=desc", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -53,9 +52,8 @@ function fetchAllTags(login)
 {
     return dispatch => {
         dispatch(allTagsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/tags?order[createdAt]=desc", {
+        fetch(types.baseUrl + "/tags?order[createdAt]=desc", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -102,9 +100,8 @@ function fetchTagPlaces(login)
 {
     return dispatch => {
         dispatch(tagPlacesRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/places", {
+        fetch(types.baseUrl + "/places", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -151,9 +148,8 @@ function fetchTagAxis(login)
 {
     return dispatch => {
         dispatch(tagAxisRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/transversal_axes", {
+        fetch(types.baseUrl + "/transversal_axes", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -265,14 +261,12 @@ function fetchTagSupervisor(login, tag)
     return dispatch => {
         dispatch(tagSupervisorRequested());
 
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
-
         let unitId = tag.place.unit;
         let axisId = tag.primaryAxis["@id"];
 
         let searchUrl = "/users?rolesByUnit.unit.id=" + unitId + "&rolesByUnit.axis.id=" + axisId + "&available=0";
 
-        fetch(baseUrl + searchUrl, {
+        fetch(types.baseUrl + searchUrl, {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -355,10 +349,9 @@ function fetchTagFollowers(login, tag)
 {
     return dispatch => {
         dispatch(tagFollowersRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
         let unitId = tag.place.unit;
 
-        fetch(baseUrl + unitId, {
+        fetch(types.baseUrl + unitId, {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -410,11 +403,10 @@ function addUsersToTag(login, tag, id)
 {
     return dispatch => {
         dispatch(createTagRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
         for(var i = 0; i < tag.users.length -1; i++)
         {
-            fetch(baseUrl + '/user_tags', {
+            fetch(types.baseUrl + '/user_tags', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -439,7 +431,6 @@ function fetchCreateTag(login, tag)
 {
     return dispatch => {
         dispatch(createTagRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
         let users = [];
         let medias = [];
@@ -473,9 +464,7 @@ function fetchCreateTag(login, tag)
             ],
         };
 
-        console.log(body);
-        console.log(baseUrl + '/tags');
-        fetch(baseUrl + '/tags', {
+        fetch(types.baseUrl + '/tags', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -542,9 +531,8 @@ function fetchTagHistory(login, tag)
 {
     return dispatch => {
         dispatch(tagHistoryRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + tag["@id"] + "/logs?order[createdAt]=desc", {
+        fetch(types.baseUrl + tag["@id"] + "/logs?order[createdAt]=desc", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -595,10 +583,9 @@ function fetchResolveTag(login, tag)
     return dispatch => {
         dispatch(tagResolveRequested());
 
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
         let status = "closed_resolved";
 
-        fetch(baseUrl + tag["@id"], {
+        fetch(types.baseUrl + tag["@id"], {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -648,10 +635,9 @@ function fetchCloseTag(login, tag)
     return dispatch => {
         dispatch(tagCloseRequested());
 
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
         let status = "closed_unresolved";
 
-        fetch(baseUrl + tag["@id"], {
+        fetch(types.baseUrl + tag["@id"], {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -701,9 +687,7 @@ function fetchCommentTag(login, tag, comment)
     return dispatch => {
         dispatch(tagCommentRequested());
 
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
-
-        fetch(baseUrl + "/tag_comments", {
+        fetch(types.baseUrl + "/tag_comments", {
             method: 'POST',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -756,9 +740,7 @@ function fetchTransferUsersTag(login)
     return dispatch => {
         dispatch(tagTransferUsersRequested());
 
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
-
-        fetch(baseUrl + "/users", {
+        fetch(types.baseUrl + "/users", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -807,9 +789,7 @@ function fetchTransferTag(login, tag, supervisor)
     return dispatch => {
         dispatch(tagTransferRequested());
 
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
-
-        fetch(baseUrl + tag["@id"], {
+        fetch(types.baseUrl + tag["@id"], {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -861,14 +841,13 @@ function fetchTagsUploadMedia(login, file)
 {
     return dispatch => {
         dispatch(tagsUploadMediaRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com/fileUpload";
         let body = new FormData();
 
         console.log(file);
 
         body.append("file", file);
 
-        fetch(baseUrl, {
+        fetch(types.baseUrl + "/fileUpload", {
             method: 'POST',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -967,14 +946,13 @@ function fetchTagsUploadPlaceAudio(login, file)
 {
     return dispatch => {
         dispatch(tagsUploadPlaceAudioRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com/fileUpload";
         let body = new FormData();
 
         console.log(file);
 
         body.append("file", file);
 
-        fetch(baseUrl, {
+        fetch(types.baseUrl + "/fileUpload", {
             method: 'POST',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -1023,14 +1001,13 @@ function fetchTagsUploadDescriptionAudio(login, file)
 {
     return dispatch => {
         dispatch(tagsUploadDescriptionAudioRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com/fileUpload";
         let body = new FormData();
 
         console.log(file);
 
         body.append("file", file);
 
-        fetch(baseUrl, {
+        fetch(types.baseUrl + "/fileUpload", {
             method: 'POST',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,

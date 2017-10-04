@@ -4,9 +4,8 @@ function fetchUserChecklists(login)
 {
     return dispatch => {
         dispatch(userChecklistsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/checklist_instances", {
+        fetch(types.baseUrl + "/checklist_instances", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -54,9 +53,8 @@ function fetchChecklistsTemplates(login)
 {
     return dispatch => {
         dispatch(checklistsTemplatesRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/checklists", {
+        fetch(types.baseUrl + "/checklists", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -104,11 +102,10 @@ function fetchCompleteTask(login, task)
 {
     return dispatch => {
         dispatch(completeTaskRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
         let status = "done";
         let value = task.value;
 
-        fetch(baseUrl + task["@id"], {
+        fetch(types.baseUrl + task["@id"], {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -158,11 +155,10 @@ function fetchResetTask(login, task)
 {
     return dispatch => {
         dispatch(resetTaskRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
         let status = "todo";
         let value = null;
 
-        fetch(baseUrl + task["@id"], {
+        fetch(types.baseUrl + task["@id"], {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -212,12 +208,11 @@ function fetchCompleteList(login, list, status)
 {
     return dispatch => {
         dispatch(completeListRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
         console.log("REQUEST COMPLETE LIST");
         console.log(list);
 
-        fetch(baseUrl + list["@id"], {
+        fetch(types.baseUrl + list["@id"], {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -268,9 +263,8 @@ function fetchAssignChecklists(login, instance)
 {
     return dispatch => {
         dispatch(assignChecklistsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/checklist_instances", {
+        fetch(types.baseUrl + "/checklist_instances", {
             method: 'POST',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,

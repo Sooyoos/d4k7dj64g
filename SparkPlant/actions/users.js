@@ -20,9 +20,8 @@ function fetchUser(token, tokenString, data)
 {
     return dispatch => {
         dispatch(userRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + token["@id"], {
+        fetch(types.baseUrl + token["@id"], {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + tokenString,
@@ -72,9 +71,8 @@ function fetchSetAvailability(login, user, availability)
     console.log(availability);
     return dispatch => {
         dispatch(setAvailabilityRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + user["@id"], {
+        fetch(types.baseUrl + user["@id"], {
             method: 'PUT',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,

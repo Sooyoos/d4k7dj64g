@@ -4,9 +4,8 @@ function fetchUnits(login)
 {
     return dispatch => {
         dispatch(unitsRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
 
-        fetch(baseUrl + "/units", {
+        fetch(types.baseUrl + "/units", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,

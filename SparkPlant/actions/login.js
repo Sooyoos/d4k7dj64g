@@ -55,7 +55,6 @@ function fetchLogin(factory, username, password)
 {
     return dispatch => {
         dispatch(loginRequested());
-        let baseUrl = "http://sparkplant-api-testing.sooyoos.com";
         let body = new FormData();
 
        factory = "1";
@@ -66,7 +65,7 @@ function fetchLogin(factory, username, password)
         body.append("password", password);
         body.append("idNumber", username);
 
-        fetch(baseUrl + "/token", {
+        fetch(types.baseUrl + "/token", {
             method: 'POST',
             headers: {
                 'Content-Type': 'multipart/form-data',
