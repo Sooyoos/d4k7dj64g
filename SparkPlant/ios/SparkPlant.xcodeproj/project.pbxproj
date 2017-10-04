@@ -44,9 +44,6 @@
 		BFE0C3E41F83FD4F00DE37C4 /* libRNAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2432201F828124009BB114 /* libRNAudio.a */; };
 		BFE0C3E51F83FD5900DE37C4 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2432261F82813D009BB114 /* libRNSound.a */; };
 		BFE0C3E61F83FD6500DE37C4 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF24322D1F82815C009BB114 /* libRNSVG.a */; };
-		BFE0C3F71F85154600DE37C4 /* QBImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3DD1F83FBD300DE37C4 /* QBImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BFE0C3FA1F8515B900DE37C4 /* RSKImageCropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3F91F8515B900DE37C4 /* RSKImageCropper.framework */; };
-		BFE0C3FB1F8515B900DE37C4 /* RSKImageCropper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3F91F8515B900DE37C4 /* RSKImageCropper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BFE0C4071F851B7E00DE37C4 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE0C3FC1F851B7E00DE37C4 /* Entypo.ttf */; };
 		BFE0C4081F851B7E00DE37C4 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE0C3FD1F851B7E00DE37C4 /* EvilIcons.ttf */; };
 		BFE0C4091F851B7E00DE37C4 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE0C3FE1F851B7E00DE37C4 /* Feather.ttf */; };
@@ -58,7 +55,10 @@
 		BFE0C40F1F851B7E00DE37C4 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE0C4041F851B7E00DE37C4 /* Octicons.ttf */; };
 		BFE0C4101F851B7E00DE37C4 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE0C4051F851B7E00DE37C4 /* SimpleLineIcons.ttf */; };
 		BFE0C4111F851B7E00DE37C4 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE0C4061F851B7E00DE37C4 /* Zocial.ttf */; };
-		BFE0C4121F85255D00DE37C4 /* QBImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3DD1F83FBD300DE37C4 /* QBImagePicker.framework */; };
+		BFE0C4151F852B5400DE37C4 /* RSKImageCropper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3F91F8515B900DE37C4 /* RSKImageCropper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BFE0C4161F852E9C00DE37C4 /* QBImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3DD1F83FBD300DE37C4 /* QBImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BFE0C4171F85316100DE37C4 /* RSKImageCropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3F91F8515B900DE37C4 /* RSKImageCropper.framework */; };
+		BFE0C4181F85316400DE37C4 /* QBImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3DD1F83FBD300DE37C4 /* QBImagePicker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -354,12 +354,12 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		BFE0C3F81F85154600DE37C4 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BFE0C3F71F85154600DE37C4 /* QBImagePicker.framework in Embed Frameworks */,
-				BFE0C3FB1F8515B900DE37C4 /* RSKImageCropper.framework in Embed Frameworks */,
+				BFE0C4161F852E9C00DE37C4 /* QBImagePicker.framework in Embed Frameworks */,
+				BFE0C4151F852B5400DE37C4 /* RSKImageCropper.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,7 +427,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFE0C4121F85255D00DE37C4 /* QBImagePicker.framework in Frameworks */,
+				BFE0C4181F85316400DE37C4 /* QBImagePicker.framework in Frameworks */,
+				BFE0C4171F85316100DE37C4 /* RSKImageCropper.framework in Frameworks */,
 				BFE0C3DF1F83FC0F00DE37C4 /* libRNImagePicker.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -439,7 +440,6 @@
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
-				BFE0C3FA1F8515B900DE37C4 /* RSKImageCropper.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				BFE0C3E01F83FD0D00DE37C4 /* libRNVectorIcons.a in Frameworks */,
 				BFE0C3E11F83FD2500DE37C4 /* libRCTCamera.a in Frameworks */,
