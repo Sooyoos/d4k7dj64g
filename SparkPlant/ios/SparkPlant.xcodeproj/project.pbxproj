@@ -36,7 +36,6 @@
 		2DCD954D1E0B4F2C00145EB5 /* SparkPlantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SparkPlantTests.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		BFE0C3DE1F83FBD300DE37C4 /* QBImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3DD1F83FBD300DE37C4 /* QBImagePicker.framework */; };
 		BFE0C3DF1F83FC0F00DE37C4 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2432111F82809F009BB114 /* libRNImagePicker.a */; };
 		BFE0C3E01F83FD0D00DE37C4 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2431E31F82763A009BB114 /* libRNVectorIcons.a */; };
 		BFE0C3E11F83FD2500DE37C4 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2431C41F82763A009BB114 /* libRCTCamera.a */; };
@@ -45,6 +44,9 @@
 		BFE0C3E41F83FD4F00DE37C4 /* libRNAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2432201F828124009BB114 /* libRNAudio.a */; };
 		BFE0C3E51F83FD5900DE37C4 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2432261F82813D009BB114 /* libRNSound.a */; };
 		BFE0C3E61F83FD6500DE37C4 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF24322D1F82815C009BB114 /* libRNSVG.a */; };
+		BFE0C3F71F85154600DE37C4 /* QBImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3DD1F83FBD300DE37C4 /* QBImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BFE0C3FA1F8515B900DE37C4 /* RSKImageCropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3F91F8515B900DE37C4 /* RSKImageCropper.framework */; };
+		BFE0C3FB1F8515B900DE37C4 /* RSKImageCropper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFE0C3F91F8515B900DE37C4 /* RSKImageCropper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -337,6 +339,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BFE0C3F81F85154600DE37C4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BFE0C3F71F85154600DE37C4 /* QBImagePicker.framework in Embed Frameworks */,
+				BFE0C3FB1F8515B900DE37C4 /* RSKImageCropper.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -370,6 +387,7 @@
 		BF2432271F82815C009BB114 /* RNSVG.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 		BF2432691F8288F8009BB114 /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imageCropPicker.xcodeproj; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; };
 		BFE0C3DD1F83FBD300DE37C4 /* QBImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QBImagePicker.framework; path = "../../../../Library/Developer/Xcode/DerivedData/SparkPlant-dqgkocmaavmzhlgqgjnpanztqjfb/Build/Products/Debug-iphoneos/QBImagePicker.framework"; sourceTree = "<group>"; };
+		BFE0C3F91F8515B900DE37C4 /* RSKImageCropper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RSKImageCropper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FFD0CA4F1D4A6DACC7E831 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -387,7 +405,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFE0C3DF1F83FC0F00DE37C4 /* libRNImagePicker.a in Frameworks */,
-				BFE0C3DE1F83FBD300DE37C4 /* QBImagePicker.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -398,6 +415,7 @@
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
+				BFE0C3FA1F8515B900DE37C4 /* RSKImageCropper.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				BFE0C3E01F83FD0D00DE37C4 /* libRNVectorIcons.a in Frameworks */,
 				BFE0C3E11F83FD2500DE37C4 /* libRCTCamera.a in Frameworks */,
@@ -607,6 +625,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				BFE0C3F91F8515B900DE37C4 /* RSKImageCropper.framework */,
 				13B07FAE1A68108700A75B9A /* SparkPlant */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* SparkPlantTests */,
@@ -732,6 +751,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				BFE0C3F81F85154600DE37C4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
