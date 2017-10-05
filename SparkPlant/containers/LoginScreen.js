@@ -63,6 +63,7 @@ let styles = StyleSheet.create({
     userSelect : {
         width: responsiveWidth(50),
         height : responsiveHeight(5),
+        marginBottom: responsiveHeight(5),
     }
 });
 
@@ -153,7 +154,7 @@ class LoginScreen extends Component {
                             <Text style={{fontSize: responsiveFontSize(1.5)}}>
                                 Ou :
                             </Text>
-                            <ElevatedView elevation={4} style={{alignItems: 'center', justifyContent: 'center'}}>
+                            <ElevatedView elevation={4}>
                                 <TouchableWithoutFeedback onPress={() => {this.setState({new : true})}}>
                                     <View style={styles.button}>
                                         <Text style={styles.buttonText}>ENTREZ VOS INFORMATIONS</Text>
@@ -173,7 +174,7 @@ class LoginScreen extends Component {
                             <LoginFactoryList/>
                             <LoginUsernameInput/>
                             <LoginPasswordInput />
-                            <ElevatedView elevation={4} style={{alignItems: 'center', justifyContent: 'center'}}>
+                            <ElevatedView elevation={4}>
                                 <TouchableWithoutFeedback onPress={this.login}>
                                     <View style={styles.button}>
                                         <Text style={styles.buttonText}>SE CONNECTER</Text>
