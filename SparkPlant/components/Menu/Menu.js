@@ -17,24 +17,27 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 let styles = StyleSheet.create({
     menu: {
-        flex:1,
+        width : responsiveWidth(100),
+        height : responsiveHeight(100),
         backgroundColor:'#ffffff',
     },
     menuHeader : {
-        height:responsiveHeight(30),
+        width : responsiveWidth(100),
+        height: responsiveHeight(35),
         backgroundColor: '#3f51b5',
-        padding:20,
+        paddingVertical: responsiveHeight(3),
+        paddingHorizontal: responsiveWidth(5),
     },
     menuHeaderIconView : {
-        width : responsiveWidth(80),
+        width : responsiveWidth(100),
         height: responsiveHeight(8),
-        marginTop: 20,
+        marginTop: responsiveHeight(3),
         flexDirection : 'row',
     },
     menuHeaderIcon : {
         color : '#ffffff',
         fontSize : responsiveFontSize(3),
-        marginRight : 10,
+        marginRight : responsiveHeight(1.5),
     },
     menuHeaderIconText : {
         fontSize : responsiveFontSize(2),
@@ -48,7 +51,7 @@ let styles = StyleSheet.create({
         borderRadius : responsiveWidth(8),
         width : responsiveWidth(16),
         height: responsiveWidth(16),
-        marginRight : 15,
+        marginRight : responsiveWidth(5),
     },
     menuHeaderUsername : {
         color : '#ffffff',
@@ -60,16 +63,20 @@ let styles = StyleSheet.create({
     },
     menuHeaderAvailableView : {
         height:responsiveHeight(8),
+        width : responsiveWidth(100),
         flexDirection : 'row',
+        alignItems: "center",
     },
     menuHeaderAvailableSwitch : {
-        flex : 4,
+        height : responsiveHeight(8),
+        width : responsiveWidth(40),
     },
     menuHeaderAvailableSwitchLabel : {
         color:'#ffffff',
         fontSize : responsiveFontSize(2),
-        flex : 4,
-        marginTop : 20,
+        height : responsiveHeight(8),
+        width : responsiveWidth(30),
+        marginTop : responsiveHeight(3),
     },
 });
 
