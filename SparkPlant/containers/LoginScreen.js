@@ -26,34 +26,33 @@ let styles = StyleSheet.create({
         width : responsiveWidth(100),
         height : responsiveHeight(100),
         backgroundColor: '#efefef',
-        alignItems : 'center',
-        justifyContent: 'center',
+        paddingVertical: responsiveHeight(1),
+        paddingHorizontal: responsiveWidth(1),
     },
     body: {
-        width : responsiveWidth(80),
-        height : responsiveHeight(80),
+        width : responsiveWidth(98),
+        height : responsiveHeight(96),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     logo : {
-        margin: responsiveWidth(5),
-        width : responsiveWidth(70),
+        margin: responsiveWidth(8),
+        width : responsiveWidth(80),
         resizeMode : 'contain',
     },
     button: {
-        minWidth:responsiveWidth(40),
-        minHeight:responsiveHeight(5),
+        width:responsiveWidth(60),
+        height : responsiveHeight(10),
         backgroundColor: '#00bcd4',
         marginTop:responsiveHeight(5),
-        flexDirection: 'row',
-        alignItems: 'center',
+        alignItems : 'center',
+        justifyContent : 'center',
     },
     buttonText : {
-        flex:9,
         color:'#ffffff',
         textAlign: 'center',
-        fontSize: responsiveFontSize(2.2),
+        fontSize: responsiveFontSize(2.5),
     },
     loginCard : {
         width: responsiveWidth(75),
@@ -153,9 +152,9 @@ class LoginScreen extends Component {
                             <Text style={{fontSize: responsiveFontSize(1.5)}}>
                                 Ou :
                             </Text>
-                            <ElevatedView elevation={4} style={styles.button}>
+                            <ElevatedView elevation={4} style={{alignItems: 'center', justifyContent: 'center'}}>
                                 <TouchableWithoutFeedback onPress={() => {this.setState({new : true})}}>
-                                    <View style={{width:responsiveWidth(40), height:responsiveHeight(8), justifyContent:'center', padding : 5}}>
+                                    <View style={styles.button}>
                                         <Text style={styles.buttonText}>ENTREZ VOS INFORMATIONS</Text>
                                     </View>
                                 </TouchableWithoutFeedback>
@@ -173,9 +172,9 @@ class LoginScreen extends Component {
                             <LoginFactoryList/>
                             <LoginUsernameInput/>
                             <LoginPasswordInput />
-                            <ElevatedView elevation={4} style={styles.button}>
+                            <ElevatedView elevation={4} style={{alignItems: 'center', justifyContent: 'center'}}>
                                 <TouchableWithoutFeedback onPress={this.login}>
-                                    <View style={{width:responsiveWidth(40), height:responsiveHeight(6), justifyContent:'center', padding : 5}}>
+                                    <View style={styles.button}>
                                         <Text style={styles.buttonText}>SE CONNECTER</Text>
                                     </View>
                                 </TouchableWithoutFeedback>

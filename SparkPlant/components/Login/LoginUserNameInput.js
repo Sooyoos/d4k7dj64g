@@ -12,7 +12,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 let styles = StyleSheet.create({
     input: {
-        width:responsiveWidth(50),
+        width:responsiveWidth(75),
         height:responsiveHeight(8),
         fontSize : responsiveFontSize(2.4),
     }
