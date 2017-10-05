@@ -17,8 +17,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 let styles = StyleSheet.create({
     menu: {
-        width : responsiveWidth(100),
-        height : responsiveHeight(100),
+        flex : 1,
         backgroundColor:'#ffffff',
     },
     menuHeader : {
@@ -29,7 +28,7 @@ let styles = StyleSheet.create({
         paddingHorizontal: responsiveWidth(5),
     },
     menuHeaderIconView : {
-        width : responsiveWidth(100),
+        width : responsiveWidth(60),
         height: responsiveHeight(8),
         marginTop: responsiveHeight(3),
         flexDirection : 'row',
@@ -63,7 +62,7 @@ let styles = StyleSheet.create({
     },
     menuHeaderAvailableView : {
         height:responsiveHeight(8),
-        width : responsiveWidth(100),
+        width : responsiveWidth(60),
         flexDirection : 'row',
         alignItems: "center",
     },
