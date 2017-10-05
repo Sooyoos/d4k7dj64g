@@ -154,13 +154,11 @@ class LoginScreen extends Component {
                             <Text style={{fontSize: responsiveFontSize(1.5)}}>
                                 Ou :
                             </Text>
-                            <ElevatedView elevation={4}>
-                                <TouchableWithoutFeedback onPress={() => {this.setState({new : true})}}>
-                                    <View style={styles.button}>
-                                        <Text style={styles.buttonText}>ENTREZ VOS INFORMATIONS</Text>
-                                    </View>
-                                </TouchableWithoutFeedback>
-                            </ElevatedView>
+                            <TouchableWithoutFeedback onPress={() => {this.setState({new : true})}}>
+                                <ElevatedView elevation={4} style={styles.button}>
+                                    <Text style={styles.buttonText}>ENTREZ VOS INFORMATIONS</Text>
+                                </ElevatedView>
+                            </TouchableWithoutFeedback>
                         </ElevatedView>
                     </View>
                 );
@@ -174,13 +172,11 @@ class LoginScreen extends Component {
                             <LoginFactoryList/>
                             <LoginUsernameInput/>
                             <LoginPasswordInput />
-                            <ElevatedView elevation={4}>
-                                <TouchableWithoutFeedback onPress={this.login}>
-                                    <View style={styles.button}>
-                                        <Text style={styles.buttonText}>SE CONNECTER</Text>
-                                    </View>
-                                </TouchableWithoutFeedback>
-                            </ElevatedView>
+                            <TouchableWithoutFeedback onPress={this.login}>
+                                <ElevatedView elevation={4} style={styles.button}>
+                                    <Text style={styles.buttonText}>SE CONNECTER</Text>
+                                </ElevatedView>
+                            </TouchableWithoutFeedback>
                             <KeyboardSpacer/>
                         </ElevatedView>
                     </View>
