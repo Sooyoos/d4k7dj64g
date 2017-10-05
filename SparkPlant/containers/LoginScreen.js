@@ -62,8 +62,7 @@ let styles = StyleSheet.create({
     },
     userSelect : {
         width: responsiveWidth(50),
-        height : responsiveHeight(5),
-        marginBottom: responsiveHeight(5),
+        height : responsiveHeight(15),
     }
 });
 
@@ -148,9 +147,11 @@ class LoginScreen extends Component {
                             <Text style={{fontSize: responsiveFontSize(1.5)}}>
                                 Connectez vous avec l'un des utilisateurs suivants :
                             </Text>
-                            <Picker style={styles.userSelect} onValueChange={(value, index) => {this.autoLogin(index, value);}} >
-                                {this.buildUsersList()}
-                            </Picker>
+                            <View style={{marginTop : responsiveHeight(2), marginBottom : responsiveHeight(2)}}>
+                                <Picker style={styles.userSelect} onValueChange={(value, index) => {this.autoLogin(index, value);}} >
+                                    {this.buildUsersList()}
+                                </Picker>
+                            </View>
                             <Text style={{fontSize: responsiveFontSize(1.5)}}>
                                 Ou :
                             </Text>
