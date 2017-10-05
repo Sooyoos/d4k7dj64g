@@ -53,7 +53,7 @@ let styles = StyleSheet.create({
         flex:9,
         color:'#ffffff',
         textAlign: 'center',
-        fontSize: responsiveFontSize(1.8),
+        fontSize: responsiveFontSize(2.2),
     },
     loginCard : {
         width: responsiveWidth(75),
@@ -155,7 +155,7 @@ class LoginScreen extends Component {
                             </Text>
                             <ElevatedView elevation={4} style={styles.button}>
                                 <TouchableWithoutFeedback onPress={() => {this.setState({new : true})}}>
-                                    <View style={{width:responsiveWidth(40), height:responsiveHeight(7), justifyContent:'center', padding : 5}}>
+                                    <View style={{width:responsiveWidth(40), height:responsiveHeight(8), justifyContent:'center', padding : 5}}>
                                         <Text style={styles.buttonText}>ENTREZ VOS INFORMATIONS</Text>
                                     </View>
                                 </TouchableWithoutFeedback>
@@ -175,7 +175,7 @@ class LoginScreen extends Component {
                             <LoginPasswordInput />
                             <ElevatedView elevation={4} style={styles.button}>
                                 <TouchableWithoutFeedback onPress={this.login}>
-                                    <View style={{width:responsiveWidth(40), height:responsiveHeight(5), justifyContent:'center', padding : 5}}>
+                                    <View style={{width:responsiveWidth(40), height:responsiveHeight(6), justifyContent:'center', padding : 5}}>
                                         <Text style={styles.buttonText}>SE CONNECTER</Text>
                                     </View>
                                 </TouchableWithoutFeedback>

@@ -15,7 +15,7 @@ let styles = StyleSheet.create({
     input: {
         width:responsiveWidth(50),
         height:responsiveHeight(8),
-        fontSize : responsiveFontSize(1.6),
+        fontSize : responsiveFontSize(2.4),
     }
 });
 
