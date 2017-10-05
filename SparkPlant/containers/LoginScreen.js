@@ -33,9 +33,9 @@ let styles = StyleSheet.create({
     body: {
         width : responsiveWidth(98),
         height : responsiveHeight(93),
+        paddingTop : responsiveHeight(15),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
-        justifyContent: 'center',
     },
     logo : {
         margin: responsiveWidth(8),
