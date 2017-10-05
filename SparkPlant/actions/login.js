@@ -81,6 +81,11 @@ function fetchLogin(factory, username, password)
                     dispatch(goToHomepage());
                     dispatch(loginSuccess(responseJson, data));
                 }
+                else
+                {
+                    dispatch(goToLogin());
+                    dispatch(loginFailure());
+                }
             })
             .catch((error) => { console.log(error); dispatch(loginFailure())});
     }
