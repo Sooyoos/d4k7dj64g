@@ -89,7 +89,7 @@ class LoginScreen extends Component {
 
     login(factory = this.props.login.factory, username = this.props.login.username, password = this.props.login.password)
     {
-        this.props.tryLogin(factory, username, password);
+        this.props.tryLogin(this.props.login.factory, this.props.login.username, this.props.login.password);
     }
 
     autoLogin(index, value)

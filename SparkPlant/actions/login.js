@@ -57,8 +57,8 @@ function fetchLogin(factory, username, password)
         dispatch(loginRequested());
         let body = new FormData();
 
-       factory = "1";
-       /*password = "test";
+       /*factory = "1";
+       password = "test";
        username = "user1";*/
 
         body.append("factory", factory);
