@@ -20,7 +20,7 @@ import HeaderTagDetails from "../../../components/Header/HeaderTags";
 
 let styles = StyleSheet.create({
     card : {
-        height : responsiveHeight(40),
+        height : responsiveHeight(70),
         margin : responsiveWidth(2),
         backgroundColor: '#ffffff'
     },
@@ -33,16 +33,16 @@ let styles = StyleSheet.create({
         padding : responsiveWidth(2),
     },
     cardHeaderIconView : {
-        width: responsiveWidth(10),
-        height : responsiveWidth(10),
-        borderRadius : responsiveWidth(5),
+        width: responsiveWidth(15),
+        height : responsiveWidth(15),
+        borderRadius : responsiveWidth(7.5),
         backgroundColor: '#3f51b5',
         margin : responsiveWidth(1.5),
-        padding : responsiveWidth(0.5),
+        alignItems : "center",
+        justifyContent : "center",
     },
     cardHeaderIcon : {
-        flex : 2,
-        fontSize : responsiveFontSize(4.5),
+        fontSize : responsiveFontSize(5),
         textAlign : 'center',
         color : '#ffffff',
     },
@@ -59,36 +59,36 @@ let styles = StyleSheet.create({
         padding : responsiveWidth(4),
     },
     locationPicker : {
-        marginTop : 20,
-        marginBottom : 20,
-        height : responsiveHeight(10),
+        height : responsiveHeight(5),
+        marginBottom : responsiveHeight(30),
     },
     buttonView : {
-        width: responsiveWidth(15),
-        height : responsiveWidth(15),
-        borderRadius : responsiveWidth(7.5),
+        width: responsiveWidth(23),
+        height : responsiveWidth(23),
+        borderRadius : responsiveWidth(11.5),
         backgroundColor: '#00bcd4',
-        padding : 3,
-        margin : 15,
-        marginLeft:responsiveWidth(80),
+        marginLeft:responsiveWidth(75),
+        alignItems : "center",
+        justifyContent: "center",
+        marginBottom: responsiveHeight(1),
     },
     buttonIcon : {
-        flex : 2,
         fontSize : responsiveFontSize(7.5),
         textAlign : 'center',
         color : '#ffffff',
     },
     actionButtonView : {
-        width: responsiveWidth(8),
-        height : responsiveWidth(8),
-        borderRadius : responsiveWidth(4),
+        width: responsiveWidth(12),
+        height : responsiveWidth(12),
+        borderRadius : responsiveWidth(6),
         backgroundColor: '#00bcd4',
-        padding : 3,
         marginVertical : 10,
         marginHorizontal : 5,
+        alignItems : "center",
+        justifyContent: "center",
     },
     actionButtonIcon : {
-        fontSize : responsiveFontSize(3.5),
+        fontSize : responsiveFontSize(4),
         textAlign : 'center',
         color : '#ffffff',
     },
@@ -184,7 +184,7 @@ class CreateTagStep1 extends Component {
                                     <Picker style={styles.locationPicker} prompt="Sélectionnez le lieu" selectedValue={this.props.tags.creation_current.place} onValueChange={(value) => this.props.setCurrentCreationPlace(value)}>
                                         { this.buildPlacesList() }
                                     </Picker>
-                                    <TextInput style={{fontSize : responsiveFontSize(1.6)}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
+                                    <TextInput style={{fontSize : responsiveFontSize(2.2)}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
                                     <TouchableOpacity onPress={() => {
                                         this.props.setToRecord("place");
                                         this.props.goToRecordAudio();
@@ -208,6 +208,18 @@ class CreateTagStep1 extends Component {
                                     <Picker style={styles.locationPicker} prompt="Sélectionnez le type principal" selectedValue={this.props.tags.creation_current.primaryAxis} onValueChange={(value) => this.props.setCurrentCreationPrimaryAxis(value)}>
                                         {this.buildAxisList()}
                                     </Picker>
+                                </View>
+                            </ElevatedView>
+                            <ElevatedView style={styles.card} elevation={2}>
+                                <ElevatedView style={styles.cardHeader} elevation={2}>
+                                    <View style={styles.cardHeaderIconView}>
+                                        <Icon name="information-outline" style={styles.cardHeaderIcon} />
+                                    </View>
+                                    <Text style={styles.cardHeaderTitle}>
+                                        Type secondaire
+                                    </Text>
+                                </ElevatedView>
+                                <View style={styles.cardContent}>
                                     <Picker style={styles.locationPicker} prompt="Sélectionnez les types secondaires" selectedValue={this.props.tags.creation_current.secondaryAxis} onValueChange={(value) => this.props.setCurrentCreationSecondaryAxis(value)}>
                                         {this.buildAxisList()}
                                     </Picker>
