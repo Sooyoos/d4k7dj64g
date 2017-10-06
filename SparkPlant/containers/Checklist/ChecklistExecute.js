@@ -68,6 +68,7 @@ let styles = StyleSheet.create({
         borderRadius : responsiveHeight(4),
         backgroundColor: "#bdbdbd",
         justifyContent: "center",
+        alignItems:"center",
     },
     taskIndexText : {
         textAlign: "center",
@@ -92,7 +93,7 @@ let styles = StyleSheet.create({
         justifyContent : "center",
     },
     taskInput : {
-        width : responsiveWidth(60),
+        width : responsiveWidth(50),
         height : responsiveHeight(8),
         fontSize : responsiveFontSize(1.8),
         color : "#212121",
