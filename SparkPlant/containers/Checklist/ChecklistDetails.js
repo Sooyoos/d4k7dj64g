@@ -33,7 +33,7 @@ let styles = StyleSheet.create({
     },
     listTasks : {
         width : responsiveWidth(90),
-        height : responsiveHeight(70),
+        height : responsiveHeight(55),
         backgroundColor : "#ffffff",
         marginVertical: responsiveHeight(2),
     },
@@ -70,6 +70,7 @@ let styles = StyleSheet.create({
         borderRadius : responsiveHeight(4),
         backgroundColor : "#bdbdbd",
         justifyContent : "center",
+        alignItems : "center",
     },
     taskIndexText : {
         color : "#ffffff",
@@ -103,6 +104,7 @@ let styles = StyleSheet.create({
         borderRadius: responsiveHeight(2.5),
         backgroundColor : "#00bcd4",
         justifyContent : "center",
+        alignItems : "center",
     },
     unitButtonIcon : {
         color : "#ffffff",
