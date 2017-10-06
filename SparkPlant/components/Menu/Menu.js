@@ -21,8 +21,7 @@ let styles = StyleSheet.create({
         backgroundColor:'#ffffff',
     },
     menuHeader : {
-        width : responsiveWidth(100),
-        height: responsiveHeight(35),
+        flex : 4,
         backgroundColor: '#3f51b5',
         paddingVertical: responsiveHeight(3),
         paddingHorizontal: responsiveWidth(5),
@@ -165,7 +164,7 @@ class DrawerMenu extends Component {
                             <Switch style={styles.menuHeaderAvailableSwitch} value={this.state.userAvailable || this.props.users.loggedUser.availability} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
                         </View>
                     </View>
-                    <View>
+                    <View style={{flex : 7}}>
                         <DrawerItems contentOptions={{activeTintColor : '#00bcd4'}} {...this.props} />
                     </View>
                 </View>

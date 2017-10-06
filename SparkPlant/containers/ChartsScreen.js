@@ -142,7 +142,7 @@ class ChartsScreen extends Component {
         title : 'ANALYTICS',
         drawerLabel: "ANALYTICS",
         drawerIcon: ({tintColor}) => (
-            <Icon name='bar-chart' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
+            <Icon name='bar-chart' style={{fontSize : 24, color : '#757575'}}/>
         ),
     };
 
