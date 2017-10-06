@@ -188,7 +188,7 @@ class LoginScreen extends Component {
         {
             return(
                 <View style={styles.login}>
-                    <ActivityIndicator color="#3f51b5" size="large"/>
+                    <ActivityIndicator color="#ffffff" size="large"/>
                 </View>
             );
         }
