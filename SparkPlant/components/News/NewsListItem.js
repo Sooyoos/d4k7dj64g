@@ -54,11 +54,11 @@ let styles = StyleSheet.create({
         width : responsiveWidth(8),
     },
     textContent : {
-        fontSize : responsiveFontSize(1.7),
+        fontSize : responsiveFontSize(2.2),
         color : "#212121",
     },
     textInfos : {
-        fontSize: responsiveFontSize(1.4),
+        fontSize: responsiveFontSize(2),
         color : "#757575",
     },
     statusIcon : {
