@@ -14,7 +14,7 @@ let styles = StyleSheet.create({
     button : {
         alignItems: 'center',
         justifyContent: 'center',
-        width : responsiveWidth(15),
+        width : responsiveWidth(10),
     },
     buttonIcon : {
         color:'#ffffff',
