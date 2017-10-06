@@ -13,7 +13,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 let styles = StyleSheet.create({
     header: {
-        flex:0.5,
+        height : responsiveHeight(8),
+        width : responsiveWidth(100),
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
