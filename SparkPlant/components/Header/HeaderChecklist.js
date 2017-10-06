@@ -14,7 +14,7 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 let styles = StyleSheet.create({
     header: {
-        height : responsiveHeight(7),
+        height : responsiveHeight(8),
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',

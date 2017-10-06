@@ -17,10 +17,12 @@ import Moment from 'moment';
 let styles = StyleSheet.create({
     item : {
         width : responsiveWidth(90),
-        height : responsiveHeight(15),
+        height : responsiveHeight(25),
         marginVertical : responsiveHeight(1.8),
         backgroundColor: "#ffffff",
         flexDirection: 'row',
+        justifyContent: "center",
+        alignItems: "center",
     },
     listTypeView : {
         width : responsiveHeight(15),
@@ -33,6 +35,7 @@ let styles = StyleSheet.create({
         borderRadius : responsiveHeight(5),
         backgroundColor: "#00bcd4",
         justifyContent:'center',
+        alignItems : "center",
     },
     listType : {
         fontSize : responsiveFontSize(4),
@@ -99,11 +102,11 @@ class ChecklistListItem extends Component {
     {
         if(item["@type"] === "ChecklistInstance")
         {
-            return item.checklist.category.name;
+            return item.checklist.category.name.charAt(0).toUpperCase();
         }
         else
         {
-            return item.category.name;
+            return item.category.name.charAt(0).toUpperCase();
         }
     }
 
