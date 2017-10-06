@@ -15,7 +15,8 @@ import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-nat
 
 let styles = StyleSheet.create({
     item: {
-        flex: 1,
+        width : responsiveWidth(83),
+        height : responsiveHeight(15),
         paddingLeft: responsiveWidth(3),
         paddingRight: responsiveWidth(3),
         paddingTop: responsiveHeight(1),
@@ -31,26 +32,31 @@ let styles = StyleSheet.create({
         marginRight: responsiveWidth(1),
     },
     aside : {
-        width: responsiveWidth(10),
+        width: responsiveWidth(15),
+        height : responsiveHeight(12),
         alignItems: 'center',
+        justifyContent : "center",
     },
     itemTitle : {
-        flex : 1,
+        width:responsiveWidth(65),
+        height : responsiveHeight(4),
         color : '#212121',
-        fontSize:responsiveFontSize(1.8),
+        fontSize:responsiveFontSize(2.4),
     },
     itemLocation : {
-        flex : 1,
+        width:responsiveWidth(65),
+        height : responsiveHeight(4),
         color : '#757575',
-        fontSize:responsiveFontSize(1.6),
+        fontSize:responsiveFontSize(2.2),
     },
     itemInfos : {
-        flex : 1,
+        width:responsiveWidth(65),
+        height : responsiveHeight(4),
         flexDirection: 'row',
     },
     itemId : {
         color : '#757575',
-        fontSize:responsiveFontSize(1.4),
+        fontSize:responsiveFontSize(2),
     },
     itemImage : {
         width:responsiveWidth(3.8),
@@ -62,13 +68,15 @@ let styles = StyleSheet.create({
     itemFullname : {
         flex : 1,
         color : '#212121',
-        fontSize:responsiveFontSize(1.4),
+        fontSize:responsiveFontSize(2),
     },
     itemType : {
         backgroundColor:'#00bcd4',
-        width:responsiveWidth(5),
-        height:responsiveWidth(5),
-        borderRadius : responsiveWidth(2.5),
+        width:responsiveWidth(10),
+        height:responsiveWidth(10),
+        borderRadius : responsiveWidth(5),
+        alignItems: "center",
+        justifyContent: "center",
     },
     itemStatus : {
         marginTop : responsiveHeight(1),
@@ -130,7 +138,7 @@ class TagListItem extends Component {
                     </View>
                     <View style={styles.aside}>
                         <View style={styles.itemType}>
-                            <Text style={{color: '#ffffff', fontSize : responsiveFontSize(1.8), textAlign: 'center'}}>
+                            <Text style={{color: '#ffffff', fontSize : responsiveFontSize(2.4), textAlign: 'center'}}>
                                 {this.props.tag.primaryAxis.code}
                             </Text>
                         </View>
