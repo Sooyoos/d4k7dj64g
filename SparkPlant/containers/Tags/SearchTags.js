@@ -49,10 +49,11 @@ let styles = StyleSheet.create({
         height : responsiveHeight(8),
         borderRadius : responsiveHeight(4),
         justifyContent: 'center',
+        alignItems: "center",
     },
     searchIcon : {
         color : "#ffffff",
-        fontSize : responsiveFontSize(3.4),
+        fontSize : responsiveFontSize(3),
         textAlign : 'center',
     },
 });

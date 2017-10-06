@@ -17,7 +17,6 @@ let styles = StyleSheet.create({
         backgroundColor : "#3f51b5",
         height : responsiveHeight(4),
         width : responsiveHeight(4),
-        borderRadius : responsiveHeight(0.2),
         marginVertical: responsiveHeight(1),
         marginHorizontal: responsiveWidth(1),
         justifyContent: "center",
@@ -26,11 +25,11 @@ let styles = StyleSheet.create({
         backgroundColor : "#ffffff",
         height : responsiveHeight(4),
         width : responsiveHeight(4),
-        borderRadius : responsiveHeight(0.2),
         borderWidth: responsiveHeight(0.4),
         borderColor : "#3f51b5",
         marginVertical: responsiveHeight(1),
         marginHorizontal: responsiveWidth(1),
+        justifyContent: "center",
     },
     icon : {
         color : "#ffffff",
@@ -72,7 +71,7 @@ class Checkbox extends Component {
             return(
                 <TouchableWithoutFeedback onPress={this.check.bind(this)}>
                     <View style={styles.bodyUnchecked}>
-
+                        <Icon name="square" style={styles.icon} />
                     </View>
                 </TouchableWithoutFeedback>
             );
