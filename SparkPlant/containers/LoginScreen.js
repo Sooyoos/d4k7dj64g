@@ -25,7 +25,7 @@ let styles = StyleSheet.create({
     login: {
         width : responsiveWidth(100),
         height : responsiveHeight(100),
-        backgroundColor: '#efefef',
+        backgroundColor: '#3f51b5',
         paddingTop : responsiveHeight(4),
         paddingBottom: responsiveHeight(1),
         paddingHorizontal: responsiveWidth(1),
@@ -33,7 +33,7 @@ let styles = StyleSheet.create({
     body: {
         width : responsiveWidth(98),
         height : responsiveHeight(93),
-        paddingTop : responsiveHeight(15),
+        paddingTop : responsiveHeight(5),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
     },
@@ -46,7 +46,7 @@ let styles = StyleSheet.create({
         width:responsiveWidth(60),
         height : responsiveHeight(10),
         backgroundColor: '#00bcd4',
-        marginTop:responsiveHeight(5),
+        marginTop:responsiveHeight(1),
         alignItems : 'center',
         justifyContent : 'center',
     },
@@ -63,8 +63,7 @@ let styles = StyleSheet.create({
     userSelect : {
         width: responsiveWidth(50),
         height : responsiveHeight(15),
-        marginVertical: responsiveHeight(5),
-    }
+    },
 });
 
 class LoginScreen extends Component {
@@ -145,13 +144,15 @@ class LoginScreen extends Component {
                     <View style={styles.login}>
                         <ElevatedView elevation={2} style={styles.body}>
                             <Image source={require('../assets/img/Logo-sparkplant.png')} style={styles.logo} />
-                            <Text style={{fontSize: responsiveFontSize(1.5)}}>
+                            <Text style={{fontSize: responsiveFontSize(1.5), marginVertical : responsiveHeight(1)}}>
                                 Connectez vous avec l'un des utilisateurs suivants :
                             </Text>
-                            <Picker style={styles.userSelect} onValueChange={(value, index) => {this.autoLogin(index, value);}} >
-                                {this.buildUsersList()}
-                            </Picker>
-                            <Text style={{fontSize: responsiveFontSize(1.5)}}>
+                            <View>
+                                <Picker style={styles.userSelect} onValueChange={(value, index) => {this.autoLogin(index, value);}} >
+                                    {this.buildUsersList()}
+                                </Picker>
+                            </View>
+                            <Text style={{fontSize: responsiveFontSize(1.5), marginTop : responsiveHeight(15)}}>
                                 Ou :
                             </Text>
                             <TouchableWithoutFeedback onPress={() => {this.setState({new : true})}}>
