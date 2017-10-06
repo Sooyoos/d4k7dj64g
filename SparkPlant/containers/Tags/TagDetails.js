@@ -24,7 +24,7 @@ let styles = StyleSheet.create({
         flex:1,
     },
     header : {
-        height : responsiveHeight(7),
+        height : responsiveHeight(8),
     },
     body: {
         height : responsiveHeight(83),
@@ -68,10 +68,12 @@ let styles = StyleSheet.create({
         width : responsiveWidth(65),
     },
     sectionVisualType : {
-        width: responsiveWidth(8),
-        height: responsiveWidth(8),
-        borderRadius: responsiveWidth(4),
-        backgroundColor : '#00bcd4'
+        width: responsiveWidth(10),
+        height: responsiveWidth(10),
+        borderRadius: responsiveWidth(5),
+        backgroundColor : '#00bcd4',
+        alignItems : "center",
+        justifyContent : "center",
     },
 });
 
@@ -214,14 +216,14 @@ class TagDetails extends Component {
                         <View style={styles.infos}>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <IconA name={this.getStatusIcon()} style={{fontSize:responsiveFontSize(2.8)}} />
+                                    <IconA name={this.getStatusIcon()} style={{fontSize:responsiveFontSize(3.2)}} />
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
-                                        <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
+                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#212121'}}>
                                             #{lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} ouvert par {tag.supervisor.firstName} {tag.supervisor.lastName}
                                         </Text>
-                                        <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
+                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
                                             {tag.title}
                                         </Text>
                                     </View>
@@ -233,10 +235,10 @@ class TagDetails extends Component {
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
-                                        <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
+                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
                                             Responsable en charge
                                         </Text>
-                                        <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
+                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
                                             {tag.supervisor.firstName} {tag.supervisor.lastName}
                                         </Text>
                                     </View>
@@ -252,10 +254,10 @@ class TagDetails extends Component {
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
-                                        <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
+                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
                                             Nature
                                         </Text>
-                                        <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
+                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
                                             {tag.primaryAxis.name}
                                         </Text>
                                     </View>
@@ -263,14 +265,14 @@ class TagDetails extends Component {
                             </View>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <Icon name="map" style={{fontSize:responsiveFontSize(2.8)}} />
+                                    <Icon name="map" style={{fontSize:responsiveFontSize(3.2)}} />
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
-                                        <Text style={{fontSize:responsiveFontSize(1.4), color : '#757575'}}>
+                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
                                             Lieu
                                         </Text>
-                                        <Text style={{fontSize:responsiveFontSize(1.8), color : '#212121'}}>
+                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
                                             {tag.place.name}
                                         </Text>
                                         {this.renderPlaceAudioIcon()}
@@ -279,7 +281,7 @@ class TagDetails extends Component {
                             </View>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <Icon name="clipboard-text" style={{fontSize:responsiveFontSize(2.8)}} />
+                                    <Icon name="clipboard-text" style={{fontSize:responsiveFontSize(3.2)}} />
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
