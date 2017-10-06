@@ -97,6 +97,7 @@ android {
         applicationId "com.sparkplant"
         minSdkVersion 16
         targetSdkVersion 22
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         ndk {
@@ -131,6 +132,10 @@ android {
             }
         }
     }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
 }
 
 dependencies {
@@ -142,9 +147,28 @@ dependencies {
     compile project(':react-native-image-picker')
     compile project(':react-native-camera')
     compile project(':react-native-vector-icons')
+    compile 'com.android.support:multidex:1.0.1'
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
+
+    compile(project(':react-native-firebase')) {
+        transitive = false
+      }
+      compile "com.google.firebase:firebase-core:11.0.4"
+
+      // If you are receiving Google Play API availability issues, add the following dependency
+      compile "com.google.android.gms:play-services-base:11.0.4"
+
+      // RNFirebase optional dependencies
+      compile "com.google.firebase:firebase-ads:11.0.4"
+      compile "com.google.firebase:firebase-auth:11.0.4"
+      compile "com.google.firebase:firebase-config:11.0.4"
+      compile "com.google.firebase:firebase-crash:11.0.4"
+      compile "com.google.firebase:firebase-database:11.0.4"
+      compile "com.google.firebase:firebase-messaging:11.0.4"
+      compile "com.google.firebase:firebase-perf:11.0.4"
+      compile "com.google.firebase:firebase-storage:11.0.4"
 }
 
 // Run this once to be able to run the application with BUCK
@@ -153,3 +177,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+apply plugin: 'com.google.gms.google-services'

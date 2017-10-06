@@ -8,6 +8,7 @@
 	},
 	"dependencies": {
 		"base-64": "^0.1.0",
+		"fbjs": "^0.8.16",
 		"moment": "^2.18.1",
 		"prop-types": "^15.6.0",
 		"react": "16.0.0-alpha.12",
@@ -15,6 +16,7 @@
 		"react-native-audio": "^3.2.2",
 		"react-native-camera": "^0.9.5",
 		"react-native-elevated-view": "^0.0.4",
+		"react-native-firebase": "^2.0.0",
 		"react-native-image-crop-picker": "^0.17.2",
 		"react-native-image-picker": "^0.26.7",
 		"react-native-keyboard-spacer": "^0.3.1",

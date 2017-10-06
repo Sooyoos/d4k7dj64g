@@ -74,6 +74,7 @@ class LoginScreen extends Component {
         this.state = {
             new : false,
         };
+        this.error = false;
         this.login = this.login.bind(this);
     }
 
@@ -85,6 +86,30 @@ class LoginScreen extends Component {
             props.navigateBack();
             return true;
         });
+    }
+
+    componentDidUpdate()
+    {
+        console.log(this.error);
+        if(!this.error)
+        {
+            this.error = true;
+            if(this.props.login.error !== null)
+            {
+                Alert.alert(
+                    'Erreur',
+                    this.props.login.error,
+                    [
+                        {text: 'OK', onPress: () => {this.error = false}},
+                    ],
+                    { cancelable: false }
+                )
+            }
+            else
+            {
+                this.error = false;
+            }
+        }
     }
 
     login(factory = this.props.login.factory, username = this.props.login.username, password = this.props.login.password)
@@ -136,6 +161,7 @@ class LoginScreen extends Component {
 
 
     render() {
+
         if(this.props.login.loading === false)
         {
             if(this.props.login.previousUsers && this.props.login.previousUsers.length > 0 && this.state.new !== true)
@@ -162,6 +188,7 @@ class LoginScreen extends Component {
                             </TouchableWithoutFeedback>
                         </ElevatedView>
                     </View>
+
                 );
             }
             else

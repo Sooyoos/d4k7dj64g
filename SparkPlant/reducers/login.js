@@ -8,7 +8,8 @@ const initialState = {
     loading : false,
     previousUsers : [
 
-    ]
+    ],
+    error : null,
 };
 
 export const loginReducer = {
@@ -22,7 +23,7 @@ export const loginReducer = {
             }
             case types.LOGIN_FAILURE: {
                 state.userToken = null;
-                return Object.assign({}, state, {userToken : null, tokenString: null, loading : false});
+                return Object.assign({}, state, {userToken : null, tokenString: null, loading : false, error : "Identifiants incorrects"});
             }
             case types.SET_LOGIN_FACTORY: {
                 return Object.assign({}, state, {factory : action.factory});

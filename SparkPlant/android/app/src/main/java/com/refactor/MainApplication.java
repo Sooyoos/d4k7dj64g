@@ -14,6 +14,10 @@ import com.brentvatne.react.ReactVideoPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.horcrux.svg.SvgPackage;
+// Required package
+import io.invertase.firebase.RNFirebasePackage; // <-- Add this line
+// Optional packages - add as appropriate
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage; // Firebase Cloud Messaging
 
 
 import java.util.Arrays;
@@ -37,6 +41,9 @@ public class MainApplication extends Application implements ReactApplication {
             new ReactVideoPackage(),
             new ReactNativeAudioPackage(),
             new RNSoundPackage(),
+            new RNFirebasePackage(),  // <-- Add this line
+            // Add these packages as appropriate
+            new RNFirebaseMessagingPackage(),
             new SvgPackage()
       );
     }
