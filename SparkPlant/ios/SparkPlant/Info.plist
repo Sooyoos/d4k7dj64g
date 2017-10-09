@@ -38,7 +38,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Sparkplant a besoin d'accéder à l'appareil photo</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>SparkPlant a besoin d'accéder au micro</string>
 	<key>NSPhotoLibraryUsageDescription</key>
