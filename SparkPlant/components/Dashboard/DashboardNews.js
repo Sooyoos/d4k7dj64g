@@ -63,7 +63,7 @@ class DashboardNews extends Component {
     {
         let list = [];
 
-        if(news)
+        if(news.length > 0)
         {
             for(var i = 0; i < 3; i++)
             {
