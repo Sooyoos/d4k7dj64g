@@ -56,7 +56,6 @@
 		BFE0C40F1F851B7E00DE37C4 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE0C4041F851B7E00DE37C4 /* Octicons.ttf */; };
 		BFE0C4101F851B7E00DE37C4 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE0C4051F851B7E00DE37C4 /* SimpleLineIcons.ttf */; };
 		BFE0C4111F851B7E00DE37C4 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE0C4061F851B7E00DE37C4 /* Zocial.ttf */; };
-		BFF2CF741F8B5E7600112060 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFF2CF731F8B5E7600112060 /* GoogleService-Info.plist */; };
 		C0D7D462D64299EFAE1930DC /* libPods-SparkPlantTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCCAC0B6218D18B9453A7ADC /* libPods-SparkPlantTests.a */; };
 /* End PBXBuildFile section */
 
@@ -413,8 +412,6 @@
 		BFE0C4041F851B7E00DE37C4 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		BFE0C4051F851B7E00DE37C4 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		BFE0C4061F851B7E00DE37C4 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
-		BFF2CF731F8B5E7600112060 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		BFF2CFB21F8B650A00112060 /* SparkPlant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SparkPlant.entitlements; path = SparkPlant/SparkPlant.entitlements; sourceTree = "<group>"; };
 		C31D3CB77897FD6359406E3B /* Pods-SparkPlantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SparkPlantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SparkPlantTests/Pods-SparkPlantTests.release.xcconfig"; sourceTree = "<group>"; };
 		E9FFD0CA4F1D4A6DACC7E831 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		EBA88A18C0196C657EE0E920 /* libPods-SparkPlant-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SparkPlant-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -563,14 +560,12 @@
 		13B07FAE1A68108700A75B9A /* SparkPlant */ = {
 			isa = PBXGroup;
 			children = (
-				BFF2CFB21F8B650A00112060 /* SparkPlant.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
-				BFF2CF731F8B5E7600112060 /* GoogleService-Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = SparkPlant;
@@ -879,14 +874,6 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = L4XL2D5ARU;
-						SystemCapabilities = {
-							com.apple.BackgroundModes = {
-								enabled = 1;
-							};
-							com.apple.Push = {
-								enabled = 1;
-							};
-						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1299,7 +1286,6 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				BFE0C40D1F851B7E00DE37C4 /* MaterialCommunityIcons.ttf in Resources */,
 				BFE0C40A1F851B7E00DE37C4 /* FontAwesome.ttf in Resources */,
-				BFF2CF741F8B5E7600112060 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1604,7 +1590,6 @@
 			baseConfigurationReference = 09BDE900C9E3FE5B4E54C57F /* Pods-SparkPlant.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SparkPlant/SparkPlant.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = L4XL2D5ARU;
@@ -1638,7 +1623,6 @@
 			baseConfigurationReference = 6808BF8F6124095A11D2CBB3 /* Pods-SparkPlant.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SparkPlant/SparkPlant.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L4XL2D5ARU;
 				HEADER_SEARCH_PATHS = (
