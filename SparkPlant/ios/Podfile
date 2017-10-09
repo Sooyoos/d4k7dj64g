@@ -1,3 +1,12 @@
+# Required by RNFirebase
+pod 'Firebase/Core'
+pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
+
+# [OPTIONAL PODS] - comment out pods for firebase products you won't be using.
+
+pod 'Firebase/Messaging'
+
+
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
