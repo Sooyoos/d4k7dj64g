@@ -453,10 +453,10 @@ function fetchCreateTag(login, tag)
             description : tag.description,
             descriptionAudio: tag.descriptionAudio,
             status : tag.status,
-            place: tag.place["@id"],
+            place: tag.place,
             placeDetails: tag.placeDetails,
             placeDetailsAudio: tag.placeDetailsAudio,
-            primaryAxis: tag.primaryAxis["@id"],
+            primaryAxis: tag.primaryAxis,
             media : medias,
             supervisor: tag.supervisor["@id"],
             users : [
