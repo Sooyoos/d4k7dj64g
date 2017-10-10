@@ -7,6 +7,7 @@ import {
     Text,
     TouchableWithoutFeedback,
     ActivityIndicator,
+    Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -36,6 +37,7 @@ let styles = StyleSheet.create({
         marginVertical : 10,
         marginHorizontal : 5,
         justifyContent: "center",
+        alignItems : "center",
     },
     actionButtonIcon : {
         fontSize : responsiveFontSize(5),
@@ -71,7 +73,15 @@ class RecordAudio extends Component {
     async record()
     {
         this.setState({recording : true});
-        const filePath = await AudioRecorder.startRecording();
+
+        try {
+            const filePath = await AudioRecorder.startRecording();
+            console.warn(filePath);
+        }
+        catch(error)
+        {
+            console.warn(error);
+        }
     }
 
     async stop()
@@ -79,26 +89,34 @@ class RecordAudio extends Component {
         this.setState({recording : false});
         let mode = this.props.tags.toRecord;
 
-        const filePath = await AudioRecorder.stopRecording();
+        try{
+            const filePath = await AudioRecorder.stopRecording();
+            console.warn(filePath);
 
-        if(mode === "place")
-        {
-            //this.props.goToCreateTagStep1();
-            this.props.tryTagsUploadPlaceAudio(this.props.login, {
-                uri: "file://" + filePath,
-                type: "audio/aac",
-                name: filePath.substring(filePath.lastIndexOf("/"))
-            });
+            if(mode === "place")
+            {
+                //this.props.goToCreateTagStep1();
+                this.props.tryTagsUploadPlaceAudio(this.props.login, {
+                    uri: "file://" + filePath,
+                    type: "audio/aac",
+                    name: filePath.substring(filePath.lastIndexOf("/"))
+                });
+            }
+            else
+            {
+                //this.props.goToCreateTagStep2();
+                this.props.tryTagsUploadDescriptionAudio(this.props.login, {
+                    uri: "file://" + filePath,
+                    type: "audio/aac",
+                    name: filePath.substring(filePath.lastIndexOf("/"))
+                });
+            }
         }
-        else
+        catch(error)
         {
-            //this.props.goToCreateTagStep2();
-            this.props.tryTagsUploadDescriptionAudio(this.props.login, {
-                uri: "file://" + filePath,
-                type: "audio/aac",
-                name: filePath.substring(filePath.lastIndexOf("/"))
-            });
+            console.warn(error);
         }
+
 
         this.props.navigateBack();
     }
