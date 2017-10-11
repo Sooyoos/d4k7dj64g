@@ -148,34 +148,40 @@ class ChecklistListItem extends Component {
 
     hasToBeDone(item)
     {
-        let lastUpdate = Moment(item.updatedAt, Moment.ISO_8601);
-        let now = Moment(Date.now());
-        let timePassed = Moment.duration(now.diff(lastUpdate));
-        let hoursPassed = Math.round(timePassed.asHours());
-        let daysPassed = Math.round(timePassed.asDays());
+        if(item.updatedAt === null)
+        {
+            item.todo = true;
+        }
+        else
+        {
+            let lastUpdate = Moment(item.updatedAt, Moment.ISO_8601);
+            let now = Moment(Date.now());
+            let timePassed = Moment.duration(now.diff(lastUpdate));
+            let hoursPassed = Math.round(timePassed.asHours());
+            let daysPassed = Math.round(timePassed.asDays());
 
-        if(item.checklist.frequency === "quotidien")
-        {
-            if(hoursPassed >= 24)
+            if(item.checklist.frequency === "quotidien")
             {
-                item.todo = true;
+                if(hoursPassed >= 24)
+                {
+                    item.todo = true;
+                }
+            }
+            else if(item.checklist.frequency === "hebdomadaire")
+            {
+                if(daysPassed >= 7)
+                {
+                    item.todo = true;
+                }
+            }
+            else if(item.checklist.frequency === "mensuel")
+            {
+                if(daysPassed >= 30)
+                {
+                    item.todo = true;
+                }
             }
         }
-        else if(item.checklist.frequency === "hebdomadaire")
-        {
-            if(daysPassed >= 7)
-            {
-                item.todo = true;
-            }
-        }
-        else if(item.checklist.frequency === "mensuel")
-        {
-            if(daysPassed >= 30)
-            {
-                item.todo = true;
-            }
-        }
-
         return item;
     }
 
