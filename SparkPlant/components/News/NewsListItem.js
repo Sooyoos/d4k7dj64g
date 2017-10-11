@@ -129,6 +129,11 @@ class NewsListItem extends Component {
 
         if(responsable === false)
         {
+            let author = "SparkPlant";
+            if(item.user)
+            {
+                author = item.user.firstName + " " + item.user.lastName
+            }
             return (
                 <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
                     <ElevatedView style={styles.item} elevation={2}>
@@ -142,7 +147,7 @@ class NewsListItem extends Component {
                             <View style={styles.info}>
                                 <View style={styles.data}>
                                     <Text  style={styles.textInfos}>
-                                        Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
+                                        Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {author}
                                     </Text>
                                 </View>
                             </View>
@@ -153,6 +158,11 @@ class NewsListItem extends Component {
         }
         else
         {
+            let author = "SparkPlant";
+            if(item.user)
+            {
+                author = item.user.firstName + " " + item.user.lastName
+            }
             return (
                 <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
                     <ElevatedView style={styles.item} elevation={2}>
@@ -166,7 +176,7 @@ class NewsListItem extends Component {
                             <View style={styles.info}>
                                 <View style={styles.data}>
                                     <Text  style={styles.textInfos}>
-                                        Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
+                                        Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {author}
                                     </Text>
                                 </View>
                                 <View style={styles.status}>
