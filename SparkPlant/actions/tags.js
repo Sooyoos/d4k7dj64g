@@ -261,11 +261,12 @@ function fetchTagSupervisor(login, tag)
     return dispatch => {
         dispatch(tagSupervisorRequested());
 
+        console.log(tag.place);
         let unitId = tag.place.unit;
         let axisId = tag.primaryAxis["@id"];
 
-        let searchUrl = "/users?rolesByUnit.unit.id=" + unitId + "&rolesByUnit.axis.id=" + axisId + "&available=0";
-
+        let searchUrl = "/users?rolesByUnit.unit.id=" + unitId + "&rolesByUnit.role.title=" + "Correspondant" + "&rolesByUnit.transversalAxis.id=" + axisId + "&available=true";
+        console.log(searchUrl);
         fetch(types.baseUrl + searchUrl, {
             method: 'GET',
             headers: {
@@ -276,11 +277,13 @@ function fetchTagSupervisor(login, tag)
             .then((responseJson) => {
                 if(responseJson["hydra:totalItems"] > 0)
                 {
+                    console.log(responseJson);
+                    console.log("Le responsable du tag est le correspondant dans l'unit");
                     dispatch(getTagSupervisorSuccess(responseJson["hydra:member"][0]));
                 }
                 else
                 {
-                    fetch(baseUrl + unitId, { // get the full unit in order to get its parent
+                    fetch(types.baseUrl + unitId, { // get the full unit in order to get its parent
                         method: 'GET',
                         headers: {
                             'Authorization' : 'Bearer ' + login.tokenString,
@@ -290,13 +293,16 @@ function fetchTagSupervisor(login, tag)
                         .then((responseJson) => {
                             if(responseJson.parent !== null) // if the unit is not the top one
                             {
+                                console.log("Je recherche le correspondant dans l'unité parente");
                                 let place = Object.assign({}, tag.place, { unit : responseJson.parent["@id"]});
                                 fetchTagSupervisor(login, Object.assign({}, tag, {place : place}))
                             }
                             else
                             {
-                                let searchUrl = "/users?rolesByUnit.unit.id=" + unitId + "&rolesByUnit.axis.id=" + axisId + "&available=1";
-                                fetch(baseUrl + searchUrl, { // get the full unit in order to get its parent
+                                console.log("le responsable c'est le DG");
+                                let searchUrl = "/users?rolesByUnit.unit.id=" + unitId + "&rolesByUnit.role.title=" + "Responsable" + "&available=true";
+                                console.log(searchUrl);
+                                fetch(types.baseUrl + searchUrl, { // get the full unit in order to get its parent
                                     method: 'GET',
                                     headers: {
                                         'Authorization' : 'Bearer ' + login.tokenString,
@@ -304,15 +310,16 @@ function fetchTagSupervisor(login, tag)
                                 })
                                     .then((response) => response.json())
                                     .then((responseJson) => {
+                                    console.log(responseJson);
                                         dispatch(getTagSupervisorSuccess(responseJson["hydra:member"][0]));
                                     })
-                                    .catch((error) => { dispatch(getTagSupervisorFailure()); });
+                                    .catch((error) => { console.log(error); dispatch(getTagSupervisorFailure()); });
                             }
                         })
-                        .catch((error) => { dispatch(getTagSupervisorFailure()); });
+                        .catch((error) => {console.log(error); dispatch(getTagSupervisorFailure()); });
                 }
             })
-            .catch((error) => { dispatch(getTagSupervisorFailure()); });
+            .catch((error) => {console.log(error); dispatch(getTagSupervisorFailure()); });
     }
 }
 
@@ -347,6 +354,7 @@ function getTagSupervisorFailure()
 
 function fetchTagFollowers(login, tag)
 {
+    console.log(tag.place);
     return dispatch => {
         dispatch(tagFollowersRequested());
         let unitId = tag.place.unit;
@@ -366,7 +374,7 @@ function fetchTagFollowers(login, tag)
                 }
                 dispatch(getTagFollowersSuccess(users));
             })
-            .catch((error) => { dispatch(getTagFollowersFailure()); });
+            .catch((error) => { console.log(error); dispatch(getTagFollowersFailure()); });
     }
 }
 
@@ -453,10 +461,10 @@ function fetchCreateTag(login, tag)
             description : tag.description,
             descriptionAudio: tag.descriptionAudio,
             status : tag.status,
-            place: tag.place,
+            place: tag.place["@id"],
             placeDetails: tag.placeDetails,
             placeDetailsAudio: tag.placeDetailsAudio,
-            primaryAxis: tag.primaryAxis,
+            primaryAxis: tag.primaryAxis["@id"],
             media : medias,
             supervisor: tag.supervisor["@id"],
             users : [

@@ -132,7 +132,7 @@ class CreateTagStep1 extends Component {
             for(var i = 0; i < axis.length; i++)
             {
                 items.push(
-                    <Picker.Item key={i} label={axis[i].name} value={axis[i]["@id"]} />
+                    <Picker.Item key={i} label={axis[i].name} value={axis[i]} />
                 );
             }
         }
@@ -154,7 +154,7 @@ class CreateTagStep1 extends Component {
             for(var i = 0; i < places.length; i++)
             {
                 items.push(
-                    <Picker.Item key={i} label={places[i].name} value={places[i]["@id"]} />
+                    <Picker.Item key={i} label={places[i].name} value={places[i]} />
                 );
             }
         }

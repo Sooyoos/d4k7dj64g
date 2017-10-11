@@ -224,7 +224,7 @@ class CreateTagStep3 extends Component {
                 </View>
             );
         }
-        else if(supervisor === null && followers.length > 0)
+        else if(supervisor === null && followers && followers.length > 0)
         {
             let users = [];
             for(var i = 0; i < followers.length; i++)
