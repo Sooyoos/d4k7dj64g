@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     Image,
     ScrollView,
+    Keyboard,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -257,6 +258,7 @@ class CreateTagStep2 extends Component {
         {
             this.props.tryTagsUploadMedia(this.props.login, medias[i]);
         }
+        Keyboard.dismiss();
         this.props.goToCreateTagStep3();
     }
 
