@@ -176,6 +176,53 @@ class ChartsScreen extends Component {
             }
         }
 
+        console.log(
+            [
+                [
+                    {
+                        value : sortedList[0].length,
+                        name : "J - 7",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[1].length,
+                        name : "J - 6",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[2].length,
+                        name : "J - 5",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[3].length,
+                        name : "J - 4",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[4].length,
+                        name : "J - 3",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[5].length,
+                        name : "J - 2",
+                    }
+                ],
+                [
+                    {
+                        value : sortedList[6].length,
+                        name : "J - 1",
+                    }
+                ],
+            ]
+        );
+
         return(
             [
                 [
@@ -252,6 +299,35 @@ class ChartsScreen extends Component {
                                 Tags non résolus
                             </Text>
                             <ActivityIndicator color="#3f51b5" size="large"/>
+                        </View>
+                    </View>
+                </View>
+            );
+        }
+        else if(this.props.charts.loading === false && (this.props.charts.solvedTags.length === 0 || this.props.charts.unsolvedTags.lenght  === 0))
+        {
+            return (
+                <View style={styles.login}>
+                    <Header props={this.props} />
+                    <View style={styles.body}>
+                        <View style={{height : responsiveHeight(8), width : responsiveWidth(100)}}>
+                            <Text style={styles.title}>
+                                Activité des tags sur les 7 derniers jours
+                            </Text>
+                        </View>
+                        <View style={styles.chartView}>
+                            <Text style={styles.chartTitle}>
+                                Tags résolus
+                            </Text>
+                            <Text style={{textAlign : "center", fontSize : responsiveFontSize(1.8), marginVertical: responsiveHeight(5)}}>
+                                Pas de données disponibles
+                            </Text>
+                            <Text style={styles.chartTitle}>
+                                Tags non résolus
+                            </Text>
+                            <Text style={{textAlign : "center", fontSize : responsiveFontSize(1.8), marginVertical: responsiveHeight(5)}}>
+                                Pas de données disponibles
+                            </Text>
                         </View>
                     </View>
                 </View>
