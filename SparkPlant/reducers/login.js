@@ -48,6 +48,10 @@ export const loginReducer = {
                 state.userToken = null;
                 return Object.assign({}, state, {tokenString : null, loading : false});
             }
+            case types.RESET_LOGIN_ERROR: {
+                state.userToken = null;
+                return Object.assign({}, state, {error : null});
+            }
             default :
                 return state;
         }

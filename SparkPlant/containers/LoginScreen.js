@@ -90,7 +90,6 @@ class LoginScreen extends Component {
 
     componentDidUpdate()
     {
-        console.log(this.error);
         if(!this.error)
         {
             this.error = true;
@@ -100,10 +99,11 @@ class LoginScreen extends Component {
                     'Erreur',
                     this.props.login.error,
                     [
-                        {text: 'OK', onPress: () => {this.error = false}},
+                        {text: 'OK', onPress: () => {this.error = false; this.props.resetLoginError();}},
                     ],
                     { cancelable: false }
-                )
+                );
+                this.props.resetLoginError();
             }
             else
             {

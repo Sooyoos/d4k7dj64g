@@ -213,6 +213,13 @@ function logoutRequested()
     }
 }
 
+export function resetLoginError()
+{
+    return {
+        type: types.RESET_LOGIN_ERROR,
+    }
+}
+
 export function logout()
 {
     return (dispatch, getState) => {

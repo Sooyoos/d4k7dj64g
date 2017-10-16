@@ -204,5 +204,6 @@ export const UNSOLVED_TAGS_REQUESTED = "UNSOLVED_TAGS_REQUESTED";
 export const UNSOLVED_TAGS_SUCCESS = "UNSOLVED_TAGS_SUCCESS";
 export const UNSOLVED_TAGS_ERROR = "UNSOLVED_TAGS_ERROR";
 
-
 export const baseUrl = "https://sparkplant-api-testing.sooyoos.com";
+
+export const RESET_LOGIN_ERROR = "RESET_LOGIN_ERROR";
