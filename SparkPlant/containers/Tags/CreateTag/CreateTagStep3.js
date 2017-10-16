@@ -129,7 +129,7 @@ class CreateTagStep3 extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            followers : this.props.tags.creation_current.users
+            followers : null
         }
     }
 
@@ -152,7 +152,16 @@ class CreateTagStep3 extends Component {
 
     preview()
     {
-        this.props.trySetTagFollowers(this.state.followers);
+        console.log(this.props.tags.creation_current.users);
+        if(this.state.followers)
+        {
+            this.props.trySetTagFollowers(this.state.followers);
+        }
+        else
+        {
+            this.props.trySetTagFollowers(this.props.tags.creation_current.users);
+        }
+
         this.props.goToCreateTagPreview();
     }
 

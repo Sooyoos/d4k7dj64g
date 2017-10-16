@@ -414,7 +414,7 @@ function addUsersToTag(login, tag, id)
     return dispatch => {
         dispatch(createTagRequested());
 
-        for(var i = 0; i < tag.users.length -1; i++)
+        for(var i = 0; i < tag.users.length; i++)
         {
             fetch(types.baseUrl + '/user_tags', {
                 method: 'POST',
@@ -439,13 +439,15 @@ function addUsersToTag(login, tag, id)
 
 function fetchCreateTag(login, tag)
 {
+    console.log("USERS DU TAG");
+    console.log(tag.users);
     return dispatch => {
         dispatch(createTagRequested());
 
         let users = [];
         let medias = [];
 
-        for(var i = 0; i < tag.users.length -1; i++)
+        for(var i = 0; i < tag.users.length; i++)
         {
             users.push(tag.users[i]["@id"]);
         }
