@@ -291,11 +291,13 @@ function fetchTagSupervisor(login, tag)
                     })
                         .then((response) => response.json())
                         .then((responseJson) => {
+                        console.log("J'ai récupéré l'unité parente");
+                        console.log(responseJson);
                             if(responseJson.parent !== null) // if the unit is not the top one
                             {
                                 console.log("Je recherche le correspondant dans l'unité parente");
                                 let place = Object.assign({}, tag.place, { unit : responseJson.parent["@id"]});
-                                fetchTagSupervisor(login, Object.assign({}, tag, {place : place}))
+                                dispatch(fetchTagSupervisor(login, Object.assign({}, tag, {place : place})));
                             }
                             else
                             {
