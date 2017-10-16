@@ -8,6 +8,7 @@ import {
     TextInput,
     TouchableOpacity,
     ActivityIndicator,
+    Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -105,6 +106,7 @@ class CreateTagStep1 extends Component {
 
     constructor(props) {
         super(props);
+        this.error = null;
     }
 
     componentWillMount()
@@ -113,9 +115,48 @@ class CreateTagStep1 extends Component {
         this.props.tryTagAxis(this.props.login);
     }
 
+    checkRequiredFields()
+    {
+        let check = true;
+        let message = "";
+
+        if(this.props.tags.creation_current.place === null)
+        {
+            check = false;
+            message += " Lieu ";
+        }
+
+        if(this.props.tags.creation_current.primaryAxis === null)
+        {
+            check = false;
+            message += " Type ";
+        }
+
+        if(!check)
+        {
+            this.error = "Certains champs obligatoires sont manquants (" + message + ")";
+        }
+
+        return check;
+    }
+
     next()
     {
-        this.props.goToCreateTagStep2();
+        if(this.checkRequiredFields() === true)
+        {
+            this.props.goToCreateTagStep2();
+        }
+        else
+        {
+            Alert.alert(
+                'Erreur',
+                this.error,
+                [
+                    {text: 'OK', onPress: () => {this.error = null;}},
+                ],
+                { cancelable: false }
+            );
+        }
     }
 
     buildAxisList()

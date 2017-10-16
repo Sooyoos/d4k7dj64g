@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     ActivityIndicator,
+    ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -184,39 +185,41 @@ class CreateTagStep3 extends Component {
             return (
                 <View style={{flex : 1, backgroundColor : "#efefef"}}>
                     <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
-                    <ElevatedView style={styles.managerCard} elevation={2}>
-                        <ElevatedView style={styles.cardHeader} elevation={2}>
-                            <View style={styles.cardHeaderIconView}>
-                                <Icon name="account-circle" style={styles.cardHeaderIcon} />
-                            </View>
-                            <Text style={styles.cardHeaderTitle}>
-                                Responsable
-                            </Text>
-                        </ElevatedView>
-                        <View style={styles.cardManagerContent}>
-                            <ElevatedView elevation={3} style={styles.cardManagerContentView}>
-                                <Text style={styles.cardManagerContentText}>
-                                    {this.props.tags.creation_current.supervisor.firstName} {this.props.tags.creation_current.supervisor.lastName}
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <ElevatedView style={styles.managerCard} elevation={2}>
+                            <ElevatedView style={styles.cardHeader} elevation={2}>
+                                <View style={styles.cardHeaderIconView}>
+                                    <Icon name="account-circle" style={styles.cardHeaderIcon} />
+                                </View>
+                                <Text style={styles.cardHeaderTitle}>
+                                    Responsable
                                 </Text>
                             </ElevatedView>
-                        </View>
-                    </ElevatedView>
-                    <ElevatedView style={styles.peopleCard} elevation={2}>
-                        <ElevatedView style={styles.cardHeader} elevation={2}>
-                            <View style={styles.cardHeaderIconView}>
-                                <Icon name="account-circle" style={styles.cardHeaderIcon} />
+                            <View style={styles.cardManagerContent}>
+                                <ElevatedView elevation={3} style={styles.cardManagerContentView}>
+                                    <Text style={styles.cardManagerContentText}>
+                                        {this.props.tags.creation_current.supervisor.firstName} {this.props.tags.creation_current.supervisor.lastName}
+                                    </Text>
+                                </ElevatedView>
                             </View>
-                            <Text style={styles.cardHeaderTitle}>
-                                Personnes en suivi
-                            </Text>
                         </ElevatedView>
-                        <View style={styles.cardPeopleContent}>
-                            { users }
-                        </View>
-                    </ElevatedView>
+                        <ElevatedView style={styles.peopleCard} elevation={2}>
+                            <ElevatedView style={styles.cardHeader} elevation={2}>
+                                <View style={styles.cardHeaderIconView}>
+                                    <Icon name="account-circle" style={styles.cardHeaderIcon} />
+                                </View>
+                                <Text style={styles.cardHeaderTitle}>
+                                    Personnes en suivi
+                                </Text>
+                            </ElevatedView>
+                            <View style={styles.cardPeopleContent}>
+                                { users }
+                            </View>
+                        </ElevatedView>
+                    </ScrollView>
                     <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
                         <TouchableOpacity onPress={this.preview.bind(this)}>
-                            <ElevatedView style={styles.buttonView} elevation={20}>
+                            <ElevatedView style={styles.buttonView} elevation={7}>
                                 <Icon name="eye" style={styles.buttonIcon} />
                             </ElevatedView>
                         </TouchableOpacity>
@@ -247,41 +250,36 @@ class CreateTagStep3 extends Component {
             return (
                 <View style={{flex : 1, backgroundColor : "#efefef"}}>
                     <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
-                    <ElevatedView style={styles.managerCard} elevation={2}>
-                        <ElevatedView style={styles.cardHeader} elevation={2}>
-                            <View style={styles.cardHeaderIconView}>
-                                <Icon name="account-circle" style={styles.cardHeaderIcon} />
-                            </View>
-                            <Text style={styles.cardHeaderTitle}>
-                                Responsable
-                            </Text>
-                        </ElevatedView>
-                        <View style={styles.cardManagerContent}>
-                            <ElevatedView elevation={3} style={styles.cardManagerContentView}>
-                                <ActivityIndicator color="#3f51b5" size="large"/>
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <ElevatedView style={styles.managerCard} elevation={2}>
+                            <ElevatedView style={styles.cardHeader} elevation={2}>
+                                <View style={styles.cardHeaderIconView}>
+                                    <Icon name="account-circle" style={styles.cardHeaderIcon} />
+                                </View>
+                                <Text style={styles.cardHeaderTitle}>
+                                    Responsable
+                                </Text>
                             </ElevatedView>
-                        </View>
-                    </ElevatedView>
-                    <ElevatedView style={styles.peopleCard} elevation={2}>
-                        <ElevatedView style={styles.cardHeader} elevation={2}>
-                            <View style={styles.cardHeaderIconView}>
-                                <Icon name="account-circle" style={styles.cardHeaderIcon} />
+                            <View style={styles.cardManagerContent}>
+                                <ElevatedView elevation={3} style={styles.cardManagerContentView}>
+                                    <ActivityIndicator color="#3f51b5" size="large"/>
+                                </ElevatedView>
                             </View>
-                            <Text style={styles.cardHeaderTitle}>
-                                Personnes en suivi
-                            </Text>
                         </ElevatedView>
-                        <View style={styles.cardPeopleContent}>
-                            { users }
-                        </View>
-                    </ElevatedView>
-                    <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
-                        <TouchableOpacity onPress={this.preview.bind(this)}>
-                            <ElevatedView style={styles.buttonView} elevation={20}>
-                                <Icon name="eye" style={styles.buttonIcon} />
+                        <ElevatedView style={styles.peopleCard} elevation={2}>
+                            <ElevatedView style={styles.cardHeader} elevation={2}>
+                                <View style={styles.cardHeaderIconView}>
+                                    <Icon name="account-circle" style={styles.cardHeaderIcon} />
+                                </View>
+                                <Text style={styles.cardHeaderTitle}>
+                                    Personnes en suivi
+                                </Text>
                             </ElevatedView>
-                        </TouchableOpacity>
-                    </View>
+                            <View style={styles.cardPeopleContent}>
+                                { users }
+                            </View>
+                        </ElevatedView>
+                    </ScrollView>
                 </View>
             );
         }
@@ -290,41 +288,36 @@ class CreateTagStep3 extends Component {
             return (
                 <View style={{flex : 1, backgroundColor : "#efefef"}}>
                     <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
-                    <ElevatedView style={styles.managerCard} elevation={2}>
-                        <ElevatedView style={styles.cardHeader} elevation={2}>
-                            <View style={styles.cardHeaderIconView}>
-                                <Icon name="account-circle" style={styles.cardHeaderIcon} />
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <ElevatedView style={styles.managerCard} elevation={2}>
+                            <ElevatedView style={styles.cardHeader} elevation={2}>
+                                <View style={styles.cardHeaderIconView}>
+                                    <Icon name="account-circle" style={styles.cardHeaderIcon} />
+                                </View>
+                                <Text style={styles.cardHeaderTitle}>
+                                    Responsable
+                                </Text>
+                            </ElevatedView>
+                            <View style={styles.cardManagerContent}>
+                                <ElevatedView elevation={3} style={styles.cardManagerContentView}>
+                                    <ActivityIndicator color="#3f51b5" size="large"/>
+                                </ElevatedView>
                             </View>
-                            <Text style={styles.cardHeaderTitle}>
-                                Responsable
-                            </Text>
                         </ElevatedView>
-                        <View style={styles.cardManagerContent}>
-                            <ElevatedView elevation={3} style={styles.cardManagerContentView}>
+                        <ElevatedView style={styles.peopleCard} elevation={2}>
+                            <ElevatedView style={styles.cardHeader} elevation={2}>
+                                <View style={styles.cardHeaderIconView}>
+                                    <Icon name="account-circle" style={styles.cardHeaderIcon} />
+                                </View>
+                                <Text style={styles.cardHeaderTitle}>
+                                    Personnes en suivi
+                                </Text>
+                            </ElevatedView>
+                            <View style={styles.cardPeopleContent}>
                                 <ActivityIndicator color="#3f51b5" size="large"/>
-                            </ElevatedView>
-                        </View>
-                    </ElevatedView>
-                    <ElevatedView style={styles.peopleCard} elevation={2}>
-                        <ElevatedView style={styles.cardHeader} elevation={2}>
-                            <View style={styles.cardHeaderIconView}>
-                                <Icon name="account-circle" style={styles.cardHeaderIcon} />
                             </View>
-                            <Text style={styles.cardHeaderTitle}>
-                                Personnes en suivi
-                            </Text>
                         </ElevatedView>
-                        <View style={styles.cardPeopleContent}>
-                            <ActivityIndicator color="#3f51b5" size="large"/>
-                        </View>
-                    </ElevatedView>
-                    <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
-                        <TouchableOpacity onPress={this.preview.bind(this)}>
-                            <ElevatedView style={styles.buttonView} elevation={20}>
-                                <Icon name="eye" style={styles.buttonIcon} />
-                            </ElevatedView>
-                        </TouchableOpacity>
-                    </View>
+                    </ScrollView>
                 </View>
             );
         }

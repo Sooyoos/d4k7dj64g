@@ -9,6 +9,7 @@ import {
     Image,
     ScrollView,
     Keyboard,
+    Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -136,6 +137,8 @@ class CreateTagStep2 extends Component {
                 ]
             }
         };
+
+        this.error = null;
     }
 
     saveTitle(title)
@@ -251,6 +254,32 @@ class CreateTagStep2 extends Component {
         return mediaList;
     }
 
+
+    checkRequiredFields()
+    {
+        let check = true;
+        let message = "";
+
+        if(this.props.tags.creation_current.title === null || this.props.tags.creation_current.title === "")
+        {
+            check = false;
+            message += " Titre ";
+        }
+
+        if(this.props.tags.creation_current.description === "")
+        {
+            check = false;
+            message += " Description ";
+        }
+
+        if(!check)
+        {
+            this.error = "Certains champs obligatoires sont manquants (" + message + ")";
+        }
+
+        return check;
+    }
+
     next()
     {
         let medias = this.state.tag.media;
@@ -259,7 +288,22 @@ class CreateTagStep2 extends Component {
             this.props.tryTagsUploadMedia(this.props.login, medias[i]);
         }
         Keyboard.dismiss();
-        this.props.goToCreateTagStep3();
+
+        if(this.checkRequiredFields() === true)
+        {
+            this.props.goToCreateTagStep3();
+        }
+        else
+        {
+            Alert.alert(
+                'Erreur',
+                this.error,
+                [
+                    {text: 'OK', onPress: () => {this.error = null;}},
+                ],
+                { cancelable: false }
+            );
+        }
     }
 
     render() {
