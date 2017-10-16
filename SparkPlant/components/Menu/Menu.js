@@ -84,7 +84,7 @@ class DrawerMenu extends Component {
         super(props);
         if(this.props.users.loggedUser)
         {
-            this.state = {userAvailable: this.props.users.loggedUser.availability};
+            this.state = {userAvailable: this.props.users.loggedUser.available};
         }
         else
         {
@@ -124,6 +124,23 @@ class DrawerMenu extends Component {
         this.props.navigation.navigate('Scoring');
     }
 
+    displaySwitch()
+    {
+        if(this.state.userAvailable !== null)
+        {
+            return(
+                <Switch style={styles.menuHeaderAvailableSwitch} value={this.state.userAvailable} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
+            );
+        }
+        else
+        {
+            return(
+                <Switch style={styles.menuHeaderAvailableSwitch} value={this.props.users.loggedUser.available} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
+            );
+        }
+
+    }
+
     render() {
         let user = this.props.users.loggedUser;
 
@@ -161,7 +178,9 @@ class DrawerMenu extends Component {
                             <Text style={styles.menuHeaderAvailableSwitchLabel}>
                                 Disponible
                             </Text>
-                            <Switch style={styles.menuHeaderAvailableSwitch} value={this.state.userAvailable || this.props.users.loggedUser.availability} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
+                            {
+                                this.displaySwitch()
+                            }
                         </View>
                     </View>
                     <View style={{flex : 7}}>
