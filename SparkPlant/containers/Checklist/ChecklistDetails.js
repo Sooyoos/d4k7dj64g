@@ -189,19 +189,25 @@ class ChecklistDetails extends Component {
 
     buildUnitList()
     {
-        let full = this.props.utils.units;
+        let user = this.props.users.loggedUser;
+        let ids = [];
+        let roles = user.rolesByUnit;
         let list = [];
 
         list.push(
             <Picker.Item key={-1} label="Choisissez une unité" value={null} />
         );
 
-        for(var i = 0; i < full.length; i++)
+        for(var i = 0; i < roles.length; i++)
         {
-            list.push(
-                <Picker.Item key={i} label={full[i].name} value={full[i]["@id"]} />
-            );
+            if(!ids.includes(roles[i].unit["@id"]))
+            {
+                list.push(
+                    <Picker.Item key={i} label={roles[i].unit.name} value={roles[i].unit["@id"]} />
+                );
+            }
         }
+
         return list;
     }
 
@@ -261,6 +267,7 @@ function mapStateToProps(state) {
         tags : state.tags,
         news : state.news,
         utils : state.utils,
+        users : state.users,
         checklists : state.checklists,
     };
 }
