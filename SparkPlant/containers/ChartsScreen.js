@@ -304,7 +304,7 @@ class ChartsScreen extends Component {
                 </View>
             );
         }
-        else if(this.props.charts.loading === false && (this.props.charts.solvedTags.length === 0 || this.props.charts.unsolvedTags.lenght  === 0))
+        else if(this.props.charts.loading === false && (this.props.charts.solvedTags.length === 0 || this.props.charts.unsolvedTags.length  === 0))
         {
             return (
                 <View style={styles.login}>
