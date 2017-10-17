@@ -809,6 +809,7 @@ function fetchTransferTag(login, tag, supervisor)
             },
             body : JSON.stringify({
                 supervisor : supervisor["@id"],
+                status : "ongoing",
             }),
         })
             .then((response) => response.json())
