@@ -144,6 +144,7 @@ class CreateNewsPreview extends Component {
 
     create()
     {
+        console.log(this.props.news.creation_current);
         this.props.tryCreateNews(this.props.login, this.props.news.creation_current);
         this.props.goToNewsPage();
     }

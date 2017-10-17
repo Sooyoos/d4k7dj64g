@@ -352,7 +352,7 @@ function fetchNewsUploadMedia(login, file)
 
         body.append("file", file);
 
-        fetch(types.baseUrl, {
+        fetch(types.baseUrl + "/fileUpload", {
             method: 'POST',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,

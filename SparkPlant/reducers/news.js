@@ -6,7 +6,7 @@ const initialState = {
     creation_current : {
         title : null,
         content : null,
-        visibility : null,
+        visibility : "private",
         unit : null,
         media : [
 
@@ -112,6 +112,7 @@ export const newsReducer = {
                 return Object.assign({}, state, {creation_current : creationCurrent});
             }
             case types.NEWS_UPLOAD_MEDIA_SUCCESS: {
+                console.log(action.media);
                 let index = getCurrentCreationMediaIndex(state, action.media.originalFilename);
                 console.log(index);
                 if(index !== -1)

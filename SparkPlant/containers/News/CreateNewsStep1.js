@@ -273,6 +273,7 @@ class CreateNewsStep1 extends Component {
 
     preview()
     {
+        console.log(this.state);
         let medias = this.state.item.media;
         for(var i = 0; i < medias.length; i++)
         {
