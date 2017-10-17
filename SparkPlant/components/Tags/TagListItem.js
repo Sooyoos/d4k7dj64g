@@ -96,17 +96,17 @@ class TagListItem extends Component {
 
     getStatusIcon() {
         if (this.props.tag.status === "closed_resolved") {
-            return 'star';
+            return <Icon name="star" style={{fontSize: responsiveFontSize(2.6), color : "#4caf50"}} />;
         }
         else if(this.props.tag.status === "new")
         {
-            return 'star-o';
+            return <Icon name="star-o" style={{fontSize: responsiveFontSize(2.6)}} />;
         }
         else if (this.props.tag.status === "ongoing") {
-            return 'star-half-o';
+            return <Icon name="star-half-o" style={{fontSize: responsiveFontSize(2.6)}} />;
         }
         else if (this.props.tag.status === "closed_unresolved") {
-            return 'star';
+            return <Icon name="star" style={{fontSize: responsiveFontSize(2.6)}} />;
         }
     }
 
@@ -143,7 +143,7 @@ class TagListItem extends Component {
                             </Text>
                         </View>
                         <View style={styles.itemStatus}>
-                            <Icon name={this.getStatusIcon()} style={{fontSize: responsiveFontSize(2.6)}} />
+                            { this.getStatusIcon() }
                         </View>
                     </View>
                 </ElevatedView>

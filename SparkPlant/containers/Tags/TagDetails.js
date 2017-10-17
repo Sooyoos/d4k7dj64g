@@ -98,18 +98,18 @@ class TagDetails extends Component {
 
     getStatusIcon() {
         let tag = this.props.tags.currentTag;
-
         if (tag.status === "closed_resolved") {
-            return 'star';
+            return <IconA name="star" style={{fontSize: responsiveFontSize(3.2), color : "#4caf50"}} />;
         }
-        else if (tag.status === "new") {
-            return 'star-o';
+        else if(tag.status === "new")
+        {
+            return <IconA name="star-o" style={{fontSize: responsiveFontSize(3.2)}} />;
         }
         else if (tag.status === "ongoing") {
-            return 'star-half-o';
+            return <IconA name="star-half-o" style={{fontSize: responsiveFontSize(3.2)}} />;
         }
         else if (tag.status === "closed_unresolved") {
-            return 'star';
+            return <IconA name="star" style={{fontSize: responsiveFontSize(3.2)}} />;
         }
     }
 
@@ -216,7 +216,7 @@ class TagDetails extends Component {
                         <View style={styles.infos}>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <IconA name={this.getStatusIcon()} style={{fontSize:responsiveFontSize(3.2)}} />
+                                    {this.getStatusIcon()}
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
