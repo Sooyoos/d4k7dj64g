@@ -21,9 +21,10 @@ import HeaderTagDetails from "../../../components/Header/HeaderTags";
 
 let styles = StyleSheet.create({
     card : {
-        height : responsiveHeight(70),
+        height : responsiveHeight(50),
         margin : responsiveWidth(2),
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        justifyContent : "center",
     },
     cardHeader : {
         flex : 1,
@@ -61,7 +62,7 @@ let styles = StyleSheet.create({
     },
     locationPicker : {
         height : responsiveHeight(5),
-        marginBottom : responsiveHeight(30),
+        marginBottom : responsiveHeight(5),
     },
     buttonView : {
         width: responsiveWidth(23),
@@ -249,18 +250,6 @@ class CreateTagStep1 extends Component {
                                     <Picker style={styles.locationPicker} prompt="Sélectionnez le type principal" selectedValue={this.props.tags.creation_current.primaryAxis} onValueChange={(value) => this.props.setCurrentCreationPrimaryAxis(value)}>
                                         {this.buildAxisList()}
                                     </Picker>
-                                </View>
-                            </ElevatedView>
-                            <ElevatedView style={styles.card} elevation={2}>
-                                <ElevatedView style={styles.cardHeader} elevation={2}>
-                                    <View style={styles.cardHeaderIconView}>
-                                        <Icon name="information-outline" style={styles.cardHeaderIcon} />
-                                    </View>
-                                    <Text style={styles.cardHeaderTitle}>
-                                        Type secondaire
-                                    </Text>
-                                </ElevatedView>
-                                <View style={styles.cardContent}>
                                     <Picker style={styles.locationPicker} prompt="Sélectionnez les types secondaires" selectedValue={this.props.tags.creation_current.secondaryAxis} onValueChange={(value) => this.props.setCurrentCreationSecondaryAxis(value)}>
                                         {this.buildAxisList()}
                                     </Picker>

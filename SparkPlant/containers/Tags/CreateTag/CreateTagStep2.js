@@ -23,7 +23,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 let styles = StyleSheet.create({
     card : {
-        height : responsiveHeight(70),
+        height : responsiveHeight(55),
         margin : 10,
         backgroundColor : '#ffffff',
     },

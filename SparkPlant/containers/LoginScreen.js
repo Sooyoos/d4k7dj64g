@@ -178,7 +178,7 @@ class LoginScreen extends Component {
                                     {this.buildUsersList()}
                                 </Picker>
                             </View>
-                            <Text style={{fontSize: responsiveFontSize(1.5), marginTop : responsiveHeight(15)}}>
+                            <Text style={{fontSize: responsiveFontSize(1.5)}}>
                                 Ou :
                             </Text>
                             <TouchableWithoutFeedback onPress={() => {this.setState({new : true})}}>
