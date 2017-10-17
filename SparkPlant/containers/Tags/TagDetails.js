@@ -27,7 +27,7 @@ let styles = StyleSheet.create({
         height : responsiveHeight(8),
     },
     body: {
-        height : responsiveHeight(83),
+        minHeight : responsiveHeight(83),
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
@@ -209,89 +209,91 @@ class TagDetails extends Component {
             return (
                 <View style={styles.login}>
                     <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
-                    <View style={styles.body}>
-                        <ScrollView style={styles.slider} alignItems={'center'} horizontal={true} showsHorizontalScrollIndicator={false}>
-                            {this.buildMediaList()}
-                        </ScrollView>
-                        <View style={styles.infos}>
-                            <View style={styles.section}>
-                                <View style={styles.sectionVisual}>
-                                    {this.getStatusIcon()}
-                                </View>
-                                <View style={styles.sectionContent}>
-                                    <View>
-                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#212121'}}>
-                                            #{lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} ouvert par {tag.supervisor.firstName} {tag.supervisor.lastName}
-                                        </Text>
-                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
-                                            {tag.title}
-                                        </Text>
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <View style={styles.body}>
+                            <ScrollView style={styles.slider} alignItems={'center'} horizontal={true} showsHorizontalScrollIndicator={false}>
+                                {this.buildMediaList()}
+                            </ScrollView>
+                            <View style={styles.infos}>
+                                <View style={styles.section}>
+                                    <View style={styles.sectionVisual}>
+                                        {this.getStatusIcon()}
+                                    </View>
+                                    <View style={styles.sectionContent}>
+                                        <View>
+                                            <Text style={{fontSize:responsiveFontSize(2.2), color : '#212121'}}>
+                                                #{lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} ouvert par {tag.supervisor.firstName} {tag.supervisor.lastName}
+                                            </Text>
+                                            <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                                {tag.title}
+                                            </Text>
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
-                            <View style={styles.section}>
-                                <View style={styles.sectionVisual}>
-                                    <Image source={{uri : tag.supervisor.avatar ? tag.supervisor.avatar.path : "http://via.placeholder.com/50x50" }} style={{width:responsiveWidth(8), height:responsiveWidth(8), borderRadius:responsiveWidth(4)}}/>
-                                </View>
-                                <View style={styles.sectionContent}>
-                                    <View>
-                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
-                                            Responsable en charge
-                                        </Text>
-                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
-                                            {tag.supervisor.firstName} {tag.supervisor.lastName}
-                                        </Text>
+                                <View style={styles.section}>
+                                    <View style={styles.sectionVisual}>
+                                        <Image source={{uri : tag.supervisor.avatar ? tag.supervisor.avatar.path : "http://via.placeholder.com/50x50" }} style={{width:responsiveWidth(8), height:responsiveWidth(8), borderRadius:responsiveWidth(4)}}/>
+                                    </View>
+                                    <View style={styles.sectionContent}>
+                                        <View>
+                                            <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
+                                                Responsable en charge
+                                            </Text>
+                                            <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                                {tag.supervisor.firstName} {tag.supervisor.lastName}
+                                            </Text>
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
-                            <View style={styles.section}>
-                                <View style={styles.sectionVisual}>
-                                    <View style={styles.sectionVisualType}>
-                                        <Text style={{color:'#ffffff', fontSize: responsiveFontSize(2.8), textAlign: 'center'}}>
-                                            {tag.primaryAxis.code}
-                                        </Text>
+                                <View style={styles.section}>
+                                    <View style={styles.sectionVisual}>
+                                        <View style={styles.sectionVisualType}>
+                                            <Text style={{color:'#ffffff', fontSize: responsiveFontSize(2.8), textAlign: 'center'}}>
+                                                {tag.primaryAxis.code}
+                                            </Text>
+                                        </View>
+                                    </View>
+                                    <View style={styles.sectionContent}>
+                                        <View>
+                                            <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
+                                                Nature
+                                            </Text>
+                                            <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                                {tag.primaryAxis.name}
+                                            </Text>
+                                        </View>
                                     </View>
                                 </View>
-                                <View style={styles.sectionContent}>
-                                    <View>
-                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
-                                            Nature
-                                        </Text>
-                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
-                                            {tag.primaryAxis.name}
-                                        </Text>
+                                <View style={styles.section}>
+                                    <View style={styles.sectionVisual}>
+                                        <Icon name="map" style={{fontSize:responsiveFontSize(3.2)}} />
+                                    </View>
+                                    <View style={styles.sectionContent}>
+                                        <View>
+                                            <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
+                                                Lieu
+                                            </Text>
+                                            <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                                {tag.place.name}
+                                            </Text>
+                                            {this.renderPlaceAudioIcon()}
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
-                            <View style={styles.section}>
-                                <View style={styles.sectionVisual}>
-                                    <Icon name="map" style={{fontSize:responsiveFontSize(3.2)}} />
-                                </View>
-                                <View style={styles.sectionContent}>
-                                    <View>
-                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
-                                            Lieu
-                                        </Text>
-                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
-                                            {tag.place.name}
-                                        </Text>
-                                        {this.renderPlaceAudioIcon()}
+                                <View style={styles.section}>
+                                    <View style={styles.sectionVisual}>
+                                        <Icon name="clipboard-text" style={{fontSize:responsiveFontSize(3.2)}} />
                                     </View>
-                                </View>
-                            </View>
-                            <View style={styles.section}>
-                                <View style={styles.sectionVisual}>
-                                    <Icon name="clipboard-text" style={{fontSize:responsiveFontSize(3.2)}} />
-                                </View>
-                                <View style={styles.sectionContent}>
-                                    <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
-                                        {tag.description}
-                                    </Text>
-                                    {this.renderDescriptionAudioIcon()}
+                                    <View style={styles.sectionContent}>
+                                        <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
+                                            {tag.description}
+                                        </Text>
+                                        {this.renderDescriptionAudioIcon()}
+                                    </View>
                                 </View>
                             </View>
                         </View>
-                    </View>
+                    </ScrollView>
                     <View style={styles.footer}>
                         <FooterButton {...this.props} active={true} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
                         <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={this.props.goToTagHistory}/>
