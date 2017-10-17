@@ -16,6 +16,7 @@ import { bindActionCreators } from 'redux';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import ElevatedView from 'react-native-elevated-view';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import firebase from "react-native-firebase";
 import { ActionCreators } from '../actions';
 import LoginUsernameInput from '../components/Login/LoginUserNameInput';
 import LoginPasswordInput from '../components/Login/LoginPasswordInput';
@@ -66,6 +67,12 @@ let styles = StyleSheet.create({
     },
 });
 
+const configurationOptions = {
+    debug: true
+};
+
+const Firebase = firebase.initializeApp(configurationOptions);
+
 class LoginScreen extends Component {
 
     constructor(props)
@@ -86,6 +93,22 @@ class LoginScreen extends Component {
             props.navigateBack();
             return true;
         });
+
+        console.log(Firebase);
+
+        Firebase.messaging().onMessage(
+            (data) => {
+                Alert.alert(
+                    'Message',
+                    JSON.stringify(data),
+                    [
+                        {text: 'OK', onPress: () => {console.log(data)}}
+                    ],
+                    { cancelable: false }
+                );
+            }
+        );
+
     }
 
     componentDidUpdate()
