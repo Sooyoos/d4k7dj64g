@@ -201,7 +201,7 @@ class CreateTagStep3 extends Component {
                                     <Icon name="account-circle" style={styles.cardHeaderIcon} />
                                 </View>
                                 <Text style={styles.cardHeaderTitle}>
-                                    Responsable
+                                    En charge du tag
                                 </Text>
                             </ElevatedView>
                             <View style={styles.cardManagerContent}>

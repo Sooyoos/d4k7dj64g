@@ -237,7 +237,7 @@ class TagDetails extends Component {
                                     <View style={styles.sectionContent}>
                                         <View>
                                             <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
-                                                Responsable en charge
+                                                En charge du tag
                                             </Text>
                                             <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
                                                 {tag.supervisor.firstName} {tag.supervisor.lastName}
