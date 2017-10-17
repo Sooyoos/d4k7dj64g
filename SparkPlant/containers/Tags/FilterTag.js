@@ -26,6 +26,18 @@ let styles = StyleSheet.create({
         alignItems:'center',
         justifyContent: 'center',
     },
+    filterButton : {
+        height : responsiveHeight(5),
+        width : responsiveWidth(40),
+        backgroundColor : "#3f51b5",
+        alignItems : "center",
+        justifyContent: "center",
+    },
+    filterButtonText : {
+        fontSize : responsiveFontSize(2),
+        color : "#ffffff",
+        textAlign : "center",
+    }
 });
 
 class FilterTag extends Component {
@@ -144,6 +156,7 @@ class FilterTag extends Component {
     }
 
     render() {
+        console.log(this.props.tags);
         if(this.props.tags.loading === false)
         {
             return (
@@ -154,6 +167,13 @@ class FilterTag extends Component {
                             <Panel title="Avancement" content={this.buildStatus()}/>
                             <Panel title="Nature" content={this.buildAxis()}/>
                             <Panel title="Unité" content={this.buildUnits()}/>
+                            <TouchableWithoutFeedback onPress={() => {this.props.navigation.navigate('Tags')}}>
+                                <View style={styles.filterButton}>
+                                    <Text style={styles.filterButtonText}>
+                                        Filtrer
+                                    </Text>
+                                </View>
+                            </TouchableWithoutFeedback>
                         </ScrollView>
                     </View>
                 </View>

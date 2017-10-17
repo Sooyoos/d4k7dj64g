@@ -940,6 +940,13 @@ export function filterTags()
     }
 }
 
+export function resetFilterTags()
+{
+    return {
+        type : types.RESET_FILTER_TAGS,
+    }
+}
+
 export function filterFullTags()
 {
     return {
