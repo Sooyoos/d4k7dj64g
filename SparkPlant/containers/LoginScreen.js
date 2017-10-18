@@ -98,14 +98,7 @@ class LoginScreen extends Component {
 
         Firebase.messaging().onMessage(
             (data) => {
-                Alert.alert(
-                    'Message',
-                    JSON.stringify(data),
-                    [
-                        {text: 'OK', onPress: () => {console.log(data)}}
-                    ],
-                    { cancelable: false }
-                );
+                console.log(data);
             }
         );
 
