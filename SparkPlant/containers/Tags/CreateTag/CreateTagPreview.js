@@ -154,7 +154,7 @@ class CreateTagPreview extends Component {
                             </View>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <Image source={{uri : tag.supervisor ? tag.supervisor.avatar.path : "http://placehold.it/200x200"}} style={{width:responsiveWidth(8), height:responsiveWidth(8), borderRadius:responsiveWidth(4)}}/>
+                                    <Image source={{uri : tag.supervisor && tag.supervisor.avatar ? tag.supervisor.avatar.path : "http://placehold.it/200x200"}} style={{width:responsiveWidth(8), height:responsiveWidth(8), borderRadius:responsiveWidth(4)}}/>
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
