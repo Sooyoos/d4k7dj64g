@@ -360,15 +360,15 @@ class CreateTagStep2 extends Component {
                             </View>
                         </View>
                     </ElevatedView>
+                    <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
+                        <TouchableOpacity onPress={this.next.bind(this)}>
+                            <ElevatedView style={styles.buttonView} elevation={7}>
+                                <Icon name="arrow-right" style={styles.buttonIcon} />
+                            </ElevatedView>
+                        </TouchableOpacity>
+                    </View>
                     <KeyboardSpacer/>
                 </ScrollView>
-                <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
-                    <TouchableOpacity onPress={this.next.bind(this)}>
-                        <ElevatedView style={styles.buttonView} elevation={7}>
-                            <Icon name="arrow-right" style={styles.buttonIcon} />
-                        </ElevatedView>
-                    </TouchableOpacity>
-                </View>
             </View>
         );
     }
