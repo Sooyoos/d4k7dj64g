@@ -46,16 +46,12 @@ export default class DashboardNewsItem extends Component {
         this.state = { userIcon : null};
     }
 
-    componentWillMount(){
-
-    }
-
     render() {
         if(this.props.responsable)
         {
             return (
-                <View style={styles.dashboardNewsItem}>
-                    <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => {this.props.route(this.props.item)}}>
+                    <View style={styles.dashboardNewsItem}>
                         <View style={{flexDirection : 'row'}}>
                             <Image style={styles.itemImage} source={{uri : this.props.imgSrc }} />
                             <View style={styles.itemData}>
@@ -70,15 +66,15 @@ export default class DashboardNewsItem extends Component {
                                 </View>
                             </View>
                         </View>
-                    </TouchableWithoutFeedback>
-                </View>
+                    </View>
+                </TouchableWithoutFeedback>
             );
         }
         else
         {
             return (
-                <View style={styles.dashboardNewsItem}>
-                    <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => {this.props.route(this.props.item)}}>
+                    <View style={styles.dashboardNewsItem}>
                         <View style={{flexDirection : 'row'}}>
                             <Image style={styles.itemImage} source={{uri : this.props.imgSrc }} />
                             <View style={styles.itemData}>
@@ -92,8 +88,8 @@ export default class DashboardNewsItem extends Component {
                                 </View>
                             </View>
                         </View>
-                    </TouchableWithoutFeedback>
-                </View>
+                    </View>
+                </TouchableWithoutFeedback>
             );
         }
 

@@ -59,6 +59,12 @@ class DashboardNews extends Component {
         }
     }
 
+    goToDetails(item)
+    {
+        this.props.setCurrentNews(item);
+        this.props.goToNewsDetail();
+    }
+
     buildNewsList(news)
     {
         let list = [];
@@ -76,7 +82,7 @@ class DashboardNews extends Component {
                         author = news[i].user.firstName + " " + news[i].user.lastName
                     }
                     list.push(
-                        <DashboardNewsItem key={i} responsable={this.props.responsable} imgSrc={this.getMainImage(news[i])} newsExcerpt={news[i].title} newsDate={Moment(news[i].createdAt).format('DD/MM/YYYY')} newsAuthor={"par " + author} iconName={this.getVisiblityIcon(news[i])} />
+                        <DashboardNewsItem route={this.goToDetails.bind(this)} item={news[i]} key={i} responsable={this.props.responsable} imgSrc={this.getMainImage(news[i])} newsExcerpt={news[i].title} newsDate={Moment(news[i].createdAt).format('DD/MM/YYYY')} newsAuthor={"par " + author} iconName={this.getVisiblityIcon(news[i])} />
                     );
                 }
             }
