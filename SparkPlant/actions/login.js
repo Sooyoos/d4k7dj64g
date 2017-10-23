@@ -3,7 +3,14 @@ import { tryUser } from './users';
 import { tryUserNews } from './news';
 import { goToLogin } from './navigation/login';
 import Base64 from 'base-64';
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Platform } from 'react-native';
+import firebase from "react-native-firebase";
+
+const configurationOptions = {
+    debug: true
+};
+
+const Firebase = firebase.initializeApp(configurationOptions);
 
 function parseJwt(token){
     var base64Url = token.split('.')[1];
@@ -51,15 +58,59 @@ export function storeLogin(data)
     })
 }
 
+function manageFirebaseToken(tokenString)
+{
+    var DeviceInfo = require('react-native-device-info');
+
+    console.log(DeviceInfo);
+    let token;
+
+    // get platform
+    let platorm = Platform.OS;
+
+    // get device id
+    let deviceId = DeviceInfo.getUniqueID();
+
+    // get firebase token
+    Firebase.messaging().getToken().then((data) => {
+        token = data;
+
+        // send it to the api
+
+        fetch(types.baseUrl + "/devices", {
+            method: 'POST',
+            headers: {
+                'Authorization' : 'Bearer ' + tokenString,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                platform : platorm,
+                deviceId : deviceId,
+                token : data,
+            }),
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+
+                Firebase.messaging().onMessage(
+                    (data) => {
+                        console.log(data);
+                    }
+                );
+            })
+            .catch((error) => { console.log(error); dispatch(loginFailure())});
+
+
+    });
+
+}
+
 function fetchLogin(factory, username, password)
 {
     return dispatch => {
         dispatch(loginRequested());
         let body = new FormData();
-
-       /*factory = "1";
-       password = "test";
-       username = "user1";*/
 
         body.append("factory", factory);
         body.append("password", password);
@@ -78,6 +129,7 @@ function fetchLogin(factory, username, password)
                 if(responseJson.token)
                 {
                     let data = {factory : factory, username : username, password : password};
+                    manageFirebaseToken(responseJson.token);
                     dispatch(goToHomepage());
                     dispatch(loginSuccess(responseJson, data));
                 }
