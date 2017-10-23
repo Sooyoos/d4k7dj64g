@@ -208,10 +208,6 @@ class CreateNewsStep1 extends Component {
         let roles = user.rolesByUnit;
         let list = [];
 
-        list.push(
-            <Picker.Item key={-1} label="Choisissez une unité" value={null} />
-        );
-
         for(var i = 0; i < roles.length; i++)
         {
             if(!ids.includes(roles[i].unit["@id"]))
