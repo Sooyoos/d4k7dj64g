@@ -290,7 +290,7 @@ export const AppNavigator = StackNavigator({
 
 function getStateForResetChecklists(state)
 {
-    let checklistsRoutes = [ // routes[1].routes[0].routes[2]
+    let checklistsRoutes = [
         state.routes[1].routes[0].routes[3].routes[0],
     ];
 
@@ -310,7 +310,7 @@ function getStateForResetChecklists(state)
 
 function getStateForResetNews(state)
 {
-    let newsRoutes = [ // routes[1].routes[0].routes[2]
+    let newsRoutes = [
         state.routes[1].routes[0].routes[2].routes[0],
     ];
 
@@ -330,7 +330,7 @@ function getStateForResetNews(state)
 
 function getStateForResetTags(state)
 {
-    let tagsRoutes = [ // routes[1].routes[0].routes[1]
+    let tagsRoutes = [
         state.routes[1].routes[0].routes[1].routes[0],
     ];
 
