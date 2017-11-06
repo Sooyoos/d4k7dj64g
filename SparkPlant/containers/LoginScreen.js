@@ -93,22 +93,6 @@ class LoginScreen extends Component {
             props.navigateBack();
             return true;
         });
-
-        console.log(Firebase);
-
-        Firebase.messaging().onMessage(
-            (data) => {
-                Alert.alert(
-                    'Message',
-                    JSON.stringify(data),
-                    [
-                        {text: 'OK', onPress: () => {console.log(data)}}
-                    ],
-                    { cancelable: false }
-                );
-            }
-        );
-
     }
 
     componentDidUpdate()

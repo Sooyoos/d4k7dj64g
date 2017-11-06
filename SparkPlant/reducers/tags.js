@@ -111,6 +111,7 @@ function filterTags(list, filters)
     for(var i = 0; i < list.length; i++)
     {
         let flag = false;
+        console.log(list[i]);
 
         for(var j = 0; j < filters.status.length; j++)
         {
@@ -122,7 +123,7 @@ function filterTags(list, filters)
 
         for(var j = 0; j < filters.units.length; j++)
         {
-            if(list[i].unit["@id"] === filters.units[j])
+            if(list[i].tag.unit["@id"] === filters.units[j])
             {
                 flag = true;
             }
@@ -130,7 +131,7 @@ function filterTags(list, filters)
 
         for(var j = 0; j < filters.axis.length; j++)
         {
-            if(list[i].primaryAxis["@id"] === filters.axis[j])
+            if(list[i].tag.primaryAxis["@id"] === filters.axis[j])
             {
                 flag = true;
             }

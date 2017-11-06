@@ -129,6 +129,17 @@ class NewsDetail extends Component {
 
     render() {
         let item = this.props.news.currentNews;
+        let author = "";
+
+        if(item.user)
+        {
+            author = item.user.firstName + " " + item.user.lastName;
+        }
+        else
+        {
+            author = "SparkPlant";
+        }
+
         return (
             <View style={styles.login}>
                 <HeaderNews {...this.props} headerTitle="News"/>
@@ -143,9 +154,9 @@ class NewsDetail extends Component {
                     <ElevatedView style={styles.content} elevation={2}>
                         <View style={styles.info}>
                             <Text style={styles.infoText}>
-                                Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
+                                Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {author}
                             </Text>
-                            <Image style={styles.infoImage} source={{uri : item.user.avatar ? item.user.avatar.path : "http://via.placeholder.com/50x50" }}/>
+                            <Image style={styles.infoImage} source={{uri : item.user && item.user.avatar ? item.user.avatar.path : "http://via.placeholder.com/50x50" }}/>
                         </View>
                         <Text style={styles.title}>
                             {item.title}

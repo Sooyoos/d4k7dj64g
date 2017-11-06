@@ -66,6 +66,18 @@ class TagHistoryItem extends Component {
             return this.props.item.user.firstName + " " + this.props.item.user.lastName + " adresse le tag à " + this.props.item.assignedTo.firstName + " " + this.props.item.assignedTo.lastName;
         }
 
+        if(this.props.item.type === "close_tag")
+        {
+            let status = "";
+
+            if(this.props.tags.currentTag.status === "closed_resolved")
+                status = "résolu";
+            else
+                status = "non résolu";
+
+            return this.props.item.user.firstName + " " + this.props.item.user.lastName + " a marqué le tag comme étant " + status;
+        }
+
         return "";
     }
 

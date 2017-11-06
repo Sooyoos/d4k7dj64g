@@ -1,5 +1,6 @@
 import * as types from './types';
 import * as navigation from './navigation/tags';
+import {goToTagHistory} from "./navigation/tags";
 
 function fetchUserTags(login)
 {
@@ -608,6 +609,7 @@ function fetchResolveTag(login, tag)
             .then((response) => response.json())
             .then((responseJson) => {
                 dispatch(tagResolveSuccess(responseJson));
+                dispatch(goToTagHistory(tag));
             })
             .catch((error) => { console.log(error); dispatch(tagResolveFailure()); });
     }
@@ -660,6 +662,7 @@ function fetchCloseTag(login, tag)
             .then((response) => response.json())
             .then((responseJson) => {
                 dispatch(tagCloseSuccess(responseJson));
+                dispatch(goToTagHistory(tag));
             })
             .catch((error) => { console.log(error); dispatch(tagCloseFailure()); });
     }

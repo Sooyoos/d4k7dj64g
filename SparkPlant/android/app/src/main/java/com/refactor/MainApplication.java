@@ -14,6 +14,7 @@ import com.brentvatne.react.ReactVideoPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.horcrux.svg.SvgPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 // Required package
 import io.invertase.firebase.RNFirebasePackage; // <-- Add this line
 // Optional packages - add as appropriate
@@ -35,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new RNDeviceInfo(),
             new RCTCameraPackage(),
             new VectorIconsPackage(),
             new ImagePickerPackage(),
