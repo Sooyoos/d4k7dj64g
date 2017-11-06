@@ -288,6 +288,66 @@ export const AppNavigator = StackNavigator({
     }
 });
 
+function getStateForResetChecklists(state)
+{
+    let checklistsRoutes = [ // routes[1].routes[0].routes[2]
+        state.routes[1].routes[0].routes[3].routes[0],
+    ];
+
+    let checklists = Object.assign({}, state.routes[1].routes[0].routes[3], { routes : checklistsRoutes, index : 0})
+
+    let upArray = state.routes[1].routes[0];
+    upArray.routes[1] = checklists;
+
+    let upUpArray = state.routes[1];
+    upUpArray.routes[0] = upArray;
+
+    let upUpUpArray = state.routes;
+    upUpUpArray[1] = upUpArray;
+
+    return Object.assign({}, state, {routes : upUpUpArray, nbRoutes : 0})
+}
+
+function getStateForResetNews(state)
+{
+    let newsRoutes = [ // routes[1].routes[0].routes[2]
+        state.routes[1].routes[0].routes[2].routes[0],
+    ];
+
+    let news = Object.assign({}, state.routes[1].routes[0].routes[2], { routes : newsRoutes, index : 0})
+
+    let upArray = state.routes[1].routes[0];
+    upArray.routes[1] = news;
+
+    let upUpArray = state.routes[1];
+    upUpArray.routes[0] = upArray;
+
+    let upUpUpArray = state.routes;
+    upUpUpArray[1] = upUpArray;
+
+    return Object.assign({}, state, {routes : upUpUpArray, nbRoutes : 0})
+}
+
+function getStateForResetTags(state)
+{
+    let tagsRoutes = [ // routes[1].routes[0].routes[1]
+        state.routes[1].routes[0].routes[1].routes[0],
+    ];
+
+    let tags = Object.assign({}, state.routes[1].routes[0].routes[1], { routes : tagsRoutes, index : 0})
+
+    let upArray = state.routes[1].routes[0];
+    upArray.routes[1] = tags;
+
+    let upUpArray = state.routes[1];
+    upUpArray.routes[0] = upArray;
+
+    let upUpUpArray = state.routes;
+    upUpUpArray[1] = upUpArray;
+
+    return Object.assign({}, state, {routes : upUpUpArray, nbRoutes : 0})
+}
+
 const initialNavState = {
     index: 0,
     routes: [
@@ -303,17 +363,34 @@ const initialNavState = {
             index: 0,
         },
     ],
+    lastRoute : null,
+    nbRoutes : 0,
 };
 
 function navigateAction({ routeName, id }) {
+    console.log("In navigate action");
+    console.log({ routeName, id });
     return NavigationActions.navigate({ routeName, params: { id } });
 }
 
 export const navigationReducer = {
     nav: (state = initialNavState, action) => {
         switch (action.type) {
-            case 'Navigation/NAVIGATE':
-                return AppNavigator.router.getStateForAction(navigateAction(action), state);
+            case 'Navigation/NAVIGATE': {
+                var newNb = state.nbRoutes + 1;
+                var route = action.routeName;
+                var newState = Object.assign({}, state, {lastRoute : route, nbRoutes : newNb});
+                return AppNavigator.router.getStateForAction(navigateAction(action), newState);
+            }
+            case types.NAVIGATE_RESET_TAGS : {
+               return Object.assign({}, state, getStateForResetTags(state));
+            }
+            case types.NAVIGATE_RESET_NEWS : {
+                return Object.assign({}, state, getStateForResetNews(state));
+            }
+            case types.NAVIGATE_RESET_CHECKLISTS : {
+                return Object.assign({}, state, getStateForResetChecklists(state));
+            }
             case types.NAVIGATE_BACK:
                 return AppNavigator.router.getStateForAction(NavigationActions.back(), state);
             case types.NAVIGATE_HOME: {
