@@ -40,3 +40,11 @@ export function resetChecklists() {
     };
 }
 
+export function navigate(routeName)
+{
+    return {
+        type : 'Navigation/NAVIGATE',
+        routeName : routeName,
+    }
+}
+

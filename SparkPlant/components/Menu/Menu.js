@@ -14,6 +14,7 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import Navigation from "./Navigation";
 
 let styles = StyleSheet.create({
     menu: {
@@ -184,7 +185,7 @@ class DrawerMenu extends Component {
                         </View>
                     </View>
                     <View style={{flex : 7}}>
-                        <DrawerItems contentOptions={{activeTintColor : '#00bcd4'}} {...this.props} />
+                        <Navigation />
                     </View>
                 </View>
             );
@@ -213,7 +214,7 @@ class DrawerMenu extends Component {
                         </View>
                     </View>
                     <View>
-                        <DrawerItems {...this.props} />
+                        <Navigation />
                     </View>
                 </View>
             );

@@ -290,6 +290,8 @@ export const AppNavigator = StackNavigator({
 
 function getStateForResetChecklists(state)
 {
+    console.log("GET STATE FOR RESET CHECKLISTS");
+    console.log(state);
     let checklistsRoutes = [
         state.routes[1].routes[0].routes[3].routes[0],
     ];
@@ -297,7 +299,7 @@ function getStateForResetChecklists(state)
     let checklists = Object.assign({}, state.routes[1].routes[0].routes[3], { routes : checklistsRoutes, index : 0})
 
     let upArray = state.routes[1].routes[0];
-    upArray.routes[1] = checklists;
+    upArray.routes[3] = checklists;
 
     let upUpArray = state.routes[1];
     upUpArray.routes[0] = upArray;
@@ -310,6 +312,8 @@ function getStateForResetChecklists(state)
 
 function getStateForResetNews(state)
 {
+    console.log("GET STATE FOR RESET NEWS");
+    console.log(state);
     let newsRoutes = [
         state.routes[1].routes[0].routes[2].routes[0],
     ];
@@ -317,7 +321,7 @@ function getStateForResetNews(state)
     let news = Object.assign({}, state.routes[1].routes[0].routes[2], { routes : newsRoutes, index : 0})
 
     let upArray = state.routes[1].routes[0];
-    upArray.routes[1] = news;
+    upArray.routes[2] = news;
 
     let upUpArray = state.routes[1];
     upUpArray.routes[0] = upArray;
@@ -330,6 +334,9 @@ function getStateForResetNews(state)
 
 function getStateForResetTags(state)
 {
+    console.log("GET STATE FOR RESET TAGS");
+    console.log(state);
+
     let tagsRoutes = [
         state.routes[1].routes[0].routes[1].routes[0],
     ];
