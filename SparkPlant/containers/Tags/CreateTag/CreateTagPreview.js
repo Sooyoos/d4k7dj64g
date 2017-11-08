@@ -115,7 +115,7 @@ class CreateTagPreview extends Component {
     create()
     {
         this.props.tryCreateTag(this.props.login, this.props.tags.creation_current);
-        this.props.goToTagsPage();
+        this.props.goToTagsPage(this.props.nav);
     }
 
     buildMediaList()
