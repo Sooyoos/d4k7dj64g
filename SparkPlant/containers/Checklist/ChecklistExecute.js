@@ -7,6 +7,7 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
     TextInput,
+    Linking,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -77,7 +78,7 @@ let styles = StyleSheet.create({
         fontWeight: "bold",
     },
     taskInfo : {
-        width : responsiveWidth(84) - responsiveHeight(12),
+        width : responsiveWidth(84) - responsiveHeight(12) - responsiveHeight(8),
         height : responsiveHeight(12),
         justifyContent: "center",
     },
@@ -166,6 +167,16 @@ let styles = StyleSheet.create({
         height : responsiveHeight(4),
         borderRadius: responsiveHeight(2),
         backgroundColor : "#f44336",
+    },
+    taskFile : {
+        height : responsiveHeight(8),
+        width : responsiveHeight(8),
+        padding : responsiveHeight(2),
+    },
+    taskFileIcon : {
+        textAlign : "center",
+        fontSize : responsiveFontSize(3),
+        color : "#232323",
     }
 });
 
@@ -372,6 +383,30 @@ class ChecklistExecute extends Component {
         }
     }
 
+    displayFileLink(task)
+    {
+        if(task.file)
+        {
+            return (
+                <TouchableWithoutFeedback onPress={() => {
+                    Linking.canOpenURL(task.file.path).then(supported => {
+                        if (supported) {
+                            Linking.openURL(task.file.path);
+                        } else {
+                            console.log("Unable to open URL");
+                        }
+                    });
+                }}>
+                    <View style={styles.taskFile}>
+                        <Icon name="file-text-o" style={styles.taskFileIcon} />
+                    </View>
+                </TouchableWithoutFeedback>
+            );
+        }
+
+        return null;
+    }
+
     buildTasksList()
     {
         let tasks = this.props.checklists.currentChecklist.checklistInstanceTasks;
@@ -398,6 +433,7 @@ class ChecklistExecute extends Component {
                                         {tasks[i].task.title}
                                     </Text>
                                 </View>
+                                { this.displayFileLink(tasks[i].task) }
                             </View>
                         </ElevatedView>
                     );
@@ -419,6 +455,7 @@ class ChecklistExecute extends Component {
                                         {tasks[i].task.title}
                                     </Text>
                                 </View>
+                                { this.displayFileLink(tasks[i].task) }
                             </View>
                             <View style={styles.taskActions}>
                                 <TouchableWithoutFeedback onPress={this.executeTaskOk.bind(this)}>
@@ -459,6 +496,7 @@ class ChecklistExecute extends Component {
                                         {tasks[i].task.title}
                                     </Text>
                                 </View>
+                                { this.displayFileLink(tasks[i].task) }
                             </View>
                         </ElevatedView>
                     );
@@ -480,6 +518,7 @@ class ChecklistExecute extends Component {
                                         {tasks[i].task.title}
                                     </Text>
                                 </View>
+                                { this.displayFileLink(tasks[i].task) }
                             </View>
                             <View style={styles.taskActions}>
                                 <TouchableWithoutFeedback onPress={this.executeTaskCorrige.bind(this)}>
@@ -527,6 +566,7 @@ class ChecklistExecute extends Component {
                                         {tasks[i].task.title}
                                     </Text>
                                 </View>
+                                { this.displayFileLink(tasks[i].task) }
                             </View>
                         </ElevatedView>
                     );
@@ -548,6 +588,7 @@ class ChecklistExecute extends Component {
                                         {tasks[i].task.title}
                                     </Text>
                                 </View>
+                                { this.displayFileLink(tasks[i].task) }
                             </View>
                             <View style={styles.taskMesures}>
                                 <View style={styles.taskFlags}>
