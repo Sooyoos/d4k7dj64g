@@ -120,8 +120,8 @@ class SearchWaitingNews extends Component {
                     <NewsList itemRoute={this.props.goToWaitingNewsDetail} items={this.props.news.searchResultsWaiting} />
                 </View>
                 <View style={styles.footer}>
-                    <FooterButton {...this.props} active={false} iconName="newspaper-o" text="Publiées" route={this.props.goToSearchNews}/>
-                    <FooterButton {...this.props} active={true} iconName="clock-o" text="A valider" route={this.props.goToSearchWaitingNews}/>
+                    <FooterButton {...this.props} active={false} iconName="newspaper-o" text="Publiées" route={() => { this.props.goToSearchNews(this.props.nav) }}/>
+                    <FooterButton {...this.props} active={true} iconName="clock-o" text="A valider" route={() => { this.props.goToSearchWaitingNews(this.props.nav) }}/>
                 </View>
             </View>
         );

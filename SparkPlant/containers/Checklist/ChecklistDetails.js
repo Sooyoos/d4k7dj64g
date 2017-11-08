@@ -221,7 +221,7 @@ class ChecklistDetails extends Component {
         };
 
         this.props.tryAssignChecklists(this.props.login, checklistInstance);
-        this.props.goToChecklistLibrary();
+        this.props.goToChecklistLibrary(this.props.nav);
     }
 
     render() {

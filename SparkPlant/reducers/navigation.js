@@ -375,8 +375,6 @@ const initialNavState = {
 };
 
 function navigateAction({ routeName, id }) {
-    console.log("In navigate action");
-    console.log({ routeName, id });
     return NavigationActions.navigate({ routeName, params: { id } });
 }
 

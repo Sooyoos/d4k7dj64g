@@ -50,17 +50,17 @@ class DashboardNavigation extends Component {
 
     navigateToTags()
     {
-        this.props.goToTagsPage();
+        this.props.goToTagsPage(this.props.nav);
     }
 
     navigateToChecklist()
     {
-        this.props.goToChecklistPage();
+        this.props.goToChecklistPage(this.props.nav);
     }
 
     navigateToNews()
     {
-        this.props.goToNewsPage();
+        this.props.goToNewsPage(this.props.nav);
     }
 
     navigateToAnalytics()

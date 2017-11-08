@@ -40,19 +40,19 @@ class HeaderButton extends Component {
                 this.props.goToCreateTagStep1();
                 break;
             case "SearchTag" :
-                this.props.goToSearchTags();
+                this.props.goToSearchTags(this.props.nav);
                 break;
             case "FilterTag" :
-                this.props.goToFilterTags();
+                this.props.goToFilterTags(this.props.nav);
                 break;
             case "CreateNewsStep1" :
                 this.props.goToCreateNewsStep1();
                 break;
             case "SearchNews" :
-                this.props.goToSearchNews();
+                this.props.goToSearchNews(this.props.nav);
                 break;
             case "SearchWaitingNews" :
-                this.props.goToSearchWaitingNews();
+                this.props.goToSearchWaitingNews(this.props.nav);
                 break;
             default :
                 break;

@@ -60,8 +60,8 @@ class WaitingNews extends Component {
                     <NewsList itemRoute={this.props.goToWaitingNewsDetail} items={this.props.news.waitingNews} />
                 </View>
                 <View style={styles.footer}>
-                    <FooterButton {...this.props} active={false} iconName="newspaper-o" text="Publiées" route={this.props.goToNewsPage}/>
-                    <FooterButton {...this.props} active={true} iconName="clock-o" text="A valider" route={this.props.goToWaitingNews}/>
+                    <FooterButton {...this.props} active={false} iconName="newspaper-o" text="Publiées" route={() => { this.props.goToNewsPage(this.props.nav) }}/>
+                    <FooterButton {...this.props} active={true} iconName="clock-o" text="A valider" route={() => { this.props.goToWaitingNews(this.props.nav) }}/>
                 </View>
             </View>
         );

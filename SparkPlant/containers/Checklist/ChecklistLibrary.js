@@ -59,8 +59,8 @@ class ChecklistLibrary extends Component {
                     <ChecklistList itemRoute={this.props.goToChecklistDetails} items={this.props.checklists.templates} />
                 </View>
                 <View style={styles.footer}>
-                    <FooterButton {...this.props} active={false} iconName="check-square-o" text="Mes listes" route={this.props.goToChecklistPage}/>
-                    <FooterButton {...this.props} active={true} iconName="folder-open" text="Modèles" route={this.props.goToChecklistLibrary}/>
+                    <FooterButton {...this.props} active={false} iconName="check-square-o" text="Mes listes" route={() => { this.props.goToChecklistPage(this.props.nav) }}/>
+                    <FooterButton {...this.props} active={true} iconName="folder-open" text="Modèles" route={() => { this.props.goToChecklistLibrary(this.props.nav) }}/>
                 </View>
             </View>
         );

@@ -119,8 +119,8 @@ class SearchNews extends Component {
                     <NewsList itemRoute={this.props.goToNewsDetail} items={this.props.news.searchResults} />
                 </View>
                 <View style={styles.footer}>
-                    <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={this.props.goToSearchNews}/>
-                    <FooterButton {...this.props} active={false} iconName="clock-o" text="A valider" route={this.props.goToSearchWaitingNews}/>
+                    <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={() => { this.props.goToSearchNews(this.props.nav) }}/>
+                    <FooterButton {...this.props} active={false} iconName="clock-o" text="A valider" route={() => { this.props.goToSearchWaitingNews(this.props.nav) }}/>
                 </View>
             </View>
         );

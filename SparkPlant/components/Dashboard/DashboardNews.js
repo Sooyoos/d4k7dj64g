@@ -62,7 +62,7 @@ class DashboardNews extends Component {
     goToDetails(item)
     {
         this.props.setCurrentNews(item);
-        this.props.goToNewsDetail();
+        this.props.goToNewsDetail(this.props.nav);
     }
 
     buildNewsList(news)

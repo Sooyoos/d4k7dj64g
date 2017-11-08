@@ -1,4 +1,18 @@
-export function goToNewsPage()
+import { resetNews } from "../navigations"
+
+function checkNbActions(navState)
+{
+    if(navState.nbRoutes >= 5)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function navigateNews()
 {
     return {
         type: 'Navigation/NAVIGATE',
@@ -6,7 +20,16 @@ export function goToNewsPage()
     };
 }
 
-export function goToWaitingNews()
+export function goToNewsPage(navState)
+{
+    return dispatch => {
+        if(checkNbActions(navState) === true)
+            dispatch(resetNews());
+        dispatch(navigateNews());
+    }
+}
+
+function navigateWaitingNews()
 {
     return {
         type: 'Navigation/NAVIGATE',
@@ -14,7 +37,16 @@ export function goToWaitingNews()
     };
 }
 
-export function goToNewsDetail()
+export function goToWaitingNews(navState)
+{
+    return dispatch => {
+        if(checkNbActions(navState) === true)
+            dispatch(resetNews());
+        dispatch(navigateWaitingNews());
+    }
+}
+
+function navigateNewsDetail()
 {
     return {
         type: 'Navigation/NAVIGATE',
@@ -22,12 +54,30 @@ export function goToNewsDetail()
     };
 }
 
-export function goToWaitingNewsDetail()
+export function goToNewsDetail(navState)
+{
+    return dispatch => {
+        if(checkNbActions(navState) === true)
+            dispatch(resetNews());
+        dispatch(navigateNewsDetail());
+    }
+}
+
+function navigateWaitingNewsDetail()
 {
     return {
         type: 'Navigation/NAVIGATE',
         routeName: 'WaitingNewsDetail',
     };
+}
+
+export function goToWaitingNewsDetail(navState)
+{
+    return dispatch => {
+        if(checkNbActions(navState) === true)
+            dispatch(resetNews());
+        dispatch(navigateWaitingNewsDetail());
+    }
 }
 
 export function goToCreateNewsStep1()
@@ -54,7 +104,7 @@ export function goToCreateNewsPreview()
     };
 }
 
-export function goToSearchNews()
+function navigateSearchNews()
 {
     return {
         type: 'Navigation/NAVIGATE',
@@ -62,10 +112,28 @@ export function goToSearchNews()
     };
 }
 
-export function goToSearchWaitingNews()
+export function goToSearchNews(navState)
+{
+    return dispatch => {
+        if(checkNbActions(navState) === true)
+            dispatch(resetNews());
+        dispatch(navigateSearchNews());
+    }
+}
+
+function navigateSearchWaitingNews()
 {
     return {
         type: 'Navigation/NAVIGATE',
         routeName: 'SearchWaitingNews',
     };
+}
+
+export function goToSearchWaitingNews(navState)
+{
+    return dispatch => {
+        if(checkNbActions(navState) === true)
+            dispatch(resetNews());
+        dispatch(navigateSearchWaitingNews());
+    }
 }

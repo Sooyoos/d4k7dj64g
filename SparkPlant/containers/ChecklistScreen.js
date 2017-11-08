@@ -61,8 +61,8 @@ class ChecklistScreen extends Component {
                     <ChecklistList itemRoute={this.props.goToChecklistExecute} items={this.props.checklists.checklists} />
                 </View>
                 <View style={styles.footer}>
-                    <FooterButton {...this.props} active={true} iconName="check-square-o" text="Mes listes" route={this.props.goToChecklistPage}/>
-                    <FooterButton {...this.props} active={false} iconName="folder-open" text="Modèles" route={this.props.goToChecklistLibrary}/>
+                    <FooterButton {...this.props} active={true} iconName="check-square-o" text="Mes listes" route={() => { this.props.goToChecklistPage(this.props.nav) }}/>
+                    <FooterButton {...this.props} active={false} iconName="folder-open" text="Modèles" route={() => { this.props.goToChecklistLibrary(this.props.nav) }}/>
                 </View>
             </View>
         );

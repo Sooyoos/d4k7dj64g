@@ -77,7 +77,7 @@ class NewsListItem extends Component {
     goToDetails()
     {
         this.props.setCurrentNews(this.props.item);
-        this.props.route();
+        this.props.route(this.props.nav);
     }
 
     getVisiblityIcon()

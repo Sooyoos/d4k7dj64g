@@ -78,8 +78,8 @@ class NewsScreen extends Component {
                         <NewsList itemRoute={this.props.goToNewsDetail} items={this.props.news.news} />
                     </View>
                     <View style={styles.footer}>
-                        <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={this.props.goToNewsPage}/>
-                        <FooterButton {...this.props} active={false} iconName="clock-o" text="A valider" route={this.props.goToWaitingNews}/>
+                        <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={() => { this.props.goToNewsPage(this.props.nav) }}/>
+                        <FooterButton {...this.props} active={false} iconName="clock-o" text="A valider" route={() => { this.props.goToWaitingNews(this.props.nav) }}/>
                     </View>
                 </View>
             );

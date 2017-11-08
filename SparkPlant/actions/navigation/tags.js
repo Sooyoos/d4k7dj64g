@@ -1,4 +1,18 @@
-export function goToTagsPage()
+import { resetTags } from "../navigations"
+
+function checkNbActions(navState)
+{
+    if(navState.nbRoutes >= 5)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function navigateTags()
 {
     return {
         type: 'Navigation/NAVIGATE',
@@ -6,12 +20,31 @@ export function goToTagsPage()
     };
 }
 
-export function goToTagsFull()
+export function goToTagsPage(navState)
+{
+    return dispatch => {
+        if(checkNbActions(navState) === true)
+            dispatch(resetTags());
+        dispatch(navigateTags());
+    }
+}
+
+function navigateTagsFull()
 {
     return {
         type: 'Navigation/NAVIGATE',
         routeName: 'TagsFull',
     };
+}
+
+export function goToTagsFull(navState)
+{
+    return dispatch => {
+        if (checkNbActions(navState) === true)
+            dispatch(resetTags());
+        dispatch(navigateTagsFull());
+    }
+
 }
 
 export function goToCreateTagStep1()
@@ -46,52 +79,92 @@ export function goToCreateTagPreview()
     };
 }
 
-export function goToTagDetails(tag)
+function navigateTagDetails()
 {
     return {
         type: 'Navigation/NAVIGATE',
         routeName: 'TagDetail',
-        tag : tag,
     };
 }
 
-export function goToTagHistory(tag)
+export function goToTagDetails(navState)
+{
+    return dispatch => {
+        if (checkNbActions(navState) === true)
+            dispatch(resetTags());
+        dispatch(navigateTagDetails());
+    }
+}
+
+function navigateTagHistory()
 {
     return {
         type: 'Navigation/NAVIGATE',
         routeName: 'TagHistory',
-        tag : tag,
     };
 }
 
-export function goToTagAction(tag)
+export function goToTagHistory(navState)
+{
+    return dispatch => {
+        if (checkNbActions(navState) === true)
+            dispatch(resetTags());
+        dispatch(navigateTagHistory());
+    }
+}
+
+function navigateTagActions()
 {
     return {
         type: 'Navigation/NAVIGATE',
         routeName: 'TagActions',
-        tag : tag,
     };
 }
 
-export function goToTagComment(tag)
+export function goToTagAction(navState)
+{
+    return dispatch => {
+        if (checkNbActions(navState) === true)
+            dispatch(resetTags());
+        dispatch(navigateTagActions());
+    }
+}
+
+function navigateTagComment()
 {
     return {
         type: 'Navigation/NAVIGATE',
         routeName: 'CommentTag',
-        tag : tag,
     };
 }
 
-export function goToTagTransfer(tag)
+export function goToTagComment(navState)
+{
+    return dispatch => {
+        if (checkNbActions(navState) === true)
+            dispatch(resetTags());
+        dispatch(navigateTagComment());
+    }
+}
+
+function navigateTagTransfer()
 {
     return {
         type: 'Navigation/NAVIGATE',
         routeName: 'TransferTag',
-        tag : tag,
     };
 }
 
-export function goToSearchTags()
+export function goToTagTransfer(navState)
+{
+    return dispatch => {
+        if (checkNbActions(navState) === true)
+            dispatch(resetTags());
+        dispatch(navigateTagTransfer());
+    }
+}
+
+function navigateTagSearch()
 {
     return {
         type: 'Navigation/NAVIGATE',
@@ -99,12 +172,30 @@ export function goToSearchTags()
     };
 }
 
-export function goToFilterTags()
+export function goToSearchTags(navState)
+{
+    return dispatch => {
+        if (checkNbActions(navState) === true)
+            dispatch(resetTags());
+        dispatch(navigateTagSearch());
+    }
+}
+
+function navigateTagFilter()
 {
     return {
         type: 'Navigation/NAVIGATE',
         routeName: 'FilterTag',
     };
+}
+
+export function goToFilterTags(navState)
+{
+    return dispatch => {
+        if (checkNbActions(navState) === true)
+            dispatch(resetTags());
+        dispatch(navigateTagFilter());
+    }
 }
 
 export function goToRecordAudio()

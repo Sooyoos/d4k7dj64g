@@ -95,7 +95,7 @@ class ChecklistListItem extends Component {
             this.props.setCurrentTemplate(this.props.item);
         }
 
-        this.props.route();
+        this.props.route(this.props.nav);
     }
 
     getCategory(item)
