@@ -3,7 +3,7 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableWithoutFeedback,
+    TouchableHighlight,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -29,6 +29,14 @@ let styles = StyleSheet.create({
     menuButton : {
         padding : responsiveWidth(1),
     },
+    menuButtonLayout : {
+        height : responsiveHeight(5),
+        width : responsiveHeight(5),
+        borderRadius : responsiveHeight(2.5),
+        marginHorizontal : responsiveWidth(2),
+        alignItems: "center",
+        justifyContent: "center",
+    },
     menuIcon : {
         fontSize: responsiveFontSize(2.4),
         color : "#ffffff",
@@ -44,11 +52,11 @@ class Header extends Component {
     render() {
         return (
             <View style={styles.header}>
-                <TouchableWithoutFeedback onPress={() => {this.props.props.navigation.navigate('DrawerOpen');}}>
+                <TouchableHighlight style={styles.menuButtonLayout} underlayColor="#C5CAE9" onPress={() => {this.props.props.navigation.navigate('DrawerOpen');}}>
                     <View style={styles.menuButton}>
                         <Icon style={styles.menuIcon} name="menu"/>
                     </View>
-                </TouchableWithoutFeedback>
+                </TouchableHighlight>
                 <Text style={styles.title}>
                     SparkPlant
                 </Text>
