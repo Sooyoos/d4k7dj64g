@@ -438,12 +438,27 @@ function addUsersToTag(login, tag, id)
     }
 }
 
+function checkSupervisorInUsers(tag)
+{
+    let flag = true;
+
+    for(var i = 0; i < tag.users.length; i++)
+    {
+        if(tag.supervisor === tag.users[i])
+            flag = false;
+    }
+
+    return flag;
+}
+
 function fetchCreateTag(login, tag)
 {
     console.log("USERS DU TAG");
     console.log(tag.users);
     return dispatch => {
         dispatch(createTagRequested());
+
+        let supToAdd = checkSupervisorInUsers(tag);
 
         let users = [];
         let medias = [];
@@ -453,10 +468,15 @@ function fetchCreateTag(login, tag)
             users.push(tag.users[i]["@id"]);
         }
 
+        if(supToAdd)
+            users.push(tag.supervisor);
+
         for(var i = 0; i < tag.media.length; i++)
         {
             medias.push(tag.media[i].id);
         }
+
+        tag.users = users;
 
         console.log("CREATION DU TAG");
         console.log(medias);
