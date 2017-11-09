@@ -430,6 +430,7 @@ function addUsersToTag(login, tag, id)
             })
                 .then((response) => response.json())
                 .then((responseJson) => {
+                console.log(responseJson);
                     console.log("User added to tag");
                 })
                 .catch((error) => { dispatch(createTagFailure()); });
@@ -823,6 +824,10 @@ function fetchTransferTag(login, tag, supervisor)
 {
     return dispatch => {
         dispatch(tagTransferRequested());
+        console.log("TRANSFER TO");
+        console.log(supervisor);
+        tag.users = [];
+        tag.users.push(supervisor);
 
         fetch(types.baseUrl + tag["@id"], {
             method: 'PUT',
@@ -837,7 +842,7 @@ function fetchTransferTag(login, tag, supervisor)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
+                dispatch(addUsersToTag(login, tag, tag["@id"]));
                 dispatch(tagTransferSuccess(supervisor));
             })
             .catch((error) => { console.log(error); dispatch(tagTransferFailure()); });
