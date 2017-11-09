@@ -255,7 +255,7 @@ class ChecklistExecute extends Component {
         {
             this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist, this.getStatus(this.props.checklists.currentChecklist.status));
             this.resetTasks();
-            this.props.goToChecklistPage();
+            this.props.goToChecklistPage(this.props.nav);
         }
     }
 
@@ -291,7 +291,7 @@ class ChecklistExecute extends Component {
         {
             this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist, this.getStatus(this.props.checklists.currentChecklist.status));
             this.resetTasks();
-            this.props.goToChecklistPage();
+            this.props.goToChecklistPage(this.props.nav);
         }
     }
 
@@ -315,7 +315,7 @@ class ChecklistExecute extends Component {
         {
             this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist, this.getStatus(this.props.checklists.currentChecklist.status));
             this.resetTasks();
-            this.props.goToChecklistPage();
+            this.props.goToChecklistPage(this.props.nav);
         }
     }
 
@@ -338,7 +338,7 @@ class ChecklistExecute extends Component {
         {
             this.props.tryCompleteList(this.props.login, this.props.checklists.currentChecklist, this.getStatus(this.props.checklists.currentChecklist.status));
             this.resetTasks();
-            this.props.goToChecklistPage();
+            this.props.goToChecklistPage(this.props.nav);
         }
     }
 
