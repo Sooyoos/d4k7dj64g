@@ -138,7 +138,7 @@ class CreateTagStep3 extends Component {
         if(this.props.tags.creation_current.place !== null)
         {
             this.props.tryTagSupervisor(this.props.login, this.props.tags.creation_current);
-            this.props.tryTagFollowers(this.props.login, this.props.tags.creation_current);
+            this.props.tryTagFollowers(this.props.login, this.props.users.loggedUser, this.props.tags.creation_current);
         }
     }
 
@@ -339,6 +339,7 @@ function mapStateToProps(state) {
         login: state.login,
         nav : state.nav,
         tags : state.tags,
+        users : state.users,
     };
 }
 

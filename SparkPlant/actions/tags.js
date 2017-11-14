@@ -355,9 +355,8 @@ function getTagSupervisorFailure()
     }
 }
 
-function fetchTagFollowers(login, tag)
+function fetchTagFollowers(login, user, tag)
 {
-    console.log(tag.place);
     return dispatch => {
         dispatch(tagFollowersRequested());
         let unitId = tag.place.unit;
@@ -371,20 +370,25 @@ function fetchTagFollowers(login, tag)
             .then((response) => response.json())
             .then((responseJson) => {
                 let users = [];
+                let flag = false;
                 for(var i = 0; i < responseJson.roles.length; i++)
                 {
                     users.push(responseJson.roles[i].user);
+                    if(responseJson.roles[i].user["@id"] === user["@id"])
+                        flag = true;
                 }
+                if(!flag)
+                    users.push(user);
                 dispatch(getTagFollowersSuccess(users));
             })
             .catch((error) => { console.log(error); dispatch(getTagFollowersFailure()); });
     }
 }
 
-export function tryTagFollowers(login, tag)
+export function tryTagFollowers(login, user, tag)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchTagFollowers(login, tag));
+        return dispatch(fetchTagFollowers(login, user, tag));
     }
 }
 
