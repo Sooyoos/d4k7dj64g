@@ -132,11 +132,11 @@ class TagDetails extends Component {
                 }
                 else
                 {
-                    let thumbnail = "http://via.placeholder.com/" + Math.round(responsiveWidth(70)) + "x" + Math.round(responsiveHeight(30)) + "/000000.png";
+                    let thumbnail = "http://via.placeholder.com/" + Math.round(responsiveWidth(70)) + "x" + Math.round(responsiveHeight(30)) + "000000/000000.png";
                     console.log(thumbnail);
                     list.push(
                         <VideoPlayer
-                            style={{width : responsiveWidth(70), height : responsiveHeight(30)}}
+                            style={{width : responsiveWidth(70), height : responsiveHeight(30), marginHorizontal: 25}}
                             key={i}
                             video={{ uri: medias[i].path }}
                             videoWidth={Math.round(responsiveWidth(70))}
