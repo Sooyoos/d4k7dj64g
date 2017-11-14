@@ -80,6 +80,11 @@ let styles = StyleSheet.create({
         textAlign : 'center',
         color : '#ffffff',
     },
+    audioIcon : {
+        color : "#232323",
+        fontSize : responsiveFontSize(3.5),
+        marginHorizontal: responsiveWidth(5)
+    }
 });
 
 class CreateTagPreview extends Component {
@@ -123,6 +128,22 @@ class CreateTagPreview extends Component {
         return(
             <Image style={styles.sliderImage} source={{uri : "http://via.placeholder.com/" + Math.round(responsiveWidth(70)) + "x" + Math.round(responsiveHeight(30)) + "/000000.jpg"}} />
         );
+    }
+
+    displayPlaceAudioIcon()
+    {
+        if(this.props.tags.current_creation.placeDetailsAudio)
+        {
+            return(<IconA name="volume-up" style={styles.audioIcon} />);
+        }
+    }
+
+    displayDescriptionAudioIcon()
+    {
+        if(this.props.tags.current_creation.descriptionAudio)
+        {
+            return(<IconA name="volume-up" style={styles.audioIcon} />);
+        }
     }
 
     render() {
@@ -206,6 +227,7 @@ class CreateTagPreview extends Component {
                                                 tag.place ? tag.place.name : " "
                                             }
                                         </Text>
+                                        { this.displayPlaceAudioIcon() }
                                     </View>
                                 </View>
                             </View>
@@ -217,6 +239,7 @@ class CreateTagPreview extends Component {
                                     <Text style={{fontSize:responsiveFontSize(2.2), color : '#212121'}}>
                                         {tag.description}
                                     </Text>
+                                    { this.displayDescriptionAudioIcon() }
                                 </View>
                             </View>
                         </View>

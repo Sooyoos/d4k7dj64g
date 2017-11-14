@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../../actions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconFA from 'react-native-vector-icons/FontAwesome';
 import ElevatedView from 'react-native-elevated-view';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
@@ -94,6 +95,11 @@ let styles = StyleSheet.create({
         textAlign : 'center',
         color : '#ffffff',
     },
+    audioIcon : {
+        color : "#232323",
+        fontSize : responsiveFontSize(3.5),
+        marginHorizontal: responsiveWidth(5)
+    }
 });
 
 class CreateTagStep1 extends Component {
@@ -204,6 +210,14 @@ class CreateTagStep1 extends Component {
         return items;
     }
 
+    displayAudioIcon()
+    {
+        if(this.props.tags.creation_current.placeDetailsAudio)
+        {
+            return(<IconFA name="volume-up" style={styles.audioIcon} />);
+        }
+    }
+
     render() {
         if(this.props.tags.loading === false)
         {
@@ -227,14 +241,17 @@ class CreateTagStep1 extends Component {
                                         { this.buildPlacesList() }
                                     </Picker>
                                     <TextInput style={{fontSize : responsiveFontSize(2.2)}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
-                                    <TouchableOpacity onPress={() => {
-                                        this.props.setToRecord("place");
-                                        this.props.goToRecordAudio();
-                                    }}>
-                                        <ElevatedView style={styles.actionButtonView} elevation={3}>
-                                            <Icon name="microphone" style={styles.actionButtonIcon} />
-                                        </ElevatedView>
-                                    </TouchableOpacity>
+                                    <View style={{flexDirection : "row", alignItems : "center"}}>
+                                        <TouchableOpacity onPress={() => {
+                                            this.props.setToRecord("place");
+                                            this.props.goToRecordAudio();
+                                        }}>
+                                            <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                                <Icon name="microphone" style={styles.actionButtonIcon} />
+                                            </ElevatedView>
+                                        </TouchableOpacity>
+                                        { this.displayAudioIcon() }
+                                    </View>
                                 </View>
                             </ElevatedView>
                             <ElevatedView style={styles.card} elevation={2}>

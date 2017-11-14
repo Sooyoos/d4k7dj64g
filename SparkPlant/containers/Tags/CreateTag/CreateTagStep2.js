@@ -115,6 +115,11 @@ let styles = StyleSheet.create({
         height : responsiveHeight(10),
         width : responsiveWidth(25),
     },
+    audioIcon : {
+        color : "#232323",
+        fontSize : responsiveFontSize(3.5),
+        marginHorizontal: responsiveWidth(5)
+    }
 });
 
 class CreateTagStep2 extends Component {
@@ -306,6 +311,14 @@ class CreateTagStep2 extends Component {
         }
     }
 
+    displayAudioIcon()
+    {
+        if(this.props.tags.creation_current.descriptionAudio)
+        {
+            return(<IconFA name="volume-up" style={styles.audioIcon} />);
+        }
+    }
+
     render() {
         return (
             <View style={{flex : 1}}>
@@ -323,14 +336,17 @@ class CreateTagStep2 extends Component {
                         <View style={styles.cardContent}>
                             <TextInput style={styles.textInput} placeholder="Titre" maxLength={40} value={this.state.tagTitle} onChangeText={(value) => this.saveTitle(value)}/>
                             <TextInput style={styles.textInput} placeholder="Description" maxLength={140} value={this.state.tagDescription} onChangeText={(value) => this.saveDescription(value)}/>
-                            <TouchableOpacity onPress={() => {
-                                this.props.setToRecord("description");
-                                this.props.goToRecordAudio();
-                            }}>
-                                <ElevatedView style={styles.actionButtonView} elevation={3}>
-                                    <Icon name="microphone" style={styles.actionButtonIcon} />
-                                </ElevatedView>
-                            </TouchableOpacity>
+                            <View style={{flexDirection : "row", alignItems : "center"}}>
+                                <TouchableOpacity onPress={() => {
+                                    this.props.setToRecord("description");
+                                    this.props.goToRecordAudio();
+                                }}>
+                                    <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                        <Icon name="microphone" style={styles.actionButtonIcon} />
+                                    </ElevatedView>
+                                </TouchableOpacity>
+                                { this.displayAudioIcon() }
+                            </View>
                         </View>
                     </ElevatedView>
                     <ElevatedView style={styles.card} elevation={2}>
