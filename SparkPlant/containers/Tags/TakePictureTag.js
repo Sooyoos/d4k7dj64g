@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {fontSize1p8, fullHeight, fullWidth} from "../../assets/layout";
 
 let styles = StyleSheet.create({
     login: {
@@ -19,12 +20,12 @@ let styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width
+        height: fullHeight,
+        width: fullWidth
     },
     img: {
-        height: Dimensions.get('window').height,
-        width: Dimensions.get('window').width
+        height: fullHeight,
+        width: fullWidth
     },
     capture: {
         width: 70,
@@ -51,7 +52,7 @@ export default class TakePictureTag extends Component {
         title : 'TAGS',
         drawerLabel: "TAGS",
         drawerIcon: ({tintColor}) => (
-            <Icon name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
+            <Icon name='tag' style={{fontSize : fontSize1p8, color : '#757575'}}/>
         ),
     };
 

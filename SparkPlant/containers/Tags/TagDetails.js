@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import FooterButton from "../../components/Footer/FooterButton";
 import HeaderTagDetails from "../../components/Header/HeaderTags";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -24,28 +24,28 @@ let styles = StyleSheet.create({
         flex:1,
     },
     header : {
-        height : responsiveHeight(8),
+        height : layout.height8,
     },
     body: {
-        minHeight : responsiveHeight(83),
+        minHeight : layout.height83,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     footer: {
-        height : responsiveHeight(10),
+        height : layout.height10,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
-        paddingBottom : responsiveHeight(3),
+        paddingBottom : layout.height3,
     },
     slider : {
         flex :1,
         flexDirection : 'row',
     },
     sliderImage : {
-        width : responsiveWidth(70),
-        height: responsiveHeight(30),
+        width : layout.width70,
+        height: layout.height30,
         marginHorizontal: 25,
     },
     infos : {
@@ -53,24 +53,24 @@ let styles = StyleSheet.create({
         flexDirection : 'column',
     },
     section : {
-        width: responsiveWidth(80) ,
+        width: layout.width80 ,
         flexDirection : 'row',
         borderTopWidth: 1,
         borderTopColor: '#bdbdbd',
         padding : 10,
     },
     sectionVisual : {
-        width : responsiveWidth(15),
+        width : layout.width15,
         alignItems: 'center',
         justifyContent: 'center',
     },
     sectionContent : {
-        width : responsiveWidth(65),
+        width : layout.width65,
     },
     sectionVisualType : {
-        width: responsiveWidth(10),
-        height: responsiveWidth(10),
-        borderRadius: responsiveWidth(5),
+        width: layout.width10,
+        height: layout.width10,
+        borderRadius: layout.width5,
         backgroundColor : '#00bcd4',
         alignItems : "center",
         justifyContent : "center",
@@ -88,7 +88,7 @@ class TagDetails extends Component {
         title : 'TAGS',
         drawerLabel: "TAGS",
         drawerIcon: ({tintColor}) => (
-            <IconA name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
+            <IconA name='tag' style={{fontSize : layout.fontSize1p8, color : '#757575'}}/>
         ),
     };
 
@@ -99,17 +99,17 @@ class TagDetails extends Component {
     getStatusIcon() {
         let tag = this.props.tags.currentTag;
         if (tag.status === "closed_resolved") {
-            return <IconA name="star" style={{fontSize: responsiveFontSize(3.2), color : "#4caf50"}} />;
+            return <IconA name="star" style={{fontSize: layout.fontSize3p2, color : "#4caf50"}} />;
         }
         else if(tag.status === "new")
         {
-            return <IconA name="star-o" style={{fontSize: responsiveFontSize(3.2)}} />;
+            return <IconA name="star-o" style={{fontSize: layout.fontSize3p2}} />;
         }
         else if (tag.status === "ongoing") {
-            return <IconA name="star-half-o" style={{fontSize: responsiveFontSize(3.2)}} />;
+            return <IconA name="star-half-o" style={{fontSize: layout.fontSize3p2}} />;
         }
         else if (tag.status === "closed_unresolved") {
-            return <IconA name="star" style={{fontSize: responsiveFontSize(3.2)}} />;
+            return <IconA name="star" style={{fontSize: layout.fontSize3p2}} />;
         }
     }
 
@@ -132,15 +132,15 @@ class TagDetails extends Component {
                 }
                 else
                 {
-                    let thumbnail = "http://via.placeholder.com/" + Math.round(responsiveWidth(70)) + "x" + Math.round(responsiveHeight(30)) + "000000/000000.png";
+                    let thumbnail = "http://via.placeholder.com/" + Math.round(layout.width70) + "x" + Math.round(layout.height30) + "000000/000000.png";
                     console.log(thumbnail);
                     list.push(
                         <VideoPlayer
-                            style={{width : responsiveWidth(70), height : responsiveHeight(30), marginHorizontal: 25}}
+                            style={{width : layout.width70, height : layout.height30, marginHorizontal: 25}}
                             key={i}
                             video={{ uri: medias[i].path }}
-                            videoWidth={Math.round(responsiveWidth(70))}
-                            videoHeight={Math.round(responsiveHeight(30))}
+                            videoWidth={Math.round(layout.width70)}
+                            videoHeight={Math.round(layout.height30)}
                             thumbnail={{uri : thumbnail}}
                             endWithThumbnail
                         />
@@ -184,7 +184,7 @@ class TagDetails extends Component {
         {
             return(
                 <TouchableWithoutFeedback onPress={() => {this.playAudio(this.props.tags.currentTag.placeDetailsAudio.path)}}>
-                    <IconA name="volume-up" style={{ color : "#757575", fontSize : responsiveFontSize(2.5) }}/>
+                    <IconA name="volume-up" style={{ color : "#757575", fontSize : layout.fontSize2p5 }}/>
                 </TouchableWithoutFeedback>
             );
         }
@@ -196,7 +196,7 @@ class TagDetails extends Component {
         {
             return(
                 <TouchableWithoutFeedback onPress={() => {this.playAudio(this.props.tags.currentTag.descriptionAudio.path)}}>
-                    <IconA name="volume-up" style={{ color : "#757575", fontSize : responsiveFontSize(2.5) }}/>
+                    <IconA name="volume-up" style={{ color : "#757575", fontSize : layout.fontSize2p5 }}/>
                 </TouchableWithoutFeedback>
             );
         }
@@ -221,10 +221,10 @@ class TagDetails extends Component {
                                     </View>
                                     <View style={styles.sectionContent}>
                                         <View>
-                                            <Text style={{fontSize:responsiveFontSize(2.2), color : '#212121'}}>
+                                            <Text style={{fontSize:layout.fontSize2p2, color : '#212121'}}>
                                                 #{lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} ouvert par {tag.supervisor.firstName} {tag.supervisor.lastName}
                                             </Text>
-                                            <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                            <Text style={{fontSize:layout.fontSize2p4, color : '#212121'}}>
                                                 {tag.title}
                                             </Text>
                                         </View>
@@ -236,10 +236,10 @@ class TagDetails extends Component {
                                     </View>
                                     <View style={styles.sectionContent}>
                                         <View>
-                                            <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
+                                            <Text style={{fontSize:layout.fontSize2p2, color : '#757575'}}>
                                                 En charge du tag
                                             </Text>
-                                            <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                            <Text style={{fontSize:layout.fontSize2p4, color : '#212121'}}>
                                                 {tag.supervisor.firstName} {tag.supervisor.lastName}
                                             </Text>
                                         </View>
@@ -248,17 +248,17 @@ class TagDetails extends Component {
                                 <View style={styles.section}>
                                     <View style={styles.sectionVisual}>
                                         <View style={styles.sectionVisualType}>
-                                            <Text style={{color:'#ffffff', fontSize: responsiveFontSize(2.8), textAlign: 'center'}}>
+                                            <Text style={{color:'#ffffff', fontSize: layout.fontSize2p8, textAlign: 'center'}}>
                                                 {tag.primaryAxis.code}
                                             </Text>
                                         </View>
                                     </View>
                                     <View style={styles.sectionContent}>
                                         <View>
-                                            <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
+                                            <Text style={{fontSize:layout.fontSize2p2, color : '#757575'}}>
                                                 Nature
                                             </Text>
-                                            <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                            <Text style={{fontSize:layout.fontSize2p4, color : '#212121'}}>
                                                 {tag.primaryAxis.name}
                                             </Text>
                                         </View>
@@ -266,14 +266,14 @@ class TagDetails extends Component {
                                 </View>
                                 <View style={styles.section}>
                                     <View style={styles.sectionVisual}>
-                                        <Icon name="map" style={{fontSize:responsiveFontSize(3.2)}} />
+                                        <Icon name="map" style={{fontSize:layout.fontSize3p2}} />
                                     </View>
                                     <View style={styles.sectionContent}>
                                         <View>
-                                            <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
+                                            <Text style={{fontSize:layout.fontSize2p2, color : '#757575'}}>
                                                 Lieu
                                             </Text>
-                                            <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                            <Text style={{fontSize:layout.fontSize2p4, color : '#212121'}}>
                                                 {tag.place.name}
                                             </Text>
                                             {this.renderPlaceAudioIcon()}
@@ -282,10 +282,10 @@ class TagDetails extends Component {
                                 </View>
                                 <View style={styles.section}>
                                     <View style={styles.sectionVisual}>
-                                        <Icon name="clipboard-text" style={{fontSize:responsiveFontSize(3.2)}} />
+                                        <Icon name="clipboard-text" style={{fontSize:layout.fontSize3p2}} />
                                     </View>
                                     <View style={styles.sectionContent}>
-                                        <Text style={{fontSize:responsiveFontSize(1.4), color : '#212121'}}>
+                                        <Text style={{fontSize:layout.fontSize1p4, color : '#212121'}}>
                                             {tag.description}
                                         </Text>
                                         {this.renderDescriptionAudioIcon()}

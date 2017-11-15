@@ -9,7 +9,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import {fontSize1p4, fontSize2p4} from "../../assets/layout";
+
 
 let inactiveStyles = StyleSheet.create({
     button : {
@@ -21,7 +22,7 @@ let inactiveStyles = StyleSheet.create({
     buttonIcon : {
         flex:1,
         color:'#ffffff',
-        fontSize: responsiveFontSize(2.4),
+        fontSize: fontSize2p4,
     }
 });
 
@@ -36,7 +37,7 @@ let activeStyles = StyleSheet.create({
     buttonIcon : {
         flex:1,
         color:'#ffffff',
-        fontSize: responsiveFontSize(2.4),
+        fontSize: fontSize2p4,
     }
 });
 
@@ -58,7 +59,7 @@ class FooterButton extends Component {
                 <TouchableWithoutFeedback onPress={this.goToRoute.bind(this)}>
                     <View style={activeStyles.button}>
                         <Icon style={activeStyles.buttonIcon} name={this.props.iconName} />
-                        <Text style={{color:'#ffffff', flex: 1, fontSize: responsiveFontSize(1.4)}}>
+                        <Text style={{color:'#ffffff', flex: 1, fontSize: fontSize1p4}}>
                             {this.props.text}
                         </Text>
                     </View>
@@ -71,7 +72,7 @@ class FooterButton extends Component {
                 <TouchableWithoutFeedback onPress={this.goToRoute.bind(this)}>
                     <View style={inactiveStyles.button}>
                         <Icon style={inactiveStyles.buttonIcon} name={this.props.iconName} />
-                        <Text style={{color:'#ffffff', flex: 1, fontSize: responsiveFontSize(1.4)}}>
+                        <Text style={{color:'#ffffff', flex: 1, fontSize: fontSize1p4}}>
                             {this.props.text}
                         </Text>
                     </View>

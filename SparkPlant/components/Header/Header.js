@@ -8,13 +8,13 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 let styles = StyleSheet.create({
     header: {
-        height : responsiveHeight(8),
-        width : responsiveWidth(100),
+        height : layout.height8,
+        width : layout.fullWidth,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
@@ -22,7 +22,7 @@ let styles = StyleSheet.create({
     title:{
         flex : 8.4,
         margin:5,
-        fontSize:responsiveFontSize(1.8),
+        fontSize:layout.fontSize1p8,
         color: '#FFFFFF',
         textAlign: 'center',
     },
@@ -30,15 +30,15 @@ let styles = StyleSheet.create({
         padding : responsiveWidth(1),
     },
     menuButtonLayout : {
-        height : responsiveHeight(5),
-        width : responsiveHeight(5),
-        borderRadius : responsiveHeight(2.5),
-        marginHorizontal : responsiveWidth(2),
+        height : layout.height5,
+        width : layout.height5,
+        borderRadius : layout.height2p5,
+        marginHorizontal : layout.width2,
         alignItems: "center",
         justifyContent: "center",
     },
     menuIcon : {
-        fontSize: responsiveFontSize(2.4),
+        fontSize: layout.fontSize2p4,
         color : "#ffffff",
     }
 });

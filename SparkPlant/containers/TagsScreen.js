@@ -10,27 +10,27 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../assets/layout";
 import HeaderTags from "../components/Header/HeaderTags";
 import FooterButton from "../components/Footer/FooterButton";
 import TagList from "../components/Tags/TagList";
 
 let styles = StyleSheet.create({
     login: {
-        height:responsiveHeight(7),
+        height:layout.height7,
     },
     body: {
-        height:responsiveHeight(83),
+        height:layout.height83,
         backgroundColor : "#efefef",
         alignItems:'center',
         justifyContent: 'center',
     },
     footer: {
-        height:responsiveHeight(10),
+        height:layout.height10,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
-        paddingBottom : responsiveHeight(3),
+        paddingBottom : layout.height3,
     },
 });
 

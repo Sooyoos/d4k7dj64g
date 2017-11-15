@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import HeaderTags from "../../components/Header/HeaderTags";
 import ElevatedView from "react-native-elevated-view";
 import Panel from '../../components/Utils/Panel';
@@ -21,20 +21,20 @@ import Checkbox from '../../components/Utils/Checkbox';
 
 let styles = StyleSheet.create({
     body: {
-        height:responsiveHeight(93),
+        height:layout.height93,
         backgroundColor : "#efefef",
         alignItems:'center',
         justifyContent: 'center',
     },
     filterButton : {
-        height : responsiveHeight(5),
-        width : responsiveWidth(40),
+        height : layout.height5,
+        width : layout.width40,
         backgroundColor : "#3f51b5",
         alignItems : "center",
         justifyContent: "center",
     },
     filterButtonText : {
-        fontSize : responsiveFontSize(2),
+        fontSize : layout.fontSize2,
         color : "#ffffff",
         textAlign : "center",
     }
@@ -58,7 +58,7 @@ class FilterTag extends Component {
         title : 'TAGS',
         drawerLabel: "TAGS",
         drawerIcon: ({tintColor}) => (
-            <Icon name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
+            <Icon name='tag' style={{fontSize : layout.fontSize1p8, color : '#757575'}}/>
         ),
     };
 
@@ -78,21 +78,21 @@ class FilterTag extends Component {
     buildStatus()
     {
         return(
-            <View style={{paddingHorizontal: responsiveWidth(2), paddingVertical: responsiveHeight(1)}}>
+            <View style={{paddingHorizontal: layout.width2, paddingVertical: layout.height1}}>
                 <View style={{flexDirection: "row", alignItems: "center"}}>
-                    <Text style={{color : "#212121", fontSize : responsiveFontSize(1.8), width : responsiveWidth(70)}}>
+                    <Text style={{color : "#212121", fontSize : layout.fontSize1p8, width : layout.width70}}>
                         En cours
                     </Text>
                     <Checkbox checked={this.props.tags.filters.status.indexOf("ongoing") !== -1} list="status" value="ongoing" do={this.props.addTagsFilter} undo={this.props.removeTagsFilter}/>
                 </View>
                 <View style={{flexDirection: "row", alignItems: "center"}}>
-                    <Text style={{color : "#212121", fontSize : responsiveFontSize(1.8), width : responsiveWidth(70)}}>
+                    <Text style={{color : "#212121", fontSize : layout.fontSize1p8, width : layout.width70}}>
                         Fermé et résolu
                     </Text>
                     <Checkbox checked={this.props.tags.filters.status.indexOf("closed_resolved") !== -1} list="status" value="closed_resolved" do={this.props.addTagsFilter} undo={this.props.removeTagsFilter}/>
                 </View>
                 <View style={{flexDirection: "row", alignItems: "center"}}>
-                    <Text style={{color : "#212121", fontSize : responsiveFontSize(1.8), width : responsiveWidth(70)}}>
+                    <Text style={{color : "#212121", fontSize : layout.fontSize1p8, width : layout.width70}}>
                         Fermé non résolu
                     </Text>
                     <Checkbox checked={this.props.tags.filters.status.indexOf("closed_unresolved") !== -1} list="status" value="closed_resolved" do={this.props.addTagsFilter} undo={this.props.removeTagsFilter}/>
@@ -112,7 +112,7 @@ class FilterTag extends Component {
             {
                 list.push(
                     <View key={i} style={{flexDirection: "row", alignItems: "center"}}>
-                        <Text style={{color : "#212121", fontSize : responsiveFontSize(1.8), width : responsiveWidth(70)}}>
+                        <Text style={{color : "#212121", fontSize : layout.fontSize1p8, width : layout.width70}}>
                             {axis[i].name}
                         </Text>
                         <Checkbox checked={this.props.tags.filters.axis.indexOf(axis[i]["@id"]) !== -1} list="axis" value={axis[i]["@id"]} do={this.props.addTagsFilter} undo={this.props.removeTagsFilter}/>
@@ -122,7 +122,7 @@ class FilterTag extends Component {
         }
 
         return(
-            <View style={{paddingHorizontal: responsiveWidth(2), paddingVertical: responsiveHeight(1)}}>
+            <View style={{paddingHorizontal: layout.width2, paddingVertical: layout.height1}}>
                 {list}
             </View>
         );
@@ -139,7 +139,7 @@ class FilterTag extends Component {
             {
                 list.push(
                     <View key={i} style={{flexDirection: "row", alignItems: "center"}}>
-                        <Text style={{color : "#212121", fontSize : responsiveFontSize(1.8), width : responsiveWidth(70)}}>
+                        <Text style={{color : "#212121", fontSize : layout.fontSize1p8, width : layout.width70}}>
                             {units[i].name}
                         </Text>
                         <Checkbox checked={this.props.tags.filters.units.indexOf(units[i]["@id"]) !== -1} list="units" value={units[i]["@id"]} do={this.props.addTagsFilter} undo={this.props.removeTagsFilter}/>
@@ -149,7 +149,7 @@ class FilterTag extends Component {
         }
 
         return(
-            <View style={{paddingHorizontal: responsiveWidth(2), paddingVertical: responsiveHeight(1)}}>
+            <View style={{paddingHorizontal: layout.width2, paddingVertical: layout.height1}}>
                 {list}
             </View>
         );

@@ -10,12 +10,12 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import HeaderButton from './HeaderButton';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 
 let styles = StyleSheet.create({
     header: {
-        width : responsiveWidth(100),
-        height : responsiveHeight(8),
+        width : layout.fullWidth,
+        height : layout.height8,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
@@ -24,13 +24,13 @@ let styles = StyleSheet.create({
     title : {
         color:'#ffffff',
         width: 200,
-        fontSize : responsiveFontSize(1.8),
+        fontSize : layout.fontSize1p8,
     },
     menuButton : {
-        padding : responsiveWidth(1),
+        padding : layout.width1,
     },
     menuIcon : {
-        fontSize: responsiveFontSize(2.4),
+        fontSize: layout.fontSize2p4,
         color : "#ffffff",
     }
 });

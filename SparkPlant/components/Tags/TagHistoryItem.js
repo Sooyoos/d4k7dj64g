@@ -11,35 +11,35 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import Moment from 'moment';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 
 let styles = StyleSheet.create({
     item: {
-        width:responsiveWidth(100) ,
+        width: layout.fullWidth,
         flexDirection : 'row',
         borderBottomWidth: 1,
         borderBottomColor: '#bdbdbd',
         padding : 10,
     },
     imageSection : {
-        width: responsiveWidth(12),
+        width: layout.width12,
     },
     image : {
-        width: responsiveWidth(8),
-        height: responsiveWidth(8),
-        borderRadius: responsiveWidth(4),
+        width: layout.width8,
+        height: layout.width8,
+        borderRadius: layout.width4,
     },
     contentSection : {
-        width: responsiveWidth(88),
+        width: layout.width88,
         flexDirection: 'column',
     },
     contentFirst : {
         color : '#212121',
-        fontSize : responsiveFontSize(1.6),
+        fontSize : layout.fontSize1p6,
     },
     contentSecond : {
         color : '#212121',
-        fontSize : responsiveFontSize(1.4),
+        fontSize : layout.fontSize1p4,
     }
 });
 

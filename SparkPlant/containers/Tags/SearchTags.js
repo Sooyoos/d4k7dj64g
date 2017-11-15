@@ -10,50 +10,50 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import HeaderTags from "../../components/Header/HeaderTags";
 import TagList from '../../components/Tags/TagList';
 import ElevatedView from "react-native-elevated-view";
 
 let styles = StyleSheet.create({
     login: {
-        height:responsiveHeight(7),
+        height:layout.height7,
     },
     body: {
-        height:responsiveHeight(93),
+        height:layout.height93,
         backgroundColor : "#efefef",
         alignItems:'center',
         justifyContent: 'center',
     },
     searchView : {
-        width : responsiveWidth(90),
-        height : responsiveHeight(10),
-        marginHorizontal: responsiveWidth(5),
-        marginVertical: responsiveHeight(2),
+        width : layout.width90,
+        height : layout.height10,
+        marginHorizontal: layout.width5,
+        marginVertical: layout.height2,
         backgroundColor: "#ffffff",
-        paddingHorizontal: responsiveWidth(5),
-        paddingVertical: responsiveHeight(1),
+        paddingHorizontal: layout.width5,
+        paddingVertical: layout.height1,
         flexDirection: "row",
         justifyContent : 'center',
     },
     searchField : {
-        width : responsiveWidth(60),
-        height : responsiveHeight(5),
-        marginHorizontal: responsiveWidth(5),
-        marginVertical: responsiveHeight(2),
-        fontSize : responsiveFontSize(1.8),
+        width : layout.width60,
+        height : layout.height5,
+        marginHorizontal: layout.width5,
+        marginVertical: layout.height2,
+        fontSize : layout.fontSize1p8,
     },
     searchButton : {
         backgroundColor: "#00bcd4",
-        width : responsiveHeight(8),
-        height : responsiveHeight(8),
-        borderRadius : responsiveHeight(4),
+        width : layout.height8,
+        height : layout.height8,
+        borderRadius : layout.height4,
         justifyContent: 'center',
         alignItems: "center",
     },
     searchIcon : {
         color : "#ffffff",
-        fontSize : responsiveFontSize(3),
+        fontSize : layout.fontSize3,
         textAlign : 'center',
     },
 });
@@ -64,7 +64,7 @@ class SearchTags extends Component {
         title : 'TAGS',
         drawerLabel: "TAGS",
         drawerIcon: ({tintColor}) => (
-            <Icon name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
+            <Icon name='tag' style={{fontSize : layout.fontSize1p8, color : '#757575'}}/>
         ),
     };
 

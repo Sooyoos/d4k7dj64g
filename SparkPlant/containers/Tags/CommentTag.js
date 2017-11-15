@@ -14,47 +14,47 @@ import FooterButton from "../../components/Footer/FooterButton";
 import HeaderTagDetails from "../../components/Header/HeaderTags";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ElevatedView from "react-native-elevated-view";
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 
 let styles = StyleSheet.create({
     login: {
         flex:1,
     },
     header : {
-        height : responsiveHeight(7),
+        height : layout.height7,
     },
     list: {
-        height : responsiveHeight(83),
+        height : layout.height83,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     comment : {
-        width: responsiveWidth(75),
-        height: responsiveHeight(15),
-        fontSize : responsiveFontSize(1.6)
+        width: layout.width75,
+        height: layout.height15,
+        fontSize : layout.fontSize1p6
     },
     button : {
         marginTop : 30,
         marginBottom: 30,
-        width : responsiveWidth(25),
-        height: responsiveWidth(25),
-        borderRadius: responsiveWidth(12.5),
+        width : layout.width25,
+        height: layout.width25,
+        borderRadius: layout.width12p5,
         alignItems: 'center',
         backgroundColor: '#9c27b0',
-        padding : responsiveWidth(3),
+        padding : layout.width3,
     },
     icon : {
         color: '#ffffff',
         textAlign: 'center',
-        fontSize : responsiveFontSize(9),
+        fontSize : layout.fontSize9,
     },
     footer: {
-        height : responsiveHeight(10),
+        height : layout.height10,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
-        paddingBottom : responsiveHeight(3),
+        paddingBottom : layout.height3,
     },
 });
 
@@ -69,7 +69,7 @@ class CommentTag extends Component {
         title : 'TAGS',
         drawerLabel: "TAGS",
         drawerIcon: ({tintColor}) => (
-            <Icon name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
+            <Icon name='tag' style={{fontSize : layout.fontSize1p8, color : '#757575'}}/>
         ),
     };
 
@@ -91,7 +91,7 @@ class CommentTag extends Component {
             <View style={styles.login}>
                 <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
                 <View style={styles.list}>
-                    <Text style={{fontSize: responsiveFontSize(1.8), color : '#212121'}}>
+                    <Text style={{fontSize: layout.fontSize1p8, color : '#212121'}}>
                         Votre commentaire :
                     </Text>
                     <TextInput multiline={true} style={styles.comment} placeholder="Entrez votre commentaire..." maxLength={140} onChangeText={(value) => this.setState({value : value})}/>

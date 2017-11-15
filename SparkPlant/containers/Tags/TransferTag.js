@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ElevatedView from "react-native-elevated-view";
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import FooterButton from "../../components/Footer/FooterButton";
 import HeaderTagDetails from "../../components/Header/HeaderTags";
 
@@ -19,39 +19,39 @@ let styles = StyleSheet.create({
         flex:1,
     },
     header : {
-        height : responsiveHeight(7),
+        height : layout.height7,
     },
     list: {
-        height : responsiveHeight(83),
+        height : layout.height83,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     /* the picker for Android cannot be styled using RN (https://stackoverflow.com/questions/38921492/how-to-style-the-standard-react-native-android-picker/39141949#39141949) */
     picker : {
-        width : responsiveWidth(80),
-        height: responsiveHeight(10),
+        width : layout.width80,
+        height: layout.height10,
     },
     button : {
         marginTop : 30,
-        width : responsiveWidth(25),
-        height: responsiveWidth(25),
-        borderRadius: responsiveWidth(12.5),
+        width : layout.width25,
+        height: layout.width25,
+        borderRadius: layout.width12p5,
         alignItems: 'center',
         backgroundColor: '#00bcd4',
-        padding : responsiveWidth(2),
+        padding : layout.width2,
     },
     icon : {
         color: '#ffffff',
         textAlign: 'center',
-        fontSize : responsiveFontSize(10),
+        fontSize : layout.fontSize10,
     },
     footer: {
-        height : responsiveHeight(10),
+        height : layout.height10,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
-        paddingBottom : responsiveHeight(3),
+        paddingBottom : layout.height3,
     },
 });
 
@@ -61,7 +61,7 @@ class TransferTag extends Component {
         title : 'TAGS',
         drawerLabel: "TAGS",
         drawerIcon: ({tintColor}) => (
-            <Icon name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
+            <Icon name='tag' style={{fontSize : layout.fontSize1p8, color : '#757575'}}/>
         ),
     };
 

@@ -8,17 +8,18 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import {fontSize2p1, width10} from "../../assets/layout";
+
 
 let styles = StyleSheet.create({
     button : {
         alignItems: 'center',
         justifyContent: 'center',
-        width : responsiveWidth(10),
+        width : width10,
     },
     buttonIcon : {
         color:'#ffffff',
-        fontSize: responsiveFontSize(2.1),
+        fontSize: fontSize2p1,
     }
 });
 

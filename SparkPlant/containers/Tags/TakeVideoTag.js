@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {fontSize1p8} from "../../assets/layout";
 
 let styles = StyleSheet.create({
     login: {
@@ -23,7 +24,7 @@ export default class TakeVideoTag extends Component {
         title : 'TAGS',
         drawerLabel: "TAGS",
         drawerIcon: ({tintColor}) => (
-            <Icon name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
+            <Icon name='tag' style={{fontSize : fontSize1p8, color : '#757575'}}/>
         ),
     };
 

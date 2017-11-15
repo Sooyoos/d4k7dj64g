@@ -11,75 +11,75 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 
 let styles = StyleSheet.create({
     item: {
-        width : responsiveWidth(83),
-        height : responsiveHeight(15),
-        paddingLeft: responsiveWidth(3),
-        paddingRight: responsiveWidth(3),
-        paddingTop: responsiveHeight(1),
-        paddingBottom: responsiveHeight(1),
-        marginTop: responsiveHeight(1),
-        marginBottom: responsiveHeight(1.8),
+        width : layout.width83,
+        height : layout.height15,
+        paddingLeft: layout.width3,
+        paddingRight: layout.width3,
+        paddingTop: layout.height1,
+        paddingBottom: layout.height1,
+        marginTop: layout.height1,
+        marginBottom: layout.height1p8,
         backgroundColor: '#ffffff',
         flexDirection: 'row',
     },
     main : {
-        width:responsiveWidth(65),
+        width:layout.width65,
         flexDirection: 'column',
-        marginRight: responsiveWidth(1),
+        marginRight: layout.width1,
     },
     aside : {
-        width: responsiveWidth(15),
-        height : responsiveHeight(12),
+        width: layout.width15,
+        height : layout.height12,
         alignItems: 'center',
         justifyContent : "center",
     },
     itemTitle : {
-        width:responsiveWidth(65),
-        height : responsiveHeight(4),
+        width:layout.width65,
+        height : layout.height4,
         color : '#212121',
-        fontSize:responsiveFontSize(2.4),
+        fontSize:layout.fontSize2p4,
     },
     itemLocation : {
-        width:responsiveWidth(65),
-        height : responsiveHeight(4),
+        width:layout.width65,
+        height : layout.height4,
         color : '#757575',
-        fontSize:responsiveFontSize(2.2),
+        fontSize:layout.fontSize2p2,
     },
     itemInfos : {
-        width:responsiveWidth(65),
-        height : responsiveHeight(4),
+        width:layout.width65,
+        height : layout.height4,
         flexDirection: 'row',
     },
     itemId : {
         color : '#757575',
-        fontSize:responsiveFontSize(2),
+        fontSize:layout.fontSize2,
     },
     itemImage : {
-        width:responsiveWidth(3.8),
-        height:responsiveWidth(3.8),
-        borderRadius : responsiveWidth(1.9),
-        marginLeft:responsiveWidth(0.5),
-        marginRight:responsiveWidth(0.5),
+        width:layout.width3p8,
+        height:layout.width3p8,
+        borderRadius : layout.width1p9,
+        marginLeft:layout.width0p5,
+        marginRight:layout.width0p5,
     },
     itemFullname : {
         flex : 1,
         color : '#212121',
-        fontSize:responsiveFontSize(2),
+        fontSize:layout.fontSize2,
     },
     itemType : {
         backgroundColor:'#00bcd4',
-        width:responsiveWidth(10),
-        height:responsiveWidth(10),
-        borderRadius : responsiveWidth(5),
+        width:layout.width10,
+        height:layout.width10,
+        borderRadius : layout.width5,
         alignItems: "center",
         justifyContent: "center",
     },
     itemStatus : {
-        marginTop : responsiveHeight(1),
+        marginTop : layout.height1,
     },
 });
 
@@ -96,17 +96,17 @@ class TagListItem extends Component {
 
     getStatusIcon() {
         if (this.props.tag.status === "closed_resolved") {
-            return <Icon name="star" style={{fontSize: responsiveFontSize(2.6), color : "#4caf50"}} />;
+            return <Icon name="star" style={{fontSize: layout.fontSize2p6, color : "#4caf50"}} />;
         }
         else if(this.props.tag.status === "new")
         {
-            return <Icon name="star-o" style={{fontSize: responsiveFontSize(2.6)}} />;
+            return <Icon name="star-o" style={{fontSize: layout.fontSize2p6}} />;
         }
         else if (this.props.tag.status === "ongoing") {
-            return <Icon name="star-half-o" style={{fontSize: responsiveFontSize(2.6)}} />;
+            return <Icon name="star-half-o" style={{fontSize: layout.fontSize2p6}} />;
         }
         else if (this.props.tag.status === "closed_unresolved") {
-            return <Icon name="star" style={{fontSize: responsiveFontSize(2.6)}} />;
+            return <Icon name="star" style={{fontSize: layout.fontSize2p6}} />;
         }
     }
 
@@ -138,7 +138,7 @@ class TagListItem extends Component {
                     </View>
                     <View style={styles.aside}>
                         <View style={styles.itemType}>
-                            <Text style={{color: '#ffffff', fontSize : responsiveFontSize(2.4), textAlign: 'center'}}>
+                            <Text style={{color: '#ffffff', fontSize : layout.fontSize2p4, textAlign: 'center'}}>
                                 {this.props.tag.primaryAxis.code}
                             </Text>
                         </View>

@@ -8,21 +8,22 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import FooterButton from "../../components/Footer/FooterButton";
 import HeaderTagDetails from "../../components/Header/HeaderTags";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ElevatedView from "react-native-elevated-view";
+import {height7} from "../../assets/layout";
 
 let styles = StyleSheet.create({
     login: {
         flex:1,
     },
     header : {
-        height : responsiveHeight(7),
+        height : layout.height7,
     },
     list: {
-        height : responsiveHeight(83),
+        height : layout.height83,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
@@ -35,67 +36,67 @@ let styles = StyleSheet.create({
     },
     icon : {
         color: '#ffffff',
-        fontSize : responsiveFontSize(11),
+        fontSize : layout.fontSize11,
         textAlign: 'center',
     },
     buttonComment : {
-        width:responsiveWidth(40),
-        height:responsiveWidth(40),
+        width:layout.width40,
+        height:layout.width40,
         backgroundColor:'#9c27b0',
-        borderRadius: responsiveWidth(20),
-        padding : responsiveWidth(3),
-        marginTop: responsiveHeight(0.5),
-        marginBottom: responsiveHeight(2),
-        marginLeft: responsiveWidth(2),
-        marginRight: responsiveWidth(2),
+        borderRadius: layout.width20,
+        padding : layout.width3,
+        marginTop: layout.height0p5,
+        marginBottom: layout.height2,
+        marginLeft: layout.width2,
+        marginRight: layout.width2,
         alignItems : "center",
         justifyContent : "center",
     },
     buttonTransfer : {
-        width:responsiveWidth(40),
-        height:responsiveWidth(40),
+        width:layout.width40,
+        height:layout.width40,
         backgroundColor:'#00bcd4',
-        borderRadius: responsiveWidth(20),
-        padding : responsiveWidth(3),
-        marginTop: responsiveHeight(0.5),
-        marginBottom: responsiveHeight(2),
-        marginLeft: responsiveWidth(2),
-        marginRight: responsiveWidth(2),
+        borderRadius: layout.width20,
+        padding : layout.width3,
+        marginTop: layout.width0p5,
+        marginBottom: layout.height2,
+        marginLeft: layout.width2,
+        marginRight: layout.width2,
         alignItems : "center",
         justifyContent : "center",
     },
     buttonCheck : {
-        width:responsiveWidth(40),
-        height:responsiveWidth(40),
+        width:layout.width40,
+        height:layout.width40,
         backgroundColor:'#4caf50',
-        borderRadius: responsiveWidth(20),
-        padding : responsiveWidth(3),
-        marginTop: responsiveHeight(0.5),
-        marginBottom: responsiveHeight(2),
-        marginLeft: responsiveWidth(2),
-        marginRight: responsiveWidth(2),
+        borderRadius: layout.width20,
+        padding : layout.width3,
+        marginTop: layout.height0p5,
+        marginBottom: layout.height2,
+        marginLeft: layout.width2,
+        marginRight: layout.width2,
         alignItems : "center",
         justifyContent : "center",
     },
     buttonClose : {
-        width:responsiveWidth(40),
-        height:responsiveWidth(40),
+        width:layout.width40,
+        height:layout.width40,
         backgroundColor:'#f44336',
-        borderRadius: responsiveWidth(20),
-        padding : responsiveWidth(3),
-        marginTop: responsiveHeight(0.5),
-        marginBottom: responsiveHeight(2),
-        marginLeft: responsiveWidth(2),
-        marginRight: responsiveWidth(2),
+        borderRadius: layout.width20,
+        padding : layout.width3,
+        marginTop: layout.height0p5,
+        marginBottom: layout.height2,
+        marginLeft: layout.width2,
+        marginRight: layout.width2,
         alignItems : "center",
         justifyContent: "center",
     },
     footer: {
-        height : responsiveHeight(10),
+        height : layout.height10,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
-        paddingBottom : responsiveHeight(3),
+        paddingBottom : layout.height3,
     },
 });
 
@@ -110,7 +111,7 @@ class TagActions extends Component {
         title : 'TAGS',
         drawerLabel: "TAGS",
         drawerIcon: ({tintColor}) => (
-            <Icon name='tag' style={{fontSize : responsiveFontSize(1.8), color : '#757575'}}/>
+            <Icon name='tag' style={{fontSize : layout.fontSize1p8, color : '#757575'}}/>
         ),
     };
 
@@ -166,7 +167,7 @@ class TagActions extends Component {
                                     <ElevatedView elevation={10} style={styles.buttonComment}>
                                         <Icon name="comment-o" style={styles.icon}/>
                                     </ElevatedView>
-                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
+                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : layout.fontSize1p8}}>
                                         Commenter
                                     </Text>
                                 </View>
@@ -176,7 +177,7 @@ class TagActions extends Component {
                                     <ElevatedView elevation={10} style={styles.buttonTransfer}>
                                         <Icon name="mail-forward" style={styles.icon}/>
                                     </ElevatedView>
-                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
+                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : layout.fontSize1p8}}>
                                         Transférer
                                     </Text>
                                 </View>
@@ -188,7 +189,7 @@ class TagActions extends Component {
                                     <ElevatedView elevation={10} style={styles.buttonCheck}>
                                         <Icon name="check" style={styles.icon}/>
                                     </ElevatedView>
-                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
+                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : layout.fontSize1p8}}>
                                         Résolu
                                     </Text>
                                 </View>
@@ -198,7 +199,7 @@ class TagActions extends Component {
                                     <ElevatedView elevation={10} style={styles.buttonClose}>
                                         <Icon name="close" style={styles.icon}/>
                                     </ElevatedView>
-                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
+                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : layout.fontSize1p8}}>
                                         Non Résolu
                                     </Text>
                                 </View>
