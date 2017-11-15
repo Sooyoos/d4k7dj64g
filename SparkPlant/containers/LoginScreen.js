@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from '../assets/layout';
 import ElevatedView from 'react-native-elevated-view';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import firebase from "react-native-firebase";
@@ -24,46 +24,46 @@ import LoginFactoryList from '../components/Login/LoginFactoryList';
 
 let styles = StyleSheet.create({
     login: {
-        width : responsiveWidth(100),
-        height : responsiveHeight(100),
+        width : layout.fullWidth,
+        height : layout.fullHeight,
         backgroundColor: '#3f51b5',
-        paddingTop : responsiveHeight(4),
-        paddingBottom: responsiveHeight(1),
-        paddingHorizontal: responsiveWidth(1),
+        paddingTop : layout.height4,
+        paddingBottom: layout.height1,
+        paddingHorizontal: layout.width1,
     },
     body: {
-        width : responsiveWidth(98),
-        height : responsiveHeight(93),
-        paddingTop : responsiveHeight(5),
+        width : layout.width98,
+        height : layout.height93,
+        paddingTop : layout.height5,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
     },
     logo : {
-        margin: responsiveWidth(8),
-        width : responsiveWidth(80),
+        margin: layout.width8,
+        width : layout.width80,
         resizeMode : 'contain',
     },
     button: {
-        width:responsiveWidth(60),
-        height : responsiveHeight(10),
+        width:layout.width60,
+        height : layout.height10,
         backgroundColor: '#00bcd4',
-        marginTop:responsiveHeight(1),
+        marginTop:layout.height1,
         alignItems : 'center',
         justifyContent : 'center',
     },
     buttonText : {
         color:'#ffffff',
         textAlign: 'center',
-        fontSize: responsiveFontSize(2.5),
+        fontSize: layout.fontSize2p5,
     },
     loginCard : {
-        width: responsiveWidth(75),
-        height : responsiveHeight(15),
+        width: layout.width75,
+        height : layout.height15,
         backgroundColor : "#ffffff",
     },
     userSelect : {
-        width: responsiveWidth(50),
-        height : responsiveHeight(15),
+        width: layout.width50,
+        height : layout.height15,
     },
 });
 
@@ -177,7 +177,7 @@ class LoginScreen extends Component {
                     <View style={styles.login}>
                         <ElevatedView elevation={2} style={styles.body}>
                             <Image source={require('../assets/img/Logo-sparkplant.png')} style={styles.logo} />
-                            <Text style={{fontSize: responsiveFontSize(1.5), marginVertical : responsiveHeight(1)}}>
+                            <Text style={{fontSize: layout.fontSize1p5, marginVertical : layout.height1}}>
                                 Connectez vous avec l'un des utilisateurs suivants :
                             </Text>
                             <View>
@@ -185,7 +185,7 @@ class LoginScreen extends Component {
                                     {this.buildUsersList()}
                                 </Picker>
                             </View>
-                            <Text style={{fontSize: responsiveFontSize(1.5)}}>
+                            <Text style={{fontSize: layout.fontSize1p5}}>
                                 Ou :
                             </Text>
                             <TouchableWithoutFeedback onPress={() => {this.setState({new : true})}}>
