@@ -9,31 +9,31 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 
 let styles = StyleSheet.create({
     dashboardNav: {
         flex:5,
-        width:responsiveWidth(100),
+        width:layout.fullWidth,
         alignItems:'center',
     },
     dashboardNavSection: {
-        width:responsiveWidth(100),
+        width:layout.fullWidth,
         flex:5,
         alignItems: 'center',
         flexDirection: 'row',
     },
     dashboardNavIcon : {
         textAlign : 'center',
-        width:responsiveWidth(50),
+        width:layout.width50,
         color : '#3f51b5',
-        fontSize : responsiveFontSize(8),
+        fontSize : layout.fontSize8,
     },
     dashboardNavLabel : {
         textAlign : 'center',
-        width:responsiveWidth(50),
+        width:layout.width50,
         color : '#000000',
-        fontSize : responsiveFontSize(2),
+        fontSize : layout.fontSize2,
     }
 });
 

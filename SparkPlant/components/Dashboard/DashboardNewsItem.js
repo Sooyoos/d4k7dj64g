@@ -7,35 +7,36 @@ import {
     Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
+
 
 let styles = StyleSheet.create({
     dashboardNewsItem: {
         flex:3,
-        width: responsiveWidth(100),
+        width: layout.fullWidth,
         borderTopWidth: 0.5,
         borderTopColor: '#bdbdbd',
     },
     itemImage : {
-        height: responsiveWidth(25),
-        width : responsiveWidth(25),
+        height: layout.width25,
+        width : layout.width25,
     },
     itemData : {
-        width : responsiveWidth(75),
+        width : layout.width75,
         padding:10,
     },
     itemExcerpt : {
         color: '#000000',
-        fontSize : responsiveFontSize(1.8),
+        fontSize : layout.fontSize1p8,
         marginBottom : 16,
     },
     itemInfos : {
         flex:1,
-        fontSize : responsiveFontSize(1.5),
+        fontSize : layout.fontSize1p5,
         alignItems: 'baseline',
     },
     itemIcon : {
-        fontSize : responsiveFontSize(3),
+        fontSize : layout.fontSize3,
     }
 });
 

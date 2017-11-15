@@ -4,7 +4,6 @@ import {
     Text,
     StyleSheet,
     TouchableWithoutFeedback,
-    Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DashboardNewsItem from './DashboardNewsItem';
@@ -12,11 +11,12 @@ import Moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
+import { fullWidth } from "../../assets/layout"
 
 let styles = StyleSheet.create({
     dashboardNews: {
         flex:5,
-        width:Dimensions.get('window').width,
+        width:fullWidth,
     },
 });
 
