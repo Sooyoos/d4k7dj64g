@@ -155,7 +155,7 @@ class TagActions extends Component {
         let tag = this.props.tags.currentTag;
         let supervisor = this.isSupervisor(tag);
 
-        if(supervisor)
+        if(supervisor && ( tag.status === "ongoing" || tag.status === "new"))
         {
             return (
                 <View style={styles.login}>
@@ -214,7 +214,7 @@ class TagActions extends Component {
                 </View>
             );
         }
-        else
+        else if(!supervisor || (supervisor && ( tag.status !== "ongoing" && tag.status !== "new")))
         {
             return (
                 <View style={styles.login}>
