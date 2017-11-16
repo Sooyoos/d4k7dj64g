@@ -10,19 +10,19 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../assets/layout";
 import Header from "../components/Header/Header";
 import { Bar } from 'react-native-pathjs-charts';
 import moment from 'moment';
 
 let solvedTagOptions = {
-    width: responsiveWidth(75),
-    height: responsiveHeight(25),
+    width: layout.width75,
+    height: layout.height25,
     margin: {
-        top: responsiveHeight(8),
-        left: responsiveWidth(6),
-        bottom: responsiveHeight(6),
-        right: responsiveWidth(6)
+        top: layout.height8,
+        left: layout.width6,
+        bottom: layout.height6,
+        right: layout.width6,
     },
     color: '#2980B9',
     gutter: 20,
@@ -40,7 +40,7 @@ let solvedTagOptions = {
         orient: 'bottom',
         label: {
             fontFamily: 'Arial',
-            fontSize: responsiveFontSize(1.5),
+            fontSize: layout.fontSize1p5,
             fontWeight: true,
             fill: '#34495E',
         }
@@ -54,7 +54,7 @@ let solvedTagOptions = {
         orient: 'left',
         label: {
             fontFamily: 'Arial',
-            fontSize: responsiveFontSize(1.5),
+            fontSize: layout.fontSize1p5,
             fontWeight: true,
             fill: '#34495E',
         }
@@ -62,13 +62,13 @@ let solvedTagOptions = {
 };
 
 let unsolvedTagOptions = {
-    width: responsiveWidth(75),
-    height: responsiveHeight(25),
+    width: layout.width75,
+    height: layout.height25,
     margin: {
-        top: responsiveHeight(8),
-        left: responsiveWidth(6),
-        bottom: responsiveHeight(6),
-        right: responsiveWidth(6)
+        top: layout.height8,
+        left: layout.width6,
+        bottom: layout.height6,
+        right: layout.width6
     },
     color: '#bc294e',
     gutter: 20,
@@ -86,7 +86,7 @@ let unsolvedTagOptions = {
         orient: 'bottom',
         label: {
             fontFamily: 'Arial',
-            fontSize: responsiveFontSize(1.5),
+            fontSize: layout.fontSize1p5,
             fontWeight: true,
             fill: '#34495E',
         }
@@ -100,7 +100,7 @@ let unsolvedTagOptions = {
         orient: 'left',
         label: {
             fontFamily: 'Arial',
-            fontSize: responsiveFontSize(1.5),
+            fontSize: layout.fontSize1p5,
             fontWeight: true,
             fill: '#34495E',
         }
@@ -121,18 +121,18 @@ let styles = StyleSheet.create({
         color : "#232323",
         fontWeight: "bold",
         textAlign : "center",
-        fontSize : responsiveFontSize(2.2),
+        fontSize : layout.fontSize2p2,
     },
     chartView : {
-        height : responsiveHeight(82),
-        width : responsiveWidth(100),
-        paddingHorizontal: responsiveWidth(5),
+        height : layout.height82,
+        width : layout.fullWidth,
+        paddingHorizontal: layout.width5,
     },
     chartTitle : {
         color : "#232323",
         fontWeight: "bold",
         textAlign : "center",
-        fontSize : responsiveFontSize(1.8),
+        fontSize : layout.fontSize1p8,
     },
 });
 
@@ -285,7 +285,7 @@ class ChartsScreen extends Component {
                 <View style={styles.login}>
                     <Header props={this.props} />
                     <View style={styles.body}>
-                        <View style={{height : responsiveHeight(8), width : responsiveWidth(100)}}>
+                        <View style={{height : layout.height8, width : layout.fullWidth}}>
                             <Text style={styles.title}>
                                 Activité des tags sur les 7 derniers jours
                             </Text>
@@ -310,7 +310,7 @@ class ChartsScreen extends Component {
                 <View style={styles.login}>
                     <Header props={this.props} />
                     <View style={styles.body}>
-                        <View style={{height : responsiveHeight(8), width : responsiveWidth(100)}}>
+                        <View style={{height : layout.height8, width : layout.fullWidth}}>
                             <Text style={styles.title}>
                                 Activité des tags sur les 7 derniers jours
                             </Text>
@@ -319,13 +319,13 @@ class ChartsScreen extends Component {
                             <Text style={styles.chartTitle}>
                                 Tags résolus
                             </Text>
-                            <Text style={{textAlign : "center", fontSize : responsiveFontSize(1.8), marginVertical: responsiveHeight(5)}}>
+                            <Text style={{textAlign : "center", fontSize : layout.fontSize1p8, marginVertical: layout.height5}}>
                                 Pas de données disponibles
                             </Text>
                             <Text style={styles.chartTitle}>
                                 Tags non résolus
                             </Text>
-                            <Text style={{textAlign : "center", fontSize : responsiveFontSize(1.8), marginVertical: responsiveHeight(5)}}>
+                            <Text style={{textAlign : "center", fontSize : layout.fontSize1p8, marginVertical: layout.height5}}>
                                 Pas de données disponibles
                             </Text>
                         </View>
@@ -339,7 +339,7 @@ class ChartsScreen extends Component {
                 <View style={styles.login}>
                     <Header props={this.props} />
                     <View style={styles.body}>
-                        <View style={{height : responsiveHeight(8), width : responsiveWidth(100)}}>
+                        <View style={{height : layout.height8, width : layout.fullWidth}}>
                             <Text style={styles.title}>
                                 Activité des tags sur les 7 derniers jours
                             </Text>

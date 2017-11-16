@@ -4,6 +4,7 @@ export const fullWidth = responsiveWidth(100);
 export const fullHeight = responsiveHeight(100);
 
 export const width98 = responsiveWidth(98);
+export const width96 = responsiveWidth(96);
 export const height93 = responsiveHeight(93);
 export const width90 = responsiveWidth(90);
 
@@ -11,6 +12,7 @@ export const width88 = responsiveWidth(88);
 export const width84 = responsiveWidth(84);
 export const height83 = responsiveHeight(83);
 export const width83 = responsiveWidth(83);
+export const height82 = responsiveHeight(82);
 export const height80 = responsiveHeight(80);
 export const width80 = responsiveWidth(80);
 
@@ -88,6 +90,7 @@ export const fontSize4p75 = responsiveFontSize(4.75);
 export const fontSize4 = responsiveFontSize(4);
 export const fontSize3p5 = responsiveFontSize(3.5);
 export const fontSize3p4 = responsiveFontSize(3.4);
+export const fontSize3p3 = responsiveFontSize(3.3);
 export const fontSize3p2 = responsiveFontSize(3.2);
 export const fontSize3 = responsiveFontSize(3);
 export const fontSize2p8 = responsiveFontSize(2.8);

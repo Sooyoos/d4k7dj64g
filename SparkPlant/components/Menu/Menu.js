@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import Navigation from "./Navigation";
 
 let styles = StyleSheet.create({
@@ -24,58 +24,58 @@ let styles = StyleSheet.create({
     menuHeader : {
         flex : 4,
         backgroundColor: '#3f51b5',
-        paddingVertical: responsiveHeight(3),
-        paddingHorizontal: responsiveWidth(5),
+        paddingVertical: layout.height3,
+        paddingHorizontal: layout.width5,
     },
     menuHeaderIconView : {
-        width : responsiveWidth(60),
-        height: responsiveHeight(8),
-        marginTop: responsiveHeight(3),
+        width : layout.width60,
+        height: layout.height8,
+        marginTop: layout.height3,
         flexDirection : 'row',
     },
     menuHeaderIcon : {
         color : '#ffffff',
-        fontSize : responsiveFontSize(3),
-        marginRight : responsiveHeight(1.5),
+        fontSize : layout.fontSize3,
+        marginRight : layout.height1p5,
     },
     menuHeaderIconText : {
-        fontSize : responsiveFontSize(2),
+        fontSize : layout.fontSize2,
         color : '#ffffff',
     },
     menuHeaderUserInfosView : {
-        height: responsiveHeight(12),
+        height: layout.height12,
         flexDirection : 'row',
     },
     menuHeaderUserImage : {
-        borderRadius : responsiveWidth(8),
-        width : responsiveWidth(16),
-        height: responsiveWidth(16),
-        marginRight : responsiveWidth(5),
+        borderRadius : layout.width8,
+        width : layout.width16,
+        height: layout.width16,
+        marginRight : layout.width5,
     },
     menuHeaderUsername : {
         color : '#ffffff',
-        fontSize : responsiveFontSize(2.8),
+        fontSize : layout.fontSize2p8,
     },
     menuHeaderUserEmail : {
         color : '#ffffff',
-        fontSize : responsiveFontSize(2),
+        fontSize : layout.fontSize2,
     },
     menuHeaderAvailableView : {
-        height:responsiveHeight(8),
-        width : responsiveWidth(60),
+        height: layout.height8,
+        width : layout.width60,
         flexDirection : 'row',
         alignItems: "center",
     },
     menuHeaderAvailableSwitch : {
-        height : responsiveHeight(8),
-        width : responsiveWidth(40),
+        height : layout.height8,
+        width : layout.width40,
     },
     menuHeaderAvailableSwitchLabel : {
         color:'#ffffff',
-        fontSize : responsiveFontSize(2),
-        height : responsiveHeight(8),
-        width : responsiveWidth(30),
-        marginTop : responsiveHeight(3),
+        fontSize : layout.fontSize2,
+        height : layout.height8,
+        width : layout.width30,
+        marginTop : layout.height3,
     },
 });
 
@@ -161,7 +161,7 @@ class DrawerMenu extends Component {
                                 </View>
                             </TouchableWithoutFeedback>
                             <TouchableWithoutFeedback onPress={this.logout.bind(this)}>
-                                <Icon name="sign-out" style={{color : '#ffffff', fontSize : responsiveFontSize(3), marginTop: 20}}/>
+                                <Icon name="sign-out" style={{color : '#ffffff', fontSize : layout.fontSize3, marginTop: 20}}/>
                             </TouchableWithoutFeedback>
                         </View>
                         <View style={styles.menuHeaderUserInfosView}>

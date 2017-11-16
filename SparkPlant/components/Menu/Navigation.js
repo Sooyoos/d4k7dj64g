@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 
 let styles = StyleSheet.create({
     body : {
@@ -17,37 +17,37 @@ let styles = StyleSheet.create({
     },
     item : {
         flex : 1,
-        height : responsiveHeight(8),
+        height : layout.height8,
         flexDirection: "row",
         alignItems: "center",
-        paddingHorizontal: responsiveWidth(4),
+        paddingHorizontal: layout.width4,
     },
     itemIcon : {
-        width : responsiveWidth(10),
-        fontSize : responsiveFontSize(3),
-        marginRight: responsiveWidth(3),
+        width : layout.width10,
+        fontSize : layout.fontSize3,
+        marginRight: layout.width3,
     },
     itemLabel : {
-        fontSize: responsiveFontSize(2.2),
+        fontSize: layout.fontSize3p3,
         color : "#232323",
         fontWeight: "bold",
     },
     itemActive : {
         flex : 1,
-        height : responsiveHeight(8),
+        height : layout.height8,
         flexDirection: "row",
         alignItems: "center",
-        paddingHorizontal: responsiveWidth(4),
+        paddingHorizontal: layout.width4,
         backgroundColor : "#C5CAE9",
     },
     itemIconActive : {
-        width : responsiveWidth(10),
-        fontSize : responsiveFontSize(3),
-        marginRight: responsiveWidth(3),
+        width : layout.width10,
+        fontSize : layout.fontSize3,
+        marginRight: layout.width3,
         color : "#009688",
     },
     itemLabelActive : {
-        fontSize: responsiveFontSize(2.2),
+        fontSize: layout.fontSize2p2,
         color : "#009688",
         fontWeight: "bold",
     }

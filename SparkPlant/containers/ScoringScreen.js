@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../assets/layout";
 import Header from "../components/Header/Header";
 import moment from 'moment';
 
@@ -23,43 +23,43 @@ let styles = StyleSheet.create({
         backgroundColor: '#efefef',
         alignItems:'center',
         justifyContent: 'center',
-        paddingVertical: responsiveHeight(2),
-        paddingHorizontal: responsiveWidth(4),
+        paddingVertical: layout.height2,
+        paddingHorizontal: layout.width4,
     },
     card : {
-        height : responsiveHeight(10),
-        width : responsiveWidth(96),
+        height : layout.height10,
+        width : layout.width96,
         backgroundColor: "#ffffff",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        marginVertical: responsiveHeight(0.5),
+        marginVertical: layout.height0p5,
     },
     cardScore : {
-        width : responsiveHeight(10),
-        height : responsiveHeight(10),
+        width : layout.height10,
+        height : layout.height10,
         alignItems: "center",
         justifyContent: "center",
     },
     cardScoreText : {
         textAlign : "center",
-        fontSize : responsiveFontSize(3),
+        fontSize : layout.fontSize3,
         color : "#3f51b5",
     },
     cardInfo : {
-        width : responsiveWidth(96) - responsiveHeight(10),
-        height : responsiveHeight(10),
+        width : layout.width96 - layout.height10,
+        height : layout.height10,
         alignItems: "center",
         justifyContent: "center",
     },
     cardTitle : {
         textAlign : "center",
-        fontSize : responsiveFontSize(1.8),
+        fontSize : layout.fontSize1p8,
         color : "#232323",
     },
     cardDate : {
         textAlign : "center",
-        fontSize : responsiveFontSize(1.8),
+        fontSize : layout.fontSize1p8,
         color : "#777777",
     }
 });
