@@ -132,7 +132,7 @@ class CreateTagPreview extends Component {
 
     displayPlaceAudioIcon()
     {
-        if(this.props.tags.current_creation.placeDetailsAudio)
+        if(this.props.tags.creation_current.placeDetailsAudio)
         {
             return(<IconA name="volume-up" style={styles.audioIcon} />);
         }
@@ -140,7 +140,7 @@ class CreateTagPreview extends Component {
 
     displayDescriptionAudioIcon()
     {
-        if(this.props.tags.current_creation.descriptionAudio)
+        if(this.props.tags.creation_current.descriptionAudio)
         {
             return(<IconA name="volume-up" style={styles.audioIcon} />);
         }

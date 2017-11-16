@@ -226,7 +226,7 @@ class TagActions extends Component {
                                     <ElevatedView elevation={10} style={styles.buttonComment}>
                                         <Icon name="comment-o" style={styles.icon}/>
                                     </ElevatedView>
-                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : responsiveFontSize(1.8)}}>
+                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : layout.fontSize1p8}}>
                                         Commenter
                                     </Text>
                                 </View>

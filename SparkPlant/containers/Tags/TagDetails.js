@@ -232,7 +232,7 @@ class TagDetails extends Component {
                                 </View>
                                 <View style={styles.section}>
                                     <View style={styles.sectionVisual}>
-                                        <Image source={{uri : tag.supervisor.avatar ? tag.supervisor.avatar.path : "http://via.placeholder.com/50x50" }} style={{width:responsiveWidth(8), height:responsiveWidth(8), borderRadius:responsiveWidth(4)}}/>
+                                        <Image source={{uri : tag.supervisor.avatar ? tag.supervisor.avatar.path : "http://via.placeholder.com/50x50" }} style={{width:layout.width8, height:layout.width8, borderRadius:layout.width4}}/>
                                     </View>
                                     <View style={styles.sectionContent}>
                                         <View>
