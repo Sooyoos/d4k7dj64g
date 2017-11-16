@@ -195,7 +195,7 @@ class ChecklistDetails extends Component {
         let list = [];
 
         list.push(
-            <Picker.Item key={-1} label="Choisissez une unité" value={null} />
+            <Picker.Item key={-1} label="Affecter à l'unité" value={null} />
         );
 
         for(var i = 0; i < roles.length; i++)
