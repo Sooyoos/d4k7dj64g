@@ -16,7 +16,7 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../../actions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ElevatedView from 'react-native-elevated-view';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../../assets/layout";
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
 import ImagePicker from 'react-native-image-picker';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
@@ -35,22 +35,22 @@ let styles = StyleSheet.create({
         alignItems: 'center',
     },
     cardHeaderIconView : {
-        width: responsiveWidth(15),
-        height : responsiveWidth(15),
-        borderRadius : responsiveWidth(7.5),
+        width: layout.width15,
+        height : layout.width15,
+        borderRadius : layout.width7p5,
         backgroundColor: '#3f51b5',
-        margin : responsiveWidth(1.5),
+        margin : layout.width1p5,
         alignItems : "center",
         justifyContent : "center",
     },
     cardHeaderIcon : {
-        fontSize : responsiveFontSize(5),
+        fontSize : layout.fontSize5,
         textAlign : 'center',
         color : '#ffffff',
     },
     cardHeaderTitle : {
         flex : 9,
-        fontSize : responsiveFontSize(2),
+        fontSize : layout.fontSize2,
         fontWeight: 'bold',
         color : '#212121',
     },
@@ -62,12 +62,12 @@ let styles = StyleSheet.create({
     },
     textInput : {
         marginTop : 20,
-        fontSize : responsiveFontSize(1.8)
+        fontSize : layout.fontSize1p8
     },
     actionButtonView : {
-        width: responsiveWidth(12),
-        height : responsiveWidth(12),
-        borderRadius : responsiveWidth(6),
+        width: layout.width12,
+        height : layout.width12,
+        borderRadius : layout.width6,
         backgroundColor: '#00bcd4',
         marginVertical : 10,
         marginHorizontal : 5,
@@ -75,28 +75,28 @@ let styles = StyleSheet.create({
         justifyContent: "center",
     },
     actionButtonIcon : {
-        fontSize : responsiveFontSize(4),
+        fontSize : layout.fontSize4,
         textAlign : 'center',
         color : '#ffffff',
     },
     buttonView : {
-        width: responsiveWidth(23),
-        height : responsiveWidth(23),
-        borderRadius : responsiveWidth(11.5),
+        width: layout.width23,
+        height : layout.width23,
+        borderRadius : layout.width11p5,
         backgroundColor: '#00bcd4',
-        marginLeft:responsiveWidth(75),
+        marginLeft:layout.width75,
         alignItems : "center",
         justifyContent: "center",
-        marginBottom: responsiveHeight(1),
+        marginBottom: layout.height1,
     },
     buttonIcon : {
-        fontSize : responsiveFontSize(7.5),
+        fontSize : layout.fontSize7p5,
         textAlign : 'center',
         color : '#ffffff',
     },
     mediaList : {
         flex : 5,
-        padding : responsiveHeight(1),
+        padding : layout.height1,
         flexDirection : "row",
     },
     actions : {
@@ -105,20 +105,20 @@ let styles = StyleSheet.create({
         padding : 20,
     },
     mediaCard : {
-        height : responsiveHeight(10),
-        width : responsiveWidth(25),
-        marginHorizontal: responsiveWidth(2),
-        marginVertical : responsiveWidth(2),
+        height : layout.height10,
+        width : layout.width25,
+        marginHorizontal: layout.width2,
+        marginVertical : layout.width2,
         backgroundColor : "#ffffff",
     },
     media : {
-        height : responsiveHeight(10),
-        width : responsiveWidth(25),
+        height : layout.height10,
+        width : layout.width25,
     },
     audioIcon : {
         color : "#232323",
-        fontSize : responsiveFontSize(3.5),
-        marginHorizontal: responsiveWidth(5)
+        fontSize : layout.fontSize3p5,
+        marginHorizontal: layout.width5
     }
 });
 

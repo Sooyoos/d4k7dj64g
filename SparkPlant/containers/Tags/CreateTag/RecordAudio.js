@@ -12,7 +12,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../../assets/layout";
 import ElevatedView from 'react-native-elevated-view';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -20,18 +20,18 @@ import {AudioRecorder, AudioUtils} from 'react-native-audio';
 
 let styles = StyleSheet.create({
     header : {
-        height : responsiveHeight(7),
+        height : layout.height7,
     },
     body: {
-        height : responsiveHeight(83),
+        height : layout.height83,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     actionButtonView : {
-        width: responsiveWidth(16),
-        height : responsiveWidth(16),
-        borderRadius : responsiveWidth(8),
+        width: layout.width16,
+        height : layout.width16,
+        borderRadius : layout.width8,
         backgroundColor: '#00bcd4',
         padding : 3,
         marginVertical : 10,
@@ -40,7 +40,7 @@ let styles = StyleSheet.create({
         alignItems : "center",
     },
     actionButtonIcon : {
-        fontSize : responsiveFontSize(5),
+        fontSize : layout.fontSize5,
         textAlign : 'center',
         color : '#ffffff',
     },

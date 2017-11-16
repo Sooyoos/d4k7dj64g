@@ -16,14 +16,14 @@ import { ActionCreators } from '../../../actions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 import ElevatedView from 'react-native-elevated-view';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../../assets/layout";
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
 
 let styles = StyleSheet.create({
     card : {
-        height : responsiveHeight(50),
-        margin : responsiveWidth(2),
+        height : layout.height50,
+        margin : layout.width2,
         backgroundColor: '#ffffff',
         justifyContent : "center",
     },
@@ -33,25 +33,25 @@ let styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         justifyContent: 'center',
         alignItems: 'center',
-        padding : responsiveWidth(2),
+        padding : layout.width2,
     },
     cardHeaderIconView : {
-        width: responsiveWidth(15),
-        height : responsiveWidth(15),
-        borderRadius : responsiveWidth(7.5),
+        width: layout.width15,
+        height : layout.width15,
+        borderRadius : layout.width7p5,
         backgroundColor: '#3f51b5',
-        margin : responsiveWidth(1.5),
+        margin : layout.width1p5,
         alignItems : "center",
         justifyContent : "center",
     },
     cardHeaderIcon : {
-        fontSize : responsiveFontSize(5),
+        fontSize : layout.fontSize5,
         textAlign : 'center',
         color : '#ffffff',
     },
     cardHeaderTitle : {
         flex : 9,
-        fontSize : responsiveFontSize(2),
+        fontSize : layout.fontSize2,
         fontWeight: 'bold',
         color : '#212121',
     },
@@ -59,31 +59,31 @@ let styles = StyleSheet.create({
         flex : 4,
         flexDirection: 'column',
         backgroundColor: '#ffffff',
-        padding : responsiveWidth(4),
+        padding : layout.width4,
     },
     locationPicker : {
-        height : responsiveHeight(5),
-        marginBottom : responsiveHeight(5),
+        height : layout.height5,
+        marginBottom : layout.height5,
     },
     buttonView : {
-        width: responsiveWidth(23),
-        height : responsiveWidth(23),
-        borderRadius : responsiveWidth(11.5),
+        width: layout.width23,
+        height : layout.width23,
+        borderRadius : layout.width11p5,
         backgroundColor: '#00bcd4',
-        marginLeft:responsiveWidth(75),
+        marginLeft:layout.width75,
         alignItems : "center",
         justifyContent: "center",
-        marginBottom: responsiveHeight(1),
+        marginBottom: layout.height1,
     },
     buttonIcon : {
-        fontSize : responsiveFontSize(7.5),
+        fontSize : layout.fontSize7p5,
         textAlign : 'center',
         color : '#ffffff',
     },
     actionButtonView : {
-        width: responsiveWidth(12),
-        height : responsiveWidth(12),
-        borderRadius : responsiveWidth(6),
+        width: layout.width12,
+        height : layout.width12,
+        borderRadius : layout.width6,
         backgroundColor: '#00bcd4',
         marginVertical : 10,
         marginHorizontal : 5,
@@ -91,14 +91,14 @@ let styles = StyleSheet.create({
         justifyContent: "center",
     },
     actionButtonIcon : {
-        fontSize : responsiveFontSize(4),
+        fontSize : layout.fontSize4,
         textAlign : 'center',
         color : '#ffffff',
     },
     audioIcon : {
         color : "#232323",
-        fontSize : responsiveFontSize(3.5),
-        marginHorizontal: responsiveWidth(5)
+        fontSize : layout.fontSize3p5,
+        marginHorizontal: layout.width5
     }
 });
 
@@ -240,7 +240,7 @@ class CreateTagStep1 extends Component {
                                     <Picker style={styles.locationPicker} prompt="Sélectionnez le lieu" selectedValue={this.props.tags.creation_current.place} onValueChange={(value) => this.props.setCurrentCreationPlace(value)}>
                                         { this.buildPlacesList() }
                                     </Picker>
-                                    <TextInput style={{fontSize : responsiveFontSize(2.2)}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
+                                    <TextInput style={{fontSize : layout.fontSize2p2}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
                                     <View style={{flexDirection : "row", alignItems : "center"}}>
                                         <TouchableOpacity onPress={() => {
                                             this.props.setToRecord("place");
@@ -301,7 +301,7 @@ class CreateTagStep1 extends Component {
                                 </ElevatedView>
                                 <View style={styles.cardContent}>
                                     <ActivityIndicator color="#3f51b5" size="large"/>
-                                    <TextInput style={{fontSize : responsiveFontSize(1.6)}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
+                                    <TextInput style={{fontSize : layout.fontSize1p6}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
                                     <TouchableOpacity onPress={() => {
                                         this.props.setToRecord("place");
                                         this.props.goToRecordAudio();

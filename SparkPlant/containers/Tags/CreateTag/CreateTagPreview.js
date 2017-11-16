@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../../assets/layout";
 import ElevatedView from 'react-native-elevated-view';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -21,10 +21,10 @@ import Moment from 'moment';
 
 let styles = StyleSheet.create({
     header : {
-        height : responsiveHeight(7),
+        height : layout.height7,
     },
     body: {
-        height : responsiveHeight(83),
+        height : layout.height83,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
@@ -34,8 +34,8 @@ let styles = StyleSheet.create({
         flexDirection : 'row',
     },
     sliderImage : {
-        width : responsiveWidth(70),
-        height: responsiveHeight(30),
+        width : layout.width70,
+        height: layout.height30,
         marginHorizontal: 25,
     },
     infos : {
@@ -43,47 +43,47 @@ let styles = StyleSheet.create({
         flexDirection : 'column',
     },
     section : {
-        width: responsiveWidth(80) ,
+        width: layout.width80 ,
         flexDirection : 'row',
         borderTopWidth: 1,
         borderTopColor: '#bdbdbd',
         padding : 10,
     },
     sectionVisual : {
-        width : responsiveWidth(15),
+        width : layout.width15,
         alignItems: 'center',
         justifyContent: 'center',
     },
     sectionContent : {
-        width : responsiveWidth(65),
+        width : layout.width65,
     },
     sectionVisualType : {
-        width: responsiveWidth(10),
-        height: responsiveWidth(10),
-        borderRadius: responsiveWidth(5),
+        width: layout.width10,
+        height: layout.width10,
+        borderRadius: layout.width5,
         backgroundColor : '#00bcd4',
         alignItems : "center",
         justifyContent : "center",
     },
     buttonView : {
-        width: responsiveWidth(23),
-        height : responsiveWidth(23),
-        borderRadius : responsiveWidth(11.5),
+        width: layout.width23,
+        height : layout.width23,
+        borderRadius : layout.width11p5,
         backgroundColor: '#00bcd4',
-        marginLeft:responsiveWidth(75),
+        marginLeft:layout.width75,
         alignItems : "center",
         justifyContent: "center",
-        marginBottom: responsiveHeight(1),
+        marginBottom: layout.height1,
     },
     buttonIcon : {
-        fontSize : responsiveFontSize(7.5),
+        fontSize : layout.fontSize7p5,
         textAlign : 'center',
         color : '#ffffff',
     },
     audioIcon : {
         color : "#232323",
-        fontSize : responsiveFontSize(3.5),
-        marginHorizontal: responsiveWidth(5)
+        fontSize : layout.fontSize3p5,
+        marginHorizontal: layout.width5
     }
 });
 
@@ -160,14 +160,14 @@ class CreateTagPreview extends Component {
                         <View style={styles.infos}>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <IconA name={this.getStatusIcon()} style={{fontSize:responsiveFontSize(3.2)}} />
+                                    <IconA name={this.getStatusIcon()} style={{fontSize:layout.fontSize3p2}} />
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
-                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#212121'}}>
+                                        <Text style={{fontSize:layout.fontSize2p2, color : '#212121'}}>
                                             { Moment().format("DD/MM/YYYY") } ouvert par { this.props.users.loggedUser.firstName } { this.props.users.loggedUser.lastName }
                                         </Text>
-                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                        <Text style={{fontSize:layout.fontSize2p4, color : '#212121'}}>
                                             {tag.title}
                                         </Text>
                                     </View>
@@ -179,10 +179,10 @@ class CreateTagPreview extends Component {
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
-                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
+                                        <Text style={{fontSize:layout.fontSize2p2, color : '#757575'}}>
                                             En charge du tag
                                         </Text>
-                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                        <Text style={{fontSize:layout.fontSize2p4, color : '#212121'}}>
                                             {
                                                 tag.supervisor ? tag.supervisor.firstName + " " + tag.supervisor.lastName : " "
                                             }
@@ -193,7 +193,7 @@ class CreateTagPreview extends Component {
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
                                     <View style={styles.sectionVisualType}>
-                                        <Text style={{color:'#ffffff', fontSize: responsiveFontSize(3.2), textAlign: 'center'}}>
+                                        <Text style={{color:'#ffffff', fontSize: layout.fontSize3p2, textAlign: 'center'}}>
                                             {
                                                 tag.primaryAxis ? tag.primaryAxis.code : " "
                                             }
@@ -202,10 +202,10 @@ class CreateTagPreview extends Component {
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
-                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
+                                        <Text style={{fontSize:layout.fontSize2p2, color : '#757575'}}>
                                             Nature
                                         </Text>
-                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                        <Text style={{fontSize:layout.fontSize2p4, color : '#212121'}}>
                                             {
                                                 tag.primaryAxis ? tag.primaryAxis.code : " "
                                             }
@@ -215,14 +215,14 @@ class CreateTagPreview extends Component {
                             </View>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <Icon name="map" style={{fontSize:responsiveFontSize(3.2)}} />
+                                    <Icon name="map" style={{fontSize:layout.fontSize3p2}} />
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
-                                        <Text style={{fontSize:responsiveFontSize(2.2), color : '#757575'}}>
+                                        <Text style={{fontSize:layout.fontSize2p2, color : '#757575'}}>
                                             Lieu
                                         </Text>
-                                        <Text style={{fontSize:responsiveFontSize(2.4), color : '#212121'}}>
+                                        <Text style={{fontSize:layout.fontSize2p4, color : '#212121'}}>
                                             {
                                                 tag.place ? tag.place.name : " "
                                             }
@@ -233,10 +233,10 @@ class CreateTagPreview extends Component {
                             </View>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <Icon name="clipboard-text" style={{fontSize:responsiveFontSize(3.2)}} />
+                                    <Icon name="clipboard-text" style={{fontSize:layout.fontSize3p2}} />
                                 </View>
                                 <View style={styles.sectionContent}>
-                                    <Text style={{fontSize:responsiveFontSize(2.2), color : '#212121'}}>
+                                    <Text style={{fontSize: layout.fontSize2p2, color : '#212121'}}>
                                         {tag.description}
                                     </Text>
                                     { this.displayDescriptionAudioIcon() }
