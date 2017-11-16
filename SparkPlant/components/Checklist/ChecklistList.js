@@ -7,14 +7,14 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import ChecklistListItem from './ChecklistListItem';
+import {height1, height20, height80} from "../../assets/layout";
 
 let styles = StyleSheet.create({
     list: {
-        height : responsiveHeight(80),
-        paddingTop : responsiveHeight(1),
-        paddingBottom : responsiveHeight(20),
+        height : height80,
+        paddingTop : height1,
+        paddingBottom : height20,
     },
 });
 

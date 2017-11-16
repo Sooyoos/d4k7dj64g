@@ -9,70 +9,70 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Moment from 'moment';
 
 let styles = StyleSheet.create({
     item : {
-        width : responsiveWidth(90),
-        height : responsiveHeight(25),
-        marginVertical : responsiveHeight(1.8),
+        width : layout.width90,
+        height : layout.height25,
+        marginVertical : layout.height1p8,
         backgroundColor: "#ffffff",
         flexDirection: 'row',
         justifyContent: "center",
         alignItems: "center",
     },
     listTypeView : {
-        width : responsiveHeight(15),
-        height : responsiveHeight(15),
-        padding : responsiveHeight(2.5),
+        width : layout.height15,
+        height : layout.height15,
+        padding : layout.height2p5,
     },
     listTypeButton : {
-        width : responsiveHeight(10),
-        height : responsiveHeight(10),
-        borderRadius : responsiveHeight(5),
+        width : layout.height10,
+        height : layout.height10,
+        borderRadius : layout.height5,
         backgroundColor: "#00bcd4",
         justifyContent:'center',
         alignItems : "center",
     },
     listType : {
-        fontSize : responsiveFontSize(4),
+        fontSize : layout.fontSize4,
         color: "#ffffff",
         textAlign : 'center',
     },
     listContentView : {
-        width : responsiveWidth(90) - responsiveHeight(15),
-        height : responsiveHeight(15),
-        paddingVertical: responsiveHeight(2),
-        paddingHorizontal: responsiveWidth(5),
+        width : layout.width90 - layout.height15,
+        height : layout.height15,
+        paddingVertical: layout.height2,
+        paddingHorizontal: layout.width5,
     },
     listName : {
         color : "#212121",
-        fontSize : responsiveFontSize(1.8),
+        fontSize : layout.fontSize1p8,
     },
     listDescription : {
         color : "#757575",
-        fontSize : responsiveFontSize(1.8),
+        fontSize : layout.fontSize1p8,
     },
     listRecurrence : {
         color : "#212121",
-        fontSize : responsiveFontSize(1.5),
+        fontSize : layout.fontSize1p5,
     },
     listNameKO : {
         color : "#212121",
-        fontSize : responsiveFontSize(1.8),
+        fontSize : layout.fontSize1p8,
         fontWeight: "bold",
     },
     listDescriptionKO : {
         color : "#757575",
-        fontSize : responsiveFontSize(1.8),
+        fontSize : layout.fontSize1p8,
         fontWeight: "bold",
     },
     listRecurrenceKO : {
         color : "#212121",
-        fontSize : responsiveFontSize(1.5),
+        fontSize : layout.fontSize1p5,
         fontWeight: "bold",
     }
 });

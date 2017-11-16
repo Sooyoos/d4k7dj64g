@@ -13,102 +13,102 @@ import { bindActionCreators } from 'redux';
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import HeaderChecklist from "../../components/Header/HeaderChecklist";
 
 let styles = StyleSheet.create({
     login: {
-        height:responsiveHeight(7),
+        height:layout.height7,
     },
     body: {
-        height:responsiveHeight(93),
+        height:layout.height93,
         backgroundColor : "#efefef",
         alignItems:'center',
     },
     listInfos : {
-        width : responsiveWidth(100),
-        height : responsiveHeight(10),
+        width : layout.fullWidth,
+        height : layout.height10,
         backgroundColor: "#ffffff",
         justifyContent: 'center',
     },
     listTasks : {
-        width : responsiveWidth(90),
-        height : responsiveHeight(55),
+        width : layout.width90,
+        height : layout.height55,
         backgroundColor : "#ffffff",
-        marginVertical: responsiveHeight(2),
+        marginVertical: layout.height2,
     },
     addListView : {
-        width : responsiveWidth(100),
-        height : responsiveHeight(7),
+        width : layout.fullWidth,
+        height : layout.height7,
         backgroundColor: "#ffffff",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
     },
     listInfosText : {
-        fontSize : responsiveFontSize(1.8),
+        fontSize : layout.fontSize1p8,
         color : "#212121",
         textAlign: 'center',
     },
     listTask : {
-        width : responsiveWidth(84),
-        height : responsiveHeight(14),
-        marginHorizontal: responsiveWidth(3),
-        marginVertical: responsiveHeight(1.5),
+        width : layout.width84,
+        height : layout.height14,
+        marginHorizontal: layout.width3,
+        marginVertical: layout.height1p5,
         backgroundColor : "#ffffff",
         flexDirection: "row",
     },
     taskIndex : {
-        width : responsiveHeight(14),
-        height : responsiveHeight(14),
-        padding : responsiveHeight(3),
+        width : layout.height14,
+        height : layout.height14,
+        padding : layout.height3,
         justifyContent : "center",
     },
     taskIndexButton : {
-        width : responsiveHeight(8),
-        height : responsiveHeight(8),
-        borderRadius : responsiveHeight(4),
+        width : layout.height8,
+        height : layout.height8,
+        borderRadius : layout.height4,
         backgroundColor : "#bdbdbd",
         justifyContent : "center",
         alignItems : "center",
     },
     taskIndexText : {
         color : "#ffffff",
-        fontSize: responsiveFontSize(4),
+        fontSize: layout.fontSize4,
         textAlign: "center",
         fontWeight: "bold",
     },
     taskContent : {
-        width : responsiveWidth(84) - responsiveHeight(14),
-        height : responsiveHeight(14),
-        paddingHorizontal: responsiveWidth(0.5),
-        paddingVertical: responsiveHeight(2),
+        width : layout.width84 - layout.height14,
+        height : layout.height14,
+        paddingHorizontal: layout.width0p5,
+        paddingVertical: layout.height2,
         justifyContent : "center",
     },
     taskContentText : {
         color : "#212121",
-        fontSize : responsiveFontSize(2),
+        fontSize : layout.fontSize2,
     },
     taskContentRanges : {
         color : "#212121",
-        fontSize : responsiveFontSize(1.6),
+        fontSize : layout.fontSize1p6,
     },
     unitPicker : {
-        width : responsiveWidth(50),
-        height : responsiveHeight(5),
-        marginRight: responsiveWidth(3)
+        width : layout.width50,
+        height : layout.height5,
+        marginRight: layout.width3
     },
     unitButton : {
-        height : responsiveHeight(5),
-        width : responsiveHeight(5),
-        borderRadius: responsiveHeight(2.5),
+        height : layout.height5,
+        width : layout.height5,
+        borderRadius: layout.height2p5,
         backgroundColor : "#00bcd4",
         justifyContent : "center",
         alignItems : "center",
     },
     unitButtonIcon : {
         color : "#ffffff",
-        fontSize : responsiveFontSize(2),
+        fontSize : layout.fontSize2,
         textAlign : "center",
     }
 });
