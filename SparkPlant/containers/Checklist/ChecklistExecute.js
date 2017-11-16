@@ -85,6 +85,11 @@ let styles = StyleSheet.create({
     taskName : {
         color : "#212121",
         fontSize : responsiveFontSize(1.8),
+        marginBottom: responsiveHeight(1),
+    },
+    taskDescription : {
+        color : "#212121",
+        fontSize : responsiveFontSize(1.6),
     },
     taskMesures : {
         width : responsiveWidth(84),
@@ -454,6 +459,9 @@ class ChecklistExecute extends Component {
                                     <Text style={styles.taskName}>
                                         {tasks[i].task.title}
                                     </Text>
+                                    <Text style={styles.taskDescription}>
+                                        {tasks[i].task.description}
+                                    </Text>
                                 </View>
                                 { this.displayFileLink(tasks[i].task) }
                             </View>
@@ -516,6 +524,9 @@ class ChecklistExecute extends Component {
                                 <View style={styles.taskInfo}>
                                     <Text style={styles.taskName}>
                                         {tasks[i].task.title}
+                                    </Text>
+                                    <Text style={styles.taskDescription}>
+                                        {tasks[i].task.description}
                                     </Text>
                                 </View>
                                 { this.displayFileLink(tasks[i].task) }
@@ -586,6 +597,9 @@ class ChecklistExecute extends Component {
                                 <View style={styles.taskInfo}>
                                     <Text style={styles.taskName}>
                                         {tasks[i].task.title}
+                                    </Text>
+                                    <Text style={styles.taskDescription}>
+                                        {tasks[i].task.description}
                                     </Text>
                                 </View>
                                 { this.displayFileLink(tasks[i].task) }
