@@ -1,7 +1,7 @@
 import * as types from './types';
 import { NavigationActions } from 'react-navigation'
 
-export function navigateBack(_dispatch) {
+export function navigateBack() {
     return {
         type: types.NAVIGATE_BACK,
     };

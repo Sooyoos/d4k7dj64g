@@ -40,12 +40,22 @@ class HeaderChecklist extends Component {
         super(props);
     }
 
+    back()
+    {
+        this.props.navigateBack();
+    }
+
     render() {
         return (
             <View style={styles.header}>
                 <TouchableWithoutFeedback onPress={() => {this.props.navigation.navigate('DrawerOpen');}}>
                     <View style={styles.menuButton}>
                         <Icon style={styles.menuIcon} name="menu"/>
+                    </View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => {this.back()}}>
+                    <View style={styles.menuButton}>
+                        <Icon style={styles.menuIcon} name="arrow-back"/>
                     </View>
                 </TouchableWithoutFeedback>
                 <Text style={styles.title}>

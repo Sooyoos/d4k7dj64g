@@ -55,6 +55,11 @@ class HeaderNews extends Component {
         return false;
     }
 
+    back()
+    {
+        this.props.navigateBack();
+    }
+
     render() {
         let responsable = this.isResponsable();
 
@@ -67,6 +72,11 @@ class HeaderNews extends Component {
                         <TouchableWithoutFeedback onPress={() => {this.props.navigation.navigate('DrawerOpen');}}>
                             <View style={styles.menuButton}>
                                 <Icon style={styles.menuIcon} name="menu"/>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={() => {this.back()}}>
+                            <View style={styles.menuButton}>
+                                <Icon style={styles.menuIcon} name="arrow-back"/>
                             </View>
                         </TouchableWithoutFeedback>
                         <Text style={styles.title}>
@@ -84,6 +94,11 @@ class HeaderNews extends Component {
                         <TouchableWithoutFeedback onPress={() => {this.props.navigation.navigate('DrawerOpen');}}>
                             <View style={styles.menuButton}>
                                 <Icon style={styles.menuIcon} name="menu"/>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={() => {this.back()}}>
+                            <View style={styles.menuButton}>
+                                <Icon style={styles.menuIcon} name="arrow-back"/>
                             </View>
                         </TouchableWithoutFeedback>
                         <Text style={styles.title}>
@@ -105,6 +120,11 @@ class HeaderNews extends Component {
                                 <Icon style={styles.menuIcon} name="menu"/>
                             </View>
                         </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={() => {this.back()}}>
+                            <View style={styles.menuButton}>
+                                <Icon style={styles.menuIcon} name="arrow-back"/>
+                            </View>
+                        </TouchableWithoutFeedback>
                         <Text style={styles.title}>
                             {this.props.headerTitle}
                         </Text>
@@ -120,6 +140,11 @@ class HeaderNews extends Component {
                         <TouchableWithoutFeedback onPress={() => {this.props.navigation.navigate('DrawerOpen');}}>
                             <View style={styles.menuButton}>
                                 <Icon style={styles.menuIcon} name="menu"/>
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback onPress={() => {this.back()}}>
+                            <View style={styles.menuButton}>
+                                <Icon style={styles.menuIcon} name="arrow-back"/>
                             </View>
                         </TouchableWithoutFeedback>
                         <Text style={styles.title}>
