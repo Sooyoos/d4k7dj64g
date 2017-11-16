@@ -126,7 +126,7 @@ class CreateTagPreview extends Component {
     buildMediaList()
     {
         return(
-            <Image style={styles.sliderImage} source={{uri : "http://via.placeholder.com/" + Math.round(responsiveWidth(70)) + "x" + Math.round(responsiveHeight(30)) + "/000000.jpg"}} />
+            <Image style={styles.sliderImage} source={{uri : "http://via.placeholder.com/" + Math.round(layout.width70) + "x" + Math.round(layout.height30) + "/000000.jpg"}} />
         );
     }
 
@@ -175,7 +175,7 @@ class CreateTagPreview extends Component {
                             </View>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <Image source={{uri : tag.supervisor && tag.supervisor.avatar ? tag.supervisor.avatar.path : "http://placehold.it/200x200"}} style={{width:responsiveWidth(8), height:responsiveWidth(8), borderRadius:responsiveWidth(4)}}/>
+                                    <Image source={{uri : tag.supervisor && tag.supervisor.avatar ? tag.supervisor.avatar.path : "http://placehold.it/200x200"}} style={{width:layout.width8, height:layout.width8, borderRadius:layout.width4}}/>
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>
