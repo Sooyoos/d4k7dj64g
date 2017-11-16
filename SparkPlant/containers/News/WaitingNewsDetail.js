@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import HeaderTags from "../../components/Header/HeaderTags";
 import FooterButton from "../../components/Footer/FooterButton";
 import ElevatedView from "react-native-elevated-view";
@@ -23,60 +23,60 @@ import HeaderNews from "../../components/Header/HeaderNews";
 
 let styles = StyleSheet.create({
     login: {
-        height:responsiveHeight(7),
+        height:layout.height7,
     },
     body: {
-        height:responsiveHeight(93),
+        height:layout.height93,
         backgroundColor : "#efefef",
         alignItems:'center',
         justifyContent: 'center',
     },
     slider : {
-        height:responsiveHeight(83) * 0.45,
+        height:layout.height83 * 0.45,
         backgroundColor: "#ffffff",
     },
     image : {
-        width:responsiveWidth(100),
-        height : responsiveHeight(40),
-        marginRight:responsiveWidth(5),
+        width:layout.fullWidth,
+        height : layout.height40,
+        marginRight:layout.width5,
     },
     content : {
-        height:responsiveHeight(78) * 0.55 - responsiveHeight(2),
-        width : responsiveWidth(80),
+        height:layout.height78 * 0.55 - layout.height2,
+        width : layout.width80,
         backgroundColor : "#ffffff",
-        marginVertical: responsiveHeight(1),
-        paddingVertical:responsiveHeight(2),
-        paddingHorizontal:responsiveWidth(2),
+        marginVertical: layout.height1,
+        paddingVertical:layout.height2,
+        paddingHorizontal:layout.width2,
     },
     info : {
-        height:responsiveHeight(5),
-        width:responsiveWidth(80),
-        paddingVertical:responsiveHeight(1),
-        paddingHorizontal:responsiveWidth(1),
+        height:layout.height5,
+        width:layout.width80,
+        paddingVertical:layout.height1,
+        paddingHorizontal:layout.width1,
         flexDirection: 'row',
         justifyContent: 'center',
     },
     infoText : {
-        fontSize: responsiveFontSize(1.6),
+        fontSize: layout.fontSize1p6,
         color : "#757575",
         textAlign: 'center',
         justifyContent: 'center',
     },
     infoImage : {
-        height: responsiveHeight(3.5),
-        width : responsiveHeight(3.5),
-        borderRadius : responsiveHeight(1.75),
-        marginHorizontal:responsiveWidth(1),
+        height: layout.height3p5,
+        width : layout.height3p5,
+        borderRadius : layout.height1p75,
+        marginHorizontal: layout.width1,
     },
     title : {
-        fontSize: responsiveFontSize(2),
+        fontSize: layout.fontSize2,
         color : "#212121",
         textAlign: 'center',
         justifyContent: 'center',
     },
     contentText : {
-        marginTop : responsiveHeight(2.5),
-        fontSize: responsiveFontSize(1.6),
+        marginTop : layout.height2p5,
+        fontSize: layout.fontSize1p6,
         color : "#212121",
         justifyContent: 'center',
     },
@@ -86,34 +86,34 @@ let styles = StyleSheet.create({
     },
     publish : {
         backgroundColor: "#4caf50",
-        width:responsiveWidth(13),
-        height: responsiveWidth(13),
-        borderRadius: responsiveWidth(6),
+        width: layout.width13,
+        height: layout.width13,
+        borderRadius: layout.width6,
         alignItems:'center',
         justifyContent: 'center',
-        marginHorizontal:responsiveWidth(2),
+        marginHorizontal:layout.width2,
     },
     forward : {
         backgroundColor: "#00bcd4",
-        width:responsiveWidth(13),
-        height: responsiveWidth(13),
-        borderRadius: responsiveWidth(6),
+        width:layout.width13,
+        height: layout.width13,
+        borderRadius: layout.width6,
         alignItems:'center',
         justifyContent: 'center',
-        marginHorizontal:responsiveWidth(2),
+        marginHorizontal:layout.width2,
     },
     delete : {
         backgroundColor: "#f44336",
-        width:responsiveWidth(13),
-        height: responsiveWidth(13),
-        borderRadius: responsiveWidth(6),
+        width:layout.width13,
+        height: layout.width13,
+        borderRadius: layout.width6,
         alignItems:'center',
         justifyContent: 'center',
-        marginHorizontal:responsiveWidth(2),
+        marginHorizontal:layout.width2,
     },
     icon : {
         color: "#ffffff",
-        fontSize: responsiveFontSize(4.75),
+        fontSize: layout.fontSize4p75,
     },
 
 });

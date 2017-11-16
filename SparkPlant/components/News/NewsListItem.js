@@ -9,60 +9,60 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Moment from 'moment';
 
 let styles = StyleSheet.create({
     item : {
-        width : responsiveWidth(90),
-        height : responsiveHeight(15),
-        marginVertical : responsiveHeight(1.8),
+        width : layout.width90,
+        height : layout.height15,
+        marginVertical : layout.height1p8,
         backgroundColor: "#ffffff",
         flexDirection: 'row',
     },
     image : {
-        height : responsiveHeight(15),
-        width : responsiveHeight(15),
+        height : layout.height15,
+        width : layout.height15,
     },
     main : {
-        height : responsiveHeight(15),
-        width : responsiveWidth(90) - responsiveHeight(15),
-        paddingVertical: responsiveHeight(1),
-        paddingHorizontal: responsiveWidth(2),
+        height : layout.height15,
+        width : layout.width90 - layout.height15,
+        paddingVertical: layout.height1,
+        paddingHorizontal: layout.width2,
     },
     content : {
-        height : responsiveHeight(7),
-        width : responsiveWidth(90) - responsiveHeight(15) - responsiveWidth(4),
-        paddingVertical: responsiveHeight(1),
-        paddingHorizontal : responsiveWidth(1),
+        height : layout.height7,
+        width : layout.width90 - layout.height15 - layout.width4,
+        paddingVertical: layout.height1,
+        paddingHorizontal : layout.width1,
     },
     info : {
-        height : responsiveHeight(6),
-        width : responsiveWidth(90) - responsiveHeight(15) - responsiveWidth(4),
-        paddingVertical: responsiveHeight(1),
-        paddingHorizontal : responsiveWidth(1),
+        height : layout.height6,
+        width : layout.width90 - layout.height15 - layout.width4,
+        paddingVertical: layout.height1,
+        paddingHorizontal : layout.width1,
         flexDirection: 'row',
     },
     data : {
-        height : responsiveHeight(4),
-        width : responsiveWidth(90) - responsiveHeight(15) - responsiveWidth(4)- responsiveWidth(10),
+        height : layout.height4,
+        width : layout.width90 - layout.height15 - layout.width4 - layout.width10,
     },
     status : {
-        height : responsiveHeight(4),
-        width : responsiveWidth(8),
+        height : layout.height4,
+        width : layout.width8,
     },
     textContent : {
-        fontSize : responsiveFontSize(2.2),
+        fontSize : layout.fontSize2p2,
         color : "#212121",
     },
     textInfos : {
-        fontSize: responsiveFontSize(2),
+        fontSize: layout.fontSize2,
         color : "#757575",
     },
     statusIcon : {
-        fontSize : responsiveFontSize(2.2),
+        fontSize : layout.fontSize2p2,
         color : "#757575",
     }
 });
