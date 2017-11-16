@@ -27,7 +27,7 @@ let styles = StyleSheet.create({
         textAlign: 'center',
     },
     menuButton : {
-        padding : responsiveWidth(1),
+        padding : layout.width1,
     },
     menuButtonLayout : {
         height : layout.height5,
