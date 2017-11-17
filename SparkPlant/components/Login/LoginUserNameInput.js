@@ -8,13 +8,13 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import {fontSize2p4, height8, width75} from "../../assets/layout";
 
 let styles = StyleSheet.create({
     input: {
-        width:responsiveWidth(75),
-        height:responsiveHeight(8),
-        fontSize : responsiveFontSize(2.4),
+        width:width75,
+        height:height8,
+        fontSize : fontSize2p4,
     }
 });
 

@@ -9,31 +9,31 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import ElevatedView from "react-native-elevated-view";
 
 let styles = StyleSheet.create({
     bodyChecked : {
         backgroundColor : "#3f51b5",
-        height : responsiveHeight(4),
-        width : responsiveHeight(4),
-        marginVertical: responsiveHeight(1),
-        marginHorizontal: responsiveWidth(1),
+        height : layout.height4,
+        width : layout.height4,
+        marginVertical: layout.height1,
+        marginHorizontal: layout.width1,
         justifyContent: "center",
     },
     bodyUnchecked : {
         backgroundColor : "#ffffff",
-        height : responsiveHeight(4),
-        width : responsiveHeight(4),
-        borderWidth: responsiveHeight(0.4),
+        height : layout.height4,
+        width : layout.height4,
+        borderWidth: layout.height0p4,
         borderColor : "#3f51b5",
-        marginVertical: responsiveHeight(1),
-        marginHorizontal: responsiveWidth(1),
+        marginVertical: layout.height1,
+        marginHorizontal: layout.width1,
         justifyContent: "center",
     },
     icon : {
         color : "#ffffff",
-        fontSize : responsiveFontSize(2.5),
+        fontSize : layout.fontSize2p5,
         textAlign : "center",
     }
 

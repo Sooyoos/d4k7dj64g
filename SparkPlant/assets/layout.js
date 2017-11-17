@@ -16,6 +16,7 @@ export const height82 = responsiveHeight(82);
 export const height80 = responsiveHeight(80);
 export const width80 = responsiveWidth(80);
 
+export const width78 = responsiveWidth(78);
 export const height78 = responsiveHeight(78);
 export const width75 = responsiveWidth(75);
 export const width70 = responsiveWidth(70);
@@ -78,6 +79,7 @@ export const width1 = responsiveWidth(1);
 export const height0p75 = responsiveHeight(0.75);
 export const width0p5 = responsiveWidth(0.5);
 export const height0p5 = responsiveHeight(0.5);
+export const height0p4 = responsiveHeight(0.4);
 
 
 export const fontSize11 = responsiveFontSize(11);

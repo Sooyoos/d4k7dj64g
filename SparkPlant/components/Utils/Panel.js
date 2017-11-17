@@ -9,35 +9,35 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
-import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import * as layout from "../../assets/layout";
 import ElevatedView from "react-native-elevated-view";
 
 let styles = StyleSheet.create({
     panel : {
         backgroundColor : "#ffffff",
-        marginVertical: responsiveHeight(0.5),
+        marginVertical: layout.height0p5,
     },
     header: {
-        height:responsiveHeight(7),
-        width:responsiveWidth(90),
-        paddingVertical : responsiveHeight(1),
-        paddingHorizontal : responsiveWidth(2),
+        height:layout.height7,
+        width:layout.width90,
+        paddingVertical : layout.height1,
+        paddingHorizontal : layout.width2,
         backgroundColor : "#ffffff",
         flexDirection: "row",
     },
     body: {
-        width:responsiveWidth(90),
+        width:layout.width90,
         backgroundColor : "#ffffff",
     },
     title : {
-        width : responsiveWidth(78),
+        width : layout.width78,
         color : "#212121",
-        fontSize : responsiveFontSize(2.2),
+        fontSize : layout.fontSize2p2,
     },
     icon : {
-        width : responsiveWidth(8),
+        width : layout.width8,
         color : "#212121",
-        fontSize : responsiveFontSize(2.5),
+        fontSize : layout.fontSize2p5,
     }
 });
 
