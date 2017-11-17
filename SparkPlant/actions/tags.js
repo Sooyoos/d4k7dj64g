@@ -416,28 +416,56 @@ function getTagFollowersFailure()
 
 function addUsersToTag(login, tag, id)
 {
+    console.log("UTILISATEURS DU TAG");
+    console.log(tag.users);
     return dispatch => {
         dispatch(createTagRequested());
 
         for(var i = 0; i < tag.users.length; i++)
         {
-            fetch(types.baseUrl + '/user_tags', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization' : 'Bearer ' + login.tokenString,
-                },
-                body: JSON.stringify({
-                    user : tag.users[i]["@id"],
-                    tag : id,
-                }),
-            })
-                .then((response) => response.json())
-                .then((responseJson) => {
-                console.log(responseJson);
-                    console.log("User added to tag");
+            if(tag.users[i]["@id"])
+            {
+                fetch(types.baseUrl + '/user_tags', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization' : 'Bearer ' + login.tokenString,
+                    },
+                    body: JSON.stringify({
+                        user : tag.users[i]["@id"],
+                        tag : id,
+                    }),
                 })
-                .catch((error) => { dispatch(createTagFailure()); });
+                    .then((response) => response.json())
+                    .then((responseJson) => {
+                        console.log(responseJson);
+                        console.log("User added to tag");
+                        console.log(responseJson);
+                    })
+                    .catch((error) => { dispatch(createTagFailure()); });
+            }
+            else
+            {
+                fetch(types.baseUrl + '/user_tags', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization' : 'Bearer ' + login.tokenString,
+                    },
+                    body: JSON.stringify({
+                        user : tag.users[i],
+                        tag : id,
+                    }),
+                })
+                    .then((response) => response.json())
+                    .then((responseJson) => {
+                        console.log(responseJson);
+                        console.log("User added to tag");
+                        console.log(responseJson);
+                    })
+                    .catch((error) => { dispatch(createTagFailure()); });
+            }
+
         }
         dispatch(createTagSuccess());
     }
