@@ -5,6 +5,7 @@ import {
     Alert,
     ActivityIndicator,
     Text,
+    ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -14,10 +15,11 @@ import * as layout from "../assets/layout";
 import Header from "../components/Header/Header";
 import { Bar } from 'react-native-pathjs-charts';
 import moment from 'moment';
+import {height83} from "../assets/layout";
 
 let solvedTagOptions = {
     width: layout.width75,
-    height: layout.height25,
+    height: layout.height19,
     margin: {
         top: layout.height8,
         left: layout.width6,
@@ -63,7 +65,7 @@ let solvedTagOptions = {
 
 let unsolvedTagOptions = {
     width: layout.width75,
-    height: layout.height25,
+    height: layout.height19,
     margin: {
         top: layout.height8,
         left: layout.width6,
@@ -112,7 +114,6 @@ let styles = StyleSheet.create({
         flex:1,
     },
     body: {
-        flex:8.4,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
@@ -124,8 +125,7 @@ let styles = StyleSheet.create({
         fontSize : layout.fontSize2p2,
     },
     chartView : {
-        height : layout.height82,
-        width : layout.fullWidth,
+        paddingVertical : layout.height2,
         paddingHorizontal: layout.width5,
     },
     chartTitle : {
@@ -150,8 +150,8 @@ class ChartsScreen extends Component {
     {
         super(props);
         this.state = {
-            beginDate : moment().subtract(8,'d').format("YYYY-MM-DD HH:mm:ss"),
-            endDate : moment().subtract(1,'d').format("YYYY-MM-DD HH:mm:ss"),
+            beginDate : moment().subtract(6,'d').format("YYYY-MM-DD HH:mm:ss"),
+            endDate : moment().format("YYYY-MM-DD HH:mm:ss"),
         }
     }
 
@@ -165,6 +165,8 @@ class ChartsScreen extends Component {
             let date = beginDate.add(i, 'd').format("DD/MM/YYYY");
             sortedList[i] = [];
 
+            console.log("date à comparer " + date);
+
             for(var j = 0; j < list.length; j++)
             {
                 let tagDate = moment(list[j].updatedAt, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY");
@@ -176,95 +178,48 @@ class ChartsScreen extends Component {
             }
         }
 
-        console.log(
-            [
-                [
-                    {
-                        value : sortedList[0].length,
-                        name : "J - 7",
-                    }
-                ],
-                [
-                    {
-                        value : sortedList[1].length,
-                        name : "J - 6",
-                    }
-                ],
-                [
-                    {
-                        value : sortedList[2].length,
-                        name : "J - 5",
-                    }
-                ],
-                [
-                    {
-                        value : sortedList[3].length,
-                        name : "J - 4",
-                    }
-                ],
-                [
-                    {
-                        value : sortedList[4].length,
-                        name : "J - 3",
-                    }
-                ],
-                [
-                    {
-                        value : sortedList[5].length,
-                        name : "J - 2",
-                    }
-                ],
-                [
-                    {
-                        value : sortedList[6].length,
-                        name : "J - 1",
-                    }
-                ],
-            ]
-        );
-
         return(
             [
                 [
                     {
-                        value : sortedList[0].length,
-                        name : "J - 7",
-                    }
-                ],
-                [
-                    {
-                        value : sortedList[1].length,
+                        value : parseFloat(sortedList[0].length),
                         name : "J - 6",
                     }
                 ],
                 [
                     {
-                        value : sortedList[2].length,
+                        value : parseFloat(sortedList[1].length),
                         name : "J - 5",
                     }
                 ],
                 [
                     {
-                        value : sortedList[3].length,
+                        value : parseFloat(sortedList[2].length),
                         name : "J - 4",
                     }
                 ],
                 [
                     {
-                        value : sortedList[4].length,
+                        value : parseFloat(sortedList[3].length),
                         name : "J - 3",
                     }
                 ],
                 [
                     {
-                        value : sortedList[5].length,
+                        value : parseFloat(sortedList[4].length),
                         name : "J - 2",
                     }
                 ],
                 [
                     {
-                        value : sortedList[6].length,
+                        value : parseFloat(sortedList[5].length),
                         name : "J - 1",
+                    }
+                ],
+                [
+                    {
+                        value : parseFloat(sortedList[6].length),
+                        name : "J",
                     }
                 ],
             ]
@@ -284,6 +239,7 @@ class ChartsScreen extends Component {
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
+
                     <View style={styles.body}>
                         <View style={{height : layout.height8, width : layout.fullWidth}}>
                             <Text style={styles.title}>
@@ -338,23 +294,25 @@ class ChartsScreen extends Component {
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
-                    <View style={styles.body}>
-                        <View style={{height : layout.height8, width : layout.fullWidth}}>
-                            <Text style={styles.title}>
-                                Activité des tags sur les 7 derniers jours
-                            </Text>
+                        <View style={styles.body}>
+                            <View style={{height : layout.height8, width : layout.fullWidth}}>
+                                <Text style={styles.title}>
+                                    Activité des tags sur les 7 derniers jours
+                                </Text>
+                            </View>
+                            <ScrollView showsVerticalScrollIndicator={false} style={{height : layout.height82, width : layout.fullWidth}}>
+                                <View style={styles.chartView}>
+                                    <Text style={styles.chartTitle}>
+                                        Tags résolus
+                                    </Text>
+                                    <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.solvedTags)} options={solvedTagOptions} accessorKey='value'/>
+                                    <Text style={styles.chartTitle}>
+                                        Tags non résolus
+                                    </Text>
+                                    <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.unsolvedTags)} options={unsolvedTagOptions} accessorKey='value'/>
+                                </View>
+                            </ScrollView>
                         </View>
-                        <View style={styles.chartView}>
-                            <Text style={styles.chartTitle}>
-                                Tags résolus
-                            </Text>
-                            <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.solvedTags)} options={solvedTagOptions} accessorKey='value'/>
-                            <Text style={styles.chartTitle}>
-                                Tags non résolus
-                            </Text>
-                            <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.unsolvedTags)} options={unsolvedTagOptions} accessorKey='value'/>
-                        </View>
-                    </View>
                 </View>
             );
         }
