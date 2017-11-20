@@ -137,9 +137,7 @@ class CreateTagStep2 extends Component {
             tagTitle : null,
             tagDescription : null,
             tag : {
-                media : [
-
-                ]
+                media : this.props.tags.creation_current.media,
             }
         };
 
@@ -222,31 +220,7 @@ class CreateTagStep2 extends Component {
 
     buildMediaList()
     {
-        let medias = [];
-
-        if(this.props.tags.creation_current.media.length > 0)
-        {
-            medias = this.props.tags.creation_current.media;
-
-            for(var i = 0; i < this.state.tag.media.length; i++)
-            {
-                let flag = false;
-
-                for(var j = 0; j < medias.length; j++)
-                {
-                    if(medias[j].original === this.state.tag.media[i].uri)
-                    {
-                        flag = true;
-                    }
-                }
-
-                medias.push(this.state.tag.media[i]);
-            }
-        }
-        else
-        {
-            medias = this.state.tag.media;
-        }
+        let medias = this.state.tag.media;
 
         let mediaList = [];
 
@@ -254,7 +228,7 @@ class CreateTagStep2 extends Component {
         {
             for(var i = 0; i < medias.length; i++)
             {
-                if(!medias[i].data && medias[i].uri)
+                if(!medias[i].data)
                 {
                     mediaList.push(
                         <ElevatedView key={i} style={styles.mediaCard} elevation={4}>
