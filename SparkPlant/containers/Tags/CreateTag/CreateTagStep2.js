@@ -222,14 +222,41 @@ class CreateTagStep2 extends Component {
 
     buildMediaList()
     {
-        let medias = this.state.tag.media;
+        let medias = [];
+
+        if(this.props.tags.creation_current.media.length > 0)
+        {
+            medias = this.props.tags.creation_current.media;
+
+            for(var i = 0; i < this.state.tag.media.length; i++)
+            {
+                let flag = false;
+
+                for(var j = 0; j < medias.length; j++)
+                {
+                    if(medias[j].original === this.state.tag.media[i].uri)
+                    {
+                        flag = true;
+                    }
+                }
+
+                medias.push(this.state.tag.media[i]);
+            }
+        }
+        else
+        {
+            medias = this.state.tag.media;
+        }
+
+        console.log(medias);
+
         let mediaList = [];
 
         if(medias && medias.length > 0)
         {
             for(var i = 0; i < medias.length; i++)
             {
-                if(!medias[i].data)
+                if(!medias[i].data && medias[i].uri)
                 {
                     mediaList.push(
                         <ElevatedView key={i} style={styles.mediaCard} elevation={4}>

@@ -328,7 +328,7 @@ export const tagsReducer = {
                     let original = medias[index].uri;
                     medias[index] = {
                         id : action.media["@id"],
-                        uri : original
+                        uri : original,
                     };
                     let creationCurrent = Object.assign({}, state.creation_current, {visibility : action.visibility, media : medias});
                     return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
@@ -339,6 +339,8 @@ export const tagsReducer = {
                     medias.push(
                         {
                             id : action.media["@id"],
+                            uri : action.media.path,
+                            original : original,
                         }
                     );
                     let creationCurrent = Object.assign({}, state.creation_current, {visibility : action.visibility, media : medias});
