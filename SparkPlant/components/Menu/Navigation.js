@@ -28,7 +28,7 @@ let styles = StyleSheet.create({
         marginRight: layout.width3,
     },
     itemLabel : {
-        fontSize: layout.fontSize3p3,
+        fontSize: layout.fontSize2p2,
         color : "#232323",
         fontWeight: "bold",
     },
