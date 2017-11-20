@@ -13,13 +13,13 @@ import * as layout from "../../assets/layout";
 
 let styles = StyleSheet.create({
     dashboardNav: {
-        flex:5,
+        height:layout.height46p5,
         width:layout.fullWidth,
         alignItems:'center',
     },
     dashboardNavSection: {
         width:layout.fullWidth,
-        flex:5,
+        height:layout.height23p25,
         alignItems: 'center',
         flexDirection: 'row',
     },

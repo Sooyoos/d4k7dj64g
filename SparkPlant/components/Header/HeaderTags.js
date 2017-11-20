@@ -24,8 +24,9 @@ let styles = StyleSheet.create({
     },
     title : {
         color:'#ffffff',
-        width: 200,
+        width: layout.width50,
         fontSize : layout.fontSize1p8,
+        textAlign : 'center',
     },
     menuButton : {
         padding : layout.width1,

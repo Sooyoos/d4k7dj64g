@@ -18,7 +18,8 @@ import * as layout from "../../assets/layout";
 
 let styles = StyleSheet.create({
     login: {
-        flex:1,
+        height : layout.fullHeight,
+        width : layout.fullWidth,
     },
     header : {
         height : layout.height7,

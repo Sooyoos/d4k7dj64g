@@ -3,7 +3,7 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableHighlight,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -18,24 +18,18 @@ let styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
+        padding : 10,
     },
     title:{
-        flex : 8.4,
-        margin:5,
+        width : layout.width90,
         fontSize:layout.fontSize1p8,
         color: '#FFFFFF',
         textAlign: 'center',
+        marginLeft: layout.width5 * -1,
     },
     menuButton : {
         padding : layout.width1,
-    },
-    menuButtonLayout : {
-        height : layout.height5,
-        width : layout.height5,
-        borderRadius : layout.height2p5,
-        marginHorizontal : layout.width2,
-        alignItems: "center",
-        justifyContent: "center",
+        marginRight: layout.width2
     },
     menuIcon : {
         fontSize: layout.fontSize2p4,
@@ -50,13 +44,14 @@ class Header extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <View style={styles.header}>
-                <TouchableHighlight style={styles.menuButtonLayout} underlayColor="#C5CAE9" onPress={() => {this.props.props.navigation.navigate('DrawerOpen');}}>
+                <TouchableWithoutFeedback onPress={() => {this.props.navigate('DrawerOpen');}}>
                     <View style={styles.menuButton}>
                         <Icon style={styles.menuIcon} name="menu"/>
                     </View>
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
                 <Text style={styles.title}>
                     SparkPlant
                 </Text>

@@ -21,26 +21,28 @@ import Sound from 'react-native-sound';
 
 let styles = StyleSheet.create({
     login: {
-        flex:1,
+        width : layout.fullWidth,
+        height : layout.fullHeight,
     },
     header : {
-        height : layout.height8,
+        height : layout.height7,
     },
     body: {
-        minHeight : layout.height83,
+        minHeight : layout.height80,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     footer: {
-        height : layout.height10,
+        height : layout.height13,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
         paddingBottom : layout.height3,
     },
     slider : {
-        flex :1,
+        width : layout.fullWidth,
+        height : layout.height30,
         flexDirection : 'row',
     },
     sliderImage : {
@@ -49,8 +51,11 @@ let styles = StyleSheet.create({
         marginHorizontal: 25,
     },
     infos : {
-        flex :1.5,
+        width : layout.fullWidth,
+        height : layout.height53,
         flexDirection : 'column',
+        alignItems : "center",
+        justifyContent : "center",
     },
     section : {
         width: layout.width80 ,
@@ -211,7 +216,7 @@ class TagDetails extends Component {
                     <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
                     <ScrollView showsVerticalScrollIndicator={false}>
                         <View style={styles.body}>
-                            <ScrollView style={styles.slider} alignItems={'center'} horizontal={true} showsHorizontalScrollIndicator={false}>
+                            <ScrollView style={styles.slider} horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{alignItems : "center", justifyContent : "center"}}>
                                 {this.buildMediaList()}
                             </ScrollView>
                             <View style={styles.infos}>

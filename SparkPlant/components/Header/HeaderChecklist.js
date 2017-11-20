@@ -15,6 +15,7 @@ import * as layout from "../../assets/layout";
 let styles = StyleSheet.create({
     header: {
         height : layout.height8,
+        width : layout.fullWidth,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
@@ -22,8 +23,9 @@ let styles = StyleSheet.create({
     },
     title : {
         color:'#ffffff',
-        width: layout.width50,
+        width: layout.width75,
         fontSize : layout.fontSize1p8,
+        textAlign : 'center',
     },
     menuButton : {
         padding : layout.width1,

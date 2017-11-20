@@ -5,6 +5,7 @@ export const fullHeight = responsiveHeight(100);
 
 export const width98 = responsiveWidth(98);
 export const width96 = responsiveWidth(96);
+export const width95 = responsiveWidth(95);
 export const height93 = responsiveHeight(93);
 export const width90 = responsiveWidth(90);
 
@@ -25,9 +26,11 @@ export const width65 = responsiveWidth(65);
 export const width60 = responsiveWidth(60);
 
 export const height55 = responsiveHeight(55);
+export const height53 = responsiveHeight(53);
 export const height50 = responsiveHeight(50);
 export const width50 = responsiveWidth(50);
 
+export const height46p5 = responsiveHeight(46.5);
 export const width40 = responsiveWidth(40);
 export const height40 = responsiveHeight(40);
 
@@ -36,6 +39,7 @@ export const width30 = responsiveWidth(30);
 export const height30 = responsiveHeight(30);
 
 export const width25 = responsiveWidth(25);
+export const height23p25 = responsiveHeight(23.25);
 export const width23 = responsiveWidth(23);
 export const width20 = responsiveWidth(20);
 export const height20 = responsiveHeight(20);
@@ -44,6 +48,7 @@ export const width16 = responsiveWidth(16);
 export const height15 = responsiveHeight(15);
 export const width15 = responsiveWidth(15);
 export const height14 = responsiveHeight(14);
+export const height13 = responsiveHeight(13);
 export const width13 = responsiveWidth(13);
 export const width12p5 = responsiveWidth(12.5);
 export const height12 = responsiveHeight(12);

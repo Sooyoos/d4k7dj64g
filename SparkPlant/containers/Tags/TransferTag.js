@@ -16,7 +16,8 @@ import HeaderTagDetails from "../../components/Header/HeaderTags";
 
 let styles = StyleSheet.create({
     login: {
-        flex:1,
+        width : layout.fullWidth,
+        height : layout.fullHeight
     },
     header : {
         height : layout.height7,

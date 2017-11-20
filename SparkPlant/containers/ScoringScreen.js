@@ -13,13 +13,18 @@ import { ActionCreators } from '../actions';
 import * as layout from "../assets/layout";
 import Header from "../components/Header/Header";
 import moment from 'moment';
+import {fullWidth} from "../assets/layout";
+import {fullHeight} from "../assets/layout";
+import {height93} from "../assets/layout";
 
 let styles = StyleSheet.create({
     login: {
-        flex:1,
+        width : fullWidth,
+        height : fullHeight,
     },
     body: {
-        flex:8.4,
+        width : fullWidth,
+        height : height93,
         backgroundColor: '#efefef',
         alignItems:'center',
         justifyContent: 'center',

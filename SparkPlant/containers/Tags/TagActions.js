@@ -14,23 +14,26 @@ import HeaderTagDetails from "../../components/Header/HeaderTags";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ElevatedView from "react-native-elevated-view";
 import {height7} from "../../assets/layout";
+import {fullWidth} from "../../assets/layout";
 
 let styles = StyleSheet.create({
     login: {
-        flex:1,
+        width : layout.fullWidth,
+        height : layout.fullHeight,
     },
     header : {
         height : layout.height7,
     },
     list: {
-        height : layout.height83,
+        height : layout.height80,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     listLine : {
         flexDirection: 'row',
-        flex: 1,
+        width : fullWidth,
+        height : layout.height78 / 2,
         alignItems:'center',
         justifyContent: 'center',
     },
@@ -92,7 +95,7 @@ let styles = StyleSheet.create({
         justifyContent: "center",
     },
     footer: {
-        height : layout.height10,
+        height : layout.height13,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',

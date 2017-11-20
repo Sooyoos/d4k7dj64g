@@ -16,13 +16,16 @@ import { ActionCreators } from '../actions';
 import Header from '../components/Header/Header';
 import DashboardNavigation from '../components/Dashboard/DashboardNavigation';
 import DashboardNews from '../components/Dashboard/DashboardNews';
+import {fullHeight, fullWidth, height93} from "../assets/layout";
 
 let styles = StyleSheet.create({
     login: {
-        flex:1,
+        width : fullWidth,
+        height : fullHeight,
     },
     body: {
-        flex:8.4,
+        width : fullWidth,
+        height : height93,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',

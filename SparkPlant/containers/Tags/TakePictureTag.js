@@ -14,10 +14,10 @@ import {fontSize1p8, fullHeight, fullWidth} from "../../assets/layout";
 
 let styles = StyleSheet.create({
     login: {
-        flex:1,
+        width : fullWidth,
+        height : fullHeight
     },
     preview: {
-        flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
         height: fullHeight,

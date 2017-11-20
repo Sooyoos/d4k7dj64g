@@ -128,7 +128,7 @@ let styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         backgroundColor : '#00bcd4',
-        marginBottom: layout.height4,
+        marginBottom: layout.height10,
     },
     nextButtonIcon : {
         color : "#ffffff",
@@ -335,7 +335,7 @@ class CreateNewsStep1 extends Component {
                 <View style={styles.login}>
                     <HeaderNews {...this.props} headerTitle="Créer une News"/>
                     <View style={styles.body}>
-                        <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
+                        <ScrollView styles={{height : layout.fullHeight}} horizontal={false} showsVerticalScrollIndicator={false}>
                             <ElevatedView style={styles.medias} elevation={2}>
                                 <ScrollView style={styles.slider} horizontal={true} showsHorizontalScrollIndicator={false}>
                                     {this.buildMediaList()}
@@ -366,7 +366,7 @@ class CreateNewsStep1 extends Component {
                                 </Text>
                                 <TextInput style={styles.contentInput} placeholder="Texte" multiline={true} onChangeText={(text) => this.setContent(text)} value={this.state.item.content}/>
                             </ElevatedView>
-                            <View style={{flexDirection : 'row', alignContent : 'flex-end', justifyContent: 'flex-end', width : responsiveWidth(90)}}>
+                            <View style={{flexDirection : 'row', alignContent : 'flex-end', justifyContent: 'flex-end', width : layout.width90}}>
                                 <ElevatedView style={styles.nextButton} elevation={4}>
                                     <TouchableWithoutFeedback onPress={this.preview.bind(this)}>
                                         <Icon style={styles.nextButtonIcon} name="eye"/>
@@ -385,7 +385,7 @@ class CreateNewsStep1 extends Component {
                 <View style={styles.login}>
                     <HeaderNews {...this.props} headerTitle="Créer une News"/>
                     <View style={styles.body}>
-                        <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
+                        <ScrollView styles={{height : layout.fullHeight}} horizontal={false} showsVerticalScrollIndicator={false}>
                             <ElevatedView style={styles.medias} elevation={2}>
                                 <ScrollView style={styles.slider} horizontal={true} showsHorizontalScrollIndicator={false}>
                                     {this.buildMediaList()}
@@ -420,26 +420,26 @@ class CreateNewsStep1 extends Component {
                                 <Text style={styles.broadcastLabel}>
                                     Diffusion
                                 </Text>
-                                <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
+                                <View style={{flexDirection : 'row', marginVertical : layout.height0p5}}>
                                     <RadioButton value="private" styleSelected={styles.rbSelected} style={styles.radioButton}/>
                                     <Text style={styles.rbLabel}>
                                         Confidentielle
                                     </Text>
                                 </View>
-                                <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
+                                <View style={{flexDirection : 'row', marginVertical : layout.height0p5}}>
                                     <RadioButton value="restricted" styleSelected={styles.rbSelected} style={styles.radioButton}/>
                                     <Text style={styles.rbLabel}>
                                         Restreinte
                                     </Text>
                                 </View>
-                                <View style={{flexDirection : 'row', marginVertical : responsiveHeight(0.5)}}>
+                                <View style={{flexDirection : 'row', marginVertical : layout.height0p5}}>
                                     <RadioButton value="public" styleSelected={styles.rbSelected} style={styles.radioButton}/>
                                     <Text style={styles.rbLabel}>
                                         Publique
                                     </Text>
                                 </View>
                             </ElevatedView>
-                            <View style={{flexDirection : 'row', alignContent : 'flex-end', justifyContent: 'flex-end', width : responsiveWidth(90)}}>
+                            <View style={{flexDirection : 'row', alignContent : 'flex-end', justifyContent: 'flex-end', width : layout.width90}}>
                                 <ElevatedView style={styles.nextButton} elevation={4}>
                                     <TouchableWithoutFeedback onPress={this.preview.bind(this)}>
                                         <Icon style={styles.nextButtonIcon} name="eye"/>

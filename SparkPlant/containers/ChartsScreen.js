@@ -111,7 +111,8 @@ let unsolvedTagOptions = {
 
 let styles = StyleSheet.create({
     login: {
-        flex:1,
+        width : layout.fullWidth,
+        height : layout.fullHeight
     },
     body: {
         backgroundColor: '#FFFFFF',

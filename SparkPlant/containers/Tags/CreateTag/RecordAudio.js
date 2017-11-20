@@ -17,6 +17,8 @@ import ElevatedView from 'react-native-elevated-view';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
+import {fullHeight} from "../../../assets/layout";
+import {fullWidth} from "../../../assets/layout";
 
 let styles = StyleSheet.create({
     header : {
@@ -129,7 +131,7 @@ class RecordAudio extends Component {
             if(this.state.recording)
             {
                 return (
-                    <View style={{flex : 1, backgroundColor : "#ffffff"}}>
+                    <View style={{height : fullHeight, width : fullWidth, backgroundColor : "#ffffff"}}>
                         <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                         <View style={styles.body}>
                             <TouchableWithoutFeedback onPress={() => {this.stop()}}>
@@ -144,7 +146,7 @@ class RecordAudio extends Component {
             else
             {
                 return (
-                    <View style={{flex : 1, backgroundColor : "#ffffff"}}>
+                    <View style={{height : fullHeight, width : fullWidth, backgroundColor : "#ffffff"}}>
                         <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                         <View style={styles.body}>
                             <TouchableWithoutFeedback onPress={() => {this.record()}}>
@@ -160,7 +162,7 @@ class RecordAudio extends Component {
         else
         {
             return(
-                <View style={{flex : 1, backgroundColor : "#ffffff"}}>
+                <View style={{height : fullHeight, width : fullWidth, backgroundColor : "#ffffff"}}>
                     <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                     <View style={styles.body}>
                         <ActivityIndicator color="#3f51b5" size="large"/>

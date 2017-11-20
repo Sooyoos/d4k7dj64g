@@ -7,14 +7,16 @@ import {
 } from 'react-native';
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {fontSize1p8} from "../../assets/layout";
+import {fontSize1p8, fullHeight, fullWidth} from "../../assets/layout";
 
 let styles = StyleSheet.create({
     login: {
-        flex:1,
+        width : fullWidth,
+        height : fullHeight
     },
     capture : {
-        flex : 1,
+        width : fullWidth,
+        height : fullHeight
     }
 });
 

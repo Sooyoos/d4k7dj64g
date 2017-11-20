@@ -17,19 +17,20 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 let styles = StyleSheet.create({
     login: {
-        flex:1,
+        width : layout.fullWidth,
+        height : layout.fullHeight,
     },
     header : {
         height : layout.height7,
     },
     list: {
-        height : layout.height83,
+        height : layout.height80,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     footer: {
-        height : layout.height10,
+        height : layout.height13,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',

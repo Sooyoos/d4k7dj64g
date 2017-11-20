@@ -20,13 +20,13 @@ let styles = StyleSheet.create({
         height:layout.height7,
     },
     body: {
-        height:layout.height83,
+        height:layout.height80,
         backgroundColor : "#efefef",
         alignItems:'center',
         justifyContent: 'center',
     },
     footer: {
-        height:layout.height10,
+        height:layout.height13,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',

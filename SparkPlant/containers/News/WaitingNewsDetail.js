@@ -82,7 +82,7 @@ let styles = StyleSheet.create({
     },
     actions : {
         flexDirection:'row',
-        flex : 0.5
+        height : layout.height20,
     },
     publish : {
         backgroundColor: "#4caf50",
