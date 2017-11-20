@@ -125,9 +125,22 @@ class CreateTagPreview extends Component {
 
     buildMediaList()
     {
-        return(
-            <Image style={styles.sliderImage} source={{uri : "http://via.placeholder.com/" + Math.round(layout.width70) + "x" + Math.round(layout.height30) + "/000000.jpg"}} />
-        );
+        let list = [];
+        let medias = this.props.tags.creation_current.media;
+
+        for(var i = 0; i < medias.length; i++)
+        {
+            list.push(
+                <Image key={i} style={styles.sliderImage} source={{uri : medias[i].uri}} />
+            );
+        }
+
+        if(list.length === 0)
+            return(
+                <Image style={styles.sliderImage} source={{uri : "http://via.placeholder.com/" + Math.round(layout.width70) + "x" + Math.round(layout.height30) + "/000000.jpg"}} />
+            );
+        else
+            return list;
     }
 
     displayPlaceAudioIcon()
