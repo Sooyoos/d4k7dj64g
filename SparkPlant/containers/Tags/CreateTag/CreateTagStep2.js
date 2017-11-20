@@ -248,8 +248,6 @@ class CreateTagStep2 extends Component {
             medias = this.state.tag.media;
         }
 
-        console.log(medias);
-
         let mediaList = [];
 
         if(medias && medias.length > 0)
