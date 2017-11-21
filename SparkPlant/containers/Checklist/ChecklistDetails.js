@@ -211,6 +211,21 @@ class ChecklistDetails extends Component {
         return list;
     }
 
+    checklistIsAlreadyAssigned(checklist)
+    {
+        let checklists = this.props.checklists.checklists;
+
+        for(var i = 0; i < checklists.length; i++)
+        {
+            if(checklist["@id"] === checklists[i]["@id"])
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     assignChecklist()
     {
         let checklist = this.props.checklists.currentTemplate;
@@ -220,8 +235,20 @@ class ChecklistDetails extends Component {
             unit : unit,
         };
 
-        this.props.tryAssignChecklists(this.props.login, checklistInstance);
-        this.props.goToChecklistLibrary(this.props.nav);
+        if(!this.checklistIsAlreadyAssigned(checklist))
+        {
+            this.props.tryAssignChecklists(this.props.login, checklistInstance);
+            this.props.goToChecklistLibrary(this.props.nav);
+        }
+
+        Alert.alert(
+            'Checkliste déjà utilisée',
+            'Votre unité réalise déjà cette checkliste',
+            [
+                {text: 'OK', onPress: () => this.props.goToChecklistLibrary(this.props.nav)},
+            ],
+            { cancelable: false }
+        )
     }
 
     render() {
