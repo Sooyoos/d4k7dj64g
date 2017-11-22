@@ -95,7 +95,7 @@ class FilterTag extends Component {
                     <Text style={{color : "#212121", fontSize : layout.fontSize1p8, width : layout.width70}}>
                         Fermé non résolu
                     </Text>
-                    <Checkbox checked={this.props.tags.filters.status.indexOf("closed_unresolved") !== -1} list="status" value="closed_resolved" do={this.props.addTagsFilter} undo={this.props.removeTagsFilter}/>
+                    <Checkbox checked={this.props.tags.filters.status.indexOf("closed_unresolved") !== -1} list="status" value="closed_unresolved" do={this.props.addTagsFilter} undo={this.props.removeTagsFilter}/>
                 </View>
             </View>
         );
