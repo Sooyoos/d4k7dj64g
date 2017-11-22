@@ -153,7 +153,7 @@ export const tagsReducer = {
                 return Object.assign({}, state, {loading : true});
             }
             case types.GET_USER_TAGS_SUCCESS: {
-                return Object.assign({}, state, {userTags : action.tags, loading : false, creation_current : initialState.creation_current});
+                return Object.assign({}, state, {userTags : action.tags, loading : false});
             }
             case types.GET_USER_TAGS_FAILURE: {
                 return Object.assign({}, state, {userTags : null, loading : false});
@@ -298,11 +298,12 @@ export const tagsReducer = {
             case types.TAG_CREATE_REQUESTED: {
                 return Object.assign({}, state, {loading : true});
             }
-            case types.TAG_CREATE_SUCCESS: {
+            case types.CREATE_TAG_SUCCESS: {
                 let creationCurrent = Object.assign({}, state.creation_current, initialState.creation_current);
-                return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
+                let creationMedia = Object.assign({}, creationCurrent, { media : [] });
+                return Object.assign({}, state, {creation_current : creationMedia, loading : false});
             }
-            case types.TAG_CREATE_FAILURE: {
+            case types.CREATE_TAG_FAILURE: {
                 let creationCurrent = Object.assign({}, state.creation_current, initialState.creation_current);
                 return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
             }

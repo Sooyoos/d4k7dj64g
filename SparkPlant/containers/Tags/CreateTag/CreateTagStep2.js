@@ -145,6 +145,21 @@ class CreateTagStep2 extends Component {
         this.error = null;
     }
 
+    componentWillMount()
+    {
+        let newState = Object.assign({}, this.state.tag, {
+            media : this.props.tags.creation_current.media
+        });
+        this.setState({
+            tagTitle : null,
+            tagDescription : null,
+            tag : newState,
+        });
+
+        console.log("COMPONENT WILL MOUNT");
+        console.log(this.state);
+    }
+
     saveTitle(title)
     {
         this.props.setCurrentCreationTitle(title);
@@ -221,6 +236,9 @@ class CreateTagStep2 extends Component {
 
     buildMediaList()
     {
+        console.log("BUILD MEDIA LIST");
+        console.log(this.state);
+
         let medias = this.state.tag.media;
 
         let mediaList = [];
