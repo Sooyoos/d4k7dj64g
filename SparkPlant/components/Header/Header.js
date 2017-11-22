@@ -21,7 +21,7 @@ let styles = StyleSheet.create({
         padding : 10,
     },
     title:{
-        width : layout.width90,
+        width : layout.width84,
         fontSize:layout.fontSize1p8,
         color: '#FFFFFF',
         textAlign: 'center',
@@ -55,6 +55,11 @@ class Header extends Component {
                 <Text style={styles.title}>
                     SparkPlant
                 </Text>
+                <TouchableWithoutFeedback onPress={() => {this.props.navigate('Info');}}>
+                    <View style={styles.menuButton}>
+                        <Icon style={styles.menuIcon} name="info-outline"/>
+                    </View>
+                </TouchableWithoutFeedback>
             </View>
         );
     }

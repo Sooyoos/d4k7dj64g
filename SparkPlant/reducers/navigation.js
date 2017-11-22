@@ -6,6 +6,7 @@ import {
 import DrawerMenu from '../components/Menu/Menu';
 import LoginScreen from '../containers/LoginScreen';
 import DashboardScreen from '../containers/DashboardScreen';
+import InfoScreen from '../containers/InfoScreen';
 import TagsScreen from '../containers/TagsScreen';
 import NewsScreen from '../containers/NewsScreen';
 import ChecklistScreen from '../containers/ChecklistScreen';
@@ -281,11 +282,17 @@ export const AppNavigator = StackNavigator({
                 header : null,
         }},
         Tags: {
-        screen: TagNavigator,
-        navigationOptions : {
-            header : null,
+            screen: TagNavigator,
+            navigationOptions : {
+                header : null,
+            },
         },
-    }
+        Info: {
+            screen: InfoScreen,
+            navigationOptions : {
+                header : null,
+            },
+        },
 });
 
 function getStateForResetChecklists(state)
