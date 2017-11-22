@@ -84,14 +84,14 @@ class InfoScreen extends Component {
                             # de version : { appVersion }
                         </Text>
                     </View>
-                    <TouchableHighlight onPress={() => Linking.openURL('mailto:contact@sparkplant.com')}>
+                    <TouchableWithoutFeedback onPress={() => Linking.openURL('mailto:contact@sparkplant.com')}>
                         <View style={styles.contactCard}>
                             <Icon style={styles.contactIcon} name='envelope'/>
                             <Text style={styles.contactText}>
                                 Nous contacter
                             </Text>
                         </View>
-                    </TouchableHighlight>
+                    </TouchableWithoutFeedback>
                 </View>
             </View>
         );
