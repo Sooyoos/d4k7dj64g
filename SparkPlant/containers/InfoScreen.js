@@ -81,7 +81,7 @@ class InfoScreen extends Component {
                 <View style={styles.body}>
                     <View style={styles.infoCard}>
                         <Text style={styles.infoCardText}>
-                            # de version : { appVersion }
+                            Version de l'application : { appVersion }
                         </Text>
                     </View>
                     <TouchableWithoutFeedback onPress={() => Linking.openURL('mailto:contact@sparkplant.com')}>
