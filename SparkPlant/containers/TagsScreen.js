@@ -75,8 +75,8 @@ class TagsScreen extends Component {
                             <TagList {...this.props} items={this.props.tags.filterResults} />
                         </View>
                         <View style={styles.footer}>
-                            <FooterButton {...this.props} active={true} iconName="eye" text="Suivis" route={this.props.goToTagsPage}/>
-                            <FooterButton {...this.props} active={false} iconName="tags" text="Tous" route={this.props.goToTagsFull}/>
+                            <FooterButton {...this.props} active={true} iconName="eye" text="Suivis" route={() => { this.props.goToTagsPage(this.props.nav)}}/>
+                            <FooterButton {...this.props} active={false} iconName="tags" text="Tous" route={() => { this.props.goToTagsFull(this.props.nav)}}/>
                         </View>
                     </View>
                 );
