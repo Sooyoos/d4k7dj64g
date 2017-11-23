@@ -193,7 +193,7 @@ class CreateTagStep2 extends Component {
                 console.log('ImagePicker Error: ', response.error);
             }
             else {
-                let source = { uri: response.uri, type: "video/mp4", name: response.path.substring(response.path.lastIndexOf("/")) };
+                let source = { uri: response.uri, type: "video/mp4", name: response.path.substring(response.path.lastIndexOf("/") +1 ) };
 
                 let medias = this.state.tag.media;
                 medias.push(source);
