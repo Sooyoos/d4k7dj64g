@@ -7,7 +7,6 @@ import {
     Text,
     ActivityIndicator,
     TouchableWithoutFeedback,
-    Modal,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -80,7 +79,7 @@ let styles = StyleSheet.create({
         backgroundColor : '#00bcd4',
         alignItems : "center",
         justifyContent : "center",
-    }
+    },
 });
 
 function lpad(value, padding) {
@@ -100,15 +99,6 @@ class TagDetails extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            modalVisible : false,
-            currentImage : {
-                uri : null,
-                width : null,
-                height : null,
-            },
-        };
     }
 
     getStatusIcon() {
@@ -141,11 +131,8 @@ class TagDetails extends Component {
             {
                 if(medias[i].filetype.indexOf("video") === -1)
                 {
-                    let url = medias[i].path;
                     list.push(
-                        <TouchableWithoutFeedback key={i} onPress={() => { this.selectImage(url) }}>
-                            <Image style={styles.sliderImage} source={{uri : url}} />
-                        </TouchableWithoutFeedback>
+                        <Image key={i} style={styles.sliderImage} source={{uri : medias[i].path}} />
                     );
                 }
                 else
@@ -220,38 +207,6 @@ class TagDetails extends Component {
         }
     }
 
-    selectImage(url)
-    {
-        Image.getSize(url, (width, height) => {
-            this.setState({
-                currentImage : {
-                    uri : url,
-                    width : width,
-                    height : height,
-                },
-                modalVisible: true,
-            });
-        });
-    }
-
-    displayImage()
-    {
-        if(this.state.currentImage.height > this.state.currentImage.width)
-        {
-            return(
-                <Image resizeMode="cover" source={{uri : this.state.currentImage.uri}} style={{ width : layout.fullWidth, height : layout.fullHeight }} />
-            );
-        }
-        else
-        {
-            return(
-                <ScrollView style={{ width : this.state.currentImage.width, height : this.state.currentImage.height }} horizontal={true}>
-                    <Image resizeMode="contain" source={{uri : this.state.currentImage.uri}} />
-                </ScrollView>
-            );
-        }
-    }
-
     render() {
         let tag = this.props.tags.currentTag;
         if(tag)
@@ -259,14 +214,6 @@ class TagDetails extends Component {
             return (
                 <View style={styles.login}>
                     <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
-                    <Modal
-                        animationType="fade"
-                        transparent={false}
-                        visible={this.state.modalVisible}
-                        onRequestClose={() => { this.setState({modalVisible : false}) }}
-                    >
-                        { this.displayImage() }
-                    </Modal>
                     <ScrollView showsVerticalScrollIndicator={false}>
                         <View style={styles.body}>
                             <ScrollView style={styles.slider} horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{alignItems : "center", justifyContent : "center"}}>
