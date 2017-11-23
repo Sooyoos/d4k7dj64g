@@ -57,6 +57,10 @@ class TagsFull extends Component {
         {
             this.props.filterFullTags();
         }
+        else if(this.props.tags.filters.status.length === 0 && this.props.tags.filters.axis.length === 0 && this.props.tags.filters.units.length === 0)
+        {
+            this.props.resetFilterFullTags();
+        }
     }
 
     render() {

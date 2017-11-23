@@ -413,6 +413,10 @@ export const tagsReducer = {
                 let filtered = filterFullTags(state.allTags, state.filters);
                 return Object.assign({}, state, {filterFullResults : filtered});
             }
+            case types.RESET_FILTER_FULL_TAGS : {
+                let filtered = null;
+                return Object.assign({}, state, {filterFullResults : filtered});
+            }
             case types.SET_TO_RECORD : {
                 return Object.assign({}, state, {toRecord : action.value});
             }

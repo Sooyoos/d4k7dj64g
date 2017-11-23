@@ -1007,6 +1007,13 @@ export function resetFilterTags()
     }
 }
 
+export function resetFilterFullTags()
+{
+    return {
+        type : types.RESET_FILTER_FULL_TAGS,
+    }
+}
+
 export function filterFullTags()
 {
     return {
