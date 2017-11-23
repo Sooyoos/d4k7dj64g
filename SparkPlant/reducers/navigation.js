@@ -257,6 +257,7 @@ export const MainNavigator = DrawerNavigator(
         News : { screen : NewsNavigator},
         Checklists : { screen : ChecklistNavigator},
         Charts : { screen : ChartsNavigator},
+        Info: { screen: InfoScreen },
     },
     {
         contentComponent: DrawerMenu,
@@ -283,12 +284,6 @@ export const AppNavigator = StackNavigator({
         }},
         Tags: {
             screen: TagNavigator,
-            navigationOptions : {
-                header : null,
-            },
-        },
-        Info: {
-            screen: InfoScreen,
             navigationOptions : {
                 header : null,
             },
