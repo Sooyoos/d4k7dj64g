@@ -129,17 +129,54 @@ class DrawerMenu extends Component {
     {
         if(this.state.userAvailable !== null)
         {
-            return(
-                <Switch style={styles.menuHeaderAvailableSwitch} value={this.state.userAvailable} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
-            );
+            if(this.state.userAvailable === true)
+            {
+                return(
+                    <View style={styles.menuHeaderAvailableView}>
+                        <Text style={styles.menuHeaderAvailableSwitchLabel}>
+                            Disponible
+                        </Text>
+                        <Switch style={styles.menuHeaderAvailableSwitch} value={this.state.userAvailable} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
+                    </View>
+                );
+            }
+            else
+            {
+                return(
+                    <View style={styles.menuHeaderAvailableView}>
+                        <Text style={styles.menuHeaderAvailableSwitchLabel}>
+                            Indisponible
+                        </Text>
+                        <Switch style={styles.menuHeaderAvailableSwitch} value={this.state.userAvailable} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
+                    </View>
+                );
+            }
         }
         else
         {
-            return(
-                <Switch style={styles.menuHeaderAvailableSwitch} value={this.props.users.loggedUser.available} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
-            );
+            if(this.props.users.loggedUser.available === true)
+            {
+                return(
+                    <View style={styles.menuHeaderAvailableView}>
+                        <Text style={styles.menuHeaderAvailableSwitchLabel}>
+                            Disponible
+                        </Text>
+                        <Switch style={styles.menuHeaderAvailableSwitch} value={this.props.users.loggedUser.available} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
+                    </View>
+                );
+            }
+            else
+            {
+                return(
+                    <View style={styles.menuHeaderAvailableView}>
+                        <Text style={styles.menuHeaderAvailableSwitchLabel}>
+                            Indisponible
+                        </Text>
+                        <Switch style={styles.menuHeaderAvailableSwitch} value={this.props.users.loggedUser.available} onValueChange={(value) => this.setUserAvailable(value)} onTintColor={'#c5cae9'} thumbTintColor={'#00bcd4'}/>
+                    </View>
+                );
+            }
         }
-
     }
 
     render() {
@@ -176,9 +213,6 @@ class DrawerMenu extends Component {
                             </View>
                         </View>
                         <View style={styles.menuHeaderAvailableView}>
-                            <Text style={styles.menuHeaderAvailableSwitchLabel}>
-                                Disponible
-                            </Text>
                             {
                                 this.displaySwitch()
                             }

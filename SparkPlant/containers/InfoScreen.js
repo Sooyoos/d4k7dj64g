@@ -65,7 +65,7 @@ let styles = StyleSheet.create({
     }
 });
 
-let appVersion = "22-11-2017-build143";
+let appVersion = "22-11-2017-build144";
 
 class InfoScreen extends Component {
 
@@ -81,7 +81,7 @@ class InfoScreen extends Component {
                 <View style={styles.body}>
                     <View style={styles.infoCard}>
                         <Text style={styles.infoCardText}>
-                            # de version : { appVersion }
+                            Version de l'application : { appVersion }
                         </Text>
                     </View>
                     <TouchableWithoutFeedback onPress={() => Linking.openURL('mailto:contact@sparkplant.com')}>
@@ -100,7 +100,7 @@ class InfoScreen extends Component {
 
 function mapStateToProps(state) {
     return {
-
+        nav : state.nav,
     };
 }
 
