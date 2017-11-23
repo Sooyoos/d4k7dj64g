@@ -101,6 +101,11 @@ class TagDetails extends Component {
         super(props);
     }
 
+    componentWillMount()
+    {
+        this.props.tryTagHistory(this.props.login, this.props.tags.currentTag);
+    }
+
     getStatusIcon() {
         let tag = this.props.tags.currentTag;
         if (tag.status === "closed_resolved") {
@@ -207,8 +212,27 @@ class TagDetails extends Component {
         }
     }
 
+    displayAuthor(tag)
+    {
+        if(tag.history)
+        {
+            return(
+                '#' + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6) + ' ouvert par ' + tag.history[0].user.firstName + ' ' + tag.history[0].user.lastName
+            );
+        }
+        else
+        {
+            return(
+                '#' + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6) + ' ouvert par '
+            );
+        }
+    }
+
     render() {
         let tag = this.props.tags.currentTag;
+
+        console.log(tag);
+
         if(tag)
         {
             return (
@@ -227,7 +251,7 @@ class TagDetails extends Component {
                                     <View style={styles.sectionContent}>
                                         <View>
                                             <Text style={{fontSize:layout.fontSize2p2, color : '#212121'}}>
-                                                #{lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} ouvert par {tag.supervisor.firstName} {tag.supervisor.lastName}
+                                                { this.displayAuthor(tag) }
                                             </Text>
                                             <Text style={{fontSize:layout.fontSize2p4, color : '#212121'}}>
                                                 {tag.title}
@@ -245,7 +269,7 @@ class TagDetails extends Component {
                                                 En charge du tag
                                             </Text>
                                             <Text style={{fontSize:layout.fontSize2p4, color : '#212121'}}>
-                                                {tag.supervisor.firstName} {tag.supervisor.lastName}
+                                                { tag.supervisor.firstName  + ' ' + tag.supervisor.lastName }
                                             </Text>
                                         </View>
                                     </View>
