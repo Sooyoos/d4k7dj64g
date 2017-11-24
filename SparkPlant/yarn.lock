@@ -3321,6 +3321,10 @@ react-native-message-bar@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-native-message-bar/-/react-native-message-bar-2.0.4.tgz#ac551ecc8391057a35cd4c48f9b3d412f0a3e9b2"
 
+react-native-modal-picker@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/react-native-modal-picker/-/react-native-modal-picker-0.0.16.tgz#c9324d880a3bb8f36b772f378164977e2f431cbc"
+
 react-native-pathjs-charts@^0.0.31:
   version "0.0.31"
   resolved "https://registry.yarnpkg.com/react-native-pathjs-charts/-/react-native-pathjs-charts-0.0.31.tgz#d9fb7b12e071fb2e8e62c2905eac63624659bbc3"

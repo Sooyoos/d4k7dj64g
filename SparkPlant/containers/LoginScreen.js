@@ -10,6 +10,7 @@ import {
     Picker,
     ActivityIndicator,
     BackHandler,
+    Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -17,6 +18,7 @@ import * as layout from '../assets/layout';
 import ElevatedView from 'react-native-elevated-view';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import firebase from "react-native-firebase";
+import ModalPicker from 'react-native-modal-picker';
 import { ActionCreators } from '../actions';
 import LoginUsernameInput from '../components/Login/LoginUserNameInput';
 import LoginPasswordInput from '../components/Login/LoginPasswordInput';
@@ -148,7 +150,29 @@ class LoginScreen extends Component {
         }
     }
 
-    buildUsersList() {
+    buildUsersListIos() {
+        let users = this.props.login.previousUsers;
+        let list = [];
+
+        for(var i = 0; i < users.length; i++)
+        {
+            list.push(
+                {
+                    key : i,
+                    label : users[i].factory + ' - ' + users[i].username,
+                    value : users[i],
+                }
+            );
+        }
+
+        return <ModalPicker
+            data={list}
+            initValue="Utilisateur"
+            style={styles.userSelect}
+            onChange={(option) => {this.autoLogin(option.index, option.value);}} />;
+    }
+
+    buildUsersListAndroid() {
         let users = this.props.login.previousUsers;
         let list = [];
 
@@ -163,7 +187,10 @@ class LoginScreen extends Component {
             );
         }
 
-        return list;
+        return <Picker style={styles.userSelect} onValueChange={(value, index) => {this.autoLogin(index, value);}} >
+            {list}
+                </Picker>
+            ;
     }
 
 
@@ -181,9 +208,7 @@ class LoginScreen extends Component {
                                 Connectez vous avec l'un des utilisateurs suivants :
                             </Text>
                             <View>
-                                <Picker style={styles.userSelect} onValueChange={(value, index) => {this.autoLogin(index, value);}} >
-                                    {this.buildUsersList()}
-                                </Picker>
+                                { Platform.OS === 'ios' ? this.buildUsersListIos() : this.buildUsersListAndroid()  }
                             </View>
                             <Text style={{fontSize: layout.fontSize1p5}}>
                                 Ou :
