@@ -10,6 +10,7 @@ target 'SparkPlant' do
   # Pods for SparkPlant
     pod 'RSKImageCropper'
     pod 'QBImagePickerController'
+    pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 
   target 'SparkPlantTests' do
     inherit! :search_paths
