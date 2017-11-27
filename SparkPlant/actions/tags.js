@@ -808,7 +808,7 @@ function fetchTransferUsersTag(login)
     return dispatch => {
         dispatch(tagTransferUsersRequested());
 
-        fetch(types.baseUrl + "/users", {
+        fetch(types.baseUrl + "/users?order[firstName]=asc", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
