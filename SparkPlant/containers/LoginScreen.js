@@ -65,7 +65,7 @@ let styles = StyleSheet.create({
     },
     userSelect : {
         width: layout.width50,
-        height : layout.height15,
+        height : layout.height8,
         fontSize : layout.fontSize2p8,
         alignItems : 'center',
         justifyContent : 'center',
@@ -172,7 +172,7 @@ class LoginScreen extends Component {
             data={list}
             initValue="Utilisateur"
             style={styles.userSelect}
-            selectStyle={{ fontSize : layout.fontSize2p8, height : layout.height5, width : layout.width50}}
+            selectStyle={{ fontSize : layout.fontSize2p8, height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
             onChange={(option) => {this.autoLogin(option.index, option.value);}} />;
     }
 
