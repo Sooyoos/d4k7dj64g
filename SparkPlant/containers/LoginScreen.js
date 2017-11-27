@@ -168,7 +168,7 @@ class LoginScreen extends Component {
         return <ModalPicker
             data={list}
             initValue="Utilisateur"
-            style={styles.userSelect}
+            selectStyle={styles.userSelect}
             onChange={(option) => {this.autoLogin(option.index, option.value);}} />;
     }
 
