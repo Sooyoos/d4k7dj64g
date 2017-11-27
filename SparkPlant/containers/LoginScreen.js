@@ -169,7 +169,7 @@ class LoginScreen extends Component {
             data={list}
             initValue="Utilisateur"
             style={styles.userSelect}
-            selectStyle={{paddingVertical: layout.height3, fontSize : layout.fontSize2p8, marginTop : layout.height5}}
+            selectStyle={{ fontSize : layout.fontSize2p8, height : layout.height10, alignItems : 'center', justifyContent: 'center'}}
             onChange={(option) => {this.autoLogin(option.index, option.value);}} />;
     }
 
