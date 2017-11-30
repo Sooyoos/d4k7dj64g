@@ -114,6 +114,9 @@ class CreateTagStep1 extends Component {
     constructor(props) {
         super(props);
         this.error = null;
+        this.state = {
+            placeDetails : null,
+        }
     }
 
     componentWillMount()
@@ -240,7 +243,7 @@ class CreateTagStep1 extends Component {
                                     <Picker style={styles.locationPicker} prompt="Sélectionnez le lieu" selectedValue={this.props.tags.creation_current.place} onValueChange={(value) => this.props.setCurrentCreationPlace(value)}>
                                         { this.buildPlacesList() }
                                     </Picker>
-                                    <TextInput style={{fontSize : layout.fontSize2p2}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
+                                    <TextInput style={{fontSize : layout.fontSize2p2}} placeholder="Détails du lieu" maxLength={30} value={this.state.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
                                     <View style={{flexDirection : "row", alignItems : "center"}}>
                                         <TouchableOpacity onPress={() => {
                                             this.props.setToRecord("place");
