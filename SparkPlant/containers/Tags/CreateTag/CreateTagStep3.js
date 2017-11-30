@@ -221,9 +221,9 @@ class CreateTagStep3 extends Component {
                                     Personnes en suivi
                                 </Text>
                             </ElevatedView>
-                            <View style={styles.cardPeopleContent}>
+                            <ScrollView style={{height : layout.height40}} contentContainerStyle={styles.cardPeopleContent} horizontal={false}>
                                 { users }
-                            </View>
+                            </ScrollView>
                         </ElevatedView>
                     </ScrollView>
                     <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
@@ -284,9 +284,9 @@ class CreateTagStep3 extends Component {
                                     Personnes en suivi
                                 </Text>
                             </ElevatedView>
-                            <View style={styles.cardPeopleContent}>
+                            <ScrollView style={{height : layout.height40}} contentContainerStyle={styles.cardPeopleContent} horizontal={false}>
                                 { users }
-                            </View>
+                            </ScrollView>
                         </ElevatedView>
                     </ScrollView>
                 </View>
