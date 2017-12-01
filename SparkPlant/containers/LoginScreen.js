@@ -17,7 +17,6 @@ import { bindActionCreators } from 'redux';
 import * as layout from '../assets/layout';
 import ElevatedView from 'react-native-elevated-view';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
-import firebase from "react-native-firebase";
 import ModalPicker from 'react-native-modal-picker';
 import { ActionCreators } from '../actions';
 import LoginUsernameInput from '../components/Login/LoginUserNameInput';
@@ -71,12 +70,6 @@ let styles = StyleSheet.create({
         justifyContent : 'center',
     },
 });
-
-const configurationOptions = {
-    debug: true
-};
-
-const Firebase = firebase.initializeApp(configurationOptions);
 
 class LoginScreen extends Component {
 
