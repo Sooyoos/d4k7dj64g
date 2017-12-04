@@ -33,7 +33,7 @@ function fetchUser(token, tokenString, data)
                 storeLogin(info);
                 dispatch(userSuccess(responseJson));
             })
-            .catch((error) => { dispatch(userFailure()); });
+            .catch((error) => { console.error(error); dispatch(userFailure()); });
     }
 }
 

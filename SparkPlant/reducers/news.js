@@ -52,6 +52,15 @@ export const newsReducer = {
             case types.USER_NEWS_FAILURE: {
                 return Object.assign({}, state, {loading : false});
             }
+            case types.NEWS_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
+            case types.NEWS_SUCCESS: {
+                return Object.assign({}, state, {currentNews : action.news, loading : false});
+            }
+            case types.NEWS_FAILURE: {
+                return Object.assign({}, state, {currentNews : null, loading : false});
+            }
             case types.WAITING_NEWS_REQUESTED: {
                 return Object.assign({}, state, {loading : true});
             }

@@ -76,7 +76,7 @@ class NewsListItem extends Component {
 
     goToDetails()
     {
-        this.props.setCurrentNews(this.props.item);
+        this.props.tryNews(this.props.login, this.props.item);
         this.props.route(this.props.nav);
     }
 

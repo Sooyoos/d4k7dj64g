@@ -7,7 +7,7 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
     Alert,
-    Modal,
+    ActivityIndicator,
     Picker,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -147,8 +147,9 @@ class WaitingNewsDetail extends Component {
         {
             for(var i = 0; i < medias.length; i++)
             {
+                console.log(medias[i]);
                 mediaList.push(
-                    <Image key={i} style={styles.image} source={{uri : medias[i]}} />
+                    <Image key={i} style={styles.image} source={{uri : medias[i].path}} />
                 );
             }
         }
@@ -207,8 +208,11 @@ class WaitingNewsDetail extends Component {
         );
     }
 
-    render() {
+    render()
+    {
         let item = this.props.news.currentNews;
+        if(this.props.news.loading === false && item)
+        {
             return (
                 <View style={styles.login}>
                     <HeaderNews {...this.props} headerTitle="News"/>
@@ -260,10 +264,16 @@ class WaitingNewsDetail extends Component {
                     </View>
                 </View>
             );
-
-
         }
-
+        else
+        {
+            return(
+                <View style={styles.login}>
+                    <ActivityIndicator color="#3f51b5" size="large"/>
+                </View>
+            );
+        }
+    }
 }
 
 function mapStateToProps(state) {

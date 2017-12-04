@@ -10,6 +10,55 @@ export function setCurrentNews(news)
     }
 }
 
+function fetchNews(login, data)
+{
+    return dispatch => {
+        dispatch(newsRequested());
+
+        fetch(types.baseUrl + data["@id"], {
+            method: 'GET',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+            },
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                dispatch(newsSuccess(responseJson));
+            })
+            .catch((error) => { dispatch(newsFailure()); });
+    }
+}
+
+function newsRequested()
+{
+    return {
+        type : types.NEWS_REQUESTED,
+    }
+}
+
+function newsSuccess(news)
+{
+    return {
+        type : types.NEWS_SUCCESS,
+        news : news,
+    }
+}
+
+function newsFailure()
+{
+    return {
+        type : types.NEWS_FAILURE,
+    }
+}
+
+export function tryNews(login, data)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchNews(login, data));
+    }
+}
+
 function fetchUserNews(login)
 {
     return dispatch => {
@@ -59,23 +108,41 @@ export function tryUserNews(login)
     }
 }
 
-function fetchWaitingNews(login)
+function fetchWaitingNews(login, user)
 {
     return dispatch => {
         dispatch(waitingNewsRequested());
 
-        fetch(types.baseUrl + "/news?published=false", {
-            method: 'GET',
-            headers: {
-                'Authorization' : 'Bearer ' + login.tokenString,
-            },
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                console.log(responseJson);
-                dispatch(waitingNewsSuccess(responseJson["hydra:member"]));
-            })
-            .catch((error) => { dispatch(waitingNewsFailure()); });
+        let news = [];
+        let userUnits = [];
+        let units = [];
+
+        for(var i = 0; i < user.rolesByUnit.length; i++)
+        {
+            if(user.rolesByUnit[i].role.title === 'Responsable')
+            {
+                userUnits.push(user.rolesByUnit[i].unit);
+            }
+        }
+
+        for(var i = 0; i < userUnits.length; i++)
+        {
+            units = units.concat(userUnits[i].children);
+        }
+
+        for(var i = 0; i < units.length; i++)
+        {
+            console.log(units[i].news);
+            for(var j = 0; j < units[i].news.length; j++)
+            {
+                if(units[i].news[j].published === false)
+                {
+                    news.push(units[i].news[j]);
+                }
+            }
+        }
+
+        dispatch(waitingNewsSuccess(news));
     }
 }
 
@@ -101,10 +168,10 @@ function waitingNewsFailure()
     }
 }
 
-export function tryWaitingNews(login)
+export function tryWaitingNews(login, user)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchWaitingNews(login));
+        return dispatch(fetchWaitingNews(login, user));
     }
 }
 

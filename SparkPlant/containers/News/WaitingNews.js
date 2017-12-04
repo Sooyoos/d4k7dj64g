@@ -49,7 +49,7 @@ class WaitingNews extends Component {
 
     componentWillMount()
     {
-        this.props.tryWaitingNews(this.props.login);
+        this.props.tryWaitingNews(this.props.login, this.props.users.loggedUser);
     }
 
     render() {
@@ -74,6 +74,7 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        users : state.users,
     };
 }
 
