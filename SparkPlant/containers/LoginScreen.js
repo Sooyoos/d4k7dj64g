@@ -124,6 +124,8 @@ class LoginScreen extends Component {
     autoLogin(index, value)
     {
         console.log(value);
+        console.log(index);
+        console.log(this.props.login.previousUsers);
 
         if(value.responsable)
         {
@@ -133,15 +135,31 @@ class LoginScreen extends Component {
         }
         else
         {
-            if(value !== "new" && index >= 0)
+            if(Platform.OS === 'android')
             {
-                let users = this.props.login.previousUsers;
-                this.props.tryLogin(users[index - 1].factory, users[index - 1].username, users[index - 1].password);
+                if(value !== "new" && index >= 0)
+                {
+                    let users = this.props.login.previousUsers;
+                    this.props.tryLogin(users[index - 1].factory, users[index - 1].username, users[index - 1].password);
+                }
+                else
+                {
+                    this.setState({new : true});
+                }
             }
             else
             {
-                this.setState({new : true});
+                if(value !== "new" && index >= 0)
+                {
+                    let users = this.props.login.previousUsers;
+                    this.props.tryLogin(users[index].factory, users[index].username, users[index].password);
+                }
+                else
+                {
+                    this.setState({new : true});
+                }
             }
+
         }
     }
 
