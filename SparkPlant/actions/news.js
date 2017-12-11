@@ -73,7 +73,8 @@ function fetchUserNews(login)
             .then((response) => response.json())
             .then((responseJson) => {
             console.log(responseJson);
-                dispatch(userNewsSuccess(responseJson["hydra:member"]));
+                let news = responseJson["hydra:member"];
+                dispatch(userNewsSuccess(news.reverse()));
             })
             .catch((error) => { dispatch(userNewsFailure()); });
     }
@@ -142,7 +143,7 @@ function fetchWaitingNews(login, user)
             }
         }
 
-        dispatch(waitingNewsSuccess(news));
+        dispatch(waitingNewsSuccess(news.reverse()));
     }
 }
 
