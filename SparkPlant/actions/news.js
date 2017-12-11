@@ -143,7 +143,7 @@ function fetchWaitingNews(login, user)
             }
         }
 
-        dispatch(waitingNewsSuccess(news.reverse()));
+        dispatch(waitingNewsSuccess(news));
     }
 }
 
@@ -343,6 +343,9 @@ export function prepareNews(news)
 
 function fetchCreateNews(login, news)
 {
+    console.log("NEWS IN CREATE NEWS");
+    console.log(news);
+
     return dispatch => {
         dispatch(createNewsRequested());
 

@@ -186,11 +186,12 @@ class CreateNewsStep1 extends Component {
             item : {
                 title : null,
                 content : null,
-                visibility : null,
+                visibility : 'private',
                 unit : null,
                 media : [
 
                 ],
+                published : false,
             }
         };
     }
