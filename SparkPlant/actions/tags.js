@@ -1146,3 +1146,10 @@ export function trySetTagFollowers(followers)
         followers : followers,
     }
 }
+
+export function resetCreationCurrentTag()
+{
+    return {
+        type: types.RESET_CURRENT_CREATION_TAG,
+    }
+}

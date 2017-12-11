@@ -444,6 +444,9 @@ export const tagsReducer = {
                 let creationCurrent = Object.assign({}, state.creation_current, {users : action.followers});
                 return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
             }
+            case types.RESET_CURRENT_CREATION_TAG : {
+                return Object.assign({}, state, {creation_current : initialState.creation_current, loading : false});
+            }
             default :
                 return state;
         }

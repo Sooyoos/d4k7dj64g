@@ -123,6 +123,7 @@ class CreateTagStep1 extends Component {
     {
         this.props.tryTagPlaces(this.props.login);
         this.props.tryTagAxis(this.props.login);
+        this.props.resetCreationCurrentTag();
     }
 
     checkRequiredFields()
