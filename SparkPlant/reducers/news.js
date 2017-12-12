@@ -117,6 +117,7 @@ export const newsReducer = {
             }
             case types.SET_CREATION_VISIBILITY : {
                 let creationCurrent = Object.assign({}, state.creation_current, {visibility : action.visibility});
+                console.log(creationCurrent);
                 return Object.assign({}, state, {creation_current : creationCurrent});
             }
             case types.NEWS_UPLOAD_MEDIA_SUCCESS: {
@@ -130,7 +131,7 @@ export const newsReducer = {
                         id : action.media["@id"],
                         uri : original
                     };
-                    let creationCurrent = Object.assign({}, state.creation_current, {visibility : action.visibility, media : medias});
+                    let creationCurrent = Object.assign({}, state.creation_current, {media : medias});
                     return Object.assign({}, state, {creation_current : creationCurrent});
                 }
             }

@@ -64,7 +64,7 @@ function fetchUserNews(login)
     return dispatch => {
         dispatch(userNewsRequested());
 
-        fetch(types.baseUrl + "/news?published=true", {
+        fetch(types.baseUrl + "/news", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
