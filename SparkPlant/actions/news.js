@@ -72,8 +72,22 @@ function fetchUserNews(login)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-            console.log(responseJson);
-                let news = responseJson["hydra:member"];
+                console.log(responseJson);
+                let list = responseJson["hydra:member"];
+                let news = [];
+
+                for(var i = 0; i < list.length; i++)
+                {
+                    if(list[i].published === true && list[i].previousUnit === null)
+                    {
+                        news.push(list[i]);
+                    }
+                    else if(list[i].publishedBySupervisor === true && list[i].previousUnit !== null)
+                    {
+                        news.push(list[i]);
+                    }
+                }
+
                 dispatch(userNewsSuccess(news.reverse()));
             })
             .catch((error) => { dispatch(userNewsFailure()); });
@@ -109,41 +123,38 @@ export function tryUserNews(login)
     }
 }
 
-function fetchWaitingNews(login, user)
+function fetchWaitingNews(login)
 {
     return dispatch => {
         dispatch(waitingNewsRequested());
 
-        let news = [];
-        let userUnits = [];
-        let units = [];
+        fetch(types.baseUrl + "/news", {
+            method: 'GET',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+            },
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                let list = responseJson["hydra:member"];
+                let news = [];
 
-        for(var i = 0; i < user.rolesByUnit.length; i++)
-        {
-            if(user.rolesByUnit[i].role.title === 'Responsable')
-            {
-                userUnits.push(user.rolesByUnit[i].unit);
-            }
-        }
-
-        for(var i = 0; i < userUnits.length; i++)
-        {
-            units = units.concat(userUnits[i].children);
-        }
-
-        for(var i = 0; i < units.length; i++)
-        {
-            console.log(units[i].news);
-            for(var j = 0; j < units[i].news.length; j++)
-            {
-                if(units[i].news[j].published === false)
+                console.log(list);
+                for(var i = 0; i < list.length; i++)
                 {
-                    news.push(units[i].news[j]);
+                    if(list[i].published === false && list[i].previousUnit === null) // unit has been created in this unit and awaits publication
+                    {
+                        news.push(list[i]);
+                    }
+                    else if(list[i].published === true && list[i].publishedBySupervisor === false && list[i].previousUnit !== null) // unit has been transfered from another unit and awaits publication
+                    {
+                        news.push(list[i]);
+                    }
                 }
-            }
-        }
-
-        dispatch(waitingNewsSuccess(news));
+                console.log(news);
+                dispatch(waitingNewsSuccess(news.reverse()));
+            })
+            .catch((error) => { dispatch(waitingNewsFailure()); });
     }
 }
 
@@ -181,24 +192,48 @@ function fetchPublishNews(login, news)
     return dispatch => {
         dispatch(publishNewsRequested());
 
-        fetch(types.baseUrl + news["@id"], {
-            method: 'PUT',
-            headers: {
-                'Authorization' : 'Bearer ' + login.tokenString,
-                'Content-Type' : 'application/json',
-            },
-            body : JSON.stringify(
-                {
-                    published : true,
-                }
-            )
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                console.log(responseJson);
-                dispatch(publishNewsSuccess(responseJson));
+        if(news.prevousUnit === null)
+        {
+            fetch(types.baseUrl + news["@id"], {
+                method: 'PUT',
+                headers: {
+                    'Authorization' : 'Bearer ' + login.tokenString,
+                    'Content-Type' : 'application/json',
+                },
+                body : JSON.stringify(
+                    {
+                        published : true,
+                    }
+                )
             })
-            .catch((error) => { console.log(error); dispatch(publishNewsFailure()); });
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    console.log(responseJson);
+                    dispatch(publishNewsSuccess(responseJson));
+                })
+                .catch((error) => { console.log(error); dispatch(publishNewsFailure()); });
+        }
+        else
+        {
+            fetch(types.baseUrl + news["@id"], {
+                method: 'PUT',
+                headers: {
+                    'Authorization' : 'Bearer ' + login.tokenString,
+                    'Content-Type' : 'application/json',
+                },
+                body : JSON.stringify(
+                    {
+                        publishedBySupervisor : true,
+                    }
+                )
+            })
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    console.log(responseJson);
+                    dispatch(publishNewsSuccess(responseJson));
+                })
+                .catch((error) => { console.log(error); dispatch(publishNewsFailure()); });
+        }
     }
 }
 

@@ -6,12 +6,13 @@ const initialState = {
     creation_current : {
         title : null,
         content : null,
-        visibility : "private",
+        visibility : "public",
         unit : null,
         media : [
 
         ],
         published : false,
+        publishedBySupervisor : false,
         search : null,
         searchWaiting : null,
         searchResults : null,
@@ -23,8 +24,6 @@ const initialState = {
 function getCurrentCreationMediaIndex(state, filename)
 {
     let medias = state.creation_current.media;
-
-    console.log(medias);
 
     for(var i = 0; i < medias.length; i++)
     {
@@ -121,9 +120,8 @@ export const newsReducer = {
                 return Object.assign({}, state, {creation_current : creationCurrent});
             }
             case types.NEWS_UPLOAD_MEDIA_SUCCESS: {
-                console.log(action.media);
                 let index = getCurrentCreationMediaIndex(state, action.media.originalFilename);
-                console.log(index);
+
                 if(index !== -1)
                 {
                     let medias = state.creation_current.media;

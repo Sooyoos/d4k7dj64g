@@ -66,6 +66,28 @@ class NewsScreen extends Component {
         return false;
     }
 
+    filterNewsForUserPermission(news, responsable)
+    {
+        let list = [];
+
+        for(var i = 0; i < news.length; i++)
+        {
+            if(news[i].visibility !== 'public')
+            {
+                if(responsable)
+                {
+                    list.push(news[i]);
+                }
+            }
+            else
+            {
+                list.push(news[i]);
+            }
+        }
+
+        return list;
+    }
+
     render() {
         let responsable = this.isResponsable();
 
@@ -75,7 +97,7 @@ class NewsScreen extends Component {
                 <View style={styles.login}>
                     <HeaderNews {...this.props} headerTitle="News"/>
                     <View style={styles.body}>
-                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.props.news.news} />
+                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.filterNewsForUserPermission(this.props.news.news)} />
                     </View>
                     <View style={styles.footer}>
                         <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={() => { this.props.goToNewsPage(this.props.nav) }}/>
@@ -90,7 +112,7 @@ class NewsScreen extends Component {
                 <View style={styles.login}>
                     <HeaderNews {...this.props} headerTitle="News"/>
                     <View style={styles.body}>
-                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.props.news.news} />
+                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.filterNewsForUserPermission(this.props.news.news)} />
                     </View>
                     <View style={styles.footer}>
                         <FooterButton {...this.props} active={false} iconName="newspaper-o" text="Publiées" route={ () => { this.props.goToNewsPage(this.props.nav) }}/>
