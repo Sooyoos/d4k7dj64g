@@ -48,7 +48,10 @@ class NewsScreen extends Component {
 
     componentWillMount()
     {
-        this.props.tryUserNews(this.props.login);
+        if(this.props.users.loggedUser !== null)
+        {
+            this.props.tryUserNews(this.props.login, this.props.users.loggedUser);
+        }
     }
 
     isResponsable()

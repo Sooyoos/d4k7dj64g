@@ -4,6 +4,7 @@ import {
     Text,
     StyleSheet,
     TouchableWithoutFeedback,
+    ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DashboardNewsItem from './DashboardNewsItem';
@@ -114,11 +115,22 @@ class DashboardNews extends Component {
     }
 
     render() {
-        return (
-            <View style={styles.dashboardNews}>
-                {this.buildNewsList(this.filterNewsForUserPermission(this.props.news.news, this.props.responsable))}
-            </View>
-        );
+        if(this.props.news.news)
+        {
+            return (
+                <View style={styles.dashboardNews}>
+                    {this.buildNewsList(this.filterNewsForUserPermission(this.props.news.news, this.props.responsable))}
+                </View>
+            );
+        }
+        else
+        {
+            return(
+                <View style={styles.dashboardNews}>
+                    <ActivityIndicator color="#3f51b5" size="large"/>
+                </View>
+            );
+        }
     }
 };
 

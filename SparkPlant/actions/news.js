@@ -59,10 +59,20 @@ export function tryNews(login, data)
     }
 }
 
-function fetchUserNews(login)
+function fetchUserNews(login, user)
 {
     return dispatch => {
         dispatch(userNewsRequested());
+
+        let unit_ids = [];
+
+        for(var i = 0; i < user.rolesByUnit.length; i++)
+        {
+            if(!unit_ids.includes(user.rolesByUnit[i].unit["@id"]))
+            {
+                unit_ids.push(user.rolesByUnit[i].unit["@id"]);
+            }
+        }
 
         fetch(types.baseUrl + "/news", {
             method: 'GET',
@@ -75,16 +85,33 @@ function fetchUserNews(login)
                 console.log(responseJson);
                 let list = responseJson["hydra:member"];
                 let news = [];
+                let ids = [];
 
                 for(var i = 0; i < list.length; i++)
                 {
                     if(list[i].published === true && list[i].previousUnit === null)
                     {
-                        news.push(list[i]);
+                        if(!ids.includes(list[i]["@id"]))
+                        {
+                            news.push(list[i]);
+                            ids.push(list[i]["@id"])
+                        }
                     }
                     else if(list[i].publishedBySupervisor === true && list[i].previousUnit !== null)
                     {
-                        news.push(list[i]);
+                        if(!ids.includes(list[i]["@id"]))
+                        {
+                            news.push(list[i]);
+                            ids.push(list[i]["@id"])
+                        }
+                    }
+                    else if(list[i].publishedBySupervisor === false && unit_ids.includes(list[i].previousUnit["@id"]))
+                    {
+                        if(!ids.includes(list[i]["@id"]))
+                        {
+                            news.push(list[i]);
+                            ids.push(list[i]["@id"])
+                        }
                     }
                 }
 
@@ -116,17 +143,27 @@ function userNewsFailure()
     }
 }
 
-export function tryUserNews(login)
+export function tryUserNews(login, user)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchUserNews(login));
+        return dispatch(fetchUserNews(login, user));
     }
 }
 
-function fetchWaitingNews(login)
+function fetchWaitingNews(login, user)
 {
     return dispatch => {
         dispatch(waitingNewsRequested());
+
+        let unit_ids = [];
+
+        for(var i = 0; i < user.rolesByUnit.length; i++)
+        {
+            if(!unit_ids.includes(user.rolesByUnit[i].unit["@id"]))
+            {
+                unit_ids.push(user.rolesByUnit[i].unit["@id"]);
+            }
+        }
 
         fetch(types.baseUrl + "/news", {
             method: 'GET',
@@ -137,18 +174,27 @@ function fetchWaitingNews(login)
             .then((response) => response.json())
             .then((responseJson) => {
                 let list = responseJson["hydra:member"];
+                let ids = [];
                 let news = [];
 
                 console.log(list);
                 for(var i = 0; i < list.length; i++)
                 {
-                    if(list[i].published === false && list[i].previousUnit === null) // unit has been created in this unit and awaits publication
+                    if(list[i].published === false && list[i].previousUnit === null) // news has been created in this unit and awaits publication
                     {
-                        news.push(list[i]);
+                        if(!ids.includes(list[i]["@id"]))
+                        {
+                            news.push(list[i]);
+                            ids.push(list[i]["@id"]);
+                        }
                     }
-                    else if(list[i].published === true && list[i].publishedBySupervisor === false && list[i].previousUnit !== null) // unit has been transfered from another unit and awaits publication
+                    else if(list[i].published === true && list[i].publishedBySupervisor === false && list[i].previousUnit !== null && !unit_ids.includes(list[i].previousUnit["@id"])) // news has been transfered from another unit and awaits publication
                     {
-                        news.push(list[i]);
+                        if(!ids.includes(list[i]["@id"]))
+                        {
+                            news.push(list[i]);
+                            ids.push(list[i]["@id"]);
+                        }
                     }
                 }
                 console.log(news);

@@ -1,5 +1,6 @@
 import * as types from './types';
 import { storeLogin } from './login';
+import { tryUserNews } from "./news";
 
 function isResponsable(user)
 {
@@ -31,6 +32,7 @@ function fetchUser(token, tokenString, data)
             .then((responseJson) => {
                 let info = Object.assign({}, data, {responsable : isResponsable(responseJson)});
                 storeLogin(info);
+                dispatch(tryUserNews({ tokenString : tokenString }, responseJson));
                 dispatch(userSuccess(responseJson));
             })
             .catch((error) => { console.error(error); dispatch(userFailure()); });

@@ -169,7 +169,7 @@ function sendLoginSuccessResponse(response)
 export function loginSuccess(response, data)
 {
     return dispatch => {
-        dispatch(tryUserNews({tokenString : response.token}));
+        //dispatch(tryUserNews({tokenString : response.token}));
         dispatch(tryUser(parseJwt(response.token), response.token, data));
         dispatch(sendLoginSuccessResponse(response));
     }
