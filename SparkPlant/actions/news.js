@@ -192,7 +192,7 @@ function fetchPublishNews(login, news)
     return dispatch => {
         dispatch(publishNewsRequested());
 
-        if(news.prevousUnit === null)
+        if(news.previousUnit === null)
         {
             fetch(types.baseUrl + news["@id"], {
                 method: 'PUT',
