@@ -74,7 +74,7 @@ class NewsScreen extends Component {
         {
             if(news[i].visibility !== 'public')
             {
-                if(responsable)
+                if(responsable === true)
                 {
                     list.push(news[i]);
                 }

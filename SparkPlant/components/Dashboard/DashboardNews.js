@@ -59,6 +59,28 @@ class DashboardNews extends Component {
         }
     }
 
+    filterNewsForUserPermission(news, responsable)
+    {
+        let list = [];
+
+        for(var i = 0; i < news.length; i++)
+        {
+            if(news[i].visibility !== 'public')
+            {
+                if(responsable === true)
+                {
+                    list.push(news[i]);
+                }
+            }
+            else
+            {
+                list.push(news[i]);
+            }
+        }
+
+        return list;
+    }
+
     goToDetails(item)
     {
         this.props.setCurrentNews(item);
@@ -94,7 +116,7 @@ class DashboardNews extends Component {
     render() {
         return (
             <View style={styles.dashboardNews}>
-                {this.buildNewsList(this.props.news.news)}
+                {this.buildNewsList(this.filterNewsForUserPermission(this.props.news.news, this.props.responsable))}
             </View>
         );
     }
