@@ -232,7 +232,7 @@ class WaitingNewsDetail extends Component {
                                 <Text style={styles.infoText}>
                                     Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
                                 </Text>
-                                <Image style={styles.infoImage} source={{uri : item.user.avatar.path || "http://via.placeholder.com/50x50"}}/>
+                                <Image style={styles.infoImage} source={{uri : item.user.avatar ? item.user.avatar.path : "http://via.placeholder.com/50x50"}}/>
                             </View>
                             <Text style={styles.contentText} numberOfLines={12}>
                                 {item.content}
