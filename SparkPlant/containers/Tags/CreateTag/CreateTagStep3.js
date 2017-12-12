@@ -168,7 +168,7 @@ class CreateTagStep3 extends Component {
     render() {
         let supervisor = this.props.tags.creation_current.supervisor;
         let followers = this.props.tags.creation_current.users;
-        if(supervisor !== null && followers.length > 0)
+        if(supervisor !== null)
         {
             let users = [];
             for(let i = 0; i < followers.length; i++)
