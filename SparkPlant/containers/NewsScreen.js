@@ -97,7 +97,7 @@ class NewsScreen extends Component {
                 <View style={styles.login}>
                     <HeaderNews {...this.props} headerTitle="News"/>
                     <View style={styles.body}>
-                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.filterNewsForUserPermission(this.props.news.news)} />
+                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.filterNewsForUserPermission(this.props.news.news, responsable)} />
                     </View>
                     <View style={styles.footer}>
                         <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={() => { this.props.goToNewsPage(this.props.nav) }}/>
@@ -112,7 +112,7 @@ class NewsScreen extends Component {
                 <View style={styles.login}>
                     <HeaderNews {...this.props} headerTitle="News"/>
                     <View style={styles.body}>
-                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.filterNewsForUserPermission(this.props.news.news)} />
+                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.filterNewsForUserPermission(this.props.news.news, responsable)} />
                     </View>
                     <View style={styles.footer}>
                         <FooterButton {...this.props} active={false} iconName="newspaper-o" text="Publiées" route={ () => { this.props.goToNewsPage(this.props.nav) }}/>
