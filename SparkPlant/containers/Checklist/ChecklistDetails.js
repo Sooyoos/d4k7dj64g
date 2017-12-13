@@ -223,7 +223,10 @@ class ChecklistDetails extends Component {
             }
         }
 
-        return false;
+        if(checklists.length === 0)
+            return true;
+        else
+            return false;
     }
 
     assignChecklist()
@@ -240,15 +243,17 @@ class ChecklistDetails extends Component {
             this.props.tryAssignChecklists(this.props.login, checklistInstance);
             this.props.goToChecklistLibrary(this.props.nav);
         }
-
-        Alert.alert(
-            'Checkliste déjà utilisée',
-            'Votre unité réalise déjà cette checkliste',
-            [
-                {text: 'OK', onPress: () => this.props.goToChecklistLibrary(this.props.nav)},
-            ],
-            { cancelable: false }
-        )
+        else
+        {
+            Alert.alert(
+                'Checkliste déjà utilisée',
+                'Votre unité réalise déjà cette checkliste',
+                [
+                    {text: 'OK', onPress: () => this.props.goToChecklistLibrary(this.props.nav)},
+                ],
+                { cancelable: false }
+            )
+        }
     }
 
     render() {
