@@ -379,7 +379,20 @@ function fetchTagFollowers(login, user, tag)
                 }
                 if(!flag)
                     users.push(user);
-                dispatch(getTagFollowersSuccess(users));
+
+                let ids = [];
+                let list = [];
+
+                for(var i = 0; i < users.length; i++)
+                {
+                    if(!ids.includes(users[i]["@id"]))
+                    {
+                        list.push(users[i]);
+                        ids.push(users[i]["@id"]);
+                    }
+                }
+
+                dispatch(getTagFollowersSuccess(list));
             })
             .catch((error) => { console.log(error); dispatch(getTagFollowersFailure()); });
     }
