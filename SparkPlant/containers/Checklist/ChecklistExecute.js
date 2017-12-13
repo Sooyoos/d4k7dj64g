@@ -373,7 +373,7 @@ class ChecklistExecute extends Component {
 
     renderTaskFlag(value, ranges)
     {
-        if(parseInt(value) > ranges[0].minValue && parseInt(value) < ranges[0].maxValue)
+        if(parseFloat(value) >= parseFloat(ranges[0].minValue) && parseFloat(value) <= parseFloat(ranges[0].maxValue))
         {
             return(
                 <View style={styles.taskFlagOk}>
