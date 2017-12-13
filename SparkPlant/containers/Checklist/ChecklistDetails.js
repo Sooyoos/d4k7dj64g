@@ -217,16 +217,13 @@ class ChecklistDetails extends Component {
 
         for(var i = 0; i < checklists.length; i++)
         {
-            if(checklist["@id"] === checklists[i]["@id"])
+            if(checklist["@id"] === checklists[i].checklist["@id"])
             {
                 return true;
             }
         }
 
-        if(checklists.length === 0)
-            return true;
-        else
-            return false;
+        return false;
     }
 
     assignChecklist()
@@ -241,7 +238,7 @@ class ChecklistDetails extends Component {
         if(!this.checklistIsAlreadyAssigned(checklist))
         {
             this.props.tryAssignChecklists(this.props.login, checklistInstance);
-            this.props.goToChecklistLibrary(this.props.nav);
+            this.props.goToChecklistPage(this.props.nav);
         }
         else
         {
