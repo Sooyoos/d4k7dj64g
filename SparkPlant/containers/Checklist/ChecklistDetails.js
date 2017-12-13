@@ -205,6 +205,7 @@ class ChecklistDetails extends Component {
                 list.push(
                     <Picker.Item key={i} label={roles[i].unit.name} value={roles[i].unit["@id"]} />
                 );
+                ids.push(roles[i].unit["@id"]);
             }
         }
 
