@@ -105,7 +105,7 @@ function fetchUserNews(login, user)
                             ids.push(list[i]["@id"])
                         }
                     }
-                    else if(list[i].publishedBySupervisor === false && unit_ids.includes(list[i].previousUnit["@id"]))
+                    else if(list[i].publishedBySupervisor === false && list[i].previousUnit !== null && unit_ids.includes(list[i].previousUnit["@id"]))
                     {
                         if(!ids.includes(list[i]["@id"]))
                         {
@@ -117,7 +117,7 @@ function fetchUserNews(login, user)
 
                 dispatch(userNewsSuccess(news.reverse()));
             })
-            .catch((error) => { dispatch(userNewsFailure()); });
+            .catch((error) => {console.log(error); dispatch(userNewsFailure()); });
     }
 }
 
@@ -379,6 +379,7 @@ function fetchDeleteNews(login, news)
             },
         })
             .then((responseJson) => {
+                console.log(responseJson);
                 dispatch(deleteNewsSuccess(responseJson));
             })
             .catch((error) => { dispatch(deleteNewsFailure()); });
