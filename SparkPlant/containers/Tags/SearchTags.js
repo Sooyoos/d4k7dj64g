@@ -86,11 +86,14 @@ class SearchTags extends Component {
         let fullList = this.props.tags.allTags;
         let shortList = [];
 
-        for(var i = 0; i < fullList.length; i++)
+        if(this.state.search)
         {
-            if(fullList[i].title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+            for(var i = 0; i < fullList.length; i++)
             {
-                shortList.push(fullList[i]);
+                if(fullList[i].title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+                {
+                    shortList.push(fullList[i]);
+                }
             }
         }
 
