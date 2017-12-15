@@ -10,12 +10,12 @@ export function setCurrentNews(news)
     }
 }
 
-function fetchUserNews(login)
+function fetchNews(login, data)
 {
     return dispatch => {
-        dispatch(userNewsRequested());
+        dispatch(newsRequested());
 
-        fetch(types.baseUrl + "/news?published=true", {
+        fetch(types.baseUrl + data["@id"], {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -23,10 +23,101 @@ function fetchUserNews(login)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-            console.log(responseJson);
-                dispatch(userNewsSuccess(responseJson["hydra:member"]));
+                console.log(responseJson);
+                dispatch(newsSuccess(responseJson));
             })
-            .catch((error) => { dispatch(userNewsFailure()); });
+            .catch((error) => { dispatch(newsFailure()); });
+    }
+}
+
+function newsRequested()
+{
+    return {
+        type : types.NEWS_REQUESTED,
+    }
+}
+
+function newsSuccess(news)
+{
+    return {
+        type : types.NEWS_SUCCESS,
+        news : news,
+    }
+}
+
+function newsFailure()
+{
+    return {
+        type : types.NEWS_FAILURE,
+    }
+}
+
+export function tryNews(login, data)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchNews(login, data));
+    }
+}
+
+function fetchUserNews(login, user)
+{
+    return dispatch => {
+        dispatch(userNewsRequested());
+
+        let unit_ids = [];
+
+        for(var i = 0; i < user.rolesByUnit.length; i++)
+        {
+            if(!unit_ids.includes(user.rolesByUnit[i].unit["@id"]))
+            {
+                unit_ids.push(user.rolesByUnit[i].unit["@id"]);
+            }
+        }
+
+        fetch(types.baseUrl + "/news", {
+            method: 'GET',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+            },
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                let list = responseJson["hydra:member"];
+                let news = [];
+                let ids = [];
+
+                for(var i = 0; i < list.length; i++)
+                {
+                    if(list[i].published === true && list[i].previousUnit === null)
+                    {
+                        if(!ids.includes(list[i]["@id"]))
+                        {
+                            news.push(list[i]);
+                            ids.push(list[i]["@id"])
+                        }
+                    }
+                    else if(list[i].publishedBySupervisor === true && list[i].previousUnit !== null)
+                    {
+                        if(!ids.includes(list[i]["@id"]))
+                        {
+                            news.push(list[i]);
+                            ids.push(list[i]["@id"])
+                        }
+                    }
+                    else if(list[i].publishedBySupervisor === false && list[i].previousUnit !== null && unit_ids.includes(list[i].previousUnit["@id"]))
+                    {
+                        if(!ids.includes(list[i]["@id"]))
+                        {
+                            news.push(list[i]);
+                            ids.push(list[i]["@id"])
+                        }
+                    }
+                }
+
+                dispatch(userNewsSuccess(news.reverse()));
+            })
+            .catch((error) => {console.log(error); dispatch(userNewsFailure()); });
     }
 }
 
@@ -52,19 +143,29 @@ function userNewsFailure()
     }
 }
 
-export function tryUserNews(login)
+export function tryUserNews(login, user)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchUserNews(login));
+        return dispatch(fetchUserNews(login, user));
     }
 }
 
-function fetchWaitingNews(login)
+function fetchWaitingNews(login, user)
 {
     return dispatch => {
         dispatch(waitingNewsRequested());
 
-        fetch(types.baseUrl + "/news?published=false", {
+        let unit_ids = [];
+
+        for(var i = 0; i < user.rolesByUnit.length; i++)
+        {
+            if(!unit_ids.includes(user.rolesByUnit[i].unit["@id"]))
+            {
+                unit_ids.push(user.rolesByUnit[i].unit["@id"]);
+            }
+        }
+
+        fetch(types.baseUrl + "/news", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -72,8 +173,32 @@ function fetchWaitingNews(login)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
-                dispatch(waitingNewsSuccess(responseJson["hydra:member"]));
+                let list = responseJson["hydra:member"];
+                let ids = [];
+                let news = [];
+
+                console.log(list);
+                for(var i = 0; i < list.length; i++)
+                {
+                    if(list[i].published === false && list[i].previousUnit === null) // news has been created in this unit and awaits publication
+                    {
+                        if(!ids.includes(list[i]["@id"]))
+                        {
+                            news.push(list[i]);
+                            ids.push(list[i]["@id"]);
+                        }
+                    }
+                    else if(list[i].published === true && list[i].publishedBySupervisor === false && list[i].previousUnit !== null && !unit_ids.includes(list[i].previousUnit["@id"])) // news has been transfered from another unit and awaits publication
+                    {
+                        if(!ids.includes(list[i]["@id"]))
+                        {
+                            news.push(list[i]);
+                            ids.push(list[i]["@id"]);
+                        }
+                    }
+                }
+                console.log(news);
+                dispatch(waitingNewsSuccess(news.reverse()));
             })
             .catch((error) => { dispatch(waitingNewsFailure()); });
     }
@@ -101,10 +226,10 @@ function waitingNewsFailure()
     }
 }
 
-export function tryWaitingNews(login)
+export function tryWaitingNews(login, user)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchWaitingNews(login));
+        return dispatch(fetchWaitingNews(login, user));
     }
 }
 
@@ -113,24 +238,48 @@ function fetchPublishNews(login, news)
     return dispatch => {
         dispatch(publishNewsRequested());
 
-        fetch(types.baseUrl + news["@id"], {
-            method: 'PUT',
-            headers: {
-                'Authorization' : 'Bearer ' + login.tokenString,
-                'Content-Type' : 'application/json',
-            },
-            body : JSON.stringify(
-                {
-                    published : true,
-                }
-            )
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                console.log(responseJson);
-                dispatch(publishNewsSuccess(responseJson));
+        if(news.previousUnit === null)
+        {
+            fetch(types.baseUrl + news["@id"], {
+                method: 'PUT',
+                headers: {
+                    'Authorization' : 'Bearer ' + login.tokenString,
+                    'Content-Type' : 'application/json',
+                },
+                body : JSON.stringify(
+                    {
+                        published : true,
+                    }
+                )
             })
-            .catch((error) => { console.log(error); dispatch(publishNewsFailure()); });
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    console.log(responseJson);
+                    dispatch(publishNewsSuccess(responseJson));
+                })
+                .catch((error) => { console.log(error); dispatch(publishNewsFailure()); });
+        }
+        else
+        {
+            fetch(types.baseUrl + news["@id"], {
+                method: 'PUT',
+                headers: {
+                    'Authorization' : 'Bearer ' + login.tokenString,
+                    'Content-Type' : 'application/json',
+                },
+                body : JSON.stringify(
+                    {
+                        publishedBySupervisor : true,
+                    }
+                )
+            })
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    console.log(responseJson);
+                    dispatch(publishNewsSuccess(responseJson));
+                })
+                .catch((error) => { console.log(error); dispatch(publishNewsFailure()); });
+        }
     }
 }
 
@@ -230,6 +379,7 @@ function fetchDeleteNews(login, news)
             },
         })
             .then((responseJson) => {
+                console.log(responseJson);
                 dispatch(deleteNewsSuccess(responseJson));
             })
             .catch((error) => { dispatch(deleteNewsFailure()); });
@@ -275,6 +425,9 @@ export function prepareNews(news)
 
 function fetchCreateNews(login, news)
 {
+    console.log("NEWS IN CREATE NEWS");
+    console.log(news);
+
     return dispatch => {
         dispatch(createNewsRequested());
 

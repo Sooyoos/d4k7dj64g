@@ -5,6 +5,7 @@ import {
     ScrollView,
     Image,
     Text,
+    ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -131,47 +132,66 @@ class NewsDetail extends Component {
         let item = this.props.news.currentNews;
         let author = "";
 
-        if(item.user)
+        if(item)
         {
-            author = item.user.firstName + " " + item.user.lastName;
+            if(item.user)
+            {
+                author = item.user.firstName + " " + item.user.lastName;
+            }
+            else
+            {
+                author = "SparkPlant";
+            }
+
+            return (
+                <View style={styles.login}>
+                    <HeaderNews {...this.props} headerTitle="News"/>
+                    <View style={styles.body}>
+                        <ElevatedView elevation={2} style={styles.slider}>
+                            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                                <View style={{flexDirection:'row'}}>
+                                    {this.buildMediaList()}
+                                </View>
+                            </ScrollView>
+                        </ElevatedView>
+                        <ElevatedView style={styles.content} elevation={2}>
+                            <View style={styles.info}>
+                                <Text style={styles.infoText}>
+                                    Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {author}
+                                </Text>
+                                <Image style={styles.infoImage} source={{uri : item.user && item.user.avatar ? item.user.avatar.path : "http://via.placeholder.com/50x50" }}/>
+                            </View>
+                            <Text style={styles.title}>
+                                {item.title}
+                            </Text>
+                            <Text style={styles.contentText} numberOfLines={12}>
+                                {item.content}
+                            </Text>
+                        </ElevatedView>
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={null}/>
+                        <FooterButton {...this.props} active={false} iconName="clock-o" text="A valider" route={null}/>
+                    </View>
+                </View>
+            );
         }
         else
         {
-            author = "SparkPlant";
+            return (
+                <View style={styles.login}>
+                    <HeaderNews {...this.props} headerTitle="News"/>
+                    <View style={styles.body}>
+                        <ActivityIndicator color="#3f51b5" size="large"/>
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={null}/>
+                        <FooterButton {...this.props} active={false} iconName="clock-o" text="A valider" route={null}/>
+                    </View>
+                </View>
+            );
         }
 
-        return (
-            <View style={styles.login}>
-                <HeaderNews {...this.props} headerTitle="News"/>
-                <View style={styles.body}>
-                    <ElevatedView elevation={2} style={styles.slider}>
-                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                            <View style={{flexDirection:'row'}}>
-                            {this.buildMediaList()}
-                            </View>
-                        </ScrollView>
-                    </ElevatedView>
-                    <ElevatedView style={styles.content} elevation={2}>
-                        <View style={styles.info}>
-                            <Text style={styles.infoText}>
-                                Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {author}
-                            </Text>
-                            <Image style={styles.infoImage} source={{uri : item.user && item.user.avatar ? item.user.avatar.path : "http://via.placeholder.com/50x50" }}/>
-                        </View>
-                        <Text style={styles.title}>
-                            {item.title}
-                        </Text>
-                        <Text style={styles.contentText} numberOfLines={12}>
-                            {item.content}
-                        </Text>
-                    </ElevatedView>
-                </View>
-                <View style={styles.footer}>
-                    <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={null}/>
-                    <FooterButton {...this.props} active={false} iconName="clock-o" text="A valider" route={null}/>
-                </View>
-            </View>
-        );
     }
 }
 

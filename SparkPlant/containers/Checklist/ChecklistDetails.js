@@ -238,6 +238,7 @@ class ChecklistDetails extends Component {
                 list.push(
                     <Picker.Item key={i} label={roles[i].unit.name} value={roles[i].unit["@id"]} />
                 );
+                ids.push(roles[i].unit["@id"]);
             }
         }
 
@@ -252,7 +253,7 @@ class ChecklistDetails extends Component {
 
         for(var i = 0; i < checklists.length; i++)
         {
-            if(checklist["@id"] === checklists[i]["@id"])
+            if(checklist["@id"] === checklists[i].checklist["@id"])
             {
                 return true;
             }
@@ -273,17 +274,19 @@ class ChecklistDetails extends Component {
         if(!this.checklistIsAlreadyAssigned(checklist))
         {
             this.props.tryAssignChecklists(this.props.login, checklistInstance);
-            this.props.goToChecklistLibrary(this.props.nav);
+            this.props.goToChecklistPage(this.props.nav);
         }
-
-        Alert.alert(
-            'Checkliste déjà utilisée',
-            'Votre unité réalise déjà cette checkliste',
-            [
-                {text: 'OK', onPress: () => this.props.goToChecklistLibrary(this.props.nav)},
-            ],
-            { cancelable: false }
-        )
+        else
+        {
+            Alert.alert(
+                'Checkliste déjà utilisée',
+                'Votre unité réalise déjà cette checkliste',
+                [
+                    {text: 'OK', onPress: () => this.props.goToChecklistLibrary(this.props.nav)},
+                ],
+                { cancelable: false }
+            )
+        }
     }
 
     render() {

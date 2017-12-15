@@ -81,7 +81,7 @@ function filterFullTags(list, filters)
 
         for(var j = 0; j < filters.units.length; j++)
         {
-            if(list[i].unit["@id"] === filters.units[j])
+            if(list[i].place.unit["@id"] === filters.units[j])
             {
                 flag = true;
             }
@@ -123,7 +123,7 @@ function filterTags(list, filters)
 
         for(var j = 0; j < filters.units.length; j++)
         {
-            if(list[i].tag.unit["@id"] === filters.units[j])
+            if(list[i].tag.place.unit["@id"] === filters.units[j])
             {
                 flag = true;
             }
@@ -443,6 +443,10 @@ export const tagsReducer = {
             case types.SET_TAG_FOLLOWERS : {
                 let creationCurrent = Object.assign({}, state.creation_current, {users : action.followers});
                 return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
+            }
+            case types.RESET_CURRENT_CREATION_TAG : {
+                let creation_current = Object.assign({}, initialState.creation_current, {media : [], medias : [], loading : false});
+                return Object.assign({}, state, {creation_current : creation_current, loading : false});
             }
             default :
                 return state;

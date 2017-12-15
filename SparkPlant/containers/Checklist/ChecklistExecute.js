@@ -38,6 +38,7 @@ let styles = StyleSheet.create({
         height : layout.height75,
         backgroundColor : "#ffffff",
         marginVertical: layout.height2,
+        paddingBottom: layout.height5,
     },
     listInfosText : {
         fontSize : layout.fontSize1p8,
@@ -372,7 +373,7 @@ class ChecklistExecute extends Component {
 
     renderTaskFlag(value, ranges)
     {
-        if(parseInt(value) > ranges[0].minValue && parseInt(value) < ranges[0].maxValue)
+        if(parseFloat(value) >= parseFloat(ranges[0].minValue) && parseFloat(value) <= parseFloat(ranges[0].maxValue))
         {
             return(
                 <View style={styles.taskFlagOk}>
@@ -642,7 +643,7 @@ class ChecklistExecute extends Component {
                         </Text>
                     </ElevatedView>
                     <ElevatedView elevation={2} style={styles.listTasks}>
-                        <ScrollView>
+                        <ScrollView contentContainerStyle={{paddingBottom : layout.height5}}>
                             {this.buildTasksList()}
                             <KeyboardSpacer />
                         </ScrollView>

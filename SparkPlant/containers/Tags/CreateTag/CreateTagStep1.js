@@ -119,12 +119,16 @@ class CreateTagStep1 extends Component {
     constructor(props) {
         super(props);
         this.error = null;
+        this.state = {
+            placeDetails : null,
+        }
     }
 
     componentWillMount()
     {
         this.props.tryTagPlaces(this.props.login);
         this.props.tryTagAxis(this.props.login);
+        this.props.resetCreationCurrentTag();
     }
 
     checkRequiredFields()

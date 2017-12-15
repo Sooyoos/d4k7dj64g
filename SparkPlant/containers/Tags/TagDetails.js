@@ -217,7 +217,7 @@ class TagDetails extends Component {
         if(tag.history)
         {
             return(
-                '#' + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6) + ' ouvert par ' + tag.history[tag.history.length -1].user.firstName + ' ' + tag.history[tag.history.length -1].user.lastName
+                '#' + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6) + ' créé par ' + tag.history[tag.history.length -1].user.firstName + ' ' + tag.history[tag.history.length -1].user.lastName
             );
         }
         else

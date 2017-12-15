@@ -84,7 +84,7 @@ class SearchNews extends Component {
 
     componentWillMount()
     {
-        this.props.tryUserNews(this.props.login);
+        this.props.tryUserNews(this.props.login, this.props.users.loggedUser);
     }
 
     search()
@@ -92,11 +92,14 @@ class SearchNews extends Component {
         let fullList = this.props.news.news;
         let shortList = [];
 
-        for(var i = 0; i < fullList.length; i++)
+        if(this.state.search)
         {
-            if(fullList[i].title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+            for(var i = 0; i < fullList.length; i++)
             {
-                shortList.push(fullList[i]);
+                if(fullList[i].title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
+                {
+                    shortList.push(fullList[i]);
+                }
             }
         }
 
@@ -133,6 +136,7 @@ function mapStateToProps(state) {
         nav : state.nav,
         tags : state.tags,
         news : state.news,
+        users : state.users,
     };
 }
 

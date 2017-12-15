@@ -48,7 +48,10 @@ class NewsScreen extends Component {
 
     componentWillMount()
     {
-        this.props.tryUserNews(this.props.login);
+        if(this.props.users.loggedUser !== null)
+        {
+            this.props.tryUserNews(this.props.login, this.props.users.loggedUser);
+        }
     }
 
     isResponsable()
@@ -66,6 +69,28 @@ class NewsScreen extends Component {
         return false;
     }
 
+    filterNewsForUserPermission(news, responsable)
+    {
+        let list = [];
+
+        for(var i = 0; i < news.length; i++)
+        {
+            if(news[i].visibility !== 'public')
+            {
+                if(responsable === true)
+                {
+                    list.push(news[i]);
+                }
+            }
+            else
+            {
+                list.push(news[i]);
+            }
+        }
+
+        return list;
+    }
+
     render() {
         let responsable = this.isResponsable();
 
@@ -75,7 +100,7 @@ class NewsScreen extends Component {
                 <View style={styles.login}>
                     <HeaderNews {...this.props} headerTitle="News"/>
                     <View style={styles.body}>
-                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.props.news.news} />
+                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.filterNewsForUserPermission(this.props.news.news, responsable)} />
                     </View>
                     <View style={styles.footer}>
                         <FooterButton {...this.props} active={true} iconName="newspaper-o" text="Publiées" route={() => { this.props.goToNewsPage(this.props.nav) }}/>
@@ -90,10 +115,10 @@ class NewsScreen extends Component {
                 <View style={styles.login}>
                     <HeaderNews {...this.props} headerTitle="News"/>
                     <View style={styles.body}>
-                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.props.news.news} />
+                        <NewsList itemRoute={this.props.goToNewsDetail} items={this.filterNewsForUserPermission(this.props.news.news, responsable)} />
                     </View>
                     <View style={styles.footer}>
-                        <FooterButton {...this.props} active={false} iconName="newspaper-o" text="Publiées" route={this.props.goToNewsPage}/>
+                        <FooterButton {...this.props} active={false} iconName="newspaper-o" text="Publiées" route={ () => { this.props.goToNewsPage(this.props.nav) }}/>
                     </View>
                 </View>
             );

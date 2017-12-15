@@ -379,7 +379,20 @@ function fetchTagFollowers(login, user, tag)
                 }
                 if(!flag)
                     users.push(user);
-                dispatch(getTagFollowersSuccess(users));
+
+                let ids = [];
+                let list = [];
+
+                for(var i = 0; i < users.length; i++)
+                {
+                    if(!ids.includes(users[i]["@id"]))
+                    {
+                        list.push(users[i]);
+                        ids.push(users[i]["@id"]);
+                    }
+                }
+
+                dispatch(getTagFollowersSuccess(list));
             })
             .catch((error) => { console.log(error); dispatch(getTagFollowersFailure()); });
     }
@@ -808,7 +821,7 @@ function fetchTransferUsersTag(login)
     return dispatch => {
         dispatch(tagTransferUsersRequested());
 
-        fetch(types.baseUrl + "/users", {
+        fetch(types.baseUrl + "/users?order[firstName]=asc", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -1144,5 +1157,12 @@ export function trySetTagFollowers(followers)
     return {
         type : types.SET_TAG_FOLLOWERS,
         followers : followers,
+    }
+}
+
+export function resetCreationCurrentTag()
+{
+    return {
+        type: types.RESET_CURRENT_CREATION_TAG,
     }
 }

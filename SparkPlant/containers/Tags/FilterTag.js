@@ -25,6 +25,7 @@ let styles = StyleSheet.create({
         backgroundColor : "#efefef",
         alignItems:'center',
         justifyContent: 'center',
+        paddingBottom: layout.height5,
     },
     filterButton : {
         height : layout.height5,

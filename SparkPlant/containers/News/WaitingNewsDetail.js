@@ -7,7 +7,7 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
     Alert,
-    Modal,
+    ActivityIndicator,
     Picker,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -147,8 +147,9 @@ class WaitingNewsDetail extends Component {
         {
             for(var i = 0; i < medias.length; i++)
             {
+                console.log(medias[i]);
                 mediaList.push(
-                    <Image key={i} style={styles.image} source={{uri : medias[i]}} />
+                    <Image key={i} style={styles.image} source={{uri : medias[i].path}} />
                 );
             }
         }
@@ -171,7 +172,7 @@ class WaitingNewsDetail extends Component {
                 {text: 'Annuler', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
                 {text: 'Publier', onPress: () => {
                     this.props.tryPublishNews(this.props.login, this.props.news.currentNews);
-                    this.props.goToWaitingNews();
+                    this.props.goToWaitingNews(this.props.nav);
                 }},
             ],
             { cancelable: false }
@@ -185,7 +186,7 @@ class WaitingNewsDetail extends Component {
             'Êtes vous sûr de vouloir transférer la news?',
             [
                 {text: 'Annuler', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                {text: 'Transférer', onPress: () => {this.props.tryTransferNews(this.props.login, this.props.news.currentNews); this.props.goToWaitingNews();}},
+                {text: 'Transférer', onPress: () => {this.props.tryTransferNews(this.props.login, this.props.news.currentNews); this.props.goToWaitingNews(this.props.nav);}},
             ],
             { cancelable: false }
         );
@@ -200,15 +201,18 @@ class WaitingNewsDetail extends Component {
                 {text: 'Annuler', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
                 {text: 'Supprimer', onPress: () => {
                     this.props.tryDeleteNews(this.props.login, this.props.news.currentNews);
-                    this.props.goToWaitingNews();
+                    this.props.goToWaitingNews(this.props.nav);
                 }},
             ],
             { cancelable: false }
         );
     }
 
-    render() {
+    render()
+    {
         let item = this.props.news.currentNews;
+        if(this.props.news.loading === false && item)
+        {
             return (
                 <View style={styles.login}>
                     <HeaderNews {...this.props} headerTitle="News"/>
@@ -228,7 +232,7 @@ class WaitingNewsDetail extends Component {
                                 <Text style={styles.infoText}>
                                     Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
                                 </Text>
-                                <Image style={styles.infoImage} source={{uri : item.user.avatar || "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg"}}/>
+                                <Image style={styles.infoImage} source={{uri : item.user.avatar ? item.user.avatar.path : "http://via.placeholder.com/50x50"}}/>
                             </View>
                             <Text style={styles.contentText} numberOfLines={12}>
                                 {item.content}
@@ -260,10 +264,16 @@ class WaitingNewsDetail extends Component {
                     </View>
                 </View>
             );
-
-
         }
-
+        else
+        {
+            return(
+                <View style={styles.login}>
+                    <ActivityIndicator color="#3f51b5" size="large"/>
+                </View>
+            );
+        }
+    }
 }
 
 function mapStateToProps(state) {

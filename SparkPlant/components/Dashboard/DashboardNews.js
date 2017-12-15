@@ -4,6 +4,7 @@ import {
     Text,
     StyleSheet,
     TouchableWithoutFeedback,
+    ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DashboardNewsItem from './DashboardNewsItem';
@@ -59,6 +60,28 @@ class DashboardNews extends Component {
         }
     }
 
+    filterNewsForUserPermission(news, responsable)
+    {
+        let list = [];
+
+        for(var i = 0; i < news.length; i++)
+        {
+            if(news[i].visibility !== 'public')
+            {
+                if(responsable === true)
+                {
+                    list.push(news[i]);
+                }
+            }
+            else
+            {
+                list.push(news[i]);
+            }
+        }
+
+        return list;
+    }
+
     goToDetails(item)
     {
         this.props.setCurrentNews(item);
@@ -92,11 +115,22 @@ class DashboardNews extends Component {
     }
 
     render() {
-        return (
-            <View style={styles.dashboardNews}>
-                {this.buildNewsList(this.props.news.news)}
-            </View>
-        );
+        if(this.props.news.news)
+        {
+            return (
+                <View style={styles.dashboardNews}>
+                    {this.buildNewsList(this.filterNewsForUserPermission(this.props.news.news, this.props.responsable))}
+                </View>
+            );
+        }
+        else
+        {
+            return(
+                <View style={styles.dashboardNews}>
+                    <ActivityIndicator color="#3f51b5" size="large"/>
+                </View>
+            );
+        }
     }
 };
 
