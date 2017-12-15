@@ -7,6 +7,7 @@ import {
     Text,
     Picker,
     TouchableWithoutFeedback,
+    Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -15,6 +16,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
 import * as layout from "../../assets/layout";
 import HeaderChecklist from "../../components/Header/HeaderChecklist";
+import ModalPicker from 'react-native-modal-picker';
 
 let styles = StyleSheet.create({
     login: {
@@ -39,11 +41,13 @@ let styles = StyleSheet.create({
     },
     addListView : {
         width : layout.fullWidth,
-        height : layout.height7,
+        height : layout.height20,
         backgroundColor: "#ffffff",
-        flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        marginVertical: layout.height1,
+        paddingVertical : layout.height1,
+        paddingHorizontal: layout.width1p5,
     },
     listInfosText : {
         fontSize : layout.fontSize1p8,
@@ -94,9 +98,7 @@ let styles = StyleSheet.create({
         fontSize : layout.fontSize1p6,
     },
     unitPicker : {
-        width : layout.width50,
-        height : layout.height5,
-        marginRight: layout.width3
+        height : layout.height8,
     },
     unitButton : {
         height : layout.height5,
@@ -105,6 +107,7 @@ let styles = StyleSheet.create({
         backgroundColor : "#00bcd4",
         justifyContent : "center",
         alignItems : "center",
+        marginTop: layout.width3
     },
     unitButtonIcon : {
         color : "#ffffff",
@@ -187,7 +190,37 @@ class ChecklistDetails extends Component {
         return list;
     }
 
-    buildUnitList()
+    buildUnitListIOS()
+    {
+        let user = this.props.users.loggedUser;
+        let ids = [];
+        let roles = user.rolesByUnit;
+        let list = [];
+
+        for(var i = 0; i < roles.length; i++)
+        {
+            if(!ids.includes(roles[i].unit["@id"]))
+            {
+                list.push(
+                    {
+                        key : i,
+                        label : roles[i].unit.name,
+                        value : roles[i].unit["@id"]
+                    }
+                );
+                ids.push(roles[i].unit["@id"]);
+            }
+        }
+
+        return <ModalPicker
+        data={list}
+        initValue="Affecter à l'unité"
+        style={styles.unitPicker}
+        selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
+        onChange={(value) => this.setState({unit : value})} />;
+    }
+
+    buildUnitListAndroid()
     {
         let user = this.props.users.loggedUser;
         let ids = [];
@@ -209,7 +242,9 @@ class ChecklistDetails extends Component {
             }
         }
 
-        return list;
+        return  <Picker style={styles.unitPicker} onValueChange={(value, index) => this.setState({unit : value})}>
+                    {list}
+                </Picker>;
     }
 
     checklistIsAlreadyAssigned(checklist)
@@ -275,9 +310,7 @@ class ChecklistDetails extends Component {
                         </ScrollView>
                     </ElevatedView>
                     <ElevatedView style={styles.addListView} elevation={2}>
-                        <Picker style={styles.unitPicker} onValueChange={(value, index) => this.setState({unit : value})}>
-                            {this.buildUnitList()}
-                        </Picker>
+                        { Platform.OS === 'android' ? this.buildUnitListAndroid() : this.buildUnitListIOS() }
                         <TouchableWithoutFeedback onPress={this.assignChecklist.bind(this)}>
                             <ElevatedView elevation={4} style={styles.unitButton}>
                                 <Icon style={styles.unitButtonIcon} name="arrow-right"/>

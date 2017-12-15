@@ -17,7 +17,6 @@ import { bindActionCreators } from 'redux';
 import * as layout from '../assets/layout';
 import ElevatedView from 'react-native-elevated-view';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
-import firebase from "react-native-firebase";
 import ModalPicker from 'react-native-modal-picker';
 import { ActionCreators } from '../actions';
 import LoginUsernameInput from '../components/Login/LoginUserNameInput';
@@ -65,15 +64,11 @@ let styles = StyleSheet.create({
     },
     userSelect : {
         width: layout.width50,
-        height : layout.height15,
+        height : layout.height8,
+        alignItems : 'center',
+        justifyContent : 'center',
     },
 });
-
-const configurationOptions = {
-    debug: true
-};
-
-const Firebase = firebase.initializeApp(configurationOptions);
 
 class LoginScreen extends Component {
 
@@ -129,6 +124,8 @@ class LoginScreen extends Component {
     autoLogin(index, value)
     {
         console.log(value);
+        console.log(index);
+        console.log(this.props.login.previousUsers);
 
         if(value.responsable)
         {
@@ -138,15 +135,31 @@ class LoginScreen extends Component {
         }
         else
         {
-            if(value !== "new" && index >= 0)
+            if(Platform.OS === 'android')
             {
-                let users = this.props.login.previousUsers;
-                this.props.tryLogin(users[index - 1].factory, users[index - 1].username, users[index - 1].password);
+                if(value !== "new" && index >= 0)
+                {
+                    let users = this.props.login.previousUsers;
+                    this.props.tryLogin(users[index - 1].factory, users[index - 1].username, users[index - 1].password);
+                }
+                else
+                {
+                    this.setState({new : true});
+                }
             }
             else
             {
-                this.setState({new : true});
+                if(value !== "new" && index >= 0)
+                {
+                    let users = this.props.login.previousUsers;
+                    this.props.tryLogin(users[index].factory, users[index].username, users[index].password);
+                }
+                else
+                {
+                    this.setState({new : true});
+                }
             }
+
         }
     }
 
@@ -169,7 +182,8 @@ class LoginScreen extends Component {
             data={list}
             initValue="Utilisateur"
             style={styles.userSelect}
-            onChange={(option) => {this.autoLogin(option.index, option.value);}} />;
+            selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
+            onChange={(option) => { this.autoLogin(option.key, option.value);}} />;
     }
 
     buildUsersListAndroid() {
