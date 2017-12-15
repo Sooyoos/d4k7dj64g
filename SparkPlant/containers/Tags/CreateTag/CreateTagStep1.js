@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     ActivityIndicator,
     Alert,
+    Platform
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -19,6 +20,7 @@ import ElevatedView from 'react-native-elevated-view';
 import * as layout from "../../../assets/layout";
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
+import ModalPicker from 'react-native-modal-picker';
 
 let styles = StyleSheet.create({
     card : {
@@ -62,8 +64,11 @@ let styles = StyleSheet.create({
         padding : layout.width4,
     },
     locationPicker : {
-        height : layout.height5,
-        marginBottom : layout.height5,
+        width: layout.width50,
+        height : layout.height8,
+        alignItems : 'center',
+        justifyContent : 'center',
+        marginBottom : layout.height2,
     },
     buttonView : {
         width: layout.width23,
@@ -166,7 +171,7 @@ class CreateTagStep1 extends Component {
         }
     }
 
-    buildAxisList()
+    buildAxisListAndroid()
     {
         let axis = this.props.tags.axis;
         let items = [];
@@ -185,10 +190,38 @@ class CreateTagStep1 extends Component {
             }
         }
 
-        return items;
+        return <Picker style={styles.locationPicker} prompt="Sélectionnez le type principal" selectedValue={this.props.tags.creation_current.primaryAxis} onValueChange={(value) => this.props.setCurrentCreationPrimaryAxis(value)}>
+            {items}
+        </Picker>;
     }
 
-    buildPlacesList()
+    buildAxisListIOS()
+    {
+        let axis = this.props.tags.axis;
+        let items = [];
+
+        if(axis !== null)
+        {
+            for(var i = 0; i < axis.length; i++)
+            {
+                items.push({
+                        key : i,
+                        label : axis[i].name,
+                        value : axis[i],
+                    }
+                );
+            }
+        }
+
+        return <ModalPicker
+            data={items}
+            initValue="Sélectionnez le type"
+            style={styles.locationPicker}
+            selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
+            onChange={(option) => this.props.setCurrentCreationPrimaryAxis(option.value)} />;
+    }
+
+    buildPlacesListAndroid()
     {
         let places = this.props.tags.places;
         let items = [];
@@ -207,7 +240,35 @@ class CreateTagStep1 extends Component {
             }
         }
 
-        return items;
+        return <Picker style={styles.locationPicker} prompt="Sélectionnez le lieu" selectedValue={this.props.tags.creation_current.place} onValueChange={(value) => this.props.setCurrentCreationPlace(value)}>
+                    {items}
+                </Picker>;
+    }
+
+    buildPlacesListIOS()
+    {
+        let places = this.props.tags.places;
+        let items = [];
+
+        if(places !== null)
+        {
+            for(var i = 0; i < places.length; i++)
+            {
+                items.push({
+                        key : i,
+                        label : places[i].name,
+                        value : places[i],
+                    }
+                );
+            }
+        }
+
+        return <ModalPicker
+            data={items}
+            initValue="Sélectionnez le lieu"
+            style={styles.locationPicker}
+            selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
+            onChange={(option) => this.props.setCurrentCreationPlace(option.value)} />;
     }
 
     displayAudioIcon()
@@ -237,9 +298,9 @@ class CreateTagStep1 extends Component {
                                     </Text>
                                 </ElevatedView>
                                 <View style={styles.cardContent}>
-                                    <Picker style={styles.locationPicker} prompt="Sélectionnez le lieu" selectedValue={this.props.tags.creation_current.place} onValueChange={(value) => this.props.setCurrentCreationPlace(value)}>
-                                        { this.buildPlacesList() }
-                                    </Picker>
+                                    <View>
+                                        { Platform.OS === 'android' ? this.buildPlacesListAndroid() : this.buildPlacesListIOS() }
+                                    </View>
                                     <TextInput style={{fontSize : layout.fontSize2p2}} placeholder="Détails du lieu" maxLength={30} value={this.props.tags.creation_current.placeDetails} onChangeText={(value) => this.props.setCurrentCreationPlaceDetails(value)}/>
                                     <View style={{flexDirection : "row", alignItems : "center"}}>
                                         <TouchableOpacity onPress={() => {
@@ -264,12 +325,12 @@ class CreateTagStep1 extends Component {
                                     </Text>
                                 </ElevatedView>
                                 <View style={styles.cardContent}>
-                                    <Picker style={styles.locationPicker} prompt="Sélectionnez le type principal" selectedValue={this.props.tags.creation_current.primaryAxis} onValueChange={(value) => this.props.setCurrentCreationPrimaryAxis(value)}>
-                                        {this.buildAxisList()}
-                                    </Picker>
-                                    <Picker style={styles.locationPicker} prompt="Sélectionnez les types secondaires" selectedValue={this.props.tags.creation_current.secondaryAxis} onValueChange={(value) => this.props.setCurrentCreationSecondaryAxis(value)}>
-                                        {this.buildAxisList()}
-                                    </Picker>
+                                    <View>
+                                        { Platform.OS === 'android' ? the.buildAxisListAndroid() : this.buildAxisListIOS() }
+                                    </View>
+                                    <View>
+                                        { Platform.OS === 'android' ? the.buildAxisListAndroid() : this.buildAxisListIOS() }
+                                    </View>
                                 </View>
                             </ElevatedView>
                             <View style={{flex : 0.5, alignItems:'flex-end', flexDirection:'row'}}>
