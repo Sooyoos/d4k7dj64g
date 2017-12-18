@@ -175,7 +175,7 @@ class CreateTagStep1 extends Component {
         }
     }
 
-    buildAxisListAndroid()
+    buildAxisListAndroid(primary)
     {
         let axis = this.props.tags.axis;
         let items = [];
@@ -194,12 +194,22 @@ class CreateTagStep1 extends Component {
             }
         }
 
-        return <Picker style={styles.locationPicker} prompt="Sélectionnez le type principal" selectedValue={this.props.tags.creation_current.primaryAxis} onValueChange={(value) => this.props.setCurrentCreationPrimaryAxis(value)}>
-            {items}
-        </Picker>;
+        if(primary === 'primary')
+        {
+            return <Picker style={styles.locationPicker} prompt="Sélectionnez le type principal" selectedValue={this.props.tags.creation_current.primaryAxis} onValueChange={(value) => this.props.setCurrentCreationPrimaryAxis(value)}>
+                {items}
+            </Picker>;
+        }
+        else
+        {
+            return <Picker style={styles.locationPicker} prompt="Sélectionnez le type secondaire" selectedValue={this.props.tags.creation_current.secondaryAxis} onValueChange={(value) => this.props.setCurrentCreationSecondaryAxis(value)}>
+                {items}
+            </Picker>;
+        }
+
     }
 
-    buildAxisListIOS()
+    buildAxisListIOS(primary)
     {
         let axis = this.props.tags.axis;
         let items = [];
@@ -217,12 +227,24 @@ class CreateTagStep1 extends Component {
             }
         }
 
-        return <ModalPicker
-            data={items}
-            initValue="Sélectionnez le type"
-            style={styles.locationPicker}
-            selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
-            onChange={(option) => this.props.setCurrentCreationPrimaryAxis(option.value)} />;
+        if(primary === 'primary')
+        {
+            return <ModalPicker
+                data={items}
+                initValue="Sélectionnez le type principal"
+                style={styles.locationPicker}
+                selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
+                onChange={(option) => this.props.setCurrentCreationPrimaryAxis(option.value)} />;
+        }
+        else
+        {
+            return <ModalPicker
+                data={items}
+                initValue="Sélectionnez le type secondaire"
+                style={styles.locationPicker}
+                selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
+                onChange={(option) => this.props.setCurrentCreationSecondaryAxis(option.value)} />;
+        }
     }
 
     buildPlacesListAndroid()
@@ -330,10 +352,10 @@ class CreateTagStep1 extends Component {
                                 </ElevatedView>
                                 <View style={styles.cardContent}>
                                     <View>
-                                        { Platform.OS === 'android' ? the.buildAxisListAndroid() : this.buildAxisListIOS() }
+                                        { Platform.OS === 'android' ? this.buildAxisListAndroid('primary') : this.buildAxisListIOS() }
                                     </View>
                                     <View>
-                                        { Platform.OS === 'android' ? the.buildAxisListAndroid() : this.buildAxisListIOS() }
+                                        { Platform.OS === 'android' ? this.buildAxisListAndroid('secondary') : this.buildAxisListIOS() }
                                     </View>
                                 </View>
                             </ElevatedView>

@@ -113,7 +113,11 @@ let styles = StyleSheet.create({
         fontSize: layout.fontSize1p5,
     },
     unitPicker : {
+        width: layout.width50,
         height : layout.height8,
+        alignItems : 'center',
+        justifyContent : 'center',
+        marginBottom : layout.height2,
     },
     contentLabel : {
         height : layout.height5,
@@ -392,7 +396,9 @@ class CreateNewsStep1 extends Component {
                                 <TextInput style={styles.titleInput} placeholder="Titre" onChangeText={(text) => this.setTitle(text)} value={this.state.item.title}/>
                             </ElevatedView>
                             <ElevatedView style={styles.unit} elevation={2}>
-                                { Platform.OS === 'android' ? this.buildUnitListAndroid() : this.buildUnitListIOS() }
+                                <View>
+                                    { Platform.OS === 'android' ? this.buildUnitListAndroid() : this.buildUnitListIOS() }
+                                </View>
                             </ElevatedView>
                             <ElevatedView style={styles.content} elevation={2}>
                                 <Text style={styles.contentLabel}>

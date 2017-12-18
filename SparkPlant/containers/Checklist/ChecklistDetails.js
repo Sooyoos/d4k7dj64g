@@ -98,7 +98,11 @@ let styles = StyleSheet.create({
         fontSize : layout.fontSize1p6,
     },
     unitPicker : {
+        width: layout.width50,
         height : layout.height8,
+        alignItems : 'center',
+        justifyContent : 'center',
+        marginBottom : layout.height2,
     },
     unitButton : {
         height : layout.height5,
