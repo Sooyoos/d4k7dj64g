@@ -44,7 +44,9 @@ let styles = StyleSheet.create({
     },
     menuHeaderUserInfosView : {
         height: layout.height12,
+        width : layout.width40,
         flexDirection : 'row',
+        alignItems: 'center',
     },
     menuHeaderUserImage : {
         borderRadius : layout.width8,
@@ -54,11 +56,11 @@ let styles = StyleSheet.create({
     },
     menuHeaderUsername : {
         color : '#ffffff',
-        fontSize : layout.fontSize2p8,
+        fontSize : layout.fontSize2,
     },
     menuHeaderUserEmail : {
         color : '#ffffff',
-        fontSize : layout.fontSize2,
+        fontSize : layout.fontSize1p6,
     },
     menuHeaderAvailableView : {
         height: layout.height8,

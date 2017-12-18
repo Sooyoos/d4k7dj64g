@@ -9,6 +9,7 @@ import {
     TextInput,
     Text,
     Picker,
+    Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,6 +21,7 @@ import HeaderNews from "../../components/Header/HeaderNews";
 import ElevatedView from "react-native-elevated-view";
 import RadioButton from "../../components/Utils/RadioButton";
 import ImagePicker from 'react-native-image-picker';
+import ModalPicker from 'react-native-modal-picker';
 
 let styles = StyleSheet.create({
     login: {
@@ -52,6 +54,8 @@ let styles = StyleSheet.create({
         marginVertical: layout.height1,
         paddingVertical : layout.height1,
         paddingHorizontal: layout.width1p5,
+        justifyContent : 'center',
+        alignItems : 'center',
     },
     content : {
         width: layout.width90,
@@ -202,7 +206,36 @@ class CreateNewsStep1 extends Component {
         this.props.tryUnits(this.props.login);
     }
 
-    buildUnitList()
+    buildUnitListIOS() {
+        let user = this.props.users.loggedUser;
+        let ids = [];
+        let roles = user.rolesByUnit;
+        let list = [];
+
+        for(var i = 0; i < roles.length; i++)
+        {
+            if(!ids.includes(roles[i].unit["@id"]))
+            {
+                list.push(
+                    {
+                        key : i,
+                        label : roles[i].unit.name,
+                        value : roles[i].unit["@id"],
+                    }
+                );
+                ids.push(roles[i].unit["@id"]);
+            }
+        }
+
+        return <ModalPicker
+            data={list}
+            initValue="Unité"
+            style={styles.unitPicker}
+            selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
+            onChange={(value) => this.setUnit(value)} />;
+    }
+
+    buildUnitListAndroid()
     {
         let user = this.props.users.loggedUser;
         let ids = [];
@@ -220,7 +253,10 @@ class CreateNewsStep1 extends Component {
             }
         }
 
-        return list;
+        return <Picker style={styles.unitPicker} selectedValue={this.state.item.unit} onValueChange={(value, index) => this.setUnit(value)}>
+                    <Picker.Item label="Sélectionnez l'unité" value={null} key={-1} />
+                    {list}
+                </Picker>;
     }
 
     setTitle(title)
@@ -356,10 +392,7 @@ class CreateNewsStep1 extends Component {
                                 <TextInput style={styles.titleInput} placeholder="Titre" onChangeText={(text) => this.setTitle(text)} value={this.state.item.title}/>
                             </ElevatedView>
                             <ElevatedView style={styles.unit} elevation={2}>
-                                <Picker style={styles.unitPicker} selectedValue={this.state.item.unit} onValueChange={(value, index) => this.setUnit(value)}>
-                                    <Picker.Item label="Sélectionnez l'unité" value={null} key={-1} />
-                                    {this.buildUnitList()}
-                                </Picker>
+                                { Platform.OS === 'android' ? this.buildUnitListAndroid() : this.buildUnitListIOS() }
                             </ElevatedView>
                             <ElevatedView style={styles.content} elevation={2}>
                                 <Text style={styles.contentLabel}>
@@ -406,10 +439,7 @@ class CreateNewsStep1 extends Component {
                                 <TextInput style={styles.titleInput} placeholder="Titre" onChangeText={(text) => this.setTitle(text)} value={this.state.item.title}/>
                             </ElevatedView>
                             <ElevatedView style={styles.unit} elevation={2}>
-                                <Picker style={styles.unitPicker} selectedValue={this.state.item.unit} onValueChange={(value, index) => this.setUnit(value)}>
-                                    <Picker.Item label="Sélectionnez l'unité" value={null} key={-1} />
-                                    {this.buildUnitList()}
-                                </Picker>
+                                { Platform.OS === 'android' ? this.buildUnitListAndroid() : this.buildUnitListIOS() }
                             </ElevatedView>
                             <ElevatedView style={styles.content} elevation={2}>
                                 <Text style={styles.contentLabel}>

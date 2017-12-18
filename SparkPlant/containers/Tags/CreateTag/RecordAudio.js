@@ -8,6 +8,7 @@ import {
     TouchableWithoutFeedback,
     ActivityIndicator,
     Alert,
+    Platform
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -58,6 +59,32 @@ class RecordAudio extends Component {
     componentDidMount()
     {
         let filename = AudioUtils.DocumentDirectoryPath + '/sparkplant' + Date.now() + '.aac';
+        AudioRecorder.onFinished = (data) => {
+            // Android callback comes in the form of a promise instead.
+            if (Platform.OS === 'ios') {
+                //this._finishRecording(data.status === "OK", data.audioFileURL);
+                let mode = this.props.tags.toRecord;
+
+                if(mode === "place")
+                {
+                    //this.props.goToCreateTagStep1();
+                    this.props.tryTagsUploadPlaceAudio(this.props.login, {
+                        uri: data.audioFileURL,
+                        type: "audio/aac",
+                        name: data.audioFileURL.substring(data.audioFileURL.lastIndexOf("/"))
+                    });
+                }
+                else
+                {
+                    //this.props.goToCreateTagStep2();
+                    this.props.tryTagsUploadDescriptionAudio(this.props.login, {
+                        uri: data.audioFileURL,
+                        type: "audio/aac",
+                        name: data.audioFileURL.substring(data.audioFileURL.lastIndexOf("/"))
+                    });
+                }
+            }
+        };
         this.prepareRecordingPath(filename);
     }
 
@@ -93,26 +120,31 @@ class RecordAudio extends Component {
 
         try{
             const filePath = await AudioRecorder.stopRecording();
+            console.log(AudioRecorder.finishedSubscription);
             console.warn(filePath);
 
-            if(mode === "place")
+            if(Platform.OS === 'android')
             {
-                //this.props.goToCreateTagStep1();
-                this.props.tryTagsUploadPlaceAudio(this.props.login, {
-                    uri: "file://" + filePath,
-                    type: "audio/aac",
-                    name: filePath.substring(filePath.lastIndexOf("/"))
-                });
+                if(mode === "place")
+                {
+                    //this.props.goToCreateTagStep1();
+                    this.props.tryTagsUploadPlaceAudio(this.props.login, {
+                        uri: "file://" + filePath,
+                        type: "audio/aac",
+                        name: filePath.substring(filePath.lastIndexOf("/"))
+                    });
+                }
+                else
+                {
+                    //this.props.goToCreateTagStep2();
+                    this.props.tryTagsUploadDescriptionAudio(this.props.login, {
+                        uri: "file://" + filePath,
+                        type: "audio/aac",
+                        name: filePath.substring(filePath.lastIndexOf("/"))
+                    });
+                }
             }
-            else
-            {
-                //this.props.goToCreateTagStep2();
-                this.props.tryTagsUploadDescriptionAudio(this.props.login, {
-                    uri: "file://" + filePath,
-                    type: "audio/aac",
-                    name: filePath.substring(filePath.lastIndexOf("/"))
-                });
-            }
+
         }
         catch(error)
         {

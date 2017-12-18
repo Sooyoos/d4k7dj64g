@@ -11,11 +11,6 @@ target 'SparkPlant' do
     pod 'RSKImageCropper'
     pod 'QBImagePickerController'
 
-  target 'SparkPlantTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end
 
 

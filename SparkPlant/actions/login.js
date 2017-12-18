@@ -4,13 +4,6 @@ import { tryUserNews } from './news';
 import { goToLogin } from './navigation/login';
 import Base64 from 'base-64';
 import { AsyncStorage, Platform } from 'react-native';
-import firebase from "react-native-firebase";
-
-const configurationOptions = {
-    debug: true
-};
-
-const Firebase = firebase.initializeApp(configurationOptions);
 
 function parseJwt(token){
     var base64Url = token.split('.')[1];
@@ -129,7 +122,6 @@ function fetchLogin(factory, username, password)
                 if(responseJson.token)
                 {
                     let data = {factory : factory, username : username, password : password};
-                    manageFirebaseToken(responseJson.token);
                     dispatch(goToHomepage());
                     dispatch(loginSuccess(responseJson, data));
                 }
