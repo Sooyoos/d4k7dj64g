@@ -33,7 +33,11 @@ let styles = StyleSheet.create({
     },
     /* the picker for Android cannot be styled using RN (https://stackoverflow.com/questions/38921492/how-to-style-the-standard-react-native-android-picker/39141949#39141949) */
     picker : {
-        height: layout.height10,
+        width: layout.width50,
+        height : layout.height8,
+        alignItems : 'center',
+        justifyContent : 'center',
+        marginBottom : layout.height2,
     },
     button : {
         marginTop : 30,
