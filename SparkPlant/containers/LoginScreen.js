@@ -22,7 +22,7 @@ import { ActionCreators } from '../actions';
 import LoginUsernameInput from '../components/Login/LoginUserNameInput';
 import LoginPasswordInput from '../components/Login/LoginPasswordInput';
 import LoginFactoryList from '../components/Login/LoginFactoryList';
-import firebase from "react-native-firebase";
+//import firebase from "react-native-firebase";
 
 let styles = StyleSheet.create({
     login: {
@@ -71,11 +71,11 @@ let styles = StyleSheet.create({
     },
 });
 
-const configurationOptions = {
+/*const configurationOptions = {
     debug: true
 };
 
-const Firebase = firebase.initializeApp(configurationOptions);
+const Firebase = firebase.initializeApp(configurationOptions);*/
 
 
 class LoginScreen extends Component {
