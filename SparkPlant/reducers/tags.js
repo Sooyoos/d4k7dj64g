@@ -123,7 +123,7 @@ function filterTags(list, filters)
 
         for(var j = 0; j < filters.units.length; j++)
         {
-            if(list[i].tag.place.unit["@id"] === filters.units[j])
+            if(list[i].tag.place.unit === filters.units[j])
             {
                 flag = true;
             }

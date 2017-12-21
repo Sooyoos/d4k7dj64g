@@ -261,7 +261,7 @@ class ChartsScreen extends Component {
                 </View>
             );
         }
-        else if(this.props.charts.loading === false && (this.props.charts.solvedTags.length === 0 || this.props.charts.unsolvedTags.length  === 0))
+        else if(this.props.charts.loading === false && this.props.charts.solvedTags.length === 0 && this.props.charts.unsolvedTags.length  === 0)
         {
             return (
                 <View style={styles.login}>
@@ -285,6 +285,60 @@ class ChartsScreen extends Component {
                             <Text style={{textAlign : "center", fontSize : layout.fontSize1p8, marginVertical: layout.height5}}>
                                 Pas de données disponibles
                             </Text>
+                        </View>
+                    </View>
+                </View>
+            );
+        }
+        else if(this.props.charts.loading === false && this.props.charts.solvedTags.length !== 0 && this.props.charts.unsolvedTags.length  === 0)
+        {
+            return (
+                <View style={styles.login}>
+                    <Header props={this.props} />
+                    <View style={styles.body}>
+                        <View style={{height : layout.height8, width : layout.fullWidth}}>
+                            <Text style={styles.title}>
+                                Activité des tags sur les 7 derniers jours
+                            </Text>
+                        </View>
+                        <View style={styles.chartView}>
+                            <Text style={styles.chartTitle}>
+                                Tags résolus
+                            </Text>
+                            <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.solvedTags)} options={solvedTagOptions} accessorKey='value'/>
+                            <Text style={styles.chartTitle}>
+                                Tags non résolus
+                            </Text>
+                            <Text style={{textAlign : "center", fontSize : layout.fontSize1p8, marginVertical: layout.height5}}>
+                                Pas de données disponibles
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+            );
+        }
+        else if(this.props.charts.loading === false && this.props.charts.solvedTags.length === 0 && this.props.charts.unsolvedTags.length !== 0)
+        {
+            return (
+                <View style={styles.login}>
+                    <Header props={this.props} />
+                    <View style={styles.body}>
+                        <View style={{height : layout.height8, width : layout.fullWidth}}>
+                            <Text style={styles.title}>
+                                Activité des tags sur les 7 derniers jours
+                            </Text>
+                        </View>
+                        <View style={styles.chartView}>
+                            <Text style={styles.chartTitle}>
+                                Tags résolus
+                            </Text>
+                            <Text style={{textAlign : "center", fontSize : layout.fontSize1p8, marginVertical: layout.height5}}>
+                                Pas de données disponibles
+                            </Text>
+                            <Text style={styles.chartTitle}>
+                                Tags non résolus
+                            </Text>
+                            <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.unsolvedTags)} options={unsolvedTagOptions} accessorKey='value'/>
                         </View>
                     </View>
                 </View>
