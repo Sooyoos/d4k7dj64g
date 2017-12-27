@@ -45,6 +45,9 @@ export const chartsReducer = {
                     loading: false,
                 });
             }
+            case types.RESET_CHARTS: {
+                return Object.assign({}, state, initialState);
+            }
             default :
                 return state;
         }

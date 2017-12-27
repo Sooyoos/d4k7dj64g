@@ -144,6 +144,9 @@ export const newsReducer = {
             case types.NEWS_WAITING_SEARCH : {
                 return Object.assign({}, state, {searchResultsWaiting : action.news, searchWaiting : action.search});
             }
+            case types.RESET_NEWS : {
+                return Object.assign({}, state, initialState);
+            }
             default :
                 return state;
         }

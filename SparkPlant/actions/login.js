@@ -265,6 +265,20 @@ function logoutRequested()
     }
 }
 
+function logoutSuccess()
+{
+    return {
+        type: types.LOGOUT_SUCCESS,
+    }
+}
+
+function logoutFailure()
+{
+    return {
+        type: types.LOGOUT_FAILURE,
+    }
+}
+
 export function resetLoginError()
 {
     return {
@@ -272,11 +286,59 @@ export function resetLoginError()
     }
 }
 
+function resetCharts()
+{
+    return {
+        type: types.RESET_CHARTS,
+    }
+}
+
+function resetChecklists()
+{
+    return {
+        type: types.RESET_CHECKLISTS,
+    }
+}
+
+function resetNews()
+{
+    return {
+        type: types.RESET_NEWS,
+    }
+}
+
+function resetTags()
+{
+    return {
+        type: types.RESET_TAGS,
+    }
+}
+
+function resetUsers()
+{
+    return {
+        type: types.RESET_USERS,
+    }
+}
+
+function resetUtils()
+{
+    return {
+        type: types.RESET_UTILS,
+    }
+}
+
 export function logout()
 {
     return (dispatch, getState) => {
         dispatch(logoutRequested());
-        dispatch(goToLogin())
+        dispatch(resetCharts());
+        dispatch(resetChecklists());
+        dispatch(resetNews());
+        dispatch(resetTags());
+        dispatch(resetUsers());
+        dispatch(resetUtils());
+        dispatch(goToLogin());
     }
 }
 

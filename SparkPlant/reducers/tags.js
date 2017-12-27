@@ -448,6 +448,9 @@ export const tagsReducer = {
                 let creation_current = Object.assign({}, initialState.creation_current, {media : [], medias : [], loading : false});
                 return Object.assign({}, state, {creation_current : creation_current, loading : false});
             }
+            case types.RESET_TAGS : {
+                return Object.assign({}, state, initialState);
+            }
             default :
                 return state;
         }
