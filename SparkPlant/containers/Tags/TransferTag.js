@@ -164,24 +164,48 @@ class TransferTag extends Component {
         }
         else
         {
-            return (
-                <View style={styles.login}>
-                    <HeaderTagDetails {...this.props} headerTitle={tag.title} />
-                    <View style={styles.list}>
-                        <ActivityIndicator color="#3f51b5" size="large"/>
-                        <TouchableOpacity onPress={this.forward.bind(this)} activeOpacity={0.8}>
-                            <ElevatedView style={styles.button} elevation={9}>
-                                <Icon name="mail-forward" style={styles.icon} />
-                            </ElevatedView>
-                        </TouchableOpacity>
+            if(tag)
+            {
+                return (
+                    <View style={styles.login}>
+                        <HeaderTagDetails {...this.props} headerTitle={tag.title} />
+                        <View style={styles.list}>
+                            <ActivityIndicator color="#3f51b5" size="large"/>
+                            <TouchableOpacity onPress={this.forward.bind(this)} activeOpacity={0.8}>
+                                <ElevatedView style={styles.button} elevation={9}>
+                                    <Icon name="mail-forward" style={styles.icon} />
+                                </ElevatedView>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.footer}>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
+                            <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
+                        </View>
                     </View>
-                    <View style={styles.footer}>
-                        <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
-                        <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
-                        <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
+                );
+            }
+            else
+            {
+                return (
+                    <View style={styles.login}>
+                        <HeaderTagDetails {...this.props} headerTitle="" />
+                        <View style={styles.list}>
+                            <ActivityIndicator color="#3f51b5" size="large"/>
+                            <TouchableOpacity onPress={this.forward.bind(this)} activeOpacity={0.8}>
+                                <ElevatedView style={styles.button} elevation={9}>
+                                    <Icon name="mail-forward" style={styles.icon} />
+                                </ElevatedView>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.footer}>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
+                            <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
+                        </View>
                     </View>
-                </View>
-            );
+                );
+            }
         }
 
 
