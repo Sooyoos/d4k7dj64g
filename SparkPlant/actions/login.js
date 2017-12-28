@@ -328,16 +328,22 @@ function resetUtils()
     }
 }
 
-export function logout()
+export function reset()
 {
     return (dispatch, getState) => {
-        dispatch(logoutRequested());
         dispatch(resetCharts());
         dispatch(resetChecklists());
         dispatch(resetNews());
         dispatch(resetTags());
         dispatch(resetUsers());
         dispatch(resetUtils());
+    }
+}
+
+export function logout()
+{
+    return (dispatch, getState) => {
+        dispatch(logoutRequested());
         dispatch(goToLogin());
     }
 }

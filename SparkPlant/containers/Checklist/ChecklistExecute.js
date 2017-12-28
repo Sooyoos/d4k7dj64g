@@ -633,24 +633,46 @@ class ChecklistExecute extends Component {
     render() {
         console.log(this.state);
         let item = this.props.checklists.currentChecklist;
-        return (
-            <View style={styles.login}>
-                <HeaderChecklist {...this.props} headerTitle="Checklist en cours"/>
-                <View style={styles.body}>
-                    <ElevatedView style={styles.listInfos} elevation={2}>
-                        <Text style={styles.listInfosText}>
-                            {item.checklist.name}
-                        </Text>
-                    </ElevatedView>
-                    <ElevatedView elevation={2} style={styles.listTasks}>
-                        <ScrollView contentContainerStyle={{paddingBottom : layout.height5}}>
-                            {this.buildTasksList()}
-                            <KeyboardSpacer />
-                        </ScrollView>
-                    </ElevatedView>
+        if(item)
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderChecklist {...this.props} headerTitle="Checklist en cours"/>
+                    <View style={styles.body}>
+                        <ElevatedView style={styles.listInfos} elevation={2}>
+                            <Text style={styles.listInfosText}>
+                                {item.checklist.name}
+                            </Text>
+                        </ElevatedView>
+                        <ElevatedView elevation={2} style={styles.listTasks}>
+                            <ScrollView contentContainerStyle={{paddingBottom : layout.height5}}>
+                                {this.buildTasksList()}
+                                <KeyboardSpacer />
+                            </ScrollView>
+                        </ElevatedView>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
+        else
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderChecklist {...this.props} headerTitle="Checklist en cours"/>
+                    <View style={styles.body}>
+                        <ElevatedView style={styles.listInfos} elevation={2}>
+                            <Text style={styles.listInfosText}>
+                            </Text>
+                        </ElevatedView>
+                        <ElevatedView elevation={2} style={styles.listTasks}>
+                            <ScrollView contentContainerStyle={{paddingBottom : layout.height5}}>
+                                <KeyboardSpacer />
+                            </ScrollView>
+                        </ElevatedView>
+                    </View>
+                </View>
+            );
+        }
     }
 }
 

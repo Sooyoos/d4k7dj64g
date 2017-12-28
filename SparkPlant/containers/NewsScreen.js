@@ -56,13 +56,16 @@ class NewsScreen extends Component {
 
     isResponsable()
     {
-        let roles = this.props.users.loggedUser.rolesByUnit;
-
-        for(var i = 0; i < roles.length; i++)
+        if(this.props.users.loggedUser)
         {
-            if(roles[i].role.title === "Responsable")
+            let roles = this.props.users.loggedUser.rolesByUnit;
+
+            for(var i = 0; i < roles.length; i++)
             {
-                return true;
+                if(roles[i].role.title === "Responsable")
+                {
+                    return true;
+                }
             }
         }
 
@@ -73,18 +76,21 @@ class NewsScreen extends Component {
     {
         let list = [];
 
-        for(var i = 0; i < news.length; i++)
+        if(news)
         {
-            if(news[i].visibility !== 'public')
+            for(var i = 0; i < news.length; i++)
             {
-                if(responsable === true)
+                if(news[i].visibility !== 'public')
+                {
+                    if(responsable === true)
+                    {
+                        list.push(news[i]);
+                    }
+                }
+                else
                 {
                     list.push(news[i]);
                 }
-            }
-            else
-            {
-                list.push(news[i]);
             }
         }
 

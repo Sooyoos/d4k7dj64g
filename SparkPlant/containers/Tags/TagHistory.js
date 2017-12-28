@@ -98,6 +98,22 @@ class TagHistory extends Component {
                     </View>
                 );
             }
+            else
+            {
+                return (
+                    <View style={styles.login}>
+                        <HeaderTagDetails {...this.props} headerTitle="#" />
+                        <View style={styles.list}>
+
+                        </View>
+                        <View style={styles.footer}>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
+                            <FooterButton {...this.props} active={true} tag={tag} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
+                        </View>
+                    </View>
+                );
+            }
         }
     }
 };
