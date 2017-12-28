@@ -13,10 +13,9 @@ function fetchUserChecklists(login)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(userChecklistsSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => {console.log(error); dispatch(userChecklistsFailure()); });
+            .catch((error) => { dispatch(userChecklistsFailure()); });
     }
 }
 
@@ -62,10 +61,9 @@ function fetchChecklistsTemplates(login)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(checklistsTemplatesSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => {console.log(error); dispatch(checklistsTemplatesFailure()); });
+            .catch((error) => { dispatch(checklistsTemplatesFailure()); });
     }
 }
 
@@ -115,10 +113,9 @@ function fetchCompleteTask(login, task)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(completeTaskSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => {console.log(error); dispatch(completeTaskFailure()); });
+            .catch((error) => { dispatch(completeTaskFailure()); });
     }
 }
 
@@ -168,10 +165,9 @@ function fetchResetTask(login, task)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(resetTaskSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => {console.log(error); dispatch(resetTaskFailure()); });
+            .catch((error) => { dispatch(resetTaskFailure()); });
     }
 }
 
@@ -209,9 +205,6 @@ function fetchCompleteList(login, list, status)
     return dispatch => {
         dispatch(completeListRequested());
 
-        console.log("REQUEST COMPLETE LIST");
-        console.log(list);
-
         fetch(types.baseUrl + list["@id"], {
             method: 'PUT',
             headers: {
@@ -222,11 +215,9 @@ function fetchCompleteList(login, list, status)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-            console.log("RESPONSE COMPLETE LIST");
-            console.log(responseJson);
                 dispatch(completeListSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => {console.log(error); dispatch(completeListFailure()); });
+            .catch((error) => { dispatch(completeListFailure()); });
     }
 }
 
@@ -274,10 +265,9 @@ function fetchAssignChecklists(login, instance)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(assignChecklistsSuccess());
             })
-            .catch((error) => {console.log(error); dispatch(assignChecklistsFailure()); });
+            .catch((error) => { dispatch(assignChecklistsFailure()); });
     }
 }
 

@@ -311,7 +311,6 @@ class CreateNewsStep1 extends Component {
 
     preview()
     {
-        console.log(this.state);
         let medias = this.state.item.media;
         for(var i = 0; i < medias.length; i++)
         {
@@ -334,13 +333,12 @@ class CreateNewsStep1 extends Component {
         };
 
         ImagePicker.showImagePicker(options, (response) => {
-            console.log('Response = ', response);
 
             if (response.didCancel) {
-                console.log('User cancelled image picker');
+
             }
             else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
+
             }
             else {
                 let source = { uri: response.uri, type: response.type, name: response.fileName };

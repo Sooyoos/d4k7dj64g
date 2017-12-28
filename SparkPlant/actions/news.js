@@ -23,7 +23,6 @@ function fetchNews(login, data)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(newsSuccess(responseJson));
             })
             .catch((error) => { dispatch(newsFailure()); });
@@ -82,7 +81,6 @@ function fetchUserNews(login, user)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 let list = responseJson["hydra:member"];
                 let news = [];
                 let ids = [];
@@ -117,7 +115,7 @@ function fetchUserNews(login, user)
 
                 dispatch(userNewsSuccess(news.reverse()));
             })
-            .catch((error) => {console.log(error); dispatch(userNewsFailure()); });
+            .catch((error) => { dispatch(userNewsFailure()); });
     }
 }
 
@@ -177,7 +175,6 @@ function fetchWaitingNews(login, user)
                 let ids = [];
                 let news = [];
 
-                console.log(list);
                 for(var i = 0; i < list.length; i++)
                 {
                     if(list[i].published === false && list[i].previousUnit === null) // news has been created in this unit and awaits publication
@@ -197,7 +194,6 @@ function fetchWaitingNews(login, user)
                         }
                     }
                 }
-                console.log(news);
                 dispatch(waitingNewsSuccess(news.reverse()));
             })
             .catch((error) => { dispatch(waitingNewsFailure()); });
@@ -254,10 +250,9 @@ function fetchPublishNews(login, news)
             })
                 .then((response) => response.json())
                 .then((responseJson) => {
-                    console.log(responseJson);
                     dispatch(publishNewsSuccess(responseJson));
                 })
-                .catch((error) => { console.log(error); dispatch(publishNewsFailure()); });
+                .catch((error) => { dispatch(publishNewsFailure()); });
         }
         else
         {
@@ -275,10 +270,9 @@ function fetchPublishNews(login, news)
             })
                 .then((response) => response.json())
                 .then((responseJson) => {
-                    console.log(responseJson);
                     dispatch(publishNewsSuccess(responseJson));
                 })
-                .catch((error) => { console.log(error); dispatch(publishNewsFailure()); });
+                .catch((error) => { dispatch(publishNewsFailure()); });
         }
     }
 }
@@ -331,10 +325,9 @@ function fetchTransferNews(login, news)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(transferNewsSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => { console.log(error); dispatch(transferNewsFailure()); });
+            .catch((error) => { dispatch(transferNewsFailure()); });
     }
 }
 
@@ -379,7 +372,6 @@ function fetchDeleteNews(login, news)
             },
         })
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(deleteNewsSuccess(responseJson));
             })
             .catch((error) => { dispatch(deleteNewsFailure()); });
@@ -425,8 +417,6 @@ export function prepareNews(news)
 
 function fetchCreateNews(login, news)
 {
-    console.log("NEWS IN CREATE NEWS");
-    console.log(news);
 
     return dispatch => {
         dispatch(createNewsRequested());
@@ -451,7 +441,6 @@ function fetchCreateNews(login, news)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(createNewsSuccess(responseJson["hydra:member"]));
             })
             .catch((error) => { dispatch(createNewsFailure()); });
@@ -501,8 +490,6 @@ function fetchNewsUploadMedia(login, file)
         dispatch(newsUploadMediaRequested());
         let body = new FormData();
 
-        console.log(file);
-
         body.append("file", file);
 
         fetch(types.baseUrl + "/fileUpload", {
@@ -515,10 +502,9 @@ function fetchNewsUploadMedia(login, file)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(newsUploadMediaSuccess(responseJson));
             })
-            .catch((error) => { console.log(error); dispatch(newsUploadMediaFailure()); });
+            .catch((error) => { dispatch(newsUploadMediaFailure()); });
     }
 }
 

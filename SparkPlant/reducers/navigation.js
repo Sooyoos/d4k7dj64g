@@ -288,8 +288,6 @@ export const AppNavigator = StackNavigator({
 
 function getStateForResetChecklists(state)
 {
-    console.log("GET STATE FOR RESET CHECKLISTS");
-    console.log(state);
     let checklistsRoutes = [
         state.routes[1].routes[0].routes[3].routes[0],
     ];
@@ -310,8 +308,6 @@ function getStateForResetChecklists(state)
 
 function getStateForResetNews(state)
 {
-    console.log("GET STATE FOR RESET NEWS");
-    console.log(state);
     let newsRoutes = [
         state.routes[1].routes[0].routes[2].routes[0],
     ];
@@ -332,8 +328,6 @@ function getStateForResetNews(state)
 
 function getStateForResetTags(state)
 {
-    console.log("GET STATE FOR RESET TAGS");
-    console.log(state);
 
     let tagsRoutes = [
         state.routes[1].routes[0].routes[1].routes[0],

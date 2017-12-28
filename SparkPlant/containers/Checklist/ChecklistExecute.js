@@ -399,7 +399,6 @@ class ChecklistExecute extends Component {
                         if (supported) {
                             Linking.openURL(task.file.path);
                         } else {
-                            console.log("Unable to open URL");
                         }
                     });
                 }}>
@@ -631,7 +630,6 @@ class ChecklistExecute extends Component {
     }
 
     render() {
-        console.log(this.state);
         let item = this.props.checklists.currentChecklist;
         if(item)
         {

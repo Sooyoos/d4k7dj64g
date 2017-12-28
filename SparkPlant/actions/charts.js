@@ -13,10 +13,9 @@ function fetchSolvedTags(login, beginDate, endDate)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(solvedTagsSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => { console.log(error); dispatch(solvedTagsFailure()); });
+            .catch((error) => { dispatch(solvedTagsFailure()); });
     }
 }
 
@@ -63,10 +62,9 @@ function fetchUnsolvedTags(login, beginDate, endDate)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(unsolvedTagsSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => { console.log(error); dispatch(unsolvedTagsFailure()); });
+            .catch((error) => { dispatch(unsolvedTagsFailure()); });
     }
 }
 

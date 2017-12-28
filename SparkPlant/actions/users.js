@@ -70,7 +70,6 @@ export function tryUser(token, tokenString, data)
 
 function fetchSetAvailability(login, user, availability)
 {
-    console.log(availability);
     return dispatch => {
         dispatch(setAvailabilityRequested());
 
@@ -86,10 +85,9 @@ function fetchSetAvailability(login, user, availability)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(setAvailabilitySuccess(responseJson));
             })
-            .catch((error) => { console.log(error); dispatch(setAvailabilityFailure()); });
+            .catch((error) => { dispatch(setAvailabilityFailure()); });
     }
 }
 

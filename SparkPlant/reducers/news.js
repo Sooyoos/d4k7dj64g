@@ -117,7 +117,6 @@ export const newsReducer = {
             }
             case types.SET_CREATION_VISIBILITY : {
                 let creationCurrent = Object.assign({}, state.creation_current, {visibility : action.visibility});
-                console.log(creationCurrent);
                 return Object.assign({}, state, {creation_current : creationCurrent});
             }
             case types.NEWS_UPLOAD_MEDIA_SUCCESS: {

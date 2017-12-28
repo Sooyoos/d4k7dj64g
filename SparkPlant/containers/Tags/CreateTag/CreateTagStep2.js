@@ -155,9 +155,6 @@ class CreateTagStep2 extends Component {
             tagDescription : null,
             tag : newState,
         });
-
-        console.log("COMPONENT WILL MOUNT");
-        console.log(this.state);
     }
 
     saveTitle(title)
@@ -184,13 +181,11 @@ class CreateTagStep2 extends Component {
         };
 
         ImagePicker.showImagePicker(options, (response) => {
-            console.log('Response = ', response);
-
             if (response.didCancel) {
-                console.log('User cancelled image picker');
+
             }
             else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
+
             }
             else {
                 let source = { uri: response.uri, type: "video/mp4", name: response.path.substring(response.path.lastIndexOf("/") +1 ) };
@@ -216,13 +211,12 @@ class CreateTagStep2 extends Component {
             };
 
             ImagePicker.showImagePicker(options, (response) => {
-                console.log('Response = ', response);
 
                 if (response.didCancel) {
-                    console.log('User cancelled image picker');
+
                 }
                 else if (response.error) {
-                    console.log('ImagePicker Error: ', response.error);
+
                 }
                 else {
                     let source = { uri: response.uri, type: response.type, name: response.fileName };
@@ -236,9 +230,6 @@ class CreateTagStep2 extends Component {
 
     buildMediaList()
     {
-        console.log("BUILD MEDIA LIST");
-        console.log(this.state);
-
         let medias = this.state.tag.media;
 
         let mediaList = [];

@@ -120,8 +120,6 @@ class RecordAudio extends Component {
 
         try{
             const filePath = await AudioRecorder.stopRecording();
-            console.log(AudioRecorder.finishedSubscription);
-            console.warn(filePath);
 
             if(Platform.OS === 'android')
             {

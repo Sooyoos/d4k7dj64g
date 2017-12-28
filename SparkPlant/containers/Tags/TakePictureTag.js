@@ -61,13 +61,11 @@ export default class TakePictureTag extends Component {
         this.state = {
             path: null,
         };
-        console.log("constructor");
     }
 
     takePicture() {
         this.camera.capture()
             .then((data) => {
-                console.log(data);
                 this.setState({ path: data.path });
             })
             .catch(err => console.error(err));

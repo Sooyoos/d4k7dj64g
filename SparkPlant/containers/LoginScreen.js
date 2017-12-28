@@ -143,10 +143,6 @@ class LoginScreen extends Component {
 
     autoLogin(index, value)
     {
-        console.log(value);
-        console.log(index);
-        console.log(this.props.login.previousUsers);
-
         if(value.responsable)
         {
             this.props.setLoginFactory(value.factory);
