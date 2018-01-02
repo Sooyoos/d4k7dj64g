@@ -352,10 +352,10 @@ class CreateTagStep1 extends Component {
                                 </ElevatedView>
                                 <View style={styles.cardContent}>
                                     <View>
-                                        { Platform.OS === 'android' ? this.buildAxisListAndroid('primary') : this.buildAxisListIOS() }
+                                        { Platform.OS === 'android' ? this.buildAxisListAndroid('primary') : this.buildAxisListIOS('primary') }
                                     </View>
                                     <View>
-                                        { Platform.OS === 'android' ? this.buildAxisListAndroid('secondary') : this.buildAxisListIOS() }
+                                        { Platform.OS === 'android' ? this.buildAxisListAndroid('secondary') : this.buildAxisListIOS('secondary') }
                                     </View>
                                 </View>
                             </ElevatedView>
