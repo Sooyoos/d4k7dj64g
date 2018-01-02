@@ -87,7 +87,7 @@ class DashboardScreen extends Component {
         {
             return(
                 <View style={styles.login}>
-                    <View style={styles.body}>
+                    <View style={{paddingTop : layout.height4}}>
                         <ActivityIndicator color="#3f51b5" size="large"/>
                     </View>
                 </View>
