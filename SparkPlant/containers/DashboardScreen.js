@@ -87,7 +87,9 @@ class DashboardScreen extends Component {
         {
             return(
                 <View style={styles.login}>
-                    <ActivityIndicator color="#3f51b5" size="large"/>
+                    <View style={styles.body}>
+                        <ActivityIndicator color="#3f51b5" size="large"/>
+                    </View>
                 </View>
             );
         }
