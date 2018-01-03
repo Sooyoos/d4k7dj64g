@@ -5,6 +5,7 @@ import { goToLogin } from './navigation/login';
 import Base64 from 'base-64';
 import { AsyncStorage, Platform } from 'react-native';
 import firebase from "react-native-firebase";
+import RNExitApp from 'react-native-exit-app';
 
 const configurationOptions = {
     debug: true
@@ -338,7 +339,7 @@ export function logout()
 {
     return (dispatch, getState) => {
         dispatch(logoutRequested());
-        dispatch(goToLogin());
+        RNExitApp.exitApp();
     }
 }
 

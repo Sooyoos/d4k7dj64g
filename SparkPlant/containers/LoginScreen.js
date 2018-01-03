@@ -94,7 +94,7 @@ class LoginScreen extends Component {
     {
         let props = this.props;
 
-        if(!this.props.login.loading &&
+        /*if(!this.props.login.loading &&
             !this.props.charts.loading &&
             !this.props.checklists.loading &&
             !this.props.news.loading &&
@@ -103,7 +103,7 @@ class LoginScreen extends Component {
             !this.props.utils.loading)
         {
             this.props.reset();
-        }
+        }*/
 
         this.props.tryPreviousLogin();
         BackHandler.addEventListener('hardwareBackPress', function(){
