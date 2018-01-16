@@ -5,7 +5,8 @@ function fetchUserChecklists(login)
     return dispatch => {
         dispatch(userChecklistsRequested());
 
-        fetch(types.baseUrl + "/checklist_instances", {
+        console.log(login);
+        fetch(types.baseUrl + login.userToken["@id"] + "/checklists", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,

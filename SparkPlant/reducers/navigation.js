@@ -273,7 +273,7 @@ export const AppNavigator = StackNavigator({
             }
         },
         HomeTab: {
-            screen: ChecklistScreen,
+            screen: MainNavigator,
             navigationOptions : {
                 header : null,
             }

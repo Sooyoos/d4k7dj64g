@@ -57,11 +57,11 @@ let styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    addButton : {
+    deleteButton : {
         height : layout.height8,
         width : layout.height8,
         borderRadius : layout.height4,
-        backgroundColor : "#E040FB",
+        backgroundColor : "#D32F2F",
         marginHorizontal: layout.width5,
         alignItems: 'center',
         justifyContent: 'center',
@@ -85,13 +85,13 @@ let styles = StyleSheet.create({
     }
 });
 
-class ChecklistListItem extends Component {
+class UserChecklistListItem extends Component {
 
     constructor(props)
     {
         super(props);
         this.state = {
-            checklist : this.props.item,
+            checklist : this.props.item.checklist,
         };
     }
 
@@ -112,9 +112,9 @@ class ChecklistListItem extends Component {
                                     <Icon style={styles.buttonIcon} name="history"/>
                                 </View>
                             </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={() => { console.log("ADD CHECHLIST TO MY LIST") }}>
-                                <View style={styles.addButton}>
-                                    <Icon style={styles.buttonIcon} name="plus-square-o"/>
+                            <TouchableWithoutFeedback onPress={() => { console.log("DELETE CHECKLIST FROM LIST") }}>
+                                <View style={styles.deleteButton}>
+                                    <Icon style={styles.buttonIcon} name="trash-o"/>
                                 </View>
                             </TouchableWithoutFeedback>
                         </View>
@@ -160,4 +160,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChecklistListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(UserChecklistListItem);

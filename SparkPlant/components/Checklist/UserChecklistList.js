@@ -8,7 +8,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
-import ChecklistListItem from './ChecklistListItem';
+import UserChecklistListItem from './UserChecklistListItem';
 import {height1, height20, height80} from "../../assets/layout";
 
 let styles = StyleSheet.create({
@@ -20,7 +20,7 @@ let styles = StyleSheet.create({
     },
 });
 
-class ChecklistList extends Component {
+class UserChecklistList extends Component {
 
     constructor(props)
     {
@@ -55,13 +55,13 @@ class ChecklistList extends Component {
                     console.log(this.state.activeItem);
 
                     list.push(
-                        <ChecklistListItem active={true} index={i} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
+                        <UserChecklistListItem active={true} index={i} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
                     );
                 }
                 else
                 {
                     list.push(
-                        <ChecklistListItem active={false} index={i} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
+                        <UserChecklistListItem active={false} index={i} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
                     );
                 }
             }
@@ -97,4 +97,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChecklistList);
+export default connect(mapStateToProps, mapDispatchToProps)(UserChecklistList);
