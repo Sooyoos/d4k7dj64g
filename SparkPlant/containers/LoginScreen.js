@@ -244,7 +244,7 @@ class LoginScreen extends Component {
                                 Connectez vous avec l'un des utilisateurs suivants :
                             </Text>
                             <View>
-                                { Platform.OS === 'ios' ? this.buildUsersListIos() : this.buildUsersListAndroid()  }
+                                { Platform.OS === 'ios' ? this.buildUsersListIos() : this.buildUsersListAndroid() }
                             </View>
                             <Text style={{fontSize: layout.fontSize1p5}}>
                                 Ou :

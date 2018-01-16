@@ -1,6 +1,7 @@
 import * as types from '../actions/types';
 const initialState = {
     units : null,
+    places : null,
 };
 
 export const utilsReducer = {
@@ -10,6 +11,12 @@ export const utilsReducer = {
                 return Object.assign({}, state, {units : action.units});
             }
             case types.GET_UNITS_FAILURE: {
+                return state;
+            }
+            case types.GET_PLACES_SUCCESS: {
+                return Object.assign({}, state, {places : action.places});
+            }
+            case types.GET_PLACES_FAILURE: {
                 return state;
             }
             case types.UPLOAD_MEDIA_SUCCESS: {
