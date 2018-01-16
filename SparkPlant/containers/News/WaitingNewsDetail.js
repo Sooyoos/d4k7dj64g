@@ -147,7 +147,6 @@ class WaitingNewsDetail extends Component {
         {
             for(var i = 0; i < medias.length; i++)
             {
-                console.log(medias[i]);
                 mediaList.push(
                     <Image key={i} style={styles.image} source={{uri : medias[i].path}} />
                 );

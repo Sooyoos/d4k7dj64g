@@ -103,7 +103,6 @@ class NewsDetail extends Component {
     buildMediaList()
     {
         let medias = this.props.news.currentNews.media;
-        console.log(this.props.news.currentNews);
         let mediaList = [];
 
         if(medias)

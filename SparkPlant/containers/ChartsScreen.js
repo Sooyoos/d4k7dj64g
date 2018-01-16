@@ -166,8 +166,6 @@ class ChartsScreen extends Component {
             let date = beginDate.add(i, 'd').format("DD/MM/YYYY");
             sortedList[i] = [];
 
-            console.log("date à comparer " + date);
-
             for(var j = 0; j < list.length; j++)
             {
                 let tagDate = moment(list[j].updatedAt, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY");

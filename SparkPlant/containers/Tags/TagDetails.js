@@ -128,8 +128,6 @@ class TagDetails extends Component {
         let medias = this.props.tags.currentTag.media;
         let list = [];
 
-        console.log(medias);
-
         if(medias.length > 0)
         {
             for(var i = 0; i < medias.length; i++)
@@ -143,7 +141,6 @@ class TagDetails extends Component {
                 else
                 {
                     let thumbnail = "http://via.placeholder.com/" + Math.round(layout.width70) + "x" + Math.round(layout.height30) + "000000/000000.png";
-                    console.log(thumbnail);
                     list.push(
                         <VideoPlayer
                             style={{width : layout.width70, height : layout.height30, marginHorizontal: 25}}
@@ -169,18 +166,15 @@ class TagDetails extends Component {
 
     playAudio(file)
     {
-        console.log("play audio");
         let sound = new Sound(file, Sound.MAIN_BUNDLE, (error) => {
             if (error) {
-                console.log('failed to load the sound', error);
+
             }
 
             sound.play((success) => {
                 if (success) {
-                    console.log('successfully finished playing');
                     sound.release();
                 } else {
-                    console.log('playback failed due to audio decoding errors');
                     sound.release();
                 }
             });

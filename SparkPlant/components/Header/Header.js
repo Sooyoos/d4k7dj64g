@@ -44,7 +44,6 @@ class Header extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <View style={styles.header}>
                 <TouchableWithoutFeedback onPress={() => {this.props.navigate('DrawerOpen');}}>

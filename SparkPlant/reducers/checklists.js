@@ -71,6 +71,9 @@ export const checklistsReducer = {
             case types.SET_CURRENT_TEMPLATE: {
                 return Object.assign({}, state, {currentTemplate : action.template});
             }
+            case types.RESET_CHECKLISTS: {
+                return Object.assign({}, state, initialState);
+            }
             default :
                 return state;
         }

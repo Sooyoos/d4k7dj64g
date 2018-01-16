@@ -50,8 +50,6 @@ function getCurrentCreationMediaIndex(state, filename)
 {
     let medias = state.creation_current.media;
 
-    console.log(medias);
-
     for(var i = 0; i < medias.length; i++)
     {
         if(medias[i].name === filename)
@@ -111,7 +109,6 @@ function filterTags(list, filters)
     for(var i = 0; i < list.length; i++)
     {
         let flag = false;
-        console.log(list[i]);
 
         for(var j = 0; j < filters.status.length; j++)
         {
@@ -322,7 +319,6 @@ export const tagsReducer = {
             }
             case types.TAGS_UPLOAD_MEDIA_SUCCESS: {
                 let index = getCurrentCreationMediaIndex(state, action.media.originalFilename);
-                console.log(index);
                 if(index !== -1)
                 {
                     let medias = state.creation_current.media;
@@ -447,6 +443,9 @@ export const tagsReducer = {
             case types.RESET_CURRENT_CREATION_TAG : {
                 let creation_current = Object.assign({}, initialState.creation_current, {media : [], medias : [], loading : false});
                 return Object.assign({}, state, {creation_current : creation_current, loading : false});
+            }
+            case types.RESET_TAGS : {
+                return Object.assign({}, state, initialState);
             }
             default :
                 return state;

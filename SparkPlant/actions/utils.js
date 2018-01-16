@@ -13,7 +13,6 @@ function fetchUnits(login)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(unitsSuccess(responseJson["hydra:member"]));
             })
             .catch((error) => { dispatch(unitsFailure()); });

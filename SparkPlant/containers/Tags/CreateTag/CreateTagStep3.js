@@ -144,7 +144,6 @@ class CreateTagStep3 extends Component {
 
     deleteFollower(index)
     {
-        console.log(index);
         let followers = this.props.tags.creation_current.users;
         followers.splice(index, 1);
         this.setState({followers : followers});
@@ -152,7 +151,6 @@ class CreateTagStep3 extends Component {
 
     preview()
     {
-        console.log(this.props.tags.creation_current.users);
         if(this.state.followers)
         {
             this.props.trySetTagFollowers(this.state.followers);

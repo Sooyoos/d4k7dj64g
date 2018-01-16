@@ -5,6 +5,7 @@ import { goToLogin } from './navigation/login';
 import Base64 from 'base-64';
 import { AsyncStorage, Platform } from 'react-native';
 import firebase from "react-native-firebase";
+import RNExitApp from 'react-native-exit-app';
 
 const configurationOptions = {
     debug: true
@@ -44,7 +45,6 @@ export function storeLogin(data)
 
                 list.unshift(data);
                 AsyncStorage.setItem('@SparkPlant:previousUsers', JSON.stringify(list), (err, result) => {
-                    console.log('Previous users list saved');
                 });
             }
         }
@@ -53,7 +53,6 @@ export function storeLogin(data)
             list = [];
             list.unshift(data);
             AsyncStorage.setItem('@SparkPlant:previousUsers', JSON.stringify(list), (err, result) => {
-                console.log('Previous users list saved');
             });
         }
     })
@@ -63,7 +62,6 @@ function manageFirebaseToken(tokenString)
 {
     var DeviceInfo = require('react-native-device-info');
 
-    console.log(DeviceInfo);
     let token;
 
     // get platform
@@ -92,14 +90,12 @@ function manageFirebaseToken(tokenString)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 Firebase.messaging().onMessage(
                     (data) => {
-                        console.log(data);
                     }
                 );
             })
-            .catch((error) => { console.log(error); dispatch(loginFailure())});
+            .catch((error) => { dispatch(loginFailure())});
 
 
     });
@@ -139,7 +135,7 @@ function fetchLogin(factory, username, password)
                     dispatch(loginFailure());
                 }
             })
-            .catch((error) => { console.log(error); dispatch(loginFailure())});
+            .catch((error) => { dispatch(loginFailure())});
     }
 
 }
@@ -220,7 +216,6 @@ function fetchPreviousLogin()
         dispatch(previousLoginRequested());
         try{
             AsyncStorage.getItem('@SparkPlant:previousUsers', (err, result) => {
-                console.log(JSON.parse(result));
                 dispatch(previousLoginSuccess(result));
             })
         }
@@ -265,6 +260,20 @@ function logoutRequested()
     }
 }
 
+function logoutSuccess()
+{
+    return {
+        type: types.LOGOUT_SUCCESS,
+    }
+}
+
+function logoutFailure()
+{
+    return {
+        type: types.LOGOUT_FAILURE,
+    }
+}
+
 export function resetLoginError()
 {
     return {
@@ -272,11 +281,65 @@ export function resetLoginError()
     }
 }
 
+function resetCharts()
+{
+    return {
+        type: types.RESET_CHARTS,
+    }
+}
+
+function resetChecklists()
+{
+    return {
+        type: types.RESET_CHECKLISTS,
+    }
+}
+
+function resetNews()
+{
+    return {
+        type: types.RESET_NEWS,
+    }
+}
+
+function resetTags()
+{
+    return {
+        type: types.RESET_TAGS,
+    }
+}
+
+function resetUsers()
+{
+    return {
+        type: types.RESET_USERS,
+    }
+}
+
+function resetUtils()
+{
+    return {
+        type: types.RESET_UTILS,
+    }
+}
+
+export function reset()
+{
+    return (dispatch, getState) => {
+        dispatch(resetCharts());
+        dispatch(resetChecklists());
+        dispatch(resetNews());
+        dispatch(resetTags());
+        dispatch(resetUsers());
+        dispatch(resetUtils());
+    }
+}
+
 export function logout()
 {
     return (dispatch, getState) => {
         dispatch(logoutRequested());
-        dispatch(goToLogin())
+        RNExitApp.exitApp();
     }
 }
 

@@ -205,6 +205,8 @@ export const SET_AVAILABILITY_FAILURE = "SET_AVAILABILITY_FAILURE";
 
 
 export const LOGOUT = "LOGOUT";
+export const LOGOUT_SUCCESS = "LOGOUT";
+export const LOGOUT_FAILURE = "LOGOUT";
 
 
 export const SOLVED_TAGS_REQUESTED = "SOLVED_TAGS_REQUESTED";
@@ -219,3 +221,10 @@ export const UNSOLVED_TAGS_ERROR = "UNSOLVED_TAGS_ERROR";
 export const baseUrl = "http://sparkplant-api-develop.sooyoos.com";
 
 export const RESET_LOGIN_ERROR = "RESET_LOGIN_ERROR";
+
+export const RESET_CHARTS = "RESET_CHARTS";
+export const RESET_CHECKLISTS = "RESET_CHECKLISTS";
+export const RESET_NEWS = "RESET_NEWS";
+export const RESET_TAGS = "RESET_TAGS";
+export const RESET_USERS = "RESET_USERS";
+export const RESET_UTILS = "RESET_UTILS";

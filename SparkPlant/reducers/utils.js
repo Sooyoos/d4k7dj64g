@@ -18,6 +18,9 @@ export const utilsReducer = {
             case types.UPLOAD_MEDIA_FAILURE: {
                 return state;
             }
+            case types.RESET_UTILS: {
+                return Object.assign({}, state, initialState);
+            }
             default :
                 return state;
         }
