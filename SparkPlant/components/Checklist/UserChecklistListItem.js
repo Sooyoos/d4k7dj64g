@@ -107,7 +107,7 @@ class UserChecklistListItem extends Component {
                                     <Icon style={styles.buttonIcon} name="play-circle-o"/>
                                 </View>
                             </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={() => { console.log("CHECKLIST HISTORY") }}>
+                            <TouchableWithoutFeedback onPress={() => { this.props.setCurrentChecklist(this.state.checklist); this.props.navigateChecklistHistory() }}>
                                 <View style={styles.historyButton}>
                                     <Icon style={styles.buttonIcon} name="history"/>
                                 </View>

@@ -12,6 +12,14 @@ function checkNbActions(navState)
     }
 }
 
+export function navigateChecklistHistory()
+{
+    return {
+        type: 'Navigation/NAVIGATE',
+        routeName: 'ChecklistHistory',
+    };
+}
+
 function navigateChecklistPage()
 {
     return {

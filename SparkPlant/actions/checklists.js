@@ -315,3 +315,52 @@ export function setCurrentTemplate(template)
         template : template,
     }
 }
+
+function fetchChecklistHistory(login, checklist)
+{
+    return dispatch => {
+        dispatch(fetchChecklistHistoryRequested());
+
+        fetch(types.baseUrl + "/checklist_instances?checklist.id=" + checklist["@id"] + "&itemsPerPage=3&order[createdAt]=desc", {
+            method: 'GET',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                dispatch(fetchChecklistHistorySuccess(responseJson["hydra:member"]));
+            })
+            .catch((error) => { console.error(error); dispatch(fetchChecklistHistoryFailure()); });
+    }
+}
+
+function fetchChecklistHistoryRequested()
+{
+    return {
+        type : types.CHECKLIST_HISTORY_REQUESTED,
+    }
+}
+
+function fetchChecklistHistorySuccess(history)
+{
+    return {
+        type : types.CHECKLIST_HISTORY_SUCCESS,
+        history : history,
+    }
+}
+
+function fetchChecklistHistoryFailure()
+{
+    return {
+        type : types.CHECKLIST_HISTORY_FAILURE,
+    }
+}
+
+export function tryChecklistHistory(login, checklist)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchChecklistHistory(login, checklist));
+    }
+}

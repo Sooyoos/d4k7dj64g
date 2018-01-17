@@ -5,6 +5,7 @@ const initialState = {
     templates : null,
     currentChecklist : null,
     currentTemplate : null,
+    checklistHistory : null,
     loading : false,
 };
 
@@ -64,6 +65,15 @@ export const checklistsReducer = {
             }
             case types.ASSIGN_CHECKLISTS_FAILURE: {
                 return Object.assign({}, state, {loading : false});
+            }
+            case types.CHECKLIST_HISTORY_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
+            case types.CHECKLIST_HISTORY_SUCCESS: {
+                return Object.assign({}, state, {checklistHistory: action.history, loading : false});
+            }
+            case types.CHECKLIST_HISTORY_FAILURE: {
+                return Object.assign({}, state, {checklistHistory: null, loading : false});
             }
             case types.SET_CURRENT_CHECKLIST: {
                 return Object.assign({}, state, {currentChecklist : action.checklist});

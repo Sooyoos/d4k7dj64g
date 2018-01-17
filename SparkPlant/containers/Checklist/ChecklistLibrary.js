@@ -81,10 +81,9 @@ class ChecklistLibrary extends Component {
             }
         }
 
-        return <Picker style={styles.placePicker} onValueChange={(value, index) => {}} >
+        return <Picker style={styles.placePicker} onValueChange={(value, index) => {}}>
             {list}
-        </Picker>
-            ;
+        </Picker>;
     }
 
     buildUsersListIos()

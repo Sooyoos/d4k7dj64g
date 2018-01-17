@@ -20,9 +20,11 @@ export const width80 = responsiveWidth(80);
 export const width78 = responsiveWidth(78);
 export const height78 = responsiveHeight(78);
 export const width75 = responsiveWidth(75);
+export const width73 = responsiveWidth(73);
 export const width70 = responsiveWidth(70);
 
 export const width65 = responsiveWidth(65);
+export const width63 = responsiveWidth(63);
 export const width60 = responsiveWidth(60);
 
 export const height55 = responsiveHeight(55);
