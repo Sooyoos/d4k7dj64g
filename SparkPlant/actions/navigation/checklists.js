@@ -20,6 +20,14 @@ export function navigateChecklistHistory()
     };
 }
 
+export function navigateChecklistHistoryDetails()
+{
+    return {
+        type: 'Navigation/NAVIGATE',
+        routeName: 'ChecklistHistoryDetails',
+    };
+}
+
 function navigateChecklistPage()
 {
     return {

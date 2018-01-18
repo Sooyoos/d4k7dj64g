@@ -15,6 +15,7 @@ import ChecklistDetails from '../containers/Checklist/ChecklistDetails';
 import ChecklistCreateStep1 from '../containers/Checklist/ChecklistCreateStep1';
 import ChecklistExecute from '../containers/Checklist/ChecklistExecute';
 import ChecklistHistory from '../containers/Checklist/ChecklistHistory';
+import ChecklistHistoryDetails from '../containers/Checklist/ChecklistHistoryDetails';
 import WaitingNews from '../containers/News/WaitingNews';
 import NewsDetail from '../containers/News/NewsDetail';
 import WaitingNewsDetail from '../containers/News/WaitingNewsDetail';
@@ -250,6 +251,12 @@ export const ChecklistNavigator = StackNavigator(
         },
         ChecklistHistory: {
             screen: ChecklistHistory,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        ChecklistHistoryDetails: {
+            screen: ChecklistHistoryDetails,
             navigationOptions : {
                 header : null,
             }

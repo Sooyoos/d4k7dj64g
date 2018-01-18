@@ -6,6 +6,7 @@ const initialState = {
     currentChecklist : null,
     currentTemplate : null,
     checklistHistory : null,
+    currentHistory : null,
     loading : false,
 };
 
@@ -77,6 +78,9 @@ export const checklistsReducer = {
             }
             case types.SET_CURRENT_CHECKLIST: {
                 return Object.assign({}, state, {currentChecklist : action.checklist});
+            }
+            case types.SET_CURRENT_HISTORY: {
+                return Object.assign({}, state, {currentHistory : action.item});
             }
             case types.SET_CURRENT_TEMPLATE: {
                 return Object.assign({}, state, {currentTemplate : action.template});

@@ -63,7 +63,7 @@ class ChecklistHistoryItem extends Component {
 
     render() {
         return (
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={() => { this.props.setCurrentHistory(this.props.item); this.props.navigateChecklistHistoryDetails(); }}>
                 <ElevatedView style={styles.item} elevation={4}>
                     <View style={styles.itemInfos}>
                         <Text style={styles.itemUser}>

@@ -316,6 +316,14 @@ export function setCurrentTemplate(template)
     }
 }
 
+export function setCurrentHistory(item)
+{
+    return {
+        type : types.SET_CURRENT_HISTORY,
+        item : item,
+    }
+}
+
 function fetchChecklistHistory(login, checklist)
 {
     return dispatch => {
