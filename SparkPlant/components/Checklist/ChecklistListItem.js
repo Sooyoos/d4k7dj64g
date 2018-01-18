@@ -112,7 +112,7 @@ class ChecklistListItem extends Component {
                                     <Icon style={styles.buttonIcon} name="history"/>
                                 </View>
                             </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={() => { console.log("ADD CHECHLIST TO MY LIST") }}>
+                            <TouchableWithoutFeedback onPress={() => { this.props.tryCreateUserChecklist(this.props.login, this.props.item, this.props.users.loggedUser) }}>
                                 <View style={styles.addButton}>
                                     <Icon style={styles.buttonIcon} name="plus-square-o"/>
                                 </View>
@@ -149,8 +149,7 @@ function mapStateToProps(state) {
     return {
         login: state.login,
         nav : state.nav,
-        tags : state.tags,
-        news : state.news,
+        users : state.users,
         checklists : state.checklists,
     };
 }

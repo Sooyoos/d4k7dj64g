@@ -372,3 +372,103 @@ export function tryChecklistHistory(login, checklist)
         return dispatch(fetchChecklistHistory(login, checklist));
     }
 }
+
+function fetchDeleteUserChecklist(login, checklist)
+{
+    return dispatch => {
+        dispatch(fetchDeleteUserChecklistRequested());
+
+        fetch(types.baseUrl + checklist["@id"], {
+            method: 'DELETE',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => console.log(response))
+            .then((responseJson) => {
+                dispatch(fetchDeleteUserChecklistSuccess());
+            })
+            .catch((error) => { console.error(error); dispatch(fetchDeleteUserChecklistFailure()); });
+    }
+}
+
+function fetchDeleteUserChecklistRequested()
+{
+    return {
+        type : types.DELETE_USER_CHECKLIST_REQUESTED,
+    }
+}
+
+function fetchDeleteUserChecklistSuccess()
+{
+    return {
+        type : types.DELETE_USER_CHECKLIST_SUCCESS,
+    }
+}
+
+function fetchDeleteUserChecklistFailure()
+{
+    return {
+        type : types.DELETE_USER_CHECKLIST_FAILURE,
+    }
+}
+
+export function tryDeleteUserChecklist(login, checklist)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchDeleteUserChecklist(login, checklist));
+    }
+}
+
+function fetchCreateUserChecklist(login, checklist, user)
+{
+    return dispatch => {
+        dispatch(fetchCreateUserChecklistRequested());
+
+        fetch(types.baseUrl + "/user_checklists", {
+            method: 'POST',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'application/json',
+            },
+            body : JSON.stringify({
+                user : user["@id"],
+                checklist : checklist["@id"],
+            })
+        })
+            .then((response) => console.log(response))
+            .then((responseJson) => {
+                dispatch(fetchCreateUserChecklistSuccess());
+            })
+            .catch((error) => { console.error(error); dispatch(fetchCreateUserChecklistFailure()); });
+    }
+}
+
+function fetchCreateUserChecklistRequested()
+{
+    return {
+        type : types.CREATE_USER_CHECKLIST_REQUESTED,
+    }
+}
+
+function fetchCreateUserChecklistSuccess()
+{
+    return {
+        type : types.CREATE_USER_CHECKLIST_SUCCESS,
+    }
+}
+
+function fetchCreateUserChecklistFailure()
+{
+    return {
+        type : types.CREATE_USER_CHECKLIST_FAILURE,
+    }
+}
+
+export function tryCreateUserChecklist(login, checklist, user)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchCreateUserChecklist(login, checklist, user));
+    }
+}

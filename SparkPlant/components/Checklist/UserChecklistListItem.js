@@ -112,7 +112,7 @@ class UserChecklistListItem extends Component {
                                     <Icon style={styles.buttonIcon} name="history"/>
                                 </View>
                             </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={() => { console.log("DELETE CHECKLIST FROM LIST") }}>
+                            <TouchableWithoutFeedback onPress={() => { this.props.tryDeleteUserChecklist(this.props.login, this.props.item); }}>
                                 <View style={styles.deleteButton}>
                                     <Icon style={styles.buttonIcon} name="trash-o"/>
                                 </View>
