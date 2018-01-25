@@ -102,7 +102,7 @@ class UserChecklistListItem extends Component {
                 <ElevatedView style={styles.itemActive} elevation={4}>
                     <TouchableWithoutFeedback onPress={() => { this.props.deactivateItem()}}>
                         <View style={styles.buttonsOverlay}>
-                            <TouchableWithoutFeedback onPress={() => { console.log("EXECUTE CHECKLIST") }}>
+                            <TouchableWithoutFeedback onPress={() => { this.props.setCurrentChecklist(this.state.checklist);this.props.goToChecklistExecute(this.props.nav); }}>
                                 <View style={styles.executeButton}>
                                     <Icon style={styles.buttonIcon} name="play-circle-o"/>
                                 </View>

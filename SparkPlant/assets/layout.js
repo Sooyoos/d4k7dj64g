@@ -37,6 +37,7 @@ export const width40 = responsiveWidth(40);
 export const height40 = responsiveHeight(40);
 
 export const height35 = responsiveHeight(35);
+export const width35 = responsiveWidth(35);
 export const width30 = responsiveWidth(30);
 export const height30 = responsiveHeight(30);
 
