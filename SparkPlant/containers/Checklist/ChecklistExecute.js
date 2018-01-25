@@ -267,7 +267,7 @@ class ChecklistExecute extends Component {
                     <ElevatedView style={styles.checklistHeader} elevation={4}>
                         <View style={styles.checklistInfos}>
                             <Text style={styles.checklistTitle}>
-                                Titre de la checkliste
+                                { this.state.checklist.name }
                             </Text>
                         </View>
                         <View style={styles.actions}>
