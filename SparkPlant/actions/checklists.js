@@ -1,4 +1,5 @@
 import * as types from './types';
+import { goToChecklistExecute, goToChecklistPage } from "./navigation/checklists";
 
 function fetchUserChecklists(login)
 {
@@ -470,5 +471,170 @@ export function tryCreateUserChecklist(login, checklist, user)
 {
     return (dispatch, getState) => {
         return dispatch(fetchCreateUserChecklist(login, checklist, user));
+    }
+}
+
+
+function fetchCreateChecklistInstance(login, checklist, user, navState)
+{
+    return dispatch => {
+        dispatch(fetchCreateChecklistInstanceRequested());
+
+        fetch(types.baseUrl + "/checklist_instances", {
+            method: 'POST',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'application/json',
+            },
+            body : JSON.stringify({
+                user : user["@id"],
+                checklist : checklist["@id"],
+                successRate : 0,
+                saved : "false",
+            })
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                dispatch(fetchCreateChecklistInstanceSuccess(responseJson));
+                dispatch(goToChecklistExecute(navState));
+            })
+            .catch((error) => { console.error(error); dispatch(fetchCreateChecklistInstanceFailure()); });
+    }
+}
+
+function fetchCreateChecklistInstanceRequested()
+{
+    return {
+        type : types.CREATE_CHECKLIST_INSTANCE_REQUESTED,
+    }
+}
+
+function fetchCreateChecklistInstanceSuccess(instance)
+{
+    return {
+        type : types.CREATE_CHECKLIST_INSTANCE_SUCCESS,
+        instance : instance,
+    }
+}
+
+function fetchCreateChecklistInstanceFailure()
+{
+    return {
+        type : types.CREATE_CHECKLIST_INSTANCE_FAILURE,
+    }
+}
+
+export function tryCreateChecklistInstance(login, checklist, user, navState)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchCreateChecklistInstance(login, checklist, user, navState));
+    }
+}
+
+function fetchUpdateChecklistInstance(login, navState, checklist)
+{
+    return dispatch => {
+        dispatch(fetchUpdateChecklistInstanceRequested());
+
+        fetch(types.baseUrl + checklist["@id"], {
+            method: 'PUT',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'application/json',
+            },
+            body : JSON.stringify(checklist)
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                dispatch(fetchUpdateChecklistInstanceSuccess(responseJson));
+                dispatch(goToChecklistPage(navState));
+            })
+            .catch((error) => { console.error(error); dispatch(fetchUpdateChecklistInstanceFailure()); });
+    }
+}
+
+function fetchUpdateChecklistInstanceRequested()
+{
+    return {
+        type : types.UPDATE_CHECKLIST_INSTANCE_REQUESTED,
+    }
+}
+
+function fetchUpdateChecklistInstanceSuccess(instance)
+{
+    return {
+        type : types.UPDATE_CHECKLIST_INSTANCE_SUCCESS,
+        instance : instance,
+    }
+}
+
+function fetchUpdateChecklistInstanceFailure()
+{
+    return {
+        type : types.UPDATE_CHECKLIST_INSTANCE_FAILURE,
+    }
+}
+
+export function tryUpdateChecklistInstance(login, navState, checklist)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchUpdateChecklistInstance(login, navState, checklist));
+    }
+}
+
+
+function fetchUpdateChecklistInstanceTask(login, index, task)
+{
+    console.log(task);
+
+    return dispatch => {
+        dispatch(fetchUpdateChecklistInstanceTaskRequested());
+
+        fetch(types.baseUrl + task["@id"], {
+            method: 'PUT',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'application/json',
+            },
+            body : JSON.stringify(task)
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                dispatch(fetchUpdateChecklistInstanceTaskSuccess(index, responseJson));
+            })
+            .catch((error) => { console.error(error); dispatch(fetchUpdateChecklistInstanceTaskFailure()); });
+    }
+}
+
+function fetchUpdateChecklistInstanceTaskRequested()
+{
+    return {
+        type : types.UPDATE_CHECKLIST_INSTANCE_TASK_REQUESTED,
+    }
+}
+
+function fetchUpdateChecklistInstanceTaskSuccess(index, task)
+{
+    return {
+        type : types.UPDATE_CHECKLIST_INSTANCE_TASK_SUCCESS,
+        index : index,
+        task : task,
+    }
+}
+
+function fetchUpdateChecklistInstanceTaskFailure()
+{
+    return {
+        type : types.UPDATE_CHECKLIST_INSTANCE_TASK_FAILURE,
+    }
+}
+
+export function tryUpdateChecklistInstanceTask(login, index,  task)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchUpdateChecklistInstanceTask(login, index, task));
     }
 }

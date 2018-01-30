@@ -13,6 +13,7 @@ import { bindActionCreators } from 'redux';
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import Moment from "moment";
 import { ActionCreators } from '../../actions';
 import * as layout from "../../assets/layout";
 import HeaderChecklist from "../../components/Header/HeaderChecklist";
@@ -231,6 +232,25 @@ let styles = StyleSheet.create({
         color : "#000000",
         textAlign : 'center',
         width : layout.width35,
+    },
+    submit : {
+        width : layout.fullWidth,
+        height:layout.height10,
+        backgroundColor : '#3f51b5',
+        alignItems:'center',
+        paddingTop: layout.height1,
+    },
+    submitButton : {
+        height : layout.height5,
+        width : layout.width70,
+        backgroundColor : '#ffffff',
+        alignItems : 'center',
+        justifyContent : 'center',
+    },
+    submitButtonText : {
+        color : "#3f51b5",
+        textAlign : 'center',
+        fontSize : layout.fontSize2p4,
     }
 });
 
@@ -240,13 +260,13 @@ class ChecklistExecute extends Component {
     {
         super(props);
         this.state = {
-            checklist : this.props.checklists.currentChecklist,
+            checklist : this.props.checklists.currentInstance,
         };
     }
 
     displayTasks()
     {
-        let tasks = this.state.checklist.tasks;
+        let tasks = this.state.checklist.checklistInstanceTasks;
         let list = [];
 
         for(var i = 0; i < tasks.length; i++)
@@ -259,6 +279,16 @@ class ChecklistExecute extends Component {
         return list;
     }
 
+    save()
+    {
+        this.props.tryUpdateChecklistInstance(this.props.login, this.props.nav,
+            {
+                "@id" : this.props.checklists.currentInstance["@id"],
+                saved : "true",
+            }
+        );
+    }
+
     render() {
         return(
             <View style={styles.login}>
@@ -267,7 +297,7 @@ class ChecklistExecute extends Component {
                     <ElevatedView style={styles.checklistHeader} elevation={4}>
                         <View style={styles.checklistInfos}>
                             <Text style={styles.checklistTitle}>
-                                { this.state.checklist.name }
+                                { this.state.checklist.checklist.name }
                             </Text>
                         </View>
                         <View style={styles.actions}>
@@ -288,6 +318,15 @@ class ChecklistExecute extends Component {
                             { this.displayTasks() }
                         </View>
                     </ScrollView>
+                    <ElevatedView style={styles.submit} elevation={2}>
+                        <TouchableWithoutFeedback onPress={ () => { this.save(); }}>
+                            <ElevatedView style={styles.submitButton} elevation={2}>
+                                <Text style={styles.submitButtonText}>
+                                    ENREGISTRER
+                                </Text>
+                            </ElevatedView>
+                        </TouchableWithoutFeedback>
+                    </ElevatedView>
                 </View>
             </View>
         );

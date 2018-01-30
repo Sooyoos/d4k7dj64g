@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ElevatedView from 'react-native-elevated-view';
+import Icon from "react-native-vector-icons/FontAwesome";
 import { ActionCreators } from '../../actions';
 import * as layout from "../../assets/layout";
 
@@ -60,12 +61,16 @@ let styles = StyleSheet.create({
         width : layout.height8,
         borderRadius : layout.height4,
         backgroundColor : '#388E3C',
+        alignItems : 'center',
+        justifyContent : 'center',
     },
     taskStatusIconFailure : {
         height : layout.height8,
         width : layout.height8,
         borderRadius : layout.height4,
         backgroundColor : '#D32F2F',
+        alignItems : 'center',
+        justifyContent : 'center',
     },
     taskStatusIconNeutral : {
         height : layout.height8,
@@ -73,6 +78,11 @@ let styles = StyleSheet.create({
         borderRadius : layout.height4,
         backgroundColor : '#ababab',
     },
+    savedIcon : {
+        color : "#ffffff",
+        textAlign : 'center',
+        fontSize : layout.fontSize3p5,
+    }
 });
 
 class TaskHeader extends Component {
@@ -98,17 +108,39 @@ class TaskHeader extends Component {
         }
         else if(status === 'ok')
         {
-            return(
-                <View style={styles.taskStatusIconSuccess}>
-                </View>
-            );
+            if(this.props.saved === false)
+            {
+                return(
+                    <View style={styles.taskStatusIconSuccess}>
+                    </View>
+                );
+            }
+            else
+            {
+                return(
+                    <View style={styles.taskStatusIconSuccess}>
+                        <Icon name="check" style={styles.savedIcon}/>
+                    </View>
+                );
+            }
         }
         else
         {
-            return(
-                <View style={styles.taskStatusIconFailure}>
-                </View>
-            );
+            if(this.props.saved === false)
+            {
+                return(
+                    <View style={styles.taskStatusIconFailure}>
+                    </View>
+                );
+            }
+            else
+            {
+                return(
+                    <View style={styles.taskStatusIconFailure}>
+                        <Icon name="check" style={styles.savedIcon} />
+                    </View>
+                );
+            }
         }
     }
 
@@ -129,7 +161,7 @@ class TaskHeader extends Component {
                         </Text>
                     </View>
                     <View style={styles.taskStatus}>
-                        { this.displayStatusIcon(this.state.status) }
+                        { this.displayStatusIcon(this.props.status) }
                     </View>
                 </View>
             </ElevatedView>

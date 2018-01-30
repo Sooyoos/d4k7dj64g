@@ -7,6 +7,7 @@ const initialState = {
     currentTemplate : null,
     checklistHistory : null,
     currentHistory : null,
+    currentInstance : null,
     loading : false,
 };
 
@@ -101,6 +102,36 @@ export const checklistsReducer = {
                 return Object.assign({}, state, { loading : false });
             }
             case types.CREATE_USER_CHECKLIST_FAILURE: {
+                return Object.assign({}, state, { loading : false });
+            }
+            case types.CREATE_CHECKLIST_INSTANCE_REQUESTED: {
+                return Object.assign({}, state, { loading : true });
+            }
+            case types.CREATE_CHECKLIST_INSTANCE_SUCCESS: {
+                return Object.assign({}, state, { loading : false, currentInstance: action.instance });
+            }
+            case types.CREATE_CHECKLIST_INSTANCE_FAILURE: {
+                return Object.assign({}, state, { loading : false, currentInstance: null });
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_REQUESTED: {
+                return Object.assign({}, state, { loading : true });
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_SUCCESS: {
+                return Object.assign({}, state, { loading : false, currentInstance: null });
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_FAILURE: {
+                return Object.assign({}, state, { loading : false});
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_TASK_REQUESTED: {
+                return Object.assign({}, state, { loading : true });
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_TASK_SUCCESS: {
+                let tasks = state.currentInstance.checklistInstanceTasks;
+                tasks[action.index] = action.task;
+                let currentInstance = Object.assign({}, state.currentInstance, { checklistInstanceTasks : tasks });
+                return Object.assign({}, state, { loading : false, currentInstance : currentInstance });
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_TASK_FAILURE: {
                 return Object.assign({}, state, { loading : false });
             }
             case types.RESET_CHECKLISTS: {

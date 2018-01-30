@@ -95,6 +95,26 @@ class UserChecklistListItem extends Component {
         };
     }
 
+    componentWillMount()
+    {
+        if(this.props.checklists.loading === false && this.props.checklists.currentInstance !== null)
+        {
+            this.props.goToChecklistExecute(this.props.nav);
+        }
+    }
+
+    execute()
+    {
+        if(this.props.checklists.loading === false && this.props.checklists.currentInstance !== null)
+        {
+            this.props.goToChecklistExecute(this.props.nav);
+        }
+        else if(this.props.checklists.loading === false && this.props.checklists.currentInstance === null)
+        {
+            this.props.tryCreateChecklistInstance(this.props.login, this.state.checklist, this.props.login.userToken, this.props.nav);
+        }
+    }
+
     render() {
         if(this.props.active)
         {
@@ -102,7 +122,7 @@ class UserChecklistListItem extends Component {
                 <ElevatedView style={styles.itemActive} elevation={4}>
                     <TouchableWithoutFeedback onPress={() => { this.props.deactivateItem()}}>
                         <View style={styles.buttonsOverlay}>
-                            <TouchableWithoutFeedback onPress={() => { this.props.setCurrentChecklist(this.state.checklist);this.props.goToChecklistExecute(this.props.nav); }}>
+                            <TouchableWithoutFeedback onPress={() => { this.execute() }}>
                                 <View style={styles.executeButton}>
                                     <Icon style={styles.buttonIcon} name="play-circle-o"/>
                                 </View>

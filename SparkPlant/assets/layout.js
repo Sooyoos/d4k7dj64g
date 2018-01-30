@@ -10,6 +10,7 @@ export const height93 = responsiveHeight(93);
 export const width90 = responsiveWidth(90);
 
 export const width88 = responsiveWidth(88);
+export const height86 = responsiveHeight(86);
 export const width84 = responsiveWidth(84);
 export const height83 = responsiveHeight(83);
 export const width83 = responsiveWidth(83);

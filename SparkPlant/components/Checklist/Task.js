@@ -155,14 +155,37 @@ class Task extends Component {
                 checklistInstance : null,
                 task : null,
             },
+            saved : false,
         };
+    }
+
+    saveTask()
+    {
+        this.props.tryUpdateChecklistInstanceTask(this.props.login, parseInt(this.props.index) - 1, {
+            "@id" : this.props.task["@id"],
+            value : this.state.instanceTask.value,
+            status : this.state.instanceTask.status,
+        });
+
+        this.setState({saved : true});
     }
 
     updateValue(value)
     {
         let instanceTask = this.state.instanceTask;
+        let ranges = this.state.task.task.ranges;
+        let flag = "nok";
         instanceTask.value = value;
 
+        for(var i = 0; i < ranges.length; i++)
+        {
+            if(parseFloat(value) >= parseFloat(ranges[i].minValue) && parseFloat(value) <= parseFloat(ranges[i].maxValue))
+            {
+                flag = "ok";
+            }
+        }
+
+        instanceTask.status = flag;
         this.setState({instanceTask : instanceTask});
     }
 
@@ -176,7 +199,6 @@ class Task extends Component {
 
     displayButton(name, style)
     {
-        console.log(this.state.instanceTask);
         if(this.state.instanceTask.status === name)
         {
             return(
@@ -230,7 +252,7 @@ class Task extends Component {
 
     displayRanges()
     {
-        let ranges = this.state.task.ranges;
+        let ranges = this.state.task.task.ranges;
         let list = [];
 
         for(var i = 0; i < ranges.length; i++)
@@ -250,14 +272,34 @@ class Task extends Component {
         return list;
     }
 
+    displayFile()
+    {
+        if(this.state.task.task.file)
+        {
+            return(
+                <TouchableWithoutFeedback onPress={() => {
+                    Linking.canOpenURL("").then(supported => {
+                        if (supported) {
+                            Linking.openURL("");} else {}
+                    });
+                }}>
+                    <View style={styles.taskFile}>
+                        <Icon name="file-text-o" style={styles.taskFileIcon} />
+                    </View>
+                </TouchableWithoutFeedback>
+            );
+        }
+    }
+
     render() {
-        if(this.state.task.type === "oknok")
+        console.log(this.state.instanceTask);
+        if(this.state.task.task.type === "oknok")
         {
             if(this.state.instanceTask.status === null)
             {
                 return (
                     <ElevatedView style={styles.task} elevation={4}>
-                        <TaskHeader index={this.state.index} task={this.state.task} status={this.state.instanceTask.status}/>
+                        <TaskHeader index={this.state.index} task={this.state.task.task} status={this.state.instanceTask.status} saved={this.state.saved}/>
                         <View style={styles.taskBody}>
                             <View style={{flexDirection : 'row'}}>
                                 <View style={styles.taskDescription}>
@@ -265,43 +307,16 @@ class Task extends Component {
                                         { this.state.task.description }
                                     </Text>
                                 </View>
-                                <TouchableWithoutFeedback onPress={() => {
-                                    Linking.canOpenURL("").then(supported => {
-                                        if (supported) {
-                                            Linking.openURL("");} else {}
-                                    });
-                                }}>
-                                    <View style={styles.taskFile}>
-                                        <Icon name="file-text-o" style={styles.taskFileIcon} />
-                                    </View>
-                                </TouchableWithoutFeedback>
+                                { this.displayFile() }
                             </View>
                             <View>
                                 <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
-                                    <TouchableWithoutFeedback onPress={() => { this.updateStatus("nok") }}>
-                                        <ElevatedView style={styles.buttonNok} elevation={3}>
-                                            <Text style={styles.buttonText}>
-                                                NOK
-                                            </Text>
-                                        </ElevatedView>
-                                    </TouchableWithoutFeedback>
-                                    <TouchableWithoutFeedback onPress={() => { this.updateStatus("paliatif")  }}>
-                                        <ElevatedView style={styles.buttonPaliatif} elevation={3}>
-                                            <Text style={styles.buttonText}>
-                                                PALIATIF
-                                            </Text>
-                                        </ElevatedView>
-                                    </TouchableWithoutFeedback>
-                                    <TouchableWithoutFeedback onPress={() => { this.updateStatus("ok") }}>
-                                        <ElevatedView style={styles.buttonOk} elevation={3}>
-                                            <Text style={styles.buttonText}>
-                                                OK
-                                            </Text>
-                                        </ElevatedView>
-                                    </TouchableWithoutFeedback>
+                                    { this.displayButton("nok", styles.buttonNok) }
+                                    { this.displayButton("paliatif", styles.buttonPaliatif) }
+                                    { this.displayButton("ok", styles.buttonOk) }
                                 </View>
                                 <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
-                                    <TouchableWithoutFeedback>
+                                    <TouchableWithoutFeedback onPress={() => { this.saveTask() }}>
                                         <ElevatedView style={styles.buttonSubmit} elevation={3}>
                                             <Text style={styles.buttonText}>OK</Text>
                                         </ElevatedView>
@@ -316,7 +331,7 @@ class Task extends Component {
             {
                 return (
                     <ElevatedView style={styles.task} elevation={4}>
-                        <TaskHeader index={this.state.index} task={this.state.task} status={this.state.instanceTask.status}/>
+                        <TaskHeader index={this.state.index} task={this.state.task.task} status={this.state.instanceTask.status} saved={this.state.saved}/>
                         <View style={styles.taskBody}>
                             <View style={{flexDirection : 'row'}}>
                                 <View style={styles.taskDescription}>
@@ -324,16 +339,7 @@ class Task extends Component {
                                         { this.state.task.description }
                                     </Text>
                                 </View>
-                                <TouchableWithoutFeedback onPress={() => {
-                                    Linking.canOpenURL("").then(supported => {
-                                        if (supported) {
-                                            Linking.openURL("");} else {}
-                                    });
-                                }}>
-                                    <View style={styles.taskFile}>
-                                        <Icon name="file-text-o" style={styles.taskFileIcon} />
-                                    </View>
-                                </TouchableWithoutFeedback>
+                                { this.displayFile() }
                             </View>
                             <View>
                                 <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
@@ -343,7 +349,7 @@ class Task extends Component {
                                 </View>
                                 { this.displayPaliatif() }
                                 <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
-                                    <TouchableWithoutFeedback>
+                                    <TouchableWithoutFeedback onPress={() => { this.saveTask() }}>
                                         <ElevatedView style={styles.buttonSubmit} elevation={3}>
                                             <Text style={styles.buttonText}>OK</Text>
                                         </ElevatedView>
@@ -359,7 +365,7 @@ class Task extends Component {
         {
             return(
                 <ElevatedView style={styles.task} elevation={4}>
-                    <TaskHeader index={this.state.index} task={this.state.task} status={this.state.instanceTask.status}/>
+                    <TaskHeader index={this.state.index} task={this.state.task.task} status={this.state.instanceTask.status} saved={this.state.saved}/>
                     <View style={styles.taskBody}>
                         <View style={{flexDirection : 'row'}}>
                             <View style={styles.taskDescription}>
@@ -367,20 +373,11 @@ class Task extends Component {
                                     { this.state.task.description }
                                 </Text>
                             </View>
-                            <TouchableWithoutFeedback onPress={() => {
-                                Linking.canOpenURL("").then(supported => {
-                                    if (supported) {
-                                        Linking.openURL("");} else {}
-                                });
-                            }}>
-                                <View style={styles.taskFile}>
-                                    <Icon name="file-text-o" style={styles.taskFileIcon} />
-                                </View>
-                            </TouchableWithoutFeedback>
+                            { this.displayFile() }
                         </View>
                         <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
-                            <TextInput placeholder="Valeur" value={this.state.value} onTextChange={(value) => { this.updateValue(value) }} style={styles.mesureInput} />
-                            <TouchableWithoutFeedback>
+                            <TextInput placeholder="Valeur" value={this.state.instanceTask.value} onChangeText={(value) => { this.updateValue(value) }} style={styles.mesureInput} />
+                            <TouchableWithoutFeedback onPress={() => { this.saveTask() }}>
                                 <ElevatedView style={styles.buttonMesure} elevation={3}>
                                     <Text style={styles.buttonText}>OK</Text>
                                 </ElevatedView>
@@ -405,7 +402,6 @@ class Task extends Component {
                 </ElevatedView>
             );
         }
-
     }
 }
 
