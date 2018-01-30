@@ -49,6 +49,7 @@ class ChecklistScreen extends Component {
     componentWillMount()
     {
         this.props.tryUnits(this.props.login);
+        this.props.tryFullChecklistHistory(this.props.login);
         this.props.tryUserChecklists(this.props.login);
         this.props.tryChecklistsTemplates(this.props.login);
     }
@@ -58,7 +59,7 @@ class ChecklistScreen extends Component {
             <View style={styles.login}>
                 <HeaderChecklist {...this.props} headerTitle="Checklists"/>
                 <View style={styles.body}>
-                    <UserChecklistList itemRoute={this.props.goToChecklistExecute} items={this.props.checklists.checklists} />
+                    <UserChecklistList itemRoute={this.props.goToChecklistExecute} items={this.props.checklists.checklists}/>
                 </View>
                 <View style={styles.footer}>
                     <FooterButton {...this.props} active={true} iconName="check-square-o" text="Mes modèles" route={() => { this.props.goToChecklistPage(this.props.nav) }}/>

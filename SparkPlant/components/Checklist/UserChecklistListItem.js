@@ -82,6 +82,22 @@ let styles = StyleSheet.create({
         fontSize : layout.fontSize1p6,
         fontStyle : 'italic',
         color : "#000000",
+    },
+    checklistNameBold : {
+        fontSize : layout.fontSize1p8,
+        color : "#000000",
+        fontWeight: 'bold',
+    },
+    checklistPlaceBold : {
+        fontSize: layout.fontSize1p6,
+        color : "#000000",
+        fontWeight: 'bold',
+    },
+    checklistFrequencyBold : {
+        fontSize : layout.fontSize1p6,
+        fontStyle : 'italic',
+        color : "#000000",
+        fontWeight: 'bold',
     }
 });
 
@@ -144,23 +160,47 @@ class UserChecklistListItem extends Component {
         }
         else
         {
-            return(
-                <ElevatedView style={styles.item} elevation={4}>
-                    <TouchableWithoutFeedback onPress={() => { this.props.activateItem(this.props.index)}}>
-                        <View>
-                            <Text style={styles.checklistName}>
-                                { this.state.checklist.name }
-                            </Text>
-                            <Text style={styles.checklistPlace}>
-                                { this.state.checklist.place.name }
-                            </Text>
-                            <Text style={styles.checklistFrequency}>
-                                { this.state.checklist.frequency.charAt(0).toUpperCase() +  this.state.checklist.frequency.substring(1)}
-                            </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                </ElevatedView>
-            );
+            if(this.props.toDo === true)
+            {
+                return(
+                    <ElevatedView style={styles.item} elevation={4}>
+                        <TouchableWithoutFeedback onPress={() => { this.props.activateItem(this.props.index)}}>
+                            <View>
+                                <Text style={styles.checklistNameBold}>
+                                    { this.state.checklist.name }
+                                </Text>
+                                <Text style={styles.checklistPlaceBold}>
+                                    { this.state.checklist.place.name }
+                                </Text>
+                                <Text style={styles.checklistFrequencyBold}>
+                                    { this.state.checklist.frequency.charAt(0).toUpperCase() +  this.state.checklist.frequency.substring(1)}
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </ElevatedView>
+                );
+            }
+            else
+            {
+                return(
+                    <ElevatedView style={styles.item} elevation={4}>
+                        <TouchableWithoutFeedback onPress={() => { this.props.activateItem(this.props.index)}}>
+                            <View>
+                                <Text style={styles.checklistName}>
+                                    { this.state.checklist.name }
+                                </Text>
+                                <Text style={styles.checklistPlace}>
+                                    { this.state.checklist.place.name }
+                                </Text>
+                                <Text style={styles.checklistFrequency}>
+                                    { this.state.checklist.frequency.charAt(0).toUpperCase() +  this.state.checklist.frequency.substring(1)}
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </ElevatedView>
+                );
+            }
+
         }
     }
 }

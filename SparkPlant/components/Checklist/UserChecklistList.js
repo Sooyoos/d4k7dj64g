@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Moment from "moment";
 import { ActionCreators } from '../../actions';
 import UserChecklistListItem from './UserChecklistListItem';
 import {height1, height20, height80} from "../../assets/layout";
@@ -40,6 +41,63 @@ class UserChecklistList extends Component {
         this.setState({activeItem : null});
     }
 
+    shouldBeExecuted(checklist)
+    {
+        let history = this.props.checklists.fullChecklistHistory;
+
+        if(history !== null)
+        {
+            for(var i = 0; i < history.length; i++)
+            {
+                if(history[i].checklist["@id"] === checklist.checklist["@id"])
+                {
+                    let now = Moment();
+                    let date = Moment(history[i].createdAt, Moment.ISO_8601);
+
+                    if(checklist.checklist.frequency === "mensuel")
+                    {
+                        if(now.isSame(date.add(1, 'months')) || now.isAfter(date.add(1, 'months')))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else if(checklist.checklist.frequency === "hebdomadaire")
+                    {
+                        if(now.isSame(date.add(1, 'weeks')) || now.isAfter(date.add(1, 'weeks')))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else if(checklist.checklist.frequency === "quotidien")
+                    {
+                        if(now.isSame(date.add(1, 'days')) || now.isAfter(date.add(1, 'days')))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+    }
+
     buildList()
     {
         let lists = this.props.items;
@@ -55,13 +113,13 @@ class UserChecklistList extends Component {
                     console.log(this.state.activeItem);
 
                     list.push(
-                        <UserChecklistListItem active={true} index={i} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
+                        <UserChecklistListItem active={true} index={i} toDo={this.shouldBeExecuted(lists[i])} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
                     );
                 }
                 else
                 {
                     list.push(
-                        <UserChecklistListItem active={false} index={i} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
+                        <UserChecklistListItem active={false} index={i} toDo={this.shouldBeExecuted(lists[i])} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
                     );
                 }
             }

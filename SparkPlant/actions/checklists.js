@@ -638,3 +638,52 @@ export function tryUpdateChecklistInstanceTask(login, index,  task)
         return dispatch(fetchUpdateChecklistInstanceTask(login, index, task));
     }
 }
+
+function fetchFullChecklistHistory(login)
+{
+    return dispatch => {
+        dispatch(fetchFullChecklistHistoryRequested());
+
+        fetch(types.baseUrl + "/checklist_instances?order[createdAt]=desc", {
+            method: 'GET',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                dispatch(fetchFullChecklistHistorySuccess(responseJson["hydra:member"]));
+            })
+            .catch((error) => { console.error(error); dispatch(fetchFullChecklistHistoryFailure()); });
+    }
+}
+
+function fetchFullChecklistHistoryRequested()
+{
+    return {
+        type : types.FULL_CHECKLIST_HISTORY_REQUESTED,
+    }
+}
+
+function fetchFullChecklistHistorySuccess(history)
+{
+    return {
+        type : types.FULL_CHECKLIST_HISTORY_SUCCESS,
+        history : history,
+    }
+}
+
+function fetchFullChecklistHistoryFailure()
+{
+    return {
+        type : types.FULL_CHECKLIST_HISTORY_FAILURE,
+    }
+}
+
+export function tryFullChecklistHistory(login)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchFullChecklistHistory(login));
+    }
+}
