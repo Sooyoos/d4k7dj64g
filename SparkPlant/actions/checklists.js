@@ -687,3 +687,52 @@ export function tryFullChecklistHistory(login)
         return dispatch(fetchFullChecklistHistory(login));
     }
 }
+
+function fetchDeleteChecklistInstance(login, navState, instance)
+{
+    return dispatch => {
+        dispatch(fetchDeleteChecklistInstanceRequested());
+
+        fetch(types.baseUrl + instance["@id"], {
+            method: 'DELETE',
+            headers: {
+                'Authorization' : 'Bearer ' + login.tokenString,
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((response) => {
+                console.log(response);
+                dispatch(fetchDeleteChecklistInstanceSuccess());
+                dispatch(goToChecklistPage(navState));
+            })
+            .catch((error) => { console.error(error); dispatch(fetchDeleteChecklistInstanceFailure()); });
+    }
+}
+
+function fetchDeleteChecklistInstanceRequested()
+{
+    return {
+        type : types.DELETE_CHECKLIST_INSTANCE_REQUESTED,
+    }
+}
+
+function fetchDeleteChecklistInstanceSuccess()
+{
+    return {
+        type : types.DELETE_CHECKLIST_INSTANCE_SUCCESS,
+    }
+}
+
+function fetchDeleteChecklistInstanceFailure()
+{
+    return {
+        type : types.DELETE_CHECKLIST_INSTANCE_FAILURE,
+    }
+}
+
+export function tryDeleteChecklistInstance(login, navState, instance)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchDeleteChecklistInstance(login, navState, instance));
+    }
+}

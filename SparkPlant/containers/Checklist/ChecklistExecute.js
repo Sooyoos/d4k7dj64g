@@ -292,7 +292,7 @@ class ChecklistExecute extends Component {
     render() {
         return(
             <View style={styles.login}>
-                <HeaderChecklist {...this.props} headerTitle="Checklists"/>
+                <HeaderChecklist {...this.props} headerTitle="Checklists" />
                 <View style={styles.body}>
                     <ElevatedView style={styles.checklistHeader} elevation={4}>
                         <View style={styles.checklistInfos}>
@@ -301,12 +301,12 @@ class ChecklistExecute extends Component {
                             </Text>
                         </View>
                         <View style={styles.actions}>
-                            <TouchableWithoutFeedback>
+                            <TouchableWithoutFeedback onPress={() => { this.props.goToCreateTagStep1(); }}>
                                 <View style={styles.action}>
                                     <Icon name="tag" style={styles.actionIcon}/>
                                 </View>
                             </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback>
+                            <TouchableWithoutFeedback onPress={() => { this.props.tryDeleteChecklistInstance(this.props.login, this.props.nav, this.state.checklist); }}>
                                 <View style={styles.action}>
                                     <Icon name="ban" style={styles.actionIcon}/>
                                 </View>
