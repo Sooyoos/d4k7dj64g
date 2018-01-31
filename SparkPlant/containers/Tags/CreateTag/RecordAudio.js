@@ -155,6 +155,7 @@ class RecordAudio extends Component {
         {
             console.warn(error);
         }
+        this.setState({ file : filePath });
     }
 
     playAudio(file)
