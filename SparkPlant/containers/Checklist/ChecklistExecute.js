@@ -301,11 +301,6 @@ class ChecklistExecute extends Component {
                             </Text>
                         </View>
                         <View style={styles.actions}>
-                            <TouchableWithoutFeedback onPress={() => { this.props.goToCreateTagStep1(); }}>
-                                <View style={styles.action}>
-                                    <Icon name="tag" style={styles.actionIcon}/>
-                                </View>
-                            </TouchableWithoutFeedback>
                             <TouchableWithoutFeedback onPress={() => { this.props.tryDeleteChecklistInstance(this.props.login, this.props.nav, this.state.checklist); }}>
                                 <View style={styles.action}>
                                     <Icon name="ban" style={styles.actionIcon}/>

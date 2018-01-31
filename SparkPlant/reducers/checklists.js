@@ -119,6 +119,15 @@ export const checklistsReducer = {
             case types.SET_CURRENT_TEMPLATE: {
                 return Object.assign({}, state, {currentTemplate : action.template});
             }
+            case types.DELETE_CHECKLIST_INSTANCE_REQUESTED: {
+                return Object.assign({}, state, { loading : true });
+            }
+            case types.DELETE_CHECKLIST_INSTANCE_SUCCESS: {
+                return Object.assign({}, state, { currentInstance : null, loading : false });
+            }
+            case types.DELETE_CHECKLIST_INSTANCE_FAILURE: {
+                return Object.assign({}, state, { currentInstance : null, loading : false });
+            }
             case types.DELETE_USER_CHECKLIST_REQUESTED: {
                 return Object.assign({}, state, { loading : true });
             }
