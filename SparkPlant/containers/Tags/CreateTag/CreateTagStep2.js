@@ -280,12 +280,6 @@ class CreateTagStep2 extends Component {
             message += " Titre ";
         }
 
-        if(this.props.tags.creation_current.description === "")
-        {
-            check = false;
-            message += " Description ";
-        }
-
         if(!check)
         {
             this.error = "Certains champs obligatoires sont manquants (" + message + ")";
