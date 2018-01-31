@@ -149,13 +149,12 @@ class RecordAudio extends Component {
                     });
                 }
             }
-
+            this.setState({ file : filePath });
         }
         catch(error)
         {
             console.warn(error);
         }
-        this.setState({ file : filePath });
     }
 
     playAudio(file)
