@@ -18,6 +18,7 @@ import ElevatedView from 'react-native-elevated-view';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
+import Sound from "react-native-sound";
 import {fullHeight} from "../../../assets/layout";
 import {fullWidth} from "../../../assets/layout";
 
@@ -47,6 +48,12 @@ let styles = StyleSheet.create({
         textAlign : 'center',
         color : '#ffffff',
     },
+    actions : {
+        flexDirection: "row",
+        height : layout.width18,
+        alignItems : 'center',
+        justifyContent : 'center',
+    }
 });
 
 class RecordAudio extends Component {
@@ -148,45 +155,96 @@ class RecordAudio extends Component {
         {
             console.warn(error);
         }
+    }
 
+    playAudio(file)
+    {
+        let sound = new Sound(file, Sound.MAIN_BUNDLE, (error) => {
+            if (error) {
 
-        this.props.navigateBack();
+            }
+
+            sound.play((success) => {
+                if (success) {
+                    sound.release();
+                } else {
+                    sound.release();
+                }
+            });
+
+        });
     }
 
     render() {
         let tag = this.props.tags.creation_current;
 
+        console.log(this.state);
+
         if(this.props.tags.loading === false)
         {
-            if(this.state.recording)
+            if(this.state.recording === true)
             {
                 return (
                     <View style={{height : fullHeight, width : fullWidth, backgroundColor : "#ffffff"}}>
                         <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                         <View style={styles.body}>
-                            <TouchableWithoutFeedback onPress={() => {this.stop()}}>
-                                <ElevatedView style={styles.actionButtonView} elevation={3}>
-                                    <Icon name="stop" style={styles.actionButtonIcon} />
-                                </ElevatedView>
-                            </TouchableWithoutFeedback>
+                            <View style={styles.actions}>
+                                <TouchableWithoutFeedback onPress={() => {this.stop()}}>
+                                    <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                        <Icon name="stop" style={styles.actionButtonIcon} />
+                                    </ElevatedView>
+                                </TouchableWithoutFeedback>
+                            </View>
                         </View>
                     </View>
                 );
             }
             else
             {
-                return (
-                    <View style={{height : fullHeight, width : fullWidth, backgroundColor : "#ffffff"}}>
-                        <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
-                        <View style={styles.body}>
-                            <TouchableWithoutFeedback onPress={() => {this.record()}}>
-                                <ElevatedView style={styles.actionButtonView} elevation={3}>
-                                    <Icon name="microphone" style={styles.actionButtonIcon} />
-                                </ElevatedView>
-                            </TouchableWithoutFeedback>
+                if(this.state.file === null)
+                {
+                    return (
+                        <View style={{height : fullHeight, width : fullWidth, backgroundColor : "#ffffff"}}>
+                            <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
+                            <View style={styles.body}>
+                                <View style={styles.actions}>
+                                    <TouchableWithoutFeedback onPress={() => {this.record()}}>
+                                        <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                            <Icon name="microphone" style={styles.actionButtonIcon} />
+                                        </ElevatedView>
+                                    </TouchableWithoutFeedback>
+                                </View>
+                            </View>
                         </View>
-                    </View>
-                );
+                    );
+                }
+                else
+                {
+                    return (
+                        <View style={{height : fullHeight, width : fullWidth, backgroundColor : "#ffffff"}}>
+                            <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
+                            <View style={styles.body}>
+                                <View style={styles.actions}>
+                                    <TouchableWithoutFeedback onPress={() => { this.playAudio(this.state.file) }}>
+                                        <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                            <Icon name="play" style={styles.actionButtonIcon} />
+                                        </ElevatedView>
+                                    </TouchableWithoutFeedback>
+                                    <TouchableWithoutFeedback onPress={() => {this.record()}}>
+                                        <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                            <Icon name="microphone" style={styles.actionButtonIcon} />
+                                        </ElevatedView>
+                                    </TouchableWithoutFeedback>
+                                    <TouchableWithoutFeedback onPress={() => { this.props.navigateBack() }}>
+                                        <ElevatedView style={styles.actionButtonView} elevation={3}>
+                                            <Icon name="check-circle-o" style={styles.actionButtonIcon} />
+                                        </ElevatedView>
+                                    </TouchableWithoutFeedback>
+                                </View>
+                            </View>
+                        </View>
+                    );
+                }
             }
         }
         else
