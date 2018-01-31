@@ -95,6 +95,18 @@ class ChecklistListItem extends Component {
         };
     }
 
+    execute()
+    {
+        if(this.props.checklists.loading === false && this.props.checklists.currentInstance !== null)
+        {
+            this.props.goToChecklistExecute(this.props.nav);
+        }
+        else if(this.props.checklists.loading === false && this.props.checklists.currentInstance === null)
+        {
+            this.props.tryCreateChecklistInstance(this.props.login, this.state.checklist, this.props.login.userToken, this.props.nav);
+        }
+    }
+
     render() {
         if(this.props.active)
         {
@@ -102,12 +114,12 @@ class ChecklistListItem extends Component {
                 <ElevatedView style={styles.itemActive} elevation={4}>
                     <TouchableWithoutFeedback onPress={() => { this.props.deactivateItem()}}>
                         <View style={styles.buttonsOverlay}>
-                            <TouchableWithoutFeedback onPress={() => { console.log("EXECUTE CHECKLIST") }}>
+                            <TouchableWithoutFeedback onPress={() => { this.execute() }}>
                                 <View style={styles.executeButton}>
                                     <Icon style={styles.buttonIcon} name="play-circle-o"/>
                                 </View>
                             </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={() => { console.log("CHECKLIST HISTORY") }}>
+                            <TouchableWithoutFeedback onPress={() => { this.props.setCurrentChecklist(this.props.item); this.props.navigateChecklistHistory() }}>
                                 <View style={styles.historyButton}>
                                     <Icon style={styles.buttonIcon} name="history"/>
                                 </View>
@@ -129,13 +141,13 @@ class ChecklistListItem extends Component {
                     <TouchableWithoutFeedback onPress={() => { this.props.activateItem(this.props.index)}}>
                         <View>
                             <Text style={styles.checklistName}>
-                                { this.state.checklist.name }
+                                { this.props.item.name }
                             </Text>
                             <Text style={styles.checklistPlace}>
-                                { this.state.checklist.place.name }
+                                { this.props.item.place.name }
                             </Text>
                             <Text style={styles.checklistFrequency}>
-                                { this.state.checklist.frequency.charAt(0).toUpperCase() +  this.state.checklist.frequency.substring(1)}
+                                { this.props.item.frequency.charAt(0).toUpperCase() +  this.props.item.frequency.substring(1)}
                             </Text>
                         </View>
                     </TouchableWithoutFeedback>

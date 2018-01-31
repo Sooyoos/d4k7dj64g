@@ -54,6 +54,9 @@ class ChecklistLibrary extends Component {
     constructor(props)
     {
         super(props);
+        this.state = {
+            filter : null,
+        }
     }
 
     componentWillMount()
@@ -68,7 +71,11 @@ class ChecklistLibrary extends Component {
         let list = [];
 
         list.push(
-            <Picker.Item key={-1} label={"Lieu"} value={null} />
+            <Picker.Item key={-2} label={"Lieu"} value={null} />
+        );
+
+        list.push(
+            <Picker.Item key={-1} label={"Tous"} value="all" />
         );
 
         if(places)
@@ -81,7 +88,7 @@ class ChecklistLibrary extends Component {
             }
         }
 
-        return <Picker style={styles.placePicker} onValueChange={(value, index) => {}}>
+        return <Picker style={styles.placePicker} selectedValue={this.state.filter} onValueChange={(value, index) => { this.props.filterChecklist(value); this.setState({filter : value}) }}>
             {list}
         </Picker>;
     }
@@ -110,7 +117,7 @@ class ChecklistLibrary extends Component {
             initValue="Lieu"
             style={styles.placePicker}
             selectStyle={{ height : layout.height5, width : layout.width90, alignItems : 'center', justifyContent : 'center'}}
-            onChange={(option) => { }} />;
+            onChange={(option) => { this.props.filterChecklist(option) }} />;
     }
 
     render() {
@@ -121,7 +128,7 @@ class ChecklistLibrary extends Component {
                     <ElevatedView style={{backgroundColor : "#ffffff", paddingHorizontal: layout.width2, marginVertical: layout.height2}} elevation={4}>
                         { Platform.OS === 'ios' ? this.buildUsersListIos() : this.buildUsersListAndroid() }
                     </ElevatedView>
-                    <ChecklistList itemRoute={this.props.goToChecklistDetails} items={this.props.checklists.templates} />
+                    { this.props.checklists.filteredTemplates !== null ? <ChecklistList itemRoute={this.props.goToChecklistDetails} items={this.props.checklists.filteredTemplates} /> : <ChecklistList itemRoute={this.props.goToChecklistDetails} items={this.props.checklists.templates} /> }
                 </View>
                 <View style={styles.footer}>
                     <FooterButton {...this.props} active={false} iconName="square-o" text="Mes listes" route={() => { this.props.goToChecklistPage(this.props.nav) }}/>

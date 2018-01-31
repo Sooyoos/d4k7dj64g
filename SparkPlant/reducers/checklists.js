@@ -2,6 +2,7 @@ import * as types from '../actions/types';
 
 const initialState = {
     checklists : null,
+    filteredTemplates : null,
     templates : null,
     currentChecklist : null,
     currentTemplate : null,
@@ -11,6 +12,28 @@ const initialState = {
     currentInstance : null,
     loading : false,
 };
+
+function filterChecklists(list, place)
+{
+    let shortList = [];
+
+    if(place === "all" || place === null)
+    {
+        return null;
+    }
+    else
+    {
+        for(var i = 0; i < list.length; i++)
+        {
+            if(list[i].place["@id"] === place["@id"])
+            {
+                shortList.push(list[i]);
+            }
+        }
+
+        return shortList;
+    }
+}
 
 export const checklistsReducer = {
     checklists : (state = initialState, action) => {
@@ -143,6 +166,9 @@ export const checklistsReducer = {
             }
             case types.UPDATE_CHECKLIST_INSTANCE_TASK_FAILURE: {
                 return Object.assign({}, state, { loading : false });
+            }
+            case types.FILTER_CHECKLIST: {
+                return Object.assign({}, state, { loading : false, filteredTemplates : filterChecklists(state.templates, action.place) });
             }
             case types.RESET_CHECKLISTS: {
                 return Object.assign({}, state, initialState);

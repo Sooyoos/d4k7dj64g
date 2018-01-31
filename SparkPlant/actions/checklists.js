@@ -736,3 +736,11 @@ export function tryDeleteChecklistInstance(login, navState, instance)
         return dispatch(fetchDeleteChecklistInstance(login, navState, instance));
     }
 }
+
+export function filterChecklist(place)
+{
+    return {
+        type : types.FILTER_CHECKLIST,
+        place : place,
+    }
+}

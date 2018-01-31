@@ -45,15 +45,14 @@ class ChecklistList extends Component {
         let lists = this.props.items;
         let list = [];
 
-        if(lists)
+        console.log(lists);
+
+        if(lists && this.props.checklists.loading === false)
         {
             for(var i = 0; i < lists.length; i++)
             {
                 if(i === this.state.activeItem)
                 {
-                    console.log(i);
-                    console.log(this.state.activeItem);
-
                     list.push(
                         <ChecklistListItem active={true} index={i} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
                     );
