@@ -107,6 +107,29 @@ class ChecklistListItem extends Component {
         }
     }
 
+    add()
+    {
+        let checklists = this.props.checklists.checklists;
+        let flag = true;
+
+        for(var i = 0; i < checklists.length; i++)
+        {
+            if(checklists[i].checklist["@id"] === this.props.item["@id"])
+            {
+                flag = false;
+            }
+        }
+
+        if(flag === true)
+        {
+            this.props.tryCreateUserChecklist(this.props.login, this.props.item, this.props.users.loggedUser)
+        }
+        else
+        {
+            this.props.goToChecklistPage(this.props.nav);
+        }
+    }
+
     render() {
         if(this.props.active)
         {
@@ -124,7 +147,7 @@ class ChecklistListItem extends Component {
                                     <Icon style={styles.buttonIcon} name="history"/>
                                 </View>
                             </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={() => { this.props.tryCreateUserChecklist(this.props.login, this.props.item, this.props.users.loggedUser) }}>
+                            <TouchableWithoutFeedback onPress={() => { this.add(); }}>
                                 <View style={styles.addButton}>
                                     <Icon style={styles.buttonIcon} name="plus-square-o"/>
                                 </View>
