@@ -159,7 +159,7 @@ class RecordAudio extends Component {
 
     playAudio(file)
     {
-        let sound = new Sound(file, Sound.MAIN_BUNDLE, (error) => {
+        let sound = new Sound("file://" + file, Sound.MAIN_BUNDLE, (error) => {
             if (error) {
 
             }
