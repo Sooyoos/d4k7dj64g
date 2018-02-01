@@ -159,6 +159,7 @@ class RecordAudio extends Component {
 
     playAudio(file)
     {
+        console.log(file);
         let sound = new Sound("file://" + file, Sound.MAIN_BUNDLE, (error) => {
             if (error) {
 
@@ -224,6 +225,9 @@ class RecordAudio extends Component {
                         <View style={{height : fullHeight, width : fullWidth, backgroundColor : "#ffffff"}}>
                             <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                             <View style={styles.body}>
+                                <Text style={{ fontSize:layout.fontSize2p4 }}>
+                                    { this.state.file }
+                                </Text>
                                 <View style={styles.actions}>
                                     <TouchableWithoutFeedback onPress={() => { this.playAudio(this.state.file) }}>
                                         <ElevatedView style={styles.actionButtonView} elevation={3}>
