@@ -119,7 +119,9 @@ class CreateTagPreview extends Component {
 
     create()
     {
-        this.props.tryCreateTag(this.props.login, this.props.tags.creation_current);
+        let tag = this.props.tags.creation_current;
+
+        this.props.tryCreateTag(this.props.login, Object.assign({}, tag, { placeDetailsAudio : tag.placeDetailsAudio["@id"], descriptionAudio : tag.descriptionAudio["@id"] }));
         this.props.goToTagsPage(this.props.nav);
     }
 

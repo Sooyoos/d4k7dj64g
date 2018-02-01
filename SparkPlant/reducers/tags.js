@@ -420,7 +420,7 @@ export const tagsReducer = {
                 return Object.assign({}, state, {loading : true});
             }
             case types.TAGS_UPLOAD_PLACE_AUDIO_SUCCESS: {
-                let creationCurrent = Object.assign({}, state.creation_current, {placeDetailsAudio : action.media["@id"]});
+                let creationCurrent = Object.assign({}, state.creation_current, {placeDetailsAudio : action.media});
                 return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
             }
             case types.TAGS_UPLOAD_PLACE_AUDIO_FAILURE : {
@@ -430,7 +430,7 @@ export const tagsReducer = {
                 return Object.assign({}, state, {loading : true});
             }
             case types.TAGS_UPLOAD_DESCRIPTION_AUDIO_SUCCESS: {
-                let creationCurrent = Object.assign({}, state.creation_current, {descriptionAudio : action.media["@id"]});
+                let creationCurrent = Object.assign({}, state.creation_current, {descriptionAudio : action.media});
                 return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
             }
             case types.TAGS_UPLOAD_DESCRIPTION_AUDIO_FAILURE : {

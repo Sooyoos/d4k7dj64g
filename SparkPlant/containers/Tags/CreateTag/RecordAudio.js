@@ -157,10 +157,21 @@ class RecordAudio extends Component {
         }
     }
 
-    playAudio(file)
+    playAudio()
     {
-        console.log(file);
-        let sound = new Sound("file://" + file, Sound.MAIN_BUNDLE, (error) => {
+        let mode = this.props.tags.toRecord;
+        let file = "";
+
+        if(mode === "place")
+        {
+            file = this.props.tags.creation_current.placeDetailsAudio.path;
+        }
+        else
+        {
+            file = this.props.tags.creation_current.descriptionAudio.path;
+        }
+
+        let sound = new Sound(file, Sound.MAIN_BUNDLE, (error) => {
             if (error) {
 
             }
@@ -178,8 +189,6 @@ class RecordAudio extends Component {
 
     render() {
         let tag = this.props.tags.creation_current;
-
-        console.log(this.state);
 
         if(this.props.tags.loading === false)
         {
@@ -225,9 +234,6 @@ class RecordAudio extends Component {
                         <View style={{height : fullHeight, width : fullWidth, backgroundColor : "#ffffff"}}>
                             <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />
                             <View style={styles.body}>
-                                <Text style={{ fontSize:layout.fontSize2p4 }}>
-                                    { this.state.file }
-                                </Text>
                                 <View style={styles.actions}>
                                     <TouchableWithoutFeedback onPress={() => { this.playAudio(this.state.file) }}>
                                         <ElevatedView style={styles.actionButtonView} elevation={3}>
