@@ -386,9 +386,8 @@ function fetchDeleteUserChecklist(login, checklist)
                 'Content-Type': 'application/json',
             },
         })
-            .then((response) => console.log(response))
             .then((responseJson) => {
-                dispatch(fetchDeleteUserChecklistSuccess());
+                dispatch(fetchDeleteUserChecklistSuccess(checklist["@id"]));
             })
             .catch((error) => { console.error(error); dispatch(fetchDeleteUserChecklistFailure()); });
     }
@@ -401,10 +400,11 @@ function fetchDeleteUserChecklistRequested()
     }
 }
 
-function fetchDeleteUserChecklistSuccess()
+function fetchDeleteUserChecklistSuccess(id)
 {
     return {
         type : types.DELETE_USER_CHECKLIST_SUCCESS,
+        id : id,
     }
 }
 
