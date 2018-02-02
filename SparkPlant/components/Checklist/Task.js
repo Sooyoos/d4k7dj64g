@@ -318,7 +318,7 @@ class Task extends Component {
                                 <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
                                     <TouchableWithoutFeedback onPress={() => { this.saveTask() }}>
                                         <ElevatedView style={styles.buttonSubmit} elevation={3}>
-                                            <Text style={styles.buttonText}>OK</Text>
+                                            <Text style={styles.buttonText}>VALIDER</Text>
                                         </ElevatedView>
                                     </TouchableWithoutFeedback>
                                 </View>
@@ -351,7 +351,7 @@ class Task extends Component {
                                 <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
                                     <TouchableWithoutFeedback onPress={() => { this.saveTask() }}>
                                         <ElevatedView style={styles.buttonSubmit} elevation={3}>
-                                            <Text style={styles.buttonText}>OK</Text>
+                                            <Text style={styles.buttonText}>VALIDER</Text>
                                         </ElevatedView>
                                     </TouchableWithoutFeedback>
                                 </View>
@@ -379,7 +379,7 @@ class Task extends Component {
                             <TextInput placeholder="Valeur" value={this.state.instanceTask.value} onChangeText={(value) => { this.updateValue(value) }} style={styles.mesureInput} />
                             <TouchableWithoutFeedback onPress={() => { this.saveTask() }}>
                                 <ElevatedView style={styles.buttonMesure} elevation={3}>
-                                    <Text style={styles.buttonText}>OK</Text>
+                                    <Text style={styles.buttonText}>VALIDER</Text>
                                 </ElevatedView>
                             </TouchableWithoutFeedback>
                         </View>
