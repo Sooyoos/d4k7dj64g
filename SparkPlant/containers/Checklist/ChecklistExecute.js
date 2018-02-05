@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Text,
     ScrollView,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
     TextInput,
     Linking,
 } from 'react-native';
@@ -301,11 +301,11 @@ class ChecklistExecute extends Component {
                             </Text>
                         </View>
                         <View style={styles.actions}>
-                            <TouchableWithoutFeedback onPress={() => { this.props.tryDeleteChecklistInstance(this.props.login, this.props.nav, this.state.checklist); }}>
+                            <TouchableOpacity onPress={() => { this.props.tryDeleteChecklistInstance(this.props.login, this.props.nav, this.state.checklist); }}>
                                 <View style={styles.action}>
                                     <Icon name="ban" style={styles.actionIcon}/>
                                 </View>
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </View>
                     </ElevatedView>
                     <ScrollView showsVerticalScrollIndicator={false} style={{width : layout.width90, height : layout.height93 - layout.height15}}>
@@ -314,13 +314,13 @@ class ChecklistExecute extends Component {
                         </View>
                     </ScrollView>
                     <ElevatedView style={styles.submit} elevation={2}>
-                        <TouchableWithoutFeedback onPress={ () => { this.save(); }}>
+                        <TouchableOpacity onPress={ () => { this.save(); }}>
                             <ElevatedView style={styles.submitButton} elevation={2}>
                                 <Text style={styles.submitButtonText}>
                                     ENREGISTRER
                                 </Text>
                             </ElevatedView>
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     </ElevatedView>
                 </View>
             </View>

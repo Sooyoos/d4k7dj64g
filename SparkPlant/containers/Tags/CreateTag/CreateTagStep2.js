@@ -19,6 +19,7 @@ import IconFA from 'react-native-vector-icons/FontAwesome';
 import ElevatedView from 'react-native-elevated-view';
 import * as layout from "../../../assets/layout";
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
+import TagMedia from "../../../components/Tags/TagMedia";
 import ImagePicker from 'react-native-image-picker';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
@@ -139,7 +140,8 @@ class CreateTagStep2 extends Component {
             tagDescription : null,
             tag : {
                 media : this.props.tags.creation_current.media,
-            }
+            },
+            activeMedia : null,
         };
 
         this.error = null;
@@ -228,6 +230,24 @@ class CreateTagStep2 extends Component {
             });
     }
 
+    activateItem(index)
+    {
+        this.setState({activeMedia : index});
+    }
+
+    deactivateItem()
+    {
+        this.setState({activeMedia : null});
+    }
+
+    removeMedia(index)
+    {
+        let tag = this.state.tag;
+        tag.media.splice(index, 1);
+
+        this.setState({tag : tag, activeMedia : null});
+    }
+
     buildMediaList()
     {
         let medias = this.state.tag.media;
@@ -238,31 +258,34 @@ class CreateTagStep2 extends Component {
         {
             for(var i = 0; i < medias.length; i++)
             {
-                if(!medias[i].data)
+                if(this.state.activeMedia === i)
                 {
                     mediaList.push(
-                        <ElevatedView key={i} style={styles.mediaCard} elevation={4}>
-                            <Image style={styles.media} source={{uri : medias[i].uri}} />
-                        </ElevatedView>
+                        <TagMedia
+                            key={i}
+                            index={i}
+                            media={medias[i]}
+                            active={true}
+                            activateItem={this.activateItem.bind(this)}
+                            deactivateItem={this.deactivateItem.bind(this)}
+                            removeItem={this.removeMedia.bind(this)}/>
                     );
                 }
                 else
                 {
                     mediaList.push(
-                        <ElevatedView key={i} style={styles.mediaCard} elevation={4}>
-                            <Image style={styles.media} source={{uri : 'http://via.placeholder.com/750x500/3f51b5/ffffff?text=Video'}} />
-                        </ElevatedView>
+                        <TagMedia
+                            key={i}
+                            index={i}
+                            media={medias[i]}
+                            active={false}
+                            activateItem={this.activateItem.bind(this)}
+                            deactivateItem={this.deactivateItem.bind(this)}
+                            removeItem={this.removeMedia.bind(this)}
+                        />
                     );
                 }
             }
-        }
-        else
-        {
-            mediaList.push(
-                <ElevatedView key={0} style={styles.mediaCard} elevation={4}>
-                    <Image style={styles.media} source={{uri : 'http://via.placeholder.com/750x500'}} />
-                </ElevatedView>
-            );
         }
 
         return mediaList;
@@ -323,6 +346,7 @@ class CreateTagStep2 extends Component {
     }
 
     render() {
+        console.log("ACTIVE ITEM : " + this.state.activeMedia);
         return (
             <View style={{flex : 1}}>
                 <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />

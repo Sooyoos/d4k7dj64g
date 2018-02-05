@@ -3,6 +3,7 @@ import {
     View,
     StyleSheet,
     TouchableWithoutFeedback,
+    TouchableOpacity,
     Image,
     Text,
 } from 'react-native';
@@ -137,21 +138,21 @@ class ChecklistListItem extends Component {
                 <ElevatedView style={styles.itemActive} elevation={4}>
                     <TouchableWithoutFeedback onPress={() => { this.props.deactivateItem()}}>
                         <View style={styles.buttonsOverlay}>
-                            <TouchableWithoutFeedback onPress={() => { this.execute() }}>
+                            <TouchableOpacity onPress={() => { this.execute() }}>
                                 <View style={styles.executeButton}>
                                     <Icon style={styles.buttonIcon} name="play-circle-o"/>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={() => { this.props.setCurrentChecklist(this.props.item); this.props.navigateChecklistHistory() }}>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => { this.props.setCurrentChecklist(this.props.item); this.props.navigateChecklistHistory() }}>
                                 <View style={styles.historyButton}>
                                     <Icon style={styles.buttonIcon} name="history"/>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={() => { this.add(); }}>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => { this.add(); }}>
                                 <View style={styles.addButton}>
                                     <Icon style={styles.buttonIcon} name="plus-square-o"/>
                                 </View>
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </View>
                     </TouchableWithoutFeedback>
                 </ElevatedView>

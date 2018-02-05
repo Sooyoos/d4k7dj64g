@@ -132,7 +132,24 @@ export const checklistsReducer = {
                 return Object.assign({}, state, { loading : true });
             }
             case types.DELETE_USER_CHECKLIST_SUCCESS: {
-                return Object.assign({}, state, { loading : false });
+                let id = action.id;
+                let list = state.checklists;
+                let index = -1;
+
+                for(var i = 0; i < list.length; i++)
+                {
+                    if(list[i]["@id"] === id)
+                    {
+                        index = i;
+                    }
+                }
+
+                if(index !== -1)
+                {
+                    list.splice(index);
+                }
+
+                return Object.assign({}, state, { checklists : list, loading : false });
             }
             case types.DELETE_USER_CHECKLIST_FAILURE: {
                 return Object.assign({}, state, { loading : false });

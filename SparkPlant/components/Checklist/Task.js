@@ -4,7 +4,7 @@ import {
     StyleSheet,
     Text,
     TextInput,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
     ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -202,25 +202,25 @@ class Task extends Component {
         if(this.state.instanceTask.status === name)
         {
             return(
-                <TouchableWithoutFeedback onPress={() => { this.updateStatus(name) }}>
+                <TouchableOpacity onPress={() => { this.updateStatus(name) }}>
                     <ElevatedView style={style} elevation={3}>
                         <Text style={styles.buttonText}>
                             { name.toUpperCase() }
                         </Text>
                     </ElevatedView>
-                </TouchableWithoutFeedback>
+                </TouchableOpacity>
             );
         }
         else
         {
             return(
-                <TouchableWithoutFeedback onPress={() => { this.updateStatus(name) }}>
+                <TouchableOpacity onPress={() => { this.updateStatus(name) }}>
                     <ElevatedView style={styles.buttonNeutral} elevation={3}>
                         <Text style={styles.buttonText}>
                             { name.toUpperCase() }
                         </Text>
                     </ElevatedView>
-                </TouchableWithoutFeedback>
+                </TouchableOpacity>
             );
         }
     }
@@ -231,20 +231,20 @@ class Task extends Component {
         {
             return(
                 <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
-                    <TouchableWithoutFeedback onPress={() => { this.updateStatus("nok") }}>
+                    <TouchableOpacity onPress={() => { this.updateStatus("nok") }}>
                         <ElevatedView style={styles.buttonNok} elevation={3}>
                             <Text style={styles.buttonText}>
                                 NOK
                             </Text>
                         </ElevatedView>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={() => { this.updateStatus("ok") }}>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { this.updateStatus("ok") }}>
                         <ElevatedView style={styles.buttonOk} elevation={3}>
                             <Text style={styles.buttonText}>
                                 OK
                             </Text>
                         </ElevatedView>
-                    </TouchableWithoutFeedback>
+                    </TouchableOpacity>
                 </View>
             );
         }
@@ -277,7 +277,7 @@ class Task extends Component {
         if(this.state.task.task.file)
         {
             return(
-                <TouchableWithoutFeedback onPress={() => {
+                <TouchableOpacity onPress={() => {
                     Linking.canOpenURL("").then(supported => {
                         if (supported) {
                             Linking.openURL("");} else {}
@@ -286,7 +286,7 @@ class Task extends Component {
                     <View style={styles.taskFile}>
                         <Icon name="file-text-o" style={styles.taskFileIcon} />
                     </View>
-                </TouchableWithoutFeedback>
+                </TouchableOpacity>
             );
         }
     }
@@ -316,11 +316,11 @@ class Task extends Component {
                                     { this.displayButton("ok", styles.buttonOk) }
                                 </View>
                                 <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
-                                    <TouchableWithoutFeedback onPress={() => { this.saveTask() }}>
+                                    <TouchableOpacity onPress={() => { this.saveTask() }}>
                                         <ElevatedView style={styles.buttonSubmit} elevation={3}>
-                                            <Text style={styles.buttonText}>OK</Text>
+                                            <Text style={styles.buttonText}>VALIDER</Text>
                                         </ElevatedView>
-                                    </TouchableWithoutFeedback>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
                         </View>
@@ -349,11 +349,11 @@ class Task extends Component {
                                 </View>
                                 { this.displayPaliatif() }
                                 <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
-                                    <TouchableWithoutFeedback onPress={() => { this.saveTask() }}>
+                                    <TouchableOpacity onPress={() => { this.saveTask() }}>
                                         <ElevatedView style={styles.buttonSubmit} elevation={3}>
-                                            <Text style={styles.buttonText}>OK</Text>
+                                            <Text style={styles.buttonText}>VALIDER</Text>
                                         </ElevatedView>
-                                    </TouchableWithoutFeedback>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
                         </View>
@@ -377,11 +377,11 @@ class Task extends Component {
                         </View>
                         <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
                             <TextInput placeholder="Valeur" value={this.state.instanceTask.value} onChangeText={(value) => { this.updateValue(value) }} style={styles.mesureInput} />
-                            <TouchableWithoutFeedback onPress={() => { this.saveTask() }}>
+                            <TouchableOpacity onPress={() => { this.saveTask() }}>
                                 <ElevatedView style={styles.buttonMesure} elevation={3}>
-                                    <Text style={styles.buttonText}>OK</Text>
+                                    <Text style={styles.buttonText}>VALIDER</Text>
                                 </ElevatedView>
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </View>
                         <View style={{alignItems : 'center', justifyContent : 'center'}}>
                             <ElevatedView elevation={2} style={styles.mesureTable}>

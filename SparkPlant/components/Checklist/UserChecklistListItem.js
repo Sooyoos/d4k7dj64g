@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
+    TouchableOpacity,
     TouchableWithoutFeedback,
     Image,
     Text,
@@ -138,21 +139,21 @@ class UserChecklistListItem extends Component {
                 <ElevatedView style={styles.itemActive} elevation={4}>
                     <TouchableWithoutFeedback onPress={() => { this.props.deactivateItem()}}>
                         <View style={styles.buttonsOverlay}>
-                            <TouchableWithoutFeedback onPress={() => { this.execute() }}>
+                            <TouchableOpacity onPress={() => { this.execute() }}>
                                 <View style={styles.executeButton}>
                                     <Icon style={styles.buttonIcon} name="play-circle-o"/>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={() => { this.props.setCurrentChecklist(this.state.checklist); this.props.navigateChecklistHistory() }}>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => { this.props.setCurrentChecklist(this.state.checklist); this.props.navigateChecklistHistory() }}>
                                 <View style={styles.historyButton}>
                                     <Icon style={styles.buttonIcon} name="history"/>
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <TouchableWithoutFeedback onPress={() => { this.props.tryDeleteUserChecklist(this.props.login, this.props.item); }}>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => { this.props.tryDeleteUserChecklist(this.props.login, this.props.item); }}>
                                 <View style={styles.deleteButton}>
                                     <Icon style={styles.buttonIcon} name="trash-o"/>
                                 </View>
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </View>
                     </TouchableWithoutFeedback>
                 </ElevatedView>
