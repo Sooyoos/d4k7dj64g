@@ -240,6 +240,14 @@ class CreateTagStep2 extends Component {
         this.setState({activeMedia : null});
     }
 
+    removeMedia(index)
+    {
+        let tag = this.state.tag;
+        tag.media.splice(index, 1);
+
+        this.setState({tag : tag, activeMedia : null});
+    }
+
     buildMediaList()
     {
         let medias = this.state.tag.media;
@@ -253,13 +261,28 @@ class CreateTagStep2 extends Component {
                 if(this.state.activeMedia === i)
                 {
                     mediaList.push(
-                        <TagMedia key={i} index={i} media={medias[i]} active={true} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)}/>
+                        <TagMedia
+                            key={i}
+                            index={i}
+                            media={medias[i]}
+                            active={true}
+                            activateItem={this.activateItem.bind(this)}
+                            deactivateItem={this.deactivateItem.bind(this)}
+                            removeItem={this.removeMedia.bind(this)}/>
                     );
                 }
                 else
                 {
                     mediaList.push(
-                        <TagMedia key={i} index={i} media={medias[i]} active={false} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)}/>
+                        <TagMedia
+                            key={i}
+                            index={i}
+                            media={medias[i]}
+                            active={false}
+                            activateItem={this.activateItem.bind(this)}
+                            deactivateItem={this.deactivateItem.bind(this)}
+                            removeItem={this.removeMedia.bind(this)}
+                        />
                     );
                 }
             }

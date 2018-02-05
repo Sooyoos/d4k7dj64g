@@ -73,7 +73,7 @@ class TagMedia extends Component {
                 <ElevatedView style={styles.mediaCard} elevation={2}>
                     <TouchableWithoutFeedback onPress={() => { this.props.deactivateItem() }}>
                         <View style={styles.buttonView}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => { this.props.removeItem(this.props.index) }}>
                                 <ElevatedView style={styles.deleteButton} elevation={2}>
                                     <Icon name="trash-o" style={styles.buttonIcon} />
                                 </ElevatedView>
