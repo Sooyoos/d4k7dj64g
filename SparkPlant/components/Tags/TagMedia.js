@@ -78,7 +78,7 @@ class TagMedia extends Component {
                                     <Icon name="trash-o" style={styles.buttonIcon} />
                                 </ElevatedView>
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => { this.props.expandItem(this.props.media) }}>
                                 <ElevatedView style={styles.fullscreenButton} elevation={2}>
                                     <Icon name="expand" style={styles.buttonIcon} />
                                 </ElevatedView>
