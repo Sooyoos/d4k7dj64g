@@ -71,11 +71,7 @@ class ChecklistLibrary extends Component {
         let list = [];
 
         list.push(
-            <Picker.Item key={-2} label={"Lieu"} value={null} />
-        );
-
-        list.push(
-            <Picker.Item key={-1} label={"Tous"} value="all" />
+            <Picker.Item key={-1} label={"Tous les lieux"} value="all" />
         );
 
         if(places)
