@@ -48,10 +48,17 @@ class ChecklistScreen extends Component {
 
     componentWillMount()
     {
-        this.props.tryUnits(this.props.login);
-        this.props.tryFullChecklistHistory(this.props.login);
-        this.props.tryUserChecklists(this.props.login);
-        this.props.tryChecklistsTemplates(this.props.login);
+        if(this.props.checklists.loading === false && this.props.checklists.currentInstance !== null)
+        {
+            this.props.goToChecklistExecute(this.props.nav);
+        }
+        else
+        {
+            this.props.tryUnits(this.props.login);
+            this.props.tryFullChecklistHistory(this.props.login);
+            this.props.tryUserChecklists(this.props.login);
+            this.props.tryChecklistsTemplates(this.props.login);
+        }
     }
 
     render() {
