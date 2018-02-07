@@ -99,7 +99,7 @@ class TaskHeader extends Component {
 
     displayStatusIcon(status)
     {
-        if(status === null)
+        if(status === null || status === "todo")
         {
             return(
                 <View style={styles.taskStatusIconNeutral}>
