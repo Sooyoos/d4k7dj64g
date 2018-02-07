@@ -15,16 +15,15 @@ import * as layout from "../assets/layout";
 import Header from "../components/Header/Header";
 import { Bar } from 'react-native-pathjs-charts';
 import moment from 'moment';
-import {height83} from "../assets/layout";
 
 let solvedTagOptions = {
     width: layout.width75,
-    height: layout.height19,
+    height: layout.height20,
     margin: {
-        top: layout.height8,
-        left: layout.width6,
-        bottom: layout.height6,
-        right: layout.width6,
+        top: layout.height2,
+        left: layout.width10,
+        bottom: layout.height10,
+        right: layout.width10,
     },
     color: '#2980B9',
     gutter: 20,
@@ -65,12 +64,12 @@ let solvedTagOptions = {
 
 let unsolvedTagOptions = {
     width: layout.width75,
-    height: layout.height19,
+    height: layout.height20,
     margin: {
-        top: layout.height8,
-        left: layout.width6,
-        bottom: layout.height6,
-        right: layout.width6
+        top: layout.height2,
+        left: layout.width10,
+        bottom: layout.height10,
+        right: layout.width10
     },
     color: '#bc294e',
     gutter: 20,
@@ -116,18 +115,19 @@ let styles = StyleSheet.create({
     },
     body: {
         backgroundColor: '#FFFFFF',
+        height : layout.height93,
+        width : layout.fullWidth,
         alignItems:'center',
         justifyContent: 'center',
     },
-    title : {
-        color : "#232323",
-        fontWeight: "bold",
-        textAlign : "center",
-        fontSize : layout.fontSize2p2,
-    },
     chartView : {
-        paddingVertical : layout.height2,
-        paddingHorizontal: layout.width5,
+        height : layout.height35,
+        width : layout.width90,
+        marginVertical : layout.height0p5,
+    },
+    chartFilters : {
+        height : layout.height23,
+        width : layout.fullWidth,
     },
     chartTitle : {
         color : "#232323",
@@ -238,18 +238,16 @@ class ChartsScreen extends Component {
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
-
                     <View style={styles.body}>
-                        <View style={{height : layout.height8, width : layout.fullWidth}}>
-                            <Text style={styles.title}>
-                                Activité des tags sur les 7 derniers jours
-                            </Text>
+                        <View style={styles.chartFilters}>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
                                 Tags résolus
                             </Text>
                             <ActivityIndicator color="#3f51b5" size="large"/>
+                        </View>
+                        <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
                                 Tags non résolus
                             </Text>
@@ -265,10 +263,7 @@ class ChartsScreen extends Component {
                 <View style={styles.login}>
                     <Header props={this.props} />
                     <View style={styles.body}>
-                        <View style={{height : layout.height8, width : layout.fullWidth}}>
-                            <Text style={styles.title}>
-                                Activité des tags sur les 7 derniers jours
-                            </Text>
+                        <View style={styles.chartFilters}>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
@@ -277,6 +272,8 @@ class ChartsScreen extends Component {
                             <Text style={{textAlign : "center", fontSize : layout.fontSize1p8, marginVertical: layout.height5}}>
                                 Pas de données disponibles
                             </Text>
+                        </View>
+                        <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
                                 Tags non résolus
                             </Text>
@@ -294,16 +291,15 @@ class ChartsScreen extends Component {
                 <View style={styles.login}>
                     <Header props={this.props} />
                     <View style={styles.body}>
-                        <View style={{height : layout.height8, width : layout.fullWidth}}>
-                            <Text style={styles.title}>
-                                Activité des tags sur les 7 derniers jours
-                            </Text>
+                        <View style={styles.chartFilters}>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
                                 Tags résolus
                             </Text>
                             <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.solvedTags)} options={solvedTagOptions} accessorKey='value'/>
+                        </View>
+                        <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
                                 Tags non résolus
                             </Text>
@@ -321,10 +317,7 @@ class ChartsScreen extends Component {
                 <View style={styles.login}>
                     <Header props={this.props} />
                     <View style={styles.body}>
-                        <View style={{height : layout.height8, width : layout.fullWidth}}>
-                            <Text style={styles.title}>
-                                Activité des tags sur les 7 derniers jours
-                            </Text>
+                        <View style={styles.chartFilters}>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
@@ -333,6 +326,8 @@ class ChartsScreen extends Component {
                             <Text style={{textAlign : "center", fontSize : layout.fontSize1p8, marginVertical: layout.height5}}>
                                 Pas de données disponibles
                             </Text>
+                        </View>
+                        <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
                                 Tags non résolus
                             </Text>
@@ -348,23 +343,20 @@ class ChartsScreen extends Component {
                 <View style={styles.login}>
                     <Header props={this.props} />
                         <View style={styles.body}>
-                            <View style={{height : layout.height8, width : layout.fullWidth}}>
-                                <Text style={styles.title}>
-                                    Activité des tags sur les 7 derniers jours
-                                </Text>
+                            <View style={styles.chartFilters}>
                             </View>
-                            <ScrollView showsVerticalScrollIndicator={false} style={{height : layout.height82, width : layout.fullWidth}}>
-                                <View style={styles.chartView}>
-                                    <Text style={styles.chartTitle}>
-                                        Tags résolus
-                                    </Text>
-                                    <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.solvedTags)} options={solvedTagOptions} accessorKey='value'/>
-                                    <Text style={styles.chartTitle}>
-                                        Tags non résolus
-                                    </Text>
-                                    <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.unsolvedTags)} options={unsolvedTagOptions} accessorKey='value'/>
-                                </View>
-                            </ScrollView>
+                            <View style={styles.chartView}>
+                                <Text style={styles.chartTitle}>
+                                    Tags résolus
+                                </Text>
+                                <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.solvedTags)} options={solvedTagOptions} accessorKey='value'/>
+                            </View>
+                            <View style={styles.chartView}>
+                                <Text style={styles.chartTitle}>
+                                    Tags non résolus
+                                </Text>
+                                <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.unsolvedTags)} options={unsolvedTagOptions} accessorKey='value'/>
+                            </View>
                         </View>
                 </View>
             );
