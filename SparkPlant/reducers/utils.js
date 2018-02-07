@@ -2,6 +2,7 @@ import * as types from '../actions/types';
 const initialState = {
     units : null,
     places : null,
+    currentImage : null,
 };
 
 export const utilsReducer = {
@@ -27,6 +28,9 @@ export const utilsReducer = {
             }
             case types.RESET_UTILS: {
                 return Object.assign({}, state, initialState);
+            }
+            case types.SET_CURRENT_IMAGE: {
+                return Object.assign({}, state, {currentImage : action.image});
             }
             default :
                 return state;

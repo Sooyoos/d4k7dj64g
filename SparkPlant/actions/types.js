@@ -268,3 +268,5 @@ export const RESET_NEWS = "RESET_NEWS";
 export const RESET_TAGS = "RESET_TAGS";
 export const RESET_USERS = "RESET_USERS";
 export const RESET_UTILS = "RESET_UTILS";
+
+export const SET_CURRENT_IMAGE = "SET_CURRENT_IMAGE";

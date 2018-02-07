@@ -248,6 +248,13 @@ class CreateTagStep2 extends Component {
         this.setState({tag : tag, activeMedia : null});
     }
 
+    expandItem(media)
+    {
+        console.log(media);
+        this.props.setCurrentImage(media.uri);
+        this.props.goToFullscreenImage();
+    }
+
     buildMediaList()
     {
         let medias = this.state.tag.media;
@@ -268,7 +275,9 @@ class CreateTagStep2 extends Component {
                             active={true}
                             activateItem={this.activateItem.bind(this)}
                             deactivateItem={this.deactivateItem.bind(this)}
-                            removeItem={this.removeMedia.bind(this)}/>
+                            removeItem={this.removeMedia.bind(this)}
+                            expandItem={this.expandItem.bind(this)}
+                        />
                     );
                 }
                 else
@@ -282,6 +291,7 @@ class CreateTagStep2 extends Component {
                             activateItem={this.activateItem.bind(this)}
                             deactivateItem={this.deactivateItem.bind(this)}
                             removeItem={this.removeMedia.bind(this)}
+                            expandItem={this.expandItem.bind(this)}
                         />
                     );
                 }
@@ -422,6 +432,7 @@ function mapStateToProps(state) {
         login: state.login,
         nav : state.nav,
         tags : state.tags,
+        utils : state.utils,
     };
 }
 

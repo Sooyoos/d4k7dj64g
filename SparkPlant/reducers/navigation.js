@@ -41,6 +41,7 @@ import CreateTagPreview from '../containers/Tags/CreateTag/CreateTagPreview';
 import RecordAudio from '../containers/Tags/CreateTag/RecordAudio';
 import ChartsScreen from '../containers/ChartsScreen';
 import ScoringScreen from '../containers/ScoringScreen';
+import FullscreenImage from "../containers/Tags/FullscreenImage";
 import * as types from '../actions/types';
 
 export const ChartsNavigator = StackNavigator(
@@ -154,7 +155,13 @@ export const TagNavigator = StackNavigator(
             navigationOptions : {
                 header : null,
             }
-        }
+        },
+        FullscreenImage: {
+            screen: FullscreenImage,
+            navigationOptions : {
+                header : null,
+            }
+        },
     }
 );
 

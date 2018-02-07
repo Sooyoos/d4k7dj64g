@@ -96,3 +96,11 @@ export function tryPlaces(login)
         return dispatch(fetchPlaces(login));
     }
 }
+
+export function setCurrentImage(image)
+{
+    return {
+        type : types.SET_CURRENT_IMAGE,
+        image : image,
+    }
+}
