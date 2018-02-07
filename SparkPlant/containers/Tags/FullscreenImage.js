@@ -42,7 +42,7 @@ class FullscreenImage extends Component {
     componentWillMount()
     {
         Image.getSize(this.props.utils.currentImage, (width, height) => {
-            if(width > height)
+            if((width > height) && (width > layout.fullWidth))
             {
                 ImageRotate.rotateImage(
                     this.props.utils.currentImage,
@@ -70,7 +70,7 @@ class FullscreenImage extends Component {
         console.log(this.state);
         return(
             <View style={styles.body}>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => { this.props.navigateBack() }}>
                     <Image
                         style={{width : this.state.width, height : this.state.height, maxWidth: layout.fullWidth, maxHeight: layout.fullHeight}}
                         source={{uri : this.state.uri}} />

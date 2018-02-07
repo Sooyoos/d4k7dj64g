@@ -134,8 +134,11 @@ class TagDetails extends Component {
             {
                 if(medias[i].filetype.indexOf("video") === -1)
                 {
+                    let media = medias[i].path;
                     list.push(
-                        <Image key={i} style={styles.sliderImage} source={{uri : medias[i].path}} />
+                        <TouchableWithoutFeedback key={i} onPress={() => { this.props.setCurrentImage(media); this.props.goToFullscreenImage(); }}>
+                            <Image style={styles.sliderImage} source={{uri : media}} />
+                        </TouchableWithoutFeedback>
                     );
                 }
                 else
@@ -344,6 +347,7 @@ function mapStateToProps(state) {
         login: state.login,
         nav : state.nav,
         tags : state.tags,
+        utils : state.utils,
     };
 }
 
