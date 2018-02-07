@@ -149,12 +149,7 @@ class Task extends Component {
         this.state = {
             task : this.props.task,
             index : this.props.index,
-            instanceTask : {
-                status : null,
-                value : null,
-                checklistInstance : null,
-                task : null,
-            },
+            instanceTask : this.props.checklists.currentInstance.checklistInstanceTasks[parseInt(this.props.index) - 1],
             saved : false,
         };
     }
@@ -199,6 +194,7 @@ class Task extends Component {
 
     displayButton(name, style)
     {
+        console.log(this.state.instanceTask.status + " :: " + name);
         if(this.state.instanceTask.status === name)
         {
             return(
@@ -292,7 +288,6 @@ class Task extends Component {
     }
 
     render() {
-        console.log(this.state.instanceTask);
         if(this.state.task.task.type === "oknok")
         {
             if(this.state.instanceTask.status === null)
