@@ -224,7 +224,7 @@ class ChecklistHistory extends Component {
         }
         else
         {
-            if(task.value === "ok")
+            if(task.status === "ok")
             {
                 return(
                     <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
