@@ -6,6 +6,7 @@ import {
     TextInput,
     TouchableOpacity,
     ScrollView,
+    Linking,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -274,9 +275,9 @@ class Task extends Component {
         {
             return(
                 <TouchableOpacity onPress={() => {
-                    Linking.canOpenURL("").then(supported => {
+                    Linking.canOpenURL(this.state.task.task.file.path).then(supported => {
                         if (supported) {
-                            Linking.openURL("");} else {}
+                            Linking.openURL(this.state.task.task.file.path);} else {}
                     });
                 }}>
                     <View style={styles.taskFile}>
