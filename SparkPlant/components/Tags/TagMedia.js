@@ -90,7 +90,7 @@ class TagMedia extends Component {
         }
         else
         {
-            if(this.props.media.type.indexOf("video") === -1) // image
+            if(this.props.media.type && this.props.media.type.indexOf("video") === -1) // image
             {
                 return(
                     <ElevatedView style={styles.mediaCard} elevation={2}>
