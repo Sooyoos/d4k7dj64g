@@ -1,6 +1,6 @@
 import * as types from './types';
 
-function fetchSolvedTags(login, beginDate, endDate)
+function fetchSolvedTags(login, beginDate, endDate, place, unit)
 {
     return dispatch => {
         dispatch(solvedTagsRequested());
@@ -41,15 +41,15 @@ function solvedTagsFailure()
     }
 }
 
-export function loadSolvedTags(login, beginDate, endDate)
+export function loadSolvedTags(login, beginDate, endDate, place = null, unit = null)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchSolvedTags(login, beginDate, endDate));
+        return dispatch(fetchSolvedTags(login, beginDate, endDate, place, unit));
     }
 }
 
 
-function fetchUnsolvedTags(login, beginDate, endDate)
+function fetchUnsolvedTags(login, beginDate, endDate, place, unit)
 {
     return dispatch => {
         dispatch(unsolvedTagsRequested());
@@ -90,9 +90,9 @@ function unsolvedTagsFailure()
     }
 }
 
-export function loadUnsolvedTags(login, beginDate, endDate)
+export function loadUnsolvedTags(login, beginDate, endDate, place = null, unit = null)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchUnsolvedTags(login, beginDate, endDate));
+        return dispatch(fetchUnsolvedTags(login, beginDate, endDate, place, unit));
     }
 }

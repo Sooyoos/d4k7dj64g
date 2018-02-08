@@ -7,7 +7,7 @@ function fetchUserChecklists(login)
         dispatch(userChecklistsRequested());
 
         console.log(login);
-        fetch(types.baseUrl + login.userToken["@id"] + "/checklists", {
+        fetch(types.baseUrl + login.userToken["@id"] + "/checklists?order[checklist.name]=asc", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -55,7 +55,7 @@ function fetchChecklistsTemplates(login)
     return dispatch => {
         dispatch(checklistsTemplatesRequested());
 
-        fetch(types.baseUrl + "/checklists", {
+        fetch(types.baseUrl + "/checklists?order[name]=asc", {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
