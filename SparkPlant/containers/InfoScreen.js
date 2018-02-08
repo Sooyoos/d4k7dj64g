@@ -65,7 +65,7 @@ let styles = StyleSheet.create({
     }
 });
 
-let appVersion = "07-02-2018-build220";
+let appVersion = "08-02-2018-build221";
 
 class InfoScreen extends Component {
 
