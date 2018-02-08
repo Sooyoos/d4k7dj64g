@@ -128,7 +128,7 @@ class TagListItem extends Component {
                             {this.props.tag.place.name}
                         </Text>
                         <Text style={styles.itemFullname}>
-                            { Moment(this.props.tag.createdAt).format("DD/MM/YYYY") }
+                            { this.props.tag.updatedAt !== null ? Moment(this.props.tag.updatedAt).format("DD/MM/YYYY") : Moment(this.props.tag.createdAt).format("DD/MM/YYYY") }
                         </Text>
                         <View style={styles.itemInfos}>
                             <Text style={styles.itemId}>
