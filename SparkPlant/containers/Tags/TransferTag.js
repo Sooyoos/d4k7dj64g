@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     Platform,
     ActivityIndicator,
+    Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -95,8 +96,23 @@ class TransferTag extends Component {
 
     forward()
     {
-        this.props.tryTagTransfer(this.props.login, this.props.tags.currentTag, this.state.selected);
-        this.props.goToTagDetails(this.props.tags.currentTag);
+        if(this.state.selected !== null)
+        {
+            this.props.tryTagTransfer(this.props.login, this.props.tags.currentTag, this.state.selected);
+            this.props.goToTagDetails(this.props.tags.currentTag);
+        }
+        else
+        {
+            Alert.alert(
+                'Pas d\'utilisateur',
+                'Merci de sélectionner un utilisateur',
+                [
+                    {text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                ],
+                { cancelable: false }
+            );
+        }
+
     }
 
     render() {
