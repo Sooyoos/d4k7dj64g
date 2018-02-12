@@ -5,7 +5,16 @@ function fetchSolvedTags(login, beginDate, endDate, place, unit)
     return dispatch => {
         dispatch(solvedTagsRequested());
 
-        fetch(types.baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_resolved', {
+        let url = types.baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_resolved';
+
+        if(place !== null)
+            url += '&place.id=' + place["@id"];
+        if(unit !== null)
+            url += '&place.unit.id=' + unit["@id"];
+
+        console.log(url);
+
+        fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -54,7 +63,16 @@ function fetchUnsolvedTags(login, beginDate, endDate, place, unit)
     return dispatch => {
         dispatch(unsolvedTagsRequested());
 
-        fetch(types.baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_unresolved', {
+        let url = types.baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_unresolved';
+
+        if(place !== null)
+            url += '&place.id=' + place["@id"];
+        if(unit !== null)
+            url += '&place.unit.id=' + unit["@id"];
+
+        console.log(url);
+
+        fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,

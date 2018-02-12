@@ -6,6 +6,8 @@ import {
     ActivityIndicator,
     Text,
     ScrollView,
+    Picker,
+    Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -14,6 +16,7 @@ import { ActionCreators } from '../actions';
 import * as layout from "../assets/layout";
 import Header from "../components/Header/Header";
 import { Bar } from 'react-native-pathjs-charts';
+import ModalPicker from 'react-native-modal-picker';
 import moment from 'moment';
 
 let solvedTagOptions = {
@@ -126,7 +129,7 @@ let styles = StyleSheet.create({
         marginVertical : layout.height0p5,
     },
     chartFilters : {
-        height : layout.height23,
+        height : layout.height20,
         width : layout.fullWidth,
     },
     chartTitle : {
@@ -135,6 +138,12 @@ let styles = StyleSheet.create({
         textAlign : "center",
         fontSize : layout.fontSize1p8,
     },
+    select : {
+        height : layout.height5,
+        width : layout.width45,
+        marginHorizontal : layout.width2p5,
+        marginBottom: layout.height2,
+    }
 });
 
 class ChartsScreen extends Component {
@@ -153,7 +162,65 @@ class ChartsScreen extends Component {
         this.state = {
             beginDate : moment().subtract(6,'d').format("YYYY-MM-DD HH:mm:ss"),
             endDate : moment().format("YYYY-MM-DD HH:mm:ss"),
+            filters : {
+                unit : null,
+                place : null,
+            }
         }
+    }
+
+
+    changeFilter(key, value)
+    {
+        let newFilters = this.state.filters;
+        newFilters[key] = value;
+
+        this.setState({ filters : newFilters });
+        this.props.loadSolvedTags(this.props.login, this.state.beginDate, this.state.endDate, newFilters.place, newFilters.unit);
+        this.props.loadUnsolvedTags(this.props.login, this.state.beginDate, this.state.endDate, newFilters.place, newFilters.unit);
+    }
+
+
+    buildListIos(fullList, listLabel, labelField, filter) {
+        let list = [];
+
+        for(var i = 0; i < fullList.length; i++)
+        {
+            list.push(
+                {
+                    key : i,
+                    label : fullList[i][labelField],
+                    value : fullList[i],
+                }
+            );
+        }
+
+        return <ModalPicker
+            data={list}
+            initValue={this.state.filters[filter] ? this.state.filters[filter] : listLabel}
+            style={styles.select}
+            selectStyle={{ height : layout.height5, width : layout.width35, alignItems : 'center', justifyContent : 'center'}}
+            onChange={(option) => { this.changeFilter(filter, option); }} />;
+    }
+
+    buildListAndroid(fullList, listLabel, labelField, filter) {
+        let list = [];
+
+        list.push(
+            <Picker.Item key={-1} label={listLabel} value={null} />
+        );
+
+        for(var i = 0; i < fullList.length; i++)
+        {
+            list.push(
+                <Picker.Item key={i} label={fullList[i][labelField]} value={fullList[i]} />
+            );
+        }
+
+        return <Picker selectedValue={this.state.filters[filter] ? this.state.filters[filter] : null} style={styles.select} onValueChange={(value, index) => { this.changeFilter(filter, value); }} >
+            {list}
+        </Picker>
+            ;
     }
 
     formatTagList(begin, list)
@@ -227,19 +294,22 @@ class ChartsScreen extends Component {
 
     componentWillMount()
     {
+        this.props.tryUnits(this.props.login);
+        this.props.tryPlaces(this.props.login);
         this.props.loadSolvedTags(this.props.login, this.state.beginDate, this.state.endDate);
         this.props.loadUnsolvedTags(this.props.login, this.state.beginDate, this.state.endDate);
     }
 
     render() {
 
-        if(this.props.charts.loading === true || this.props.charts.solvedTags === null || this.props.charts.unsolvedTags === null)
+        if(this.props.charts.loading === true || this.props.charts.solvedTags === null || this.props.charts.unsolvedTags === null || this.props.utils.places === null || this.props.utils.units === null)
         {
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
                     <View style={styles.body}>
                         <View style={styles.chartFilters}>
+                            <ActivityIndicator color="#3f51b5" size="large"/>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
@@ -264,6 +334,10 @@ class ChartsScreen extends Component {
                     <Header props={this.props} />
                     <View style={styles.body}>
                         <View style={styles.chartFilters}>
+                            <View style={{flexDirection: 'row'}}>
+                                { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
+                                { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
+                            </View>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
@@ -292,6 +366,10 @@ class ChartsScreen extends Component {
                     <Header props={this.props} />
                     <View style={styles.body}>
                         <View style={styles.chartFilters}>
+                            <View style={{flexDirection: 'row'}}>
+                                { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
+                                { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
+                            </View>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
@@ -318,6 +396,10 @@ class ChartsScreen extends Component {
                     <Header props={this.props} />
                     <View style={styles.body}>
                         <View style={styles.chartFilters}>
+                            <View style={{flexDirection: 'row'}}>
+                                { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
+                                { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
+                            </View>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
@@ -344,6 +426,10 @@ class ChartsScreen extends Component {
                     <Header props={this.props} />
                         <View style={styles.body}>
                             <View style={styles.chartFilters}>
+                                <View style={{flexDirection: 'row'}}>
+                                    { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
+                                    { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
+                                </View>
                             </View>
                             <View style={styles.chartView}>
                                 <Text style={styles.chartTitle}>
@@ -369,6 +455,7 @@ function mapStateToProps(state) {
         login: state.login,
         nav : state.nav,
         charts : state.charts,
+        utils : state.utils,
     };
 }
 
