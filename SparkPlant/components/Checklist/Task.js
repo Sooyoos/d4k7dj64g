@@ -54,7 +54,7 @@ let styles = StyleSheet.create({
     },
     buttonOk : {
         width : layout.width25,
-        height : layout.height6,
+        height : layout.height8,
         marginHorizontal : layout.width2,
         marginVertical : layout.height2,
         alignItems : 'center',
@@ -64,7 +64,7 @@ let styles = StyleSheet.create({
     },
     buttonPaliatif : {
         width : layout.width25,
-        height : layout.height6,
+        height : layout.height8,
         marginHorizontal : layout.width2,
         marginVertical : layout.height2,
         alignItems : 'center',
@@ -73,7 +73,7 @@ let styles = StyleSheet.create({
     },
     buttonNok : {
         width : layout.width25,
-        height : layout.height6,
+        height : layout.height8,
         marginHorizontal : layout.width2,
         marginVertical : layout.height2,
         alignItems : 'center',
@@ -82,7 +82,7 @@ let styles = StyleSheet.create({
     },
     buttonNeutral : {
         width : layout.width25,
-        height : layout.height6,
+        height : layout.height8,
         marginHorizontal : layout.width2,
         marginVertical : layout.height2,
         alignItems : 'center',
@@ -224,26 +224,71 @@ class Task extends Component {
 
     displayPaliatif()
     {
-        if(this.state.instanceTask.status === "paliatif")
+        if(this.state.instanceTask.status === "paliatif" || this.state.instanceTask.status === "nok paliatif" || this.state.instanceTask.status === "nok réparé")
         {
-            return(
-                <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
-                    <TouchableOpacity onPress={() => { this.updateStatus("nok") }}>
-                        <ElevatedView style={styles.buttonNok} elevation={3}>
-                            <Text style={styles.buttonText}>
-                                NOK
-                            </Text>
-                        </ElevatedView>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => { this.updateStatus("ok") }}>
-                        <ElevatedView style={styles.buttonOk} elevation={3}>
-                            <Text style={styles.buttonText}>
-                                OK
-                            </Text>
-                        </ElevatedView>
-                    </TouchableOpacity>
-                </View>
-            );
+            if(this.state.instanceTask.status === "nok paliatif")
+            {
+                return(
+                    <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
+                        <TouchableOpacity onPress={() => { this.updateStatus("nok paliatif") }}>
+                            <ElevatedView style={styles.buttonNok} elevation={3}>
+                                <Text style={styles.buttonText}>
+                                    NOK PALIATIF
+                                </Text>
+                            </ElevatedView>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => { this.updateStatus("nok réparé") }}>
+                            <ElevatedView style={styles.buttonNeutral} elevation={3}>
+                                <Text style={styles.buttonText}>
+                                    NOK RÉPARÉ
+                                </Text>
+                            </ElevatedView>
+                        </TouchableOpacity>
+                    </View>
+                );
+            }
+            else if(this.state.instanceTask.status === "nok réparé")
+            {
+                return(
+                    <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
+                        <TouchableOpacity onPress={() => { this.updateStatus("nok paliatif") }}>
+                            <ElevatedView style={styles.buttonNeutral} elevation={3}>
+                                <Text style={styles.buttonText}>
+                                    NOK PALIATIF
+                                </Text>
+                            </ElevatedView>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => { this.updateStatus("nok réparé") }}>
+                            <ElevatedView style={styles.buttonNok} elevation={3}>
+                                <Text style={styles.buttonText}>
+                                    NOK RÉPARÉ
+                                </Text>
+                            </ElevatedView>
+                        </TouchableOpacity>
+                    </View>
+                );
+            }
+            else
+            {
+                return(
+                    <View style={{flexDirection : 'row', alignItems : 'center', justifyContent : 'center'}}>
+                        <TouchableOpacity onPress={() => { this.updateStatus("nok paliatif") }}>
+                            <ElevatedView style={styles.buttonNeutral} elevation={3}>
+                                <Text style={styles.buttonText}>
+                                    NOK PALIATIF
+                                </Text>
+                            </ElevatedView>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => { this.updateStatus("nok réparé") }}>
+                            <ElevatedView style={styles.buttonNeutral} elevation={3}>
+                                <Text style={styles.buttonText}>
+                                    NOK RÉPARÉ
+                                </Text>
+                            </ElevatedView>
+                        </TouchableOpacity>
+                    </View>
+                );
+            }
         }
     }
 
