@@ -15,7 +15,6 @@
 		"react-native": "^0.46.4",
 		"react-native-audio": "3.2.2",
 		"react-native-camera": "^0.9.5",
-		"react-native-datepicker": "^1.6.0",
 		"react-native-device-info": "^0.12.1",
 		"react-native-elevated-view": "^0.0.4",
 		"react-native-exit-app": "^1.0.0",

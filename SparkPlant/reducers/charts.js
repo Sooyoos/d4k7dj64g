@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 const initialState = {
-    solvedTags : [],
-    unsolvedTags : [],
+    solvedTags : null,
+    unsolvedTags : null,
     loading : false,
 };
 
@@ -10,6 +10,8 @@ export const chartsReducer = {
         switch (action.type) {
             case types.SOLVED_TAGS_REQUESTED: {
                 return Object.assign({}, state, {
+                    solvedTags : null,
+                    unsolvedTags: null,
                     loading: true,
                 });
             }
@@ -27,6 +29,7 @@ export const chartsReducer = {
             }
             case types.UNSOLVED_TAGS_REQUESTED: {
                 return Object.assign({}, state, {
+                    unsolvedTags: null,
                     loading: true,
                 });
             }

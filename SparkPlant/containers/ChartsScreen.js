@@ -17,7 +17,6 @@ import * as layout from "../assets/layout";
 import Header from "../components/Header/Header";
 import { Bar } from 'react-native-pathjs-charts';
 import ModalPicker from 'react-native-modal-picker';
-import DatePicker from 'react-native-datepicker';
 import moment from 'moment';
 
 let solvedTagOptions = {
@@ -140,7 +139,7 @@ let styles = StyleSheet.create({
         fontSize : layout.fontSize1p8,
     },
     select : {
-        height : layout.height8,
+        height : layout.height5,
         width : layout.width45,
         marginHorizontal : layout.width2p5,
         marginBottom: layout.height2,
@@ -166,26 +165,10 @@ class ChartsScreen extends Component {
             filters : {
                 unit : null,
                 place : null,
-            },
-            solved : [],
-            unsolved : [],
+            }
         }
     }
 
-    changeDate(date)
-    {
-
-        let beginDate = moment(date, "DD/MM/YYYY").format("YYYY-MM-DD HH:mm:ss");
-        let endDate = moment(date, "DD/MM/YYYY").add(6,'d').format("YYYY-MM-DD HH:mm:ss");
-
-        this.setState({
-            beginDate : beginDate,
-            endDate : endDate,
-        });
-
-        this.props.loadSolvedTags(this.props.login, beginDate, endDate, this.state.filters.place, this.state.filters.unit);
-        this.props.loadUnsolvedTags(this.props.login, beginDate, endDate, this.state.filters.place, this.state.filters.unit);
-    }
 
     changeFilter(key, value)
     {
@@ -242,123 +225,71 @@ class ChartsScreen extends Component {
 
     formatTagList(begin, list)
     {
-        if(list.length === 0 || list === null)
-        {
-            return(
-                [
-                    [
-                        {
-                            value : 0.1,
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(0, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : 0.1,
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(1, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : 0.1,
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(2, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : 0.1,
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(3, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : 0.1,
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(4, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : 0.1,
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(5, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : 0.1,
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(6, 'd').format("DD/MM"),
-                        }
-                    ],
-                ]
-            )
-        }
-        else
-        {
-            let sortedList = [];
+        let sortedList = [];
 
-            for(var i = 0; i < 7; i++)
+        for(var i = 0; i < 7; i++)
+        {
+            let beginDate = moment(begin,"YYYY-MM-DD HH:mm:ss");
+            let date = beginDate.add(i, 'd').format("DD/MM/YYYY");
+            sortedList[i] = [];
+
+            for(var j = 0; j < list.length; j++)
             {
-                let beginDate = moment(begin,"YYYY-MM-DD HH:mm:ss");
-                let date = beginDate.add(i, 'd').format("DD/MM/YYYY");
-                sortedList[i] = [];
+                let tagDate = moment(list[j].updatedAt, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY");
 
-                for(var j = 0; j < list.length; j++)
+                if(date === tagDate)
                 {
-                    let tagDate = moment(list[j].updatedAt, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY");
-
-                    if(date === tagDate)
-                    {
-                        sortedList[i].push(list[j]);
-                    }
+                    sortedList[i].push(list[j]);
                 }
             }
-
-            return(
-                [
-                    [
-                        {
-                            value : parseFloat(sortedList[0].length),
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(0, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : parseFloat(sortedList[1].length),
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(1, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : parseFloat(sortedList[2].length),
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(2, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : parseFloat(sortedList[3].length),
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(3, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : parseFloat(sortedList[4].length),
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(4, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : parseFloat(sortedList[5].length),
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(5, 'd').format("DD/MM"),
-                        }
-                    ],
-                    [
-                        {
-                            value : parseFloat(sortedList[6].length),
-                            name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(6, 'd').format("DD/MM"),
-                        }
-                    ],
-                ]
-            )
         }
+
+        return(
+            [
+                [
+                    {
+                        value : parseFloat(sortedList[0].length),
+                        name : "J - 6",
+                    }
+                ],
+                [
+                    {
+                        value : parseFloat(sortedList[1].length),
+                        name : "J - 5",
+                    }
+                ],
+                [
+                    {
+                        value : parseFloat(sortedList[2].length),
+                        name : "J - 4",
+                    }
+                ],
+                [
+                    {
+                        value : parseFloat(sortedList[3].length),
+                        name : "J - 3",
+                    }
+                ],
+                [
+                    {
+                        value : parseFloat(sortedList[4].length),
+                        name : "J - 2",
+                    }
+                ],
+                [
+                    {
+                        value : parseFloat(sortedList[5].length),
+                        name : "J - 1",
+                    }
+                ],
+                [
+                    {
+                        value : parseFloat(sortedList[6].length),
+                        name : "J",
+                    }
+                ],
+            ]
+        )
     }
 
     componentWillMount()
@@ -373,7 +304,6 @@ class ChartsScreen extends Component {
 
         if(this.props.charts.loading === true || this.props.charts.solvedTags === null || this.props.charts.unsolvedTags === null || this.props.utils.places === null || this.props.utils.units === null)
         {
-            console.log("loading");
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
@@ -399,7 +329,6 @@ class ChartsScreen extends Component {
         }
         else if(this.props.charts.loading === false && this.props.charts.solvedTags.length === 0 && this.props.charts.unsolvedTags.length  === 0)
         {
-            console.log("everything empty");
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
@@ -408,20 +337,6 @@ class ChartsScreen extends Component {
                             <View style={{flexDirection: 'row'}}>
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
-                            </View>
-                            <View style={{flexDirection: 'row', alignItems : 'center', justifyContent : 'center'}}>
-                                <DatePicker
-                                    style={styles.select}
-                                    date={moment(this.state.beginDate, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY")}
-                                    mode="date"
-                                    placeholder="Date de début de la période"
-                                    format="DD/MM/YYYY"
-                                    minDate="01/01/2017"
-                                    maxDate={moment().subtract(6,'d').format("DD/MM/YYYY")}
-                                    confirmBtnText="Valider"
-                                    cancelBtnText="Annuler"
-                                    onDateChange={(date) => {this.changeDate(date)}}
-                                />
                             </View>
                         </View>
                         <View style={styles.chartView}>
@@ -446,7 +361,6 @@ class ChartsScreen extends Component {
         }
         else if(this.props.charts.loading === false && this.props.charts.solvedTags.length !== 0 && this.props.charts.unsolvedTags.length  === 0)
         {
-            console.log("unsolved empty");
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
@@ -455,20 +369,6 @@ class ChartsScreen extends Component {
                             <View style={{flexDirection: 'row'}}>
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
-                            </View>
-                            <View style={{flexDirection: 'row', alignItems : 'center', justifyContent : 'center'}}>
-                                <DatePicker
-                                    style={styles.select}
-                                    date={moment(this.state.beginDate, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY")}
-                                    mode="date"
-                                    placeholder="Date de début de la période"
-                                    format="DD/MM/YYYY"
-                                    minDate="01/01/2017"
-                                    maxDate={moment().subtract(6,'d').format("DD/MM/YYYY")}
-                                    confirmBtnText="Valider"
-                                    cancelBtnText="Annuler"
-                                    onDateChange={(date) => {this.changeDate(date)}}
-                                />
                             </View>
                         </View>
                         <View style={styles.chartView}>
@@ -500,20 +400,6 @@ class ChartsScreen extends Component {
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
                             </View>
-                            <View style={{flexDirection: 'row', alignItems : 'center', justifyContent : 'center'}}>
-                                <DatePicker
-                                    style={styles.select}
-                                    date={moment(this.state.beginDate, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY")}
-                                    mode="date"
-                                    placeholder="Date de début de la période"
-                                    format="DD/MM/YYYY"
-                                    minDate="01/01/2017"
-                                    maxDate={moment().subtract(6,'d').format("DD/MM/YYYY")}
-                                    confirmBtnText="Valider"
-                                    cancelBtnText="Annuler"
-                                    onDateChange={(date) => {this.changeDate(date)}}
-                                />
-                            </View>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
@@ -544,20 +430,6 @@ class ChartsScreen extends Component {
                                     { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
                                     { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
                                 </View>
-                                <View style={{flexDirection: 'row', alignItems : 'center', justifyContent : 'center'}}>
-                                    <DatePicker
-                                        style={styles.select}
-                                        date={moment(this.state.beginDate, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY")}
-                                        mode="date"
-                                        placeholder="Date de début de la période"
-                                        format="DD/MM/YYYY"
-                                        minDate="01/01/2017"
-                                        maxDate={moment().subtract(6,'d').format("DD/MM/YYYY")}
-                                        confirmBtnText="Valider"
-                                        cancelBtnText="Annuler"
-                                        onDateChange={(date) => {this.changeDate(date)}}
-                                    />
-                                </View>
                             </View>
                             <View style={styles.chartView}>
                                 <Text style={styles.chartTitle}>
@@ -569,7 +441,7 @@ class ChartsScreen extends Component {
                                 <Text style={styles.chartTitle}>
                                     Tags non résolus
                                 </Text>
-                                <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.unsolvedTags !== null ? this.props.charts.unsolvedTags : this.state.unsolved)} options={unsolvedTagOptions} accessorKey='value'/>
+                                <Bar data={this.formatTagList(this.state.beginDate, this.props.charts.unsolvedTags)} options={unsolvedTagOptions} accessorKey='value'/>
                             </View>
                         </View>
                 </View>
