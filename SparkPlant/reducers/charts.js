@@ -10,8 +10,8 @@ export const chartsReducer = {
         switch (action.type) {
             case types.SOLVED_TAGS_REQUESTED: {
                 return Object.assign({}, state, {
-                    solvedTags : null,
-                    unsolvedTags: null,
+                    solvedTags : [],
+                    unsolvedTags: [],
                     loading: true,
                 });
             }
@@ -29,7 +29,7 @@ export const chartsReducer = {
             }
             case types.UNSOLVED_TAGS_REQUESTED: {
                 return Object.assign({}, state, {
-                    unsolvedTags: null,
+                    unsolvedTags: [],
                     loading: true,
                 });
             }

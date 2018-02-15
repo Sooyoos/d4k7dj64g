@@ -16,6 +16,7 @@ import { ActionCreators } from '../actions';
 import * as layout from "../assets/layout";
 import Header from "../components/Header/Header";
 import { Bar } from 'react-native-pathjs-charts';
+import DatePicker from 'react-native-datepicker';
 import ModalPicker from 'react-native-modal-picker';
 import moment from 'moment';
 
@@ -143,6 +144,12 @@ let styles = StyleSheet.create({
         width : layout.width45,
         marginHorizontal : layout.width2p5,
         marginBottom: layout.height2,
+    },
+    selectDate : {
+        height : layout.height7,
+        width : layout.width45,
+        marginHorizontal : layout.width2p5,
+        marginBottom: layout.height2,
     }
 });
 
@@ -169,6 +176,16 @@ class ChartsScreen extends Component {
         }
     }
 
+
+    changeDate(date)
+    {
+        let endDate = moment(date, "DD/MM/YYYY").add(6,'d').format("YYYY-MM-DD HH:mm:ss");
+        let beginDate = moment(date, "DD/MM/YYYY").format("YYYY-MM-DD HH:mm:ss");
+
+        this.setState({ beginDate : beginDate, endDate : endDate });
+        this.props.loadSolvedTags(this.props.login, beginDate, endDate, this.state.filters.place, this.state.filters.unit);
+        this.props.loadUnsolvedTags(this.props.login, beginDate, endDate, this.state.filters.place, this.state.filters.unit);
+    }
 
     changeFilter(key, value)
     {
@@ -338,6 +355,20 @@ class ChartsScreen extends Component {
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
                             </View>
+                            <View style={{alignItems : 'center', justifyContent : 'center'}}>
+                                <DatePicker
+                                    style={styles.selectDate}
+                                    date={moment(this.state.beginDate, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY")}
+                                    mode="date"
+                                    placeholder="Date de début"
+                                    format="DD/MM/YYYY"
+                                    minDate="17/12/2017"
+                                    maxDate="17/12/3017"
+                                    confirmBtnText="Valider"
+                                    cancelBtnText="Annuler"
+                                    onDateChange={(date) => {this.changeDate(date)}}
+                                />
+                            </View>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
@@ -370,6 +401,20 @@ class ChartsScreen extends Component {
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
                             </View>
+                            <View style={{alignItems : 'center', justifyContent : 'center'}}>
+                                <DatePicker
+                                    style={styles.selectDate}
+                                    date={moment(this.state.beginDate, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY")}
+                                    mode="date"
+                                    placeholder="Date de début"
+                                    format="DD/MM/YYYY"
+                                    minDate="17/12/2017"
+                                    maxDate="17/12/3017"
+                                    confirmBtnText="Valider"
+                                    cancelBtnText="Annuler"
+                                    onDateChange={(date) => {this.changeDate(date)}}
+                                />
+                            </View>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
@@ -400,6 +445,20 @@ class ChartsScreen extends Component {
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
                                 { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
                             </View>
+                            <View style={{alignItems : 'center', justifyContent : 'center'}}>
+                                <DatePicker
+                                    style={styles.selectDate}
+                                    date={moment(this.state.beginDate, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY")}
+                                    mode="date"
+                                    placeholder="Date de début"
+                                    format="DD/MM/YYYY"
+                                    minDate="17/12/2017"
+                                    maxDate="17/12/3017"
+                                    confirmBtnText="Valider"
+                                    cancelBtnText="Annuler"
+                                    onDateChange={(date) => {this.changeDate(date)}}
+                                />
+                            </View>
                         </View>
                         <View style={styles.chartView}>
                             <Text style={styles.chartTitle}>
@@ -429,6 +488,20 @@ class ChartsScreen extends Component {
                                 <View style={{flexDirection: 'row'}}>
                                     { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.places, "Lieu", "name", "place") : this.buildListAndroid(this.props.utils.places, "Lieu", "name", "place") }
                                     { Platform.OS === 'ios' ? this.buildListIos(this.props.utils.units, "Unité", "name", "unit") : this.buildListAndroid(this.props.utils.units, "Unité", "name", "unit") }
+                                </View>
+                                <View style={{alignItems : 'center', justifyContent : 'center'}}>
+                                    <DatePicker
+                                        style={styles.selectDate}
+                                        date={moment(this.state.beginDate, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY")}
+                                        mode="date"
+                                        placeholder="Date de début"
+                                        format="DD/MM/YYYY"
+                                        minDate="17/12/2017"
+                                        maxDate="17/12/3017"
+                                        confirmBtnText="Valider"
+                                        cancelBtnText="Annuler"
+                                        onDateChange={(date) => {this.changeDate(date)}}
+                                    />
                                 </View>
                             </View>
                             <View style={styles.chartView}>
