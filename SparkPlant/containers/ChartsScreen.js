@@ -266,43 +266,43 @@ class ChartsScreen extends Component {
                 [
                     {
                         value : parseFloat(sortedList[0].length),
-                        name : "J - 6",
+                        name : moment(begin,"YYYY-MM-DD HH:mm:ss").format("DD/MM"),
                     }
                 ],
                 [
                     {
                         value : parseFloat(sortedList[1].length),
-                        name : "J - 5",
+                        name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(1, 'd').format("DD/MM"),
                     }
                 ],
                 [
                     {
                         value : parseFloat(sortedList[2].length),
-                        name : "J - 4",
+                        name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(2, 'd').format("DD/MM"),
                     }
                 ],
                 [
                     {
                         value : parseFloat(sortedList[3].length),
-                        name : "J - 3",
+                        name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(3, 'd').format("DD/MM"),
                     }
                 ],
                 [
                     {
                         value : parseFloat(sortedList[4].length),
-                        name : "J - 2",
+                        name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(4, 'd').format("DD/MM"),
                     }
                 ],
                 [
                     {
                         value : parseFloat(sortedList[5].length),
-                        name : "J - 1",
+                        name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(5, 'd').format("DD/MM"),
                     }
                 ],
                 [
                     {
                         value : parseFloat(sortedList[6].length),
-                        name : "J",
+                        name : moment(begin,"YYYY-MM-DD HH:mm:ss").add(6, 'd').format("DD/MM"),
                     }
                 ],
             ]
