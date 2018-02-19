@@ -182,9 +182,9 @@ class ChartsScreen extends Component {
         let endDate = moment(date, "DD/MM/YYYY").add(6,'d').format("YYYY-MM-DD HH:mm:ss");
         let beginDate = moment(date, "DD/MM/YYYY").format("YYYY-MM-DD HH:mm:ss");
 
-        this.setState({ beginDate : beginDate, endDate : endDate });
         this.props.loadSolvedTags(this.props.login, beginDate, endDate, this.state.filters.place, this.state.filters.unit);
         this.props.loadUnsolvedTags(this.props.login, beginDate, endDate, this.state.filters.place, this.state.filters.unit);
+        this.setState({ beginDate : beginDate, endDate : endDate });
     }
 
     changeFilter(key, value)
@@ -318,9 +318,11 @@ class ChartsScreen extends Component {
     }
 
     render() {
-
+        console.log(this.props.charts.solvedTags);
+        console.log(this.props.charts.unsolvedTags);
         if(this.props.charts.loading === true || this.props.charts.solvedTags === null || this.props.charts.unsolvedTags === null || this.props.utils.places === null || this.props.utils.units === null)
         {
+            console.log("LOADERS");
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
@@ -346,6 +348,7 @@ class ChartsScreen extends Component {
         }
         else if(this.props.charts.loading === false && this.props.charts.solvedTags.length === 0 && this.props.charts.unsolvedTags.length  === 0)
         {
+            console.log("NO DATA");
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
@@ -392,6 +395,7 @@ class ChartsScreen extends Component {
         }
         else if(this.props.charts.loading === false && this.props.charts.solvedTags.length !== 0 && this.props.charts.unsolvedTags.length  === 0)
         {
+            console.log("SOLVED DATA");
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
@@ -436,6 +440,7 @@ class ChartsScreen extends Component {
         }
         else if(this.props.charts.loading === false && this.props.charts.solvedTags.length === 0 && this.props.charts.unsolvedTags.length !== 0)
         {
+            console.log("UNSOLVED DATA");
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
@@ -480,6 +485,7 @@ class ChartsScreen extends Component {
         }
         else
         {
+            console.log("ALL THE DATA");
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />

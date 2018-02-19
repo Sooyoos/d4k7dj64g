@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 const initialState = {
-    solvedTags : null,
-    unsolvedTags : null,
+    solvedTags : [],
+    unsolvedTags : [],
     loading : false,
 };
 
