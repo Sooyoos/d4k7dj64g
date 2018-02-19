@@ -264,9 +264,25 @@ class ChecklistExecute extends Component {
         };
     }
 
+    checkCompletedTasks(tasks)
+    {
+        let flag = true;
+
+        for(var i =0; i < tasks.length; i++)
+        {
+            if(tasks[i].status === 'todo')
+            {
+                flag = false;
+            }
+        }
+
+        return flag;
+    }
+
     displayTasks()
     {
         let tasks = this.state.checklist.checklistInstanceTasks;
+        console.log(tasks);
         let list = [];
 
         for(var i = 0; i < tasks.length; i++)
@@ -314,13 +330,16 @@ class ChecklistExecute extends Component {
                         </View>
                     </ScrollView>
                     <ElevatedView style={styles.submit} elevation={2}>
-                        <TouchableOpacity onPress={ () => { this.save(); }}>
-                            <ElevatedView style={styles.submitButton} elevation={2}>
-                                <Text style={styles.submitButtonText}>
-                                    ENREGISTRER
-                                </Text>
-                            </ElevatedView>
-                        </TouchableOpacity>
+                        { this.checkCompletedTasks(this.state.checklist.checklistInstanceTasks) ?
+                            <TouchableOpacity onPress={ () => { this.save(); }}>
+                                <ElevatedView style={styles.submitButton} elevation={2}>
+                                    <Text style={styles.submitButtonText}>
+                                        ENREGISTRER
+                                    </Text>
+                                </ElevatedView>
+                            </TouchableOpacity> : null
+                        }
+
                     </ElevatedView>
                 </View>
             </View>
