@@ -77,6 +77,8 @@ let styles = StyleSheet.create({
         width : layout.height8,
         borderRadius : layout.height4,
         backgroundColor : '#ababab',
+        alignItems : 'center',
+        justifyContent : 'center',
     },
     savedIcon : {
         color : "#ffffff",
@@ -99,12 +101,23 @@ class TaskHeader extends Component {
 
     displayStatusIcon(status)
     {
-        if(status === null || status === "todo")
+        if(status === null || status === "todo" || status === 'na')
         {
-            return(
-                <View style={styles.taskStatusIconNeutral}>
-                </View>
-            );
+            if(this.props.saved === false)
+            {
+                return(
+                    <View style={styles.taskStatusIconNeutral}>
+                    </View>
+                );
+            }
+            else
+            {
+                return(
+                    <View style={styles.taskStatusIconNeutral}>
+                        <Icon name="check" style={styles.savedIcon}/>
+                    </View>
+                );
+            }
         }
         else if(status === 'ok')
         {
