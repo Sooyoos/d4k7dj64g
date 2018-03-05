@@ -5,6 +5,8 @@ stages:
 
 before_script:
 - export GRADLE_USER_HOME=$(pwd)/.gradle
+- ls -la .
+- locate gradlew
 - chmod +x ./gradlew
 
 cache:
