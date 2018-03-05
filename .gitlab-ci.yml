@@ -1,23 +1,10 @@
-image: registry.gitlab.com/motorica-org/gitlab-ci-android:master
-
 stages:
-- build
+  - deploy
 
-before_script:
-- export GRADLE_USER_HOME=$(pwd)/.gradle
-- ls -la .
-- locate gradlew
-- chmod +x ./gradlew
-
-cache:
-  key: ${CI_PROJECT_ID}
-  paths:
-  - .gradle/
-
-build:
-  stage: build
-  script:
-  - ./gradlew assembleDebug
-  artifacts:
-    paths:
-    - app/build/outputs/apk/app-debug.apk
+deploy:
+  stage: deploy
+  script: echo "build"
+  only:
+    - testing
+    - preproduction
+    - production
