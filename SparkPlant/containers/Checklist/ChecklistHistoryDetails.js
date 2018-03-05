@@ -120,46 +120,66 @@ let styles = StyleSheet.create({
         color : "#000000",
         marginHorizontal: layout.width5,
     },
-    okValueActive : {
-        width : layout.width20,
+    buttonOk : {
+        width : layout.width25,
         height : layout.height8,
-        marginHorizontal : layout.width5,
+        marginHorizontal : layout.width2,
         marginVertical : layout.height2,
-        backgroundColor : "#4CAF50",
         alignItems : 'center',
         justifyContent : 'center',
+        backgroundColor : '#388E3C',
+
     },
-    okValue : {
-        width : layout.width20,
+    buttonPaliatif : {
+        width : layout.width25,
         height : layout.height8,
-        marginHorizontal : layout.width5,
+        marginHorizontal : layout.width2,
         marginVertical : layout.height2,
-        backgroundColor : "#888888",
         alignItems : 'center',
         justifyContent : 'center',
+        backgroundColor : '#FF5722',
     },
-    nokValue : {
-        width : layout.width20,
+    buttonPaliatifFixed : {
+        width : layout.width25,
         height : layout.height8,
-        marginHorizontal : layout.width5,
+        marginHorizontal : layout.width2,
         marginVertical : layout.height2,
-        backgroundColor : "#888888",
         alignItems : 'center',
         justifyContent : 'center',
+        backgroundColor : '#FFA000',
     },
-    nokValueActive : {
-        width : layout.width20,
+    buttonNa : {
+        width : layout.width25,
         height : layout.height8,
-        marginHorizontal : layout.width5,
+        marginHorizontal : layout.width2,
         marginVertical : layout.height2,
-        backgroundColor : "#F44336",
         alignItems : 'center',
         justifyContent : 'center',
+        backgroundColor : '#607D8B',
+    },
+    buttonNok : {
+        width : layout.width25,
+        height : layout.height8,
+        marginHorizontal : layout.width2,
+        marginVertical : layout.height2,
+        alignItems : 'center',
+        justifyContent : 'center',
+        backgroundColor : '#D32F2F',
+    },
+    buttonNeutral : {
+        width : layout.width25,
+        height : layout.height8,
+        marginHorizontal : layout.width2,
+        marginVertical : layout.height2,
+        alignItems : 'center',
+        justifyContent : 'center',
+        backgroundColor : '#888888',
     },
     buttonValue : {
-        fontSize : layout.fontSize4,
+        fontSize : layout.fontSize2p5,
         fontWeight: 'bold',
         color : "#ffffff",
+        textAlign: "center",
     },
     footer: {
         height:layout.height13,
@@ -227,33 +247,179 @@ class ChecklistHistory extends Component {
             if(task.status === "ok")
             {
                 return(
-                    <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
-                        <View style={styles.okValueActive}>
-                            <Text style={styles.buttonValue}>
-                                OK
-                            </Text>
+                    <View style={{width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                        <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                            <View style={styles.buttonOk}>
+                                <Text style={styles.buttonValue}>
+                                    OK
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NA
+                                </Text>
+                            </View>
                         </View>
-                        <View style={styles.nokValue}>
-                            <Text style={styles.buttonValue}>
-                                NOK
-                            </Text>
+                        <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK Réparé
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK Palliatif
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK
+                                </Text>
+                            </View>
                         </View>
                     </View>
                 );
             }
-            else
+            else if(task.status === "na")
             {
                 return(
-                    <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
-                        <View style={styles.okValue}>
-                            <Text style={styles.buttonValue}>
-                                OK
-                            </Text>
+                    <View style={{ width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                        <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    OK
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNa}>
+                                <Text style={styles.buttonValue}>
+                                    NA
+                                </Text>
+                            </View>
                         </View>
-                        <View style={styles.nokValueActive}>
-                            <Text style={styles.buttonValue}>
-                                NOK
-                            </Text>
+                        <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK Réparé
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK Palliatif
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK
+                                </Text>
+                            </View>
+                        </View>
+                    </View>
+                );
+            }
+            else if(task.status === "nok réparé")
+            {
+                return(
+                    <View style={{width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                        <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    OK
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NA
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                            <View style={styles.buttonPaliatifFixed}>
+                                <Text style={styles.buttonValue}>
+                                    NOK Réparé
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK Palliatif
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK
+                                </Text>
+                            </View>
+                        </View>
+                    </View>
+                );
+            }
+            else if(task.status === "nok palliatif")
+            {
+                return(
+                    <View style={{width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                        <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    OK
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NA
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK Réparé
+                                </Text>
+                            </View>
+                            <View style={styles.buttonPaliatif}>
+                                <Text style={styles.buttonValue}>
+                                    NOK Palliatif
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK
+                                </Text>
+                            </View>
+                        </View>
+                    </View>
+                );
+            }
+            else if(task.status === "nok palliatif")
+            {
+                return(
+                    <View style={{width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                        <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    OK
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NA
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={{flexDirection : 'row', width : layout.width90, alignItems : 'center', justifyContent : 'center'}}>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK Réparé
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNeutral}>
+                                <Text style={styles.buttonValue}>
+                                    NOK Palliatif
+                                </Text>
+                            </View>
+                            <View style={styles.buttonNok}>
+                                <Text style={styles.buttonValue}>
+                                    NOK
+                                </Text>
+                            </View>
                         </View>
                     </View>
                 );
