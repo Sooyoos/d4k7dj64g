@@ -123,7 +123,7 @@ let styles = StyleSheet.create({
     },
     mesureInput : {
         width : layout.width40,
-        height : layout.height5,
+        height : layout.height7,
         marginHorizontal : layout.width2,
         marginVertical : layout.height2,
         alignItems : 'center',
