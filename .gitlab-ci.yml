@@ -4,6 +4,7 @@ stages:
 - build
 
 before_script:
+- mkdir gradlew
 - export GRADLE_USER_HOME=$(pwd)/.gradle
 - chmod +x ./gradlew
 
