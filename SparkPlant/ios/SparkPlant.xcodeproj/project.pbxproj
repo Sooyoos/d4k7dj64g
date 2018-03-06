@@ -450,6 +450,8 @@
 		8B30975554DA8ACFCBA3FA30 /* libPods-SparkPlant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SparkPlant.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB37D7EA16A4C8D9F04914F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		9F371DE2204ED03D00B6D820 /* libPods-SparkPlant.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SparkPlant.a"; path = "Pods/../build/Debug-iphoneos/libPods-SparkPlant.a"; sourceTree = "<group>"; };
+		9F371DE4204ED2C800B6D820 /* libQBImagePickerController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libQBImagePickerController.a; path = "Pods/../build/Debug-iphoneos/QBImagePickerController/libQBImagePickerController.a"; sourceTree = "<group>"; };
+		9F371DE6204ED2CD00B6D820 /* libQBImagePickerController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libQBImagePickerController.a; path = "Pods/../build/Debug-iphoneos/QBImagePickerController/libQBImagePickerController.a"; sourceTree = "<group>"; };
 		A4080D9C8F90407FB8848199 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		BF24320C1F82809F009BB114 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		BF2432121F828101009BB114 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
@@ -490,7 +492,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFE0C3DF1F83FC0F00DE37C4 /* libRNImagePicker.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -510,6 +511,7 @@
 				BFE0C3E51F83FD5900DE37C4 /* libRNSound.a in Frameworks */,
 				BFE0C3E61F83FD6500DE37C4 /* libRNSVG.a in Frameworks */,
 				9F371DE1204ED02A00B6D820 /* libRNExitApp.a in Frameworks */,
+				BFE0C3DF1F83FC0F00DE37C4 /* libRNImagePicker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,6 +884,8 @@
 		BFE0C3DC1F83FBD200DE37C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9F371DE6204ED2CD00B6D820 /* libQBImagePickerController.a */,
+				9F371DE4204ED2C800B6D820 /* libQBImagePickerController.a */,
 				9F371DE2204ED03D00B6D820 /* libPods-SparkPlant.a */,
 				BFE0C3F91F8515B900DE37C4 /* RSKImageCropper.framework */,
 				BFE0C3DD1F83FBD300DE37C4 /* QBImagePicker.framework */,
@@ -1752,6 +1756,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/QBImagePickerController",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1792,6 +1797,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/QBImagePickerController",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
