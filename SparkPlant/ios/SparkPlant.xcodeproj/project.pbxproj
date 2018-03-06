@@ -44,10 +44,11 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8EC8EF5D07694853AE602BB5 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B4753BBE3D24C679D5F3B01 /* Ionicons.ttf */; };
 		951250427E72494EB79DFD9E /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DB37D7EA16A4C8D9F04914F /* Foundation.ttf */; };
-		9F371DE1204ED02A00B6D820 /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F57220D204E9E9D0069A82F /* libRNExitApp.a */; };
 		9F371DE8204ED93A00B6D820 /* libQBImagePickerController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F371DE4204ED2C800B6D820 /* libQBImagePickerController.a */; };
 		9F371DE9204EDA5900B6D820 /* libQBImagePickerController.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F371DE4204ED2C800B6D820 /* libQBImagePickerController.a */; };
 		9F371DEE204EDD7900B6D820 /* libRSKImageCropper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F371DED204EDD7900B6D820 /* libRSKImageCropper.a */; };
+		9F371DEF204EE2FA00B6D820 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD902D81FC867D7007A176B /* libRNFirebase.a */; };
+		9F371DF0204EE31100B6D820 /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F57220D204E9E9D0069A82F /* libRNExitApp.a */; };
 		B0D03E2306FF423FB0B51983 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED963CB0FBC54D4DB915D04E /* Octicons.ttf */; };
 		BFE0C3DF1F83FC0F00DE37C4 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2432111F82809F009BB114 /* libRNImagePicker.a */; };
 		BFE0C3E01F83FD0D00DE37C4 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2431E31F82763A009BB114 /* libRNVectorIcons.a */; };
@@ -500,6 +501,7 @@
 			files = (
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
+				9F371DEF204EE2FA00B6D820 /* libRNFirebase.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
@@ -517,9 +519,9 @@
 				BFE0C3E51F83FD5900DE37C4 /* libRNSound.a in Frameworks */,
 				BFE0C3E61F83FD6500DE37C4 /* libRNSVG.a in Frameworks */,
 				BFE0C3DF1F83FC0F00DE37C4 /* libRNImagePicker.a in Frameworks */,
+				9F371DF0204EE31100B6D820 /* libRNExitApp.a in Frameworks */,
 				9F371DE8204ED93A00B6D820 /* libQBImagePickerController.a in Frameworks */,
 				9F371DEE204EDD7900B6D820 /* libRSKImageCropper.a in Frameworks */,
-				9F371DE1204ED02A00B6D820 /* libRNExitApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
