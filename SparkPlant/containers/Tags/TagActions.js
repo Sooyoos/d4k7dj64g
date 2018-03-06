@@ -144,14 +144,15 @@ class TagActions extends Component {
 
     isSupervisor(tag)
     {
-        if(tag.supervisor["@id"] === this.props.users.loggedUser["@id"])
+        if(tag)
         {
-            return true;
+            if(tag.supervisor["@id"] === this.props.users.loggedUser["@id"])
+            {
+                return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     render() {
@@ -219,30 +220,60 @@ class TagActions extends Component {
         }
         else if(!supervisor || (supervisor && ( tag.status !== "ongoing" && tag.status !== "new")))
         {
-            return (
-                <View style={styles.login}>
-                    <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
-                    <View style={styles.list}>
-                        <View style={styles.listLine}>
-                            <TouchableOpacity onPress={this.goToComment.bind(this)}>
-                                <View>
-                                    <ElevatedView elevation={10} style={styles.buttonComment}>
-                                        <Icon name="comment-o" style={styles.icon}/>
-                                    </ElevatedView>
-                                    <Text style={{textAlign: 'center', color : '#212121', fontSize : layout.fontSize1p8}}>
-                                        Commenter
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
+            if(tag)
+            {
+                return (
+                    <View style={styles.login}>
+                        <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
+                        <View style={styles.list}>
+                            <View style={styles.listLine}>
+                                <TouchableOpacity onPress={this.goToComment.bind(this)}>
+                                    <View>
+                                        <ElevatedView elevation={10} style={styles.buttonComment}>
+                                            <Icon name="comment-o" style={styles.icon}/>
+                                        </ElevatedView>
+                                        <Text style={{textAlign: 'center', color : '#212121', fontSize : layout.fontSize1p8}}>
+                                            Commenter
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={styles.footer}>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
+                            <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
                         </View>
                     </View>
-                    <View style={styles.footer}>
-                        <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
-                        <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
-                        <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
+                );
+            }
+            else
+            {
+                return (
+                    <View style={styles.login}>
+                        <HeaderTagDetails {...this.props} headerTitle="#" />
+                        <View style={styles.list}>
+                            <View style={styles.listLine}>
+                                <TouchableOpacity onPress={this.goToComment.bind(this)}>
+                                    <View>
+                                        <ElevatedView elevation={10} style={styles.buttonComment}>
+                                            <Icon name="comment-o" style={styles.icon}/>
+                                        </ElevatedView>
+                                        <Text style={{textAlign: 'center', color : '#212121', fontSize : layout.fontSize1p8}}>
+                                            Commenter
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <View style={styles.footer}>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
+                            <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
+                            <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
+                        </View>
                     </View>
-                </View>
-            );
+                );
+            }
         }
 
     }

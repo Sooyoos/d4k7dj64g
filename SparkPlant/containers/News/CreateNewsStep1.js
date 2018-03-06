@@ -213,22 +213,26 @@ class CreateNewsStep1 extends Component {
 
     buildUnitListIOS() {
         let user = this.props.users.loggedUser;
-        let ids = [];
-        let roles = user.rolesByUnit;
         let list = [];
 
-        for(var i = 0; i < roles.length; i++)
+        if(user)
         {
-            if(!ids.includes(roles[i].unit["@id"]))
+            let ids = [];
+            let roles = user.rolesByUnit;
+
+            for(var i = 0; i < roles.length; i++)
             {
-                list.push(
-                    {
-                        key : i,
-                        label : roles[i].unit.name,
-                        value : roles[i].unit["@id"],
-                    }
-                );
-                ids.push(roles[i].unit["@id"]);
+                if(!ids.includes(roles[i].unit["@id"]))
+                {
+                    list.push(
+                        {
+                            key : i,
+                            label : roles[i].unit.name,
+                            value : roles[i].unit["@id"],
+                        }
+                    );
+                    ids.push(roles[i].unit["@id"]);
+                }
             }
         }
 
@@ -243,25 +247,28 @@ class CreateNewsStep1 extends Component {
     buildUnitListAndroid()
     {
         let user = this.props.users.loggedUser;
-        let ids = [];
-        let roles = user.rolesByUnit;
         let list = [];
-
-        for(var i = 0; i < roles.length; i++)
+        if(user)
         {
-            if(!ids.includes(roles[i].unit["@id"]))
+            let ids = [];
+            let roles = user.rolesByUnit;
+
+            for(var i = 0; i < roles.length; i++)
             {
-                list.push(
-                    <Picker.Item key={i} label={roles[i].unit.name} value={roles[i].unit["@id"]} />
-                );
-                ids.push(roles[i].unit["@id"]);
+                if(!ids.includes(roles[i].unit["@id"]))
+                {
+                    list.push(
+                        <Picker.Item key={i} label={roles[i].unit.name} value={roles[i].unit["@id"]} />
+                    );
+                    ids.push(roles[i].unit["@id"]);
+                }
             }
         }
 
         return <Picker style={styles.unitPicker} selectedValue={this.state.item.unit} onValueChange={(value, index) => this.setUnit(value)}>
-                    <Picker.Item label="Sélectionnez l'unité" value={null} key={-1} />
-                    {list}
-                </Picker>;
+            <Picker.Item label="Sélectionnez l'unité" value={null} key={-1} />
+            {list}
+        </Picker>;
     }
 
     setTitle(title)
@@ -312,7 +319,6 @@ class CreateNewsStep1 extends Component {
 
     preview()
     {
-        console.log(this.state);
         let medias = this.state.item.media;
         for(var i = 0; i < medias.length; i++)
         {
@@ -335,13 +341,12 @@ class CreateNewsStep1 extends Component {
         };
 
         ImagePicker.showImagePicker(options, (response) => {
-            console.log('Response = ', response);
 
             if (response.didCancel) {
-                console.log('User cancelled image picker');
+
             }
             else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
+
             }
             else {
                 let source = { uri: response.uri, type: response.type, name: response.fileName };
@@ -355,13 +360,16 @@ class CreateNewsStep1 extends Component {
 
     isDirection()
     {
-        let roles = this.props.users.loggedUser.rolesByUnit;
-
-        for(var i = 0; i < roles.length; i++)
+        if(this.props.users.loggedUser)
         {
-            if(roles[i].role.title === "Responsable" && roles[i].unit.parent === null)
+            let roles = this.props.users.loggedUser.rolesByUnit;
+
+            for(var i = 0; i < roles.length; i++)
             {
-                return true;
+                if(roles[i].role.title === "Responsable" && roles[i].unit.parent === null)
+                {
+                    return true;
+                }
             }
         }
 

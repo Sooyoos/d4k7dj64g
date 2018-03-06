@@ -145,11 +145,13 @@ dependencies {
     compile project(':react-native-sound')
     compile project(':react-native-audio')
     compile project(':react-native-video')
+    compile project(':react-native-image-rotate')
     compile project(':react-native-image-picker')
     compile project(':react-native-camera')
     compile project(':react-native-vector-icons')
     compile project(':react-native-device-info')
     compile 'com.android.support:multidex:1.0.1'
+    compile project(':react-native-exit-app')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules

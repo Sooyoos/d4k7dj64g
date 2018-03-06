@@ -2,11 +2,38 @@ import * as types from '../actions/types';
 
 const initialState = {
     checklists : null,
+    filteredTemplates : null,
     templates : null,
     currentChecklist : null,
     currentTemplate : null,
+    checklistHistory : null,
+    fullChecklistHistory : null,
+    currentHistory : null,
+    currentInstance : null,
     loading : false,
 };
+
+function filterChecklists(list, place)
+{
+    let shortList = [];
+
+    if(place === "all" || place === null)
+    {
+        return null;
+    }
+    else
+    {
+        for(var i = 0; i < list.length; i++)
+        {
+            if(list[i].place["@id"] === place["@id"])
+            {
+                shortList.push(list[i]);
+            }
+        }
+
+        return shortList;
+    }
+}
 
 export const checklistsReducer = {
     checklists : (state = initialState, action) => {
@@ -65,11 +92,112 @@ export const checklistsReducer = {
             case types.ASSIGN_CHECKLISTS_FAILURE: {
                 return Object.assign({}, state, {loading : false});
             }
+            case types.CHECKLIST_HISTORY_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
+            case types.CHECKLIST_HISTORY_SUCCESS: {
+                return Object.assign({}, state, {checklistHistory: action.history, loading : false});
+            }
+            case types.CHECKLIST_HISTORY_FAILURE: {
+                return Object.assign({}, state, {checklistHistory: null, loading : false});
+            }
+            case types.FULL_CHECKLIST_HISTORY_REQUESTED: {
+                return Object.assign({}, state, {loading : true});
+            }
+            case types.FULL_CHECKLIST_HISTORY_SUCCESS: {
+                return Object.assign({}, state, {fullChecklistHistory: action.history, loading : false});
+            }
+            case types.FULL_CHECKLIST_HISTORY_FAILURE: {
+                return Object.assign({}, state, {fullChecklistHistory: null, loading : false});
+            }
             case types.SET_CURRENT_CHECKLIST: {
                 return Object.assign({}, state, {currentChecklist : action.checklist});
             }
+            case types.SET_CURRENT_HISTORY: {
+                return Object.assign({}, state, {currentHistory : action.item});
+            }
             case types.SET_CURRENT_TEMPLATE: {
                 return Object.assign({}, state, {currentTemplate : action.template});
+            }
+            case types.DELETE_CHECKLIST_INSTANCE_REQUESTED: {
+                return Object.assign({}, state, { loading : true });
+            }
+            case types.DELETE_CHECKLIST_INSTANCE_SUCCESS: {
+                return Object.assign({}, state, { currentInstance : null, loading : false });
+            }
+            case types.DELETE_CHECKLIST_INSTANCE_FAILURE: {
+                return Object.assign({}, state, { currentInstance : null, loading : false });
+            }
+            case types.DELETE_USER_CHECKLIST_REQUESTED: {
+                return Object.assign({}, state, { loading : true });
+            }
+            case types.DELETE_USER_CHECKLIST_SUCCESS: {
+                let id = action.id;
+                let list = state.checklists;
+                let index = -1;
+
+                for(var i = 0; i < list.length; i++)
+                {
+                    if(list[i]["@id"] === id)
+                    {
+                        index = i;
+                    }
+                }
+
+                if(index !== -1)
+                {
+                    list.splice(index);
+                }
+
+                return Object.assign({}, state, { checklists : list, loading : false });
+            }
+            case types.DELETE_USER_CHECKLIST_FAILURE: {
+                return Object.assign({}, state, { loading : false });
+            }
+            case types.CREATE_USER_CHECKLIST_REQUESTED: {
+                return Object.assign({}, state, { loading : true });
+            }
+            case types.CREATE_USER_CHECKLIST_SUCCESS: {
+                return Object.assign({}, state, { loading : false });
+            }
+            case types.CREATE_USER_CHECKLIST_FAILURE: {
+                return Object.assign({}, state, { loading : false });
+            }
+            case types.CREATE_CHECKLIST_INSTANCE_REQUESTED: {
+                return Object.assign({}, state, { loading : true });
+            }
+            case types.CREATE_CHECKLIST_INSTANCE_SUCCESS: {
+                return Object.assign({}, state, { loading : false, currentInstance: action.instance });
+            }
+            case types.CREATE_CHECKLIST_INSTANCE_FAILURE: {
+                return Object.assign({}, state, { loading : false, currentInstance: null });
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_REQUESTED: {
+                return Object.assign({}, state, { loading : true });
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_SUCCESS: {
+                return Object.assign({}, state, { loading : false, currentInstance: null });
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_FAILURE: {
+                return Object.assign({}, state, { loading : false});
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_TASK_REQUESTED: {
+                return Object.assign({}, state, { loading : true });
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_TASK_SUCCESS: {
+                let tasks = state.currentInstance.checklistInstanceTasks;
+                tasks[action.index] = action.task;
+                let currentInstance = Object.assign({}, state.currentInstance, { checklistInstanceTasks : tasks });
+                return Object.assign({}, state, { loading : false, currentInstance : currentInstance });
+            }
+            case types.UPDATE_CHECKLIST_INSTANCE_TASK_FAILURE: {
+                return Object.assign({}, state, { loading : false });
+            }
+            case types.FILTER_CHECKLIST: {
+                return Object.assign({}, state, { loading : false, filteredTemplates : filterChecklists(state.templates, action.place) });
+            }
+            case types.RESET_CHECKLISTS: {
+                return Object.assign({}, state, initialState);
             }
             default :
                 return state;

@@ -11,7 +11,7 @@ import { ActionCreators } from '../actions';
 import * as layout from "../assets/layout";
 import HeaderChecklist from "../components/Header/HeaderChecklist";
 import FooterButton from "../components/Footer/FooterButton";
-import ChecklistList from '../components/Checklist/ChecklistList';
+import UserChecklistList from '../components/Checklist/UserChecklistList';
 
 let styles = StyleSheet.create({
     login: {
@@ -48,9 +48,17 @@ class ChecklistScreen extends Component {
 
     componentWillMount()
     {
-        this.props.tryUnits(this.props.login);
-        this.props.tryUserChecklists(this.props.login);
-        this.props.tryChecklistsTemplates(this.props.login);
+        if(this.props.checklists.loading === false && this.props.checklists.currentInstance !== null)
+        {
+            this.props.goToChecklistExecute(this.props.nav);
+        }
+        else
+        {
+            this.props.tryUnits(this.props.login);
+            this.props.tryFullChecklistHistory(this.props.login);
+            this.props.tryUserChecklists(this.props.login);
+            this.props.tryChecklistsTemplates(this.props.login);
+        }
     }
 
     render() {
@@ -58,11 +66,11 @@ class ChecklistScreen extends Component {
             <View style={styles.login}>
                 <HeaderChecklist {...this.props} headerTitle="Checklists"/>
                 <View style={styles.body}>
-                    <ChecklistList itemRoute={this.props.goToChecklistExecute} items={this.props.checklists.checklists} />
+                    <UserChecklistList itemRoute={this.props.goToChecklistExecute} items={this.props.checklists.checklists}/>
                 </View>
                 <View style={styles.footer}>
-                    <FooterButton {...this.props} active={true} iconName="check-square-o" text="Mes listes" route={() => { this.props.goToChecklistPage(this.props.nav) }}/>
-                    <FooterButton {...this.props} active={false} iconName="folder-open" text="Modèles" route={() => { this.props.goToChecklistLibrary(this.props.nav) }}/>
+                    <FooterButton {...this.props} active={true} iconName="check-square-o" text="Mes modèles" route={() => { this.props.goToChecklistPage(this.props.nav) }}/>
+                    <FooterButton {...this.props} active={false} iconName="folder-o" text="Tous les modèles" route={() => { this.props.goToChecklistLibrary(this.props.nav) }}/>
                 </View>
             </View>
         );

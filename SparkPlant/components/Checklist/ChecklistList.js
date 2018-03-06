@@ -3,6 +3,7 @@ import {
     View,
     StyleSheet,
     ScrollView,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -15,23 +16,53 @@ let styles = StyleSheet.create({
         height : height80,
         paddingTop : height1,
         paddingBottom : height20,
+        backgroundColor : "#efefef",
     },
 });
 
 class ChecklistList extends Component {
+
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            activeItem : null,
+        };
+    }
+
+    activateItem(key)
+    {
+        this.setState({activeItem : key});
+    }
+
+    deactivateItem()
+    {
+        this.setState({activeItem : null});
+    }
 
     buildList()
     {
         let lists = this.props.items;
         let list = [];
 
-        if(lists)
+        console.log(lists);
+
+        if(lists && this.props.checklists.loading === false)
         {
             for(var i = 0; i < lists.length; i++)
             {
-                list.push(
-                    <ChecklistListItem route={this.props.itemRoute} key={i} item={lists[i]}/>
-                );
+                if(i === this.state.activeItem)
+                {
+                    list.push(
+                        <ChecklistListItem active={true} index={i} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
+                    );
+                }
+                else
+                {
+                    list.push(
+                        <ChecklistListItem active={false} index={i} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
+                    );
+                }
             }
         }
         return list;
@@ -39,8 +70,12 @@ class ChecklistList extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.list} showsVerticalScrollIndicator={false}>
-                {this.buildList()}
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <TouchableWithoutFeedback onPress={() => {this.deactivateItem()}}>
+                    <View style={styles.list}>
+                        {this.buildList()}
+                    </View>
+                </TouchableWithoutFeedback>
             </ScrollView>
         );
     }

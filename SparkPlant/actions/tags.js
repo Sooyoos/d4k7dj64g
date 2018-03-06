@@ -62,7 +62,6 @@ function fetchAllTags(login)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(getAllTagsSuccess(responseJson["hydra:member"]));
             })
             .catch((error) => { dispatch(getAllTagsFailure()); });
@@ -262,12 +261,10 @@ function fetchTagSupervisor(login, tag)
     return dispatch => {
         dispatch(tagSupervisorRequested());
 
-        console.log(tag.place);
         let unitId = tag.place.unit;
         let axisId = tag.primaryAxis["@id"];
 
         let searchUrl = "/users?rolesByUnit.unit.id=" + unitId + "&rolesByUnit.role.title=" + "Correspondant" + "&rolesByUnit.transversalAxis.id=" + axisId + "&available=true";
-        console.log(searchUrl);
         fetch(types.baseUrl + searchUrl, {
             method: 'GET',
             headers: {
@@ -278,8 +275,6 @@ function fetchTagSupervisor(login, tag)
             .then((responseJson) => {
                 if(responseJson["hydra:totalItems"] > 0)
                 {
-                    console.log(responseJson);
-                    console.log("Le responsable du tag est le correspondant dans l'unit");
                     dispatch(getTagSupervisorSuccess(responseJson["hydra:member"][0]));
                 }
                 else
@@ -292,19 +287,14 @@ function fetchTagSupervisor(login, tag)
                     })
                         .then((response) => response.json())
                         .then((responseJson) => {
-                        console.log("J'ai récupéré l'unité parente");
-                        console.log(responseJson);
                             if(responseJson.parent !== null) // if the unit is not the top one
                             {
-                                console.log("Je recherche le correspondant dans l'unité parente");
                                 let place = Object.assign({}, tag.place, { unit : responseJson.parent["@id"]});
                                 dispatch(fetchTagSupervisor(login, Object.assign({}, tag, {place : place})));
                             }
                             else
                             {
-                                console.log("le responsable c'est le DG");
                                 let searchUrl = "/users?rolesByUnit.unit.id=" + unitId + "&rolesByUnit.role.title=" + "Responsable" + "&available=true";
-                                console.log(searchUrl);
                                 fetch(types.baseUrl + searchUrl, { // get the full unit in order to get its parent
                                     method: 'GET',
                                     headers: {
@@ -313,16 +303,15 @@ function fetchTagSupervisor(login, tag)
                                 })
                                     .then((response) => response.json())
                                     .then((responseJson) => {
-                                    console.log(responseJson);
                                         dispatch(getTagSupervisorSuccess(responseJson["hydra:member"][0]));
                                     })
-                                    .catch((error) => { console.log(error); dispatch(getTagSupervisorFailure()); });
+                                    .catch((error) => { dispatch(getTagSupervisorFailure()); });
                             }
                         })
-                        .catch((error) => {console.log(error); dispatch(getTagSupervisorFailure()); });
+                        .catch((error) => { dispatch(getTagSupervisorFailure()); });
                 }
             })
-            .catch((error) => {console.log(error); dispatch(getTagSupervisorFailure()); });
+            .catch((error) => { dispatch(getTagSupervisorFailure()); });
     }
 }
 
@@ -394,7 +383,7 @@ function fetchTagFollowers(login, user, tag)
 
                 dispatch(getTagFollowersSuccess(list));
             })
-            .catch((error) => { console.log(error); dispatch(getTagFollowersFailure()); });
+            .catch((error) => { dispatch(getTagFollowersFailure()); });
     }
 }
 
@@ -429,8 +418,6 @@ function getTagFollowersFailure()
 
 function addUsersToTag(login, tag, id)
 {
-    console.log("UTILISATEURS DU TAG");
-    console.log(tag.users);
     return dispatch => {
         dispatch(createTagRequested());
 
@@ -451,9 +438,6 @@ function addUsersToTag(login, tag, id)
                 })
                     .then((response) => response.json())
                     .then((responseJson) => {
-                        console.log(responseJson);
-                        console.log("User added to tag");
-                        console.log(responseJson);
                     })
                     .catch((error) => { dispatch(createTagFailure()); });
             }
@@ -472,9 +456,6 @@ function addUsersToTag(login, tag, id)
                 })
                     .then((response) => response.json())
                     .then((responseJson) => {
-                        console.log(responseJson);
-                        console.log("User added to tag");
-                        console.log(responseJson);
                     })
                     .catch((error) => { dispatch(createTagFailure()); });
             }
@@ -499,8 +480,6 @@ function checkSupervisorInUsers(tag)
 
 function fetchCreateTag(login, tag)
 {
-    console.log("USERS DU TAG");
-    console.log(tag.users);
     return dispatch => {
         dispatch(createTagRequested());
 
@@ -523,9 +502,6 @@ function fetchCreateTag(login, tag)
         }
 
         tag.users = users;
-
-        console.log("CREATION DU TAG");
-        console.log(medias);
 
         let body = {
             title : tag.title,
@@ -553,11 +529,10 @@ function fetchCreateTag(login, tag)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(addUsersToTag(login, tag, responseJson["@id"]));
                 dispatch(tryUserTags(login));
             })
-            .catch((error) => { console.warn(error); dispatch(createTagFailure()); });
+            .catch((error) => { dispatch(createTagFailure()); });
     }
 }
 
@@ -619,7 +594,6 @@ function fetchTagHistory(login, tag)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(tagHistorySuccess(responseJson["hydra:member"]));
             })
             .catch((error) => { dispatch(tagHistoryFailure()); });
@@ -677,7 +651,7 @@ function fetchResolveTag(login, tag)
                 dispatch(tagResolveSuccess(responseJson));
                 dispatch(goToTagHistory(tag));
             })
-            .catch((error) => { console.log(error); dispatch(tagResolveFailure()); });
+            .catch((error) => { dispatch(tagResolveFailure()); });
     }
 }
 
@@ -730,7 +704,7 @@ function fetchCloseTag(login, tag)
                 dispatch(tagCloseSuccess(responseJson));
                 dispatch(goToTagHistory(tag));
             })
-            .catch((error) => { console.log(error); dispatch(tagCloseFailure()); });
+            .catch((error) => { dispatch(tagCloseFailure()); });
     }
 }
 
@@ -783,7 +757,7 @@ function fetchCommentTag(login, tag, comment)
             .then((responseJson) => {
                 dispatch(tagCommentSuccess(responseJson));
             })
-            .catch((error) => { console.log(error); dispatch(tagCommentFailure()); });
+            .catch((error) => { dispatch(tagCommentFailure()); });
     }
 }
 
@@ -832,7 +806,7 @@ function fetchTransferUsersTag(login)
             .then((responseJson) => {
                 dispatch(tagTransferUsersSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => { console.log(error); dispatch(tagTransferUsersFailure()); });
+            .catch((error) => { dispatch(tagTransferUsersFailure()); });
     }
 }
 
@@ -869,8 +843,6 @@ function fetchTransferTag(login, tag, supervisor)
 {
     return dispatch => {
         dispatch(tagTransferRequested());
-        console.log("TRANSFER TO");
-        console.log(supervisor);
         tag.users = [];
         tag.users.push(supervisor);
 
@@ -890,7 +862,7 @@ function fetchTransferTag(login, tag, supervisor)
                 dispatch(addUsersToTag(login, tag, tag["@id"]));
                 dispatch(tagTransferSuccess(supervisor));
             })
-            .catch((error) => { console.log(error); dispatch(tagTransferFailure()); });
+            .catch((error) => { dispatch(tagTransferFailure()); });
     }
 }
 
@@ -929,8 +901,6 @@ function fetchTagsUploadMedia(login, file)
         dispatch(tagsUploadMediaRequested());
         let body = new FormData();
 
-        console.log(file);
-
         body.append("file", file);
 
         fetch(types.baseUrl + "/fileUpload", {
@@ -943,10 +913,9 @@ function fetchTagsUploadMedia(login, file)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(tagsUploadMediaSuccess(responseJson));
             })
-            .catch((error) => { console.log(error); dispatch(tagsUploadMediaFailure()); });
+            .catch((error) => { dispatch(tagsUploadMediaFailure()); });
     }
 }
 
@@ -1048,8 +1017,6 @@ function fetchTagsUploadPlaceAudio(login, file)
         dispatch(tagsUploadPlaceAudioRequested());
         let body = new FormData();
 
-        console.log(file);
-
         body.append("file", file);
 
         fetch(types.baseUrl + "/fileUpload", {
@@ -1103,8 +1070,6 @@ function fetchTagsUploadDescriptionAudio(login, file)
         dispatch(tagsUploadDescriptionAudioRequested());
         let body = new FormData();
 
-        console.log(file);
-
         body.append("file", file);
 
         fetch(types.baseUrl + "/fileUpload", {
@@ -1119,7 +1084,7 @@ function fetchTagsUploadDescriptionAudio(login, file)
             .then((responseJson) => {
                 dispatch(tagsUploadDescriptionAudioSuccess(responseJson));
             })
-            .catch((error) => { console.log(error); dispatch(tagsUploadDescriptionAudioFailure()); });
+            .catch((error) => { dispatch(tagsUploadDescriptionAudioFailure()); });
     }
 }
 

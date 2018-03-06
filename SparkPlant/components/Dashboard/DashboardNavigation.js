@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
     Text,
+    Image,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -24,10 +25,8 @@ let styles = StyleSheet.create({
         flexDirection: 'row',
     },
     dashboardNavIcon : {
-        textAlign : 'center',
-        width:layout.width50,
-        color : '#3f51b5',
-        fontSize : layout.fontSize8,
+        width:layout.height12,
+        height:layout.height12,
     },
     dashboardNavLabel : {
         textAlign : 'center',
@@ -72,40 +71,56 @@ class DashboardNavigation extends Component {
         return (
             <View style={styles.dashboardNav}>
                 <View style={styles.dashboardNavSection}>
-                    <TouchableWithoutFeedback onPress={this.navigateToTags.bind(this)}>
-                        <View>
-                            <Icon style={styles.dashboardNavIcon} name="tag"/>
+                    <TouchableOpacity onPress={this.navigateToTags.bind(this)}>
+                        <View style={{alignItems : 'center'}}>
+                            <Image
+                                style={styles.dashboardNavIcon}
+                                resizeMode="contain"
+                                source={require("../../assets/img/icon-tags.png")}
+                            />
                             <Text style={styles.dashboardNavLabel}>
                                 Tags
                             </Text>
                         </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={this.navigateToChecklist.bind(this)}>
-                        <View>
-                            <Icon style={styles.dashboardNavIcon} name="check-square-o"/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={this.navigateToChecklist.bind(this)}>
+                        <View style={{alignItems : 'center'}}>
+                            <Image
+                                style={styles.dashboardNavIcon}
+                                resizeMode="contain"
+                                source={require("../../assets/img/icon-checklists.png")}
+                            />
                             <Text style={styles.dashboardNavLabel}>
                                 Checklists
                             </Text>
                         </View>
-                    </TouchableWithoutFeedback>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.dashboardNavSection}>
-                    <TouchableWithoutFeedback onPress={this.navigateToNews.bind(this)}>
-                        <View>
-                            <Icon style={styles.dashboardNavIcon} name="newspaper-o"/>
+                    <TouchableOpacity onPress={this.navigateToNews.bind(this)}>
+                        <View style={{alignItems : 'center'}}>
+                            <Image
+                                style={styles.dashboardNavIcon}
+                                resizeMode="contain"
+                                source={require("../../assets/img/icon-news.png")}
+                            />
                             <Text style={styles.dashboardNavLabel}>
                                 News
                             </Text>
                         </View>
-                    </TouchableWithoutFeedback>
-                    <TouchableWithoutFeedback onPress={this.navigateToAnalytics.bind(this)}>
-                        <View>
-                            <Icon style={styles.dashboardNavIcon} name="bar-chart"/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={this.navigateToAnalytics.bind(this)}>
+                        <View style={{alignItems : 'center'}}>
+                            <Image
+                                style={styles.dashboardNavIcon}
+                                resizeMode="contain"
+                                source={require("../../assets/img/icon-analytics.png")}
+                            />
                             <Text style={styles.dashboardNavLabel}>
                                 Analytics
                             </Text>
                         </View>
-                    </TouchableWithoutFeedback>
+                    </TouchableOpacity>
                 </View>
             </View>
         );

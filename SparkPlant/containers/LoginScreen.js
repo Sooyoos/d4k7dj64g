@@ -93,6 +93,18 @@ class LoginScreen extends Component {
     componentWillMount()
     {
         let props = this.props;
+
+        /*if(!this.props.login.loading &&
+            !this.props.charts.loading &&
+            !this.props.checklists.loading &&
+            !this.props.news.loading &&
+            !this.props.tags.loading &&
+            !this.props.users.loading &&
+            !this.props.utils.loading)
+        {
+            this.props.reset();
+        }*/
+
         this.props.tryPreviousLogin();
         BackHandler.addEventListener('hardwareBackPress', function(){
             props.navigateBack();
@@ -131,10 +143,6 @@ class LoginScreen extends Component {
 
     autoLogin(index, value)
     {
-        console.log(value);
-        console.log(index);
-        console.log(this.props.login.previousUsers);
-
         if(value.responsable)
         {
             this.props.setLoginFactory(value.factory);
@@ -218,7 +226,13 @@ class LoginScreen extends Component {
 
     render() {
 
-        if(this.props.login.loading === false)
+        if(!this.props.login.loading &&
+        !this.props.charts.loading &&
+        !this.props.checklists.loading &&
+        !this.props.news.loading &&
+        !this.props.tags.loading &&
+        !this.props.users.loading &&
+        !this.props.utils.loading)
         {
             if(this.props.login.previousUsers && this.props.login.previousUsers.length > 0 && this.state.new !== true)
             {
@@ -230,7 +244,7 @@ class LoginScreen extends Component {
                                 Connectez vous avec l'un des utilisateurs suivants :
                             </Text>
                             <View>
-                                { Platform.OS === 'ios' ? this.buildUsersListIos() : this.buildUsersListAndroid()  }
+                                { Platform.OS === 'ios' ? this.buildUsersListIos() : this.buildUsersListAndroid() }
                             </View>
                             <Text style={{fontSize: layout.fontSize1p5}}>
                                 Ou :
@@ -282,6 +296,11 @@ function mapStateToProps(state) {
         login: state.login,
         nav : state.nav,
         users : state.users,
+        charts : state.charts,
+        checklists : state.checklists,
+        news : state.news,
+        tags : state.tags,
+        utils : state.utils,
     };
 }
 

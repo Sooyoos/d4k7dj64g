@@ -14,6 +14,8 @@ import ChecklistLibrary from '../containers/Checklist/ChecklistLibrary';
 import ChecklistDetails from '../containers/Checklist/ChecklistDetails';
 import ChecklistCreateStep1 from '../containers/Checklist/ChecklistCreateStep1';
 import ChecklistExecute from '../containers/Checklist/ChecklistExecute';
+import ChecklistHistory from '../containers/Checklist/ChecklistHistory';
+import ChecklistHistoryDetails from '../containers/Checklist/ChecklistHistoryDetails';
 import WaitingNews from '../containers/News/WaitingNews';
 import NewsDetail from '../containers/News/NewsDetail';
 import WaitingNewsDetail from '../containers/News/WaitingNewsDetail';
@@ -39,6 +41,7 @@ import CreateTagPreview from '../containers/Tags/CreateTag/CreateTagPreview';
 import RecordAudio from '../containers/Tags/CreateTag/RecordAudio';
 import ChartsScreen from '../containers/ChartsScreen';
 import ScoringScreen from '../containers/ScoringScreen';
+import FullscreenImage from "../containers/Tags/FullscreenImage";
 import * as types from '../actions/types';
 
 export const ChartsNavigator = StackNavigator(
@@ -152,7 +155,13 @@ export const TagNavigator = StackNavigator(
             navigationOptions : {
                 header : null,
             }
-        }
+        },
+        FullscreenImage: {
+            screen: FullscreenImage,
+            navigationOptions : {
+                header : null,
+            }
+        },
     }
 );
 
@@ -246,6 +255,18 @@ export const ChecklistNavigator = StackNavigator(
             navigationOptions : {
                 header : null,
             }
+        },
+        ChecklistHistory: {
+            screen: ChecklistHistory,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        ChecklistHistoryDetails: {
+            screen: ChecklistHistoryDetails,
+            navigationOptions : {
+                header : null,
+            }
         }
     }
 );
@@ -288,8 +309,6 @@ export const AppNavigator = StackNavigator({
 
 function getStateForResetChecklists(state)
 {
-    console.log("GET STATE FOR RESET CHECKLISTS");
-    console.log(state);
     let checklistsRoutes = [
         state.routes[1].routes[0].routes[3].routes[0],
     ];
@@ -310,8 +329,6 @@ function getStateForResetChecklists(state)
 
 function getStateForResetNews(state)
 {
-    console.log("GET STATE FOR RESET NEWS");
-    console.log(state);
     let newsRoutes = [
         state.routes[1].routes[0].routes[2].routes[0],
     ];
@@ -332,8 +349,6 @@ function getStateForResetNews(state)
 
 function getStateForResetTags(state)
 {
-    console.log("GET STATE FOR RESET TAGS");
-    console.log(state);
 
     let tagsRoutes = [
         state.routes[1].routes[0].routes[1].routes[0],

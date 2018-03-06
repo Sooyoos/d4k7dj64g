@@ -11,12 +11,13 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import ElevatedView from 'react-native-elevated-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Moment from "moment";
 import * as layout from "../../assets/layout";
 
 let styles = StyleSheet.create({
     item: {
         width : layout.width83,
-        height : layout.height15,
+        height : layout.height18,
         paddingLeft: layout.width3,
         paddingRight: layout.width3,
         paddingTop: layout.height1,
@@ -41,13 +42,13 @@ let styles = StyleSheet.create({
         width:layout.width65,
         height : layout.height4,
         color : '#212121',
-        fontSize:layout.fontSize2p4,
+        fontSize:layout.fontSize2,
     },
     itemLocation : {
         width:layout.width65,
         height : layout.height4,
         color : '#757575',
-        fontSize:layout.fontSize2p2,
+        fontSize:layout.fontSize2,
     },
     itemInfos : {
         width:layout.width65,
@@ -56,7 +57,7 @@ let styles = StyleSheet.create({
     },
     itemId : {
         color : '#757575',
-        fontSize:layout.fontSize2,
+        fontSize:layout.fontSize1p6,
     },
     itemImage : {
         width:layout.width3p8,
@@ -68,7 +69,7 @@ let styles = StyleSheet.create({
     itemFullname : {
         flex : 1,
         color : '#212121',
-        fontSize:layout.fontSize2,
+        fontSize:layout.fontSize1p6,
     },
     itemType : {
         backgroundColor:'#00bcd4',
@@ -125,6 +126,9 @@ class TagListItem extends Component {
                         </Text>
                         <Text style={styles.itemLocation}>
                             {this.props.tag.place.name}
+                        </Text>
+                        <Text style={styles.itemFullname}>
+                            { this.props.tag.updatedAt !== null ? Moment(this.props.tag.updatedAt).format("DD/MM/YYYY") : Moment(this.props.tag.createdAt).format("DD/MM/YYYY") }
                         </Text>
                         <View style={styles.itemInfos}>
                             <Text style={styles.itemId}>

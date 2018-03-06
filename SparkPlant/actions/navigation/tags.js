@@ -205,3 +205,11 @@ export function goToRecordAudio()
         routeName: 'RecordAudio',
     };
 }
+
+export function goToFullscreenImage()
+{
+    return {
+        type: 'Navigation/NAVIGATE',
+        routeName: 'FullscreenImage',
+    };
+}

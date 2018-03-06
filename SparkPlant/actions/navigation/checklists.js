@@ -12,6 +12,22 @@ function checkNbActions(navState)
     }
 }
 
+export function navigateChecklistHistory()
+{
+    return {
+        type: 'Navigation/NAVIGATE',
+        routeName: 'ChecklistHistory',
+    };
+}
+
+export function navigateChecklistHistoryDetails()
+{
+    return {
+        type: 'Navigation/NAVIGATE',
+        routeName: 'ChecklistHistoryDetails',
+    };
+}
+
 function navigateChecklistPage()
 {
     return {
