@@ -37,6 +37,7 @@ let styles = StyleSheet.create({
     },
     itemIcon : {
         fontSize : layout.fontSize3,
+        color : "#555555",
     }
 });
 
