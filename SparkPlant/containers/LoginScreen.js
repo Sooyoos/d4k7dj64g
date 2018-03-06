@@ -68,6 +68,7 @@ let styles = StyleSheet.create({
         height : layout.height8,
         alignItems : 'center',
         justifyContent : 'center',
+        marginVertical: layout.height1,
     },
 });
 
