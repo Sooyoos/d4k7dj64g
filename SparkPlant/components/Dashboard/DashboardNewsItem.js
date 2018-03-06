@@ -23,7 +23,7 @@ let styles = StyleSheet.create({
     },
     itemData : {
         width : layout.width75,
-        padding:10,
+        padding: layout.width1,
     },
     itemExcerpt : {
         color: '#000000',
