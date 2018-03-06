@@ -118,6 +118,7 @@ let styles = StyleSheet.create({
         alignItems : 'center',
         justifyContent : 'center',
         marginBottom : layout.height2,
+        marginTop: layout.height2,
     },
     contentLabel : {
         height : layout.height5,
