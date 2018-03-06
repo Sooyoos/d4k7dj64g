@@ -516,10 +516,10 @@
 				BFE0C3E41F83FD4F00DE37C4 /* libRNAudio.a in Frameworks */,
 				BFE0C3E51F83FD5900DE37C4 /* libRNSound.a in Frameworks */,
 				BFE0C3E61F83FD6500DE37C4 /* libRNSVG.a in Frameworks */,
-				9F371DE1204ED02A00B6D820 /* libRNExitApp.a in Frameworks */,
 				BFE0C3DF1F83FC0F00DE37C4 /* libRNImagePicker.a in Frameworks */,
 				9F371DE8204ED93A00B6D820 /* libQBImagePickerController.a in Frameworks */,
 				9F371DEE204EDD7900B6D820 /* libRSKImageCropper.a in Frameworks */,
+				9F371DE1204ED02A00B6D820 /* libRNExitApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
