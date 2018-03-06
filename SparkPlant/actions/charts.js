@@ -1,11 +1,20 @@
 import * as types from './types';
 
-function fetchSolvedTags(login, beginDate, endDate)
+function fetchSolvedTags(login, beginDate, endDate, place, unit)
 {
     return dispatch => {
         dispatch(solvedTagsRequested());
 
-        fetch(types.baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_resolved', {
+        let url = types.baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_resolved';
+
+        if(place !== null)
+            url += '&place.id=' + place["@id"];
+        if(unit !== null)
+            url += '&place.unit.id=' + unit["@id"];
+
+        console.log(url);
+
+        fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -13,10 +22,9 @@ function fetchSolvedTags(login, beginDate, endDate)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(solvedTagsSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => { console.log(error); dispatch(solvedTagsFailure()); });
+            .catch((error) => { dispatch(solvedTagsFailure()); });
     }
 }
 
@@ -42,20 +50,29 @@ function solvedTagsFailure()
     }
 }
 
-export function loadSolvedTags(login, beginDate, endDate)
+export function loadSolvedTags(login, beginDate, endDate, place = null, unit = null)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchSolvedTags(login, beginDate, endDate));
+        return dispatch(fetchSolvedTags(login, beginDate, endDate, place, unit));
     }
 }
 
 
-function fetchUnsolvedTags(login, beginDate, endDate)
+function fetchUnsolvedTags(login, beginDate, endDate, place, unit)
 {
     return dispatch => {
         dispatch(unsolvedTagsRequested());
 
-        fetch(types.baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_unresolved', {
+        let url = types.baseUrl + '/tags?updatedAt[after]=' + beginDate + '&updatedAt[before]=' + endDate + '&status=closed_unresolved';
+
+        if(place !== null)
+            url += '&place.id=' + place["@id"];
+        if(unit !== null)
+            url += '&place.unit.id=' + unit["@id"];
+
+        console.log(url);
+
+        fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization' : 'Bearer ' + login.tokenString,
@@ -63,10 +80,9 @@ function fetchUnsolvedTags(login, beginDate, endDate)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(unsolvedTagsSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => { console.log(error); dispatch(unsolvedTagsFailure()); });
+            .catch((error) => { dispatch(unsolvedTagsFailure()); });
     }
 }
 
@@ -92,9 +108,9 @@ function unsolvedTagsFailure()
     }
 }
 
-export function loadUnsolvedTags(login, beginDate, endDate)
+export function loadUnsolvedTags(login, beginDate, endDate, place = null, unit = null)
 {
     return (dispatch, getState) => {
-        return dispatch(fetchUnsolvedTags(login, beginDate, endDate));
+        return dispatch(fetchUnsolvedTags(login, beginDate, endDate, place, unit));
     }
 }

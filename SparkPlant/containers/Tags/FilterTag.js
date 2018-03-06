@@ -157,7 +157,6 @@ class FilterTag extends Component {
     }
 
     render() {
-        console.log(this.props.tags);
         if(this.props.tags.loading === false)
         {
             return (

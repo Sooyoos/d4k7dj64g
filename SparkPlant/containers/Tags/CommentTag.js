@@ -88,29 +88,60 @@ class CommentTag extends Component {
 
     render() {
         let tag = this.props.tags.currentTag;
-        return (
-            <View style={styles.login}>
-                <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
-                <View style={styles.list}>
-                    <Text style={{fontSize: layout.fontSize1p8, color : '#212121'}}>
-                        Votre commentaire :
-                    </Text>
-                    <TextInput multiline={true} style={styles.comment} placeholder="Entrez votre commentaire..." maxLength={140} onChangeText={(value) => this.setState({value : value})}/>
-                    <TouchableOpacity onPress={this.sendComment.bind(this)}>
-                        <View>
-                            <ElevatedView style={styles.button} elevation={9}>
-                                <Icon name="commenting-o" style={styles.icon} />
-                            </ElevatedView>
-                        </View>
-                    </TouchableOpacity>
+
+        if(tag)
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderTagDetails {...this.props} headerTitle={"#" + lpad(tag["@id"].substr(tag["@id"].lastIndexOf("/") +1), 6)} />
+                    <View style={styles.list}>
+                        <Text style={{fontSize: layout.fontSize1p8, color : '#212121'}}>
+                            Votre commentaire :
+                        </Text>
+                        <TextInput multiline={true} style={styles.comment} placeholder="Entrez votre commentaire..." maxLength={140} onChangeText={(value) => this.setState({value : value})}/>
+                        <TouchableOpacity onPress={this.sendComment.bind(this)}>
+                            <View>
+                                <ElevatedView style={styles.button} elevation={9}>
+                                    <Icon name="commenting-o" style={styles.icon} />
+                                </ElevatedView>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
+                        <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={this.props.goToTagHistory}/>
+                        <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={this.props.goToTagAction}/>
+                    </View>
                 </View>
-                <View style={styles.footer}>
-                    <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
-                    <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={this.props.goToTagHistory}/>
-                    <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={this.props.goToTagAction}/>
+            );
+        }
+        else
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderTagDetails {...this.props} headerTitle="#" />
+                    <View style={styles.list}>
+                        <Text style={{fontSize: layout.fontSize1p8, color : '#212121'}}>
+                            Votre commentaire :
+                        </Text>
+                        <TextInput multiline={true} style={styles.comment} placeholder="Entrez votre commentaire..." maxLength={140} onChangeText={(value) => this.setState({value : value})}/>
+                        <TouchableOpacity onPress={this.sendComment.bind(this)}>
+                            <View>
+                                <ElevatedView style={styles.button} elevation={9}>
+                                    <Icon name="commenting-o" style={styles.icon} />
+                                </ElevatedView>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.footer}>
+                        <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={this.props.goToTagDetails}/>
+                        <FooterButton {...this.props} active={false} tag={tag} iconName="info" text="Historique" route={this.props.goToTagHistory}/>
+                        <FooterButton {...this.props} active={true} tag={tag} iconName="exchange" text="Actions" route={this.props.goToTagAction}/>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
+
     }
 };
 

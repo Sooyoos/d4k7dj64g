@@ -119,7 +119,25 @@ class CreateTagPreview extends Component {
 
     create()
     {
-        this.props.tryCreateTag(this.props.login, this.props.tags.creation_current);
+        let tag = this.props.tags.creation_current;
+
+        if(tag.placeDetailsAudio === null && tag.descriptionAudio === null)
+        {
+            this.props.tryCreateTag(this.props.login, tag);
+        }
+        else if(tag.placeDetailsAudio !== null && tag.descriptionAudio === null)
+        {
+            this.props.tryCreateTag(this.props.login, Object.assign({}, tag, { placeDetailsAudio : tag.placeDetailsAudio["@id"] }));
+        }
+        else if(tag.placeDetailsAudio === null && tag.descriptionAudio !== null)
+        {
+            this.props.tryCreateTag(this.props.login, Object.assign({}, tag, { descriptionAudio : tag.descriptionAudio["@id"] }));
+        }
+        else
+        {
+            this.props.tryCreateTag(this.props.login, Object.assign({}, tag, { placeDetailsAudio : tag.placeDetailsAudio["@id"], descriptionAudio : tag.descriptionAudio["@id"] }));
+        }
+
         this.props.goToTagsPage(this.props.nav);
     }
 

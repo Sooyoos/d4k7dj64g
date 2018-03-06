@@ -27,6 +27,9 @@ export const usersReducer = {
             case types.SET_AVAILABILITY_FAILURE: {
                 return Object.assign({}, state, {loading : false});
             }
+            case types.RESET_USERS: {
+                return Object.assign({}, state, initialState);
+            }
             default :
                 return state;
         }

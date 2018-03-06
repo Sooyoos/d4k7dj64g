@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    TouchableWithoutFeedback,
     TouchableOpacity,
+    TouchableWithoutFeedback,
     Image,
     Text,
 } from 'react-native';
@@ -58,11 +58,11 @@ let styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    addButton : {
+    deleteButton : {
         height : layout.height8,
         width : layout.height8,
         borderRadius : layout.height4,
-        backgroundColor : "#E040FB",
+        backgroundColor : "#D32F2F",
         marginHorizontal: layout.width5,
         alignItems: 'center',
         justifyContent: 'center',
@@ -83,17 +83,41 @@ let styles = StyleSheet.create({
         fontSize : layout.fontSize1p6,
         fontStyle : 'italic',
         color : "#000000",
+    },
+    checklistNameBold : {
+        fontSize : layout.fontSize1p8,
+        color : "#000000",
+        fontWeight: 'bold',
+    },
+    checklistPlaceBold : {
+        fontSize: layout.fontSize1p6,
+        color : "#000000",
+        fontWeight: 'bold',
+    },
+    checklistFrequencyBold : {
+        fontSize : layout.fontSize1p6,
+        fontStyle : 'italic',
+        color : "#000000",
+        fontWeight: 'bold',
     }
 });
 
-class ChecklistListItem extends Component {
+class UserChecklistListItem extends Component {
 
     constructor(props)
     {
         super(props);
         this.state = {
-            checklist : this.props.item,
+            checklist : this.props.item.checklist,
         };
+    }
+
+    componentWillMount()
+    {
+        if(this.props.checklists.loading === false && this.props.checklists.currentInstance !== null)
+        {
+            this.props.goToChecklistExecute(this.props.nav);
+        }
     }
 
     execute()
@@ -105,29 +129,6 @@ class ChecklistListItem extends Component {
         else if(this.props.checklists.loading === false && this.props.checklists.currentInstance === null)
         {
             this.props.tryCreateChecklistInstance(this.props.login, this.state.checklist, this.props.login.userToken, this.props.nav);
-        }
-    }
-
-    add()
-    {
-        let checklists = this.props.checklists.checklists;
-        let flag = true;
-
-        for(var i = 0; i < checklists.length; i++)
-        {
-            if(checklists[i].checklist["@id"] === this.props.item["@id"])
-            {
-                flag = false;
-            }
-        }
-
-        if(flag === true)
-        {
-            this.props.tryCreateUserChecklist(this.props.login, this.props.item, this.props.users.loggedUser)
-        }
-        else
-        {
-            this.props.goToChecklistPage(this.props.nav);
         }
     }
 
@@ -143,14 +144,14 @@ class ChecklistListItem extends Component {
                                     <Icon style={styles.buttonIcon} name="play-circle-o"/>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => { this.props.setCurrentChecklist(this.props.item); this.props.navigateChecklistHistory() }}>
+                            <TouchableOpacity onPress={() => { this.props.setCurrentChecklist(this.state.checklist); this.props.navigateChecklistHistory() }}>
                                 <View style={styles.historyButton}>
                                     <Icon style={styles.buttonIcon} name="history"/>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => { this.add(); }}>
-                                <View style={styles.addButton}>
-                                    <Icon style={styles.buttonIcon} name="plus-square-o"/>
+                            <TouchableOpacity onPress={() => { this.props.tryDeleteUserChecklist(this.props.login, this.props.item); }}>
+                                <View style={styles.deleteButton}>
+                                    <Icon style={styles.buttonIcon} name="trash-o"/>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -160,23 +161,47 @@ class ChecklistListItem extends Component {
         }
         else
         {
-            return(
-                <ElevatedView style={styles.item} elevation={4}>
-                    <TouchableWithoutFeedback onPress={() => { this.props.activateItem(this.props.index)}}>
-                        <View>
-                            <Text style={styles.checklistName}>
-                                { this.props.item.name }
-                            </Text>
-                            <Text style={styles.checklistPlace}>
-                                { this.props.item.place.name }
-                            </Text>
-                            <Text style={styles.checklistFrequency}>
-                                { this.props.item.frequency.charAt(0).toUpperCase() +  this.props.item.frequency.substring(1)}
-                            </Text>
-                        </View>
-                    </TouchableWithoutFeedback>
-                </ElevatedView>
-            );
+            if(this.props.toDo === true)
+            {
+                return(
+                    <ElevatedView style={styles.item} elevation={4}>
+                        <TouchableWithoutFeedback onPress={() => { this.props.activateItem(this.props.index)}}>
+                            <View>
+                                <Text style={styles.checklistNameBold}>
+                                    { this.state.checklist.name }
+                                </Text>
+                                <Text style={styles.checklistPlaceBold}>
+                                    { this.state.checklist.place.name }
+                                </Text>
+                                <Text style={styles.checklistFrequencyBold}>
+                                    { this.state.checklist.frequency.charAt(0).toUpperCase() +  this.state.checklist.frequency.substring(1)}
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </ElevatedView>
+                );
+            }
+            else
+            {
+                return(
+                    <ElevatedView style={styles.item} elevation={4}>
+                        <TouchableWithoutFeedback onPress={() => { this.props.activateItem(this.props.index)}}>
+                            <View>
+                                <Text style={styles.checklistName}>
+                                    { this.state.checklist.name }
+                                </Text>
+                                <Text style={styles.checklistPlace}>
+                                    { this.state.checklist.place.name }
+                                </Text>
+                                <Text style={styles.checklistFrequency}>
+                                    { this.state.checklist.frequency.charAt(0).toUpperCase() +  this.state.checklist.frequency.substring(1)}
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </ElevatedView>
+                );
+            }
+
         }
     }
 }
@@ -185,7 +210,8 @@ function mapStateToProps(state) {
     return {
         login: state.login,
         nav : state.nav,
-        users : state.users,
+        tags : state.tags,
+        news : state.news,
         checklists : state.checklists,
     };
 }
@@ -195,4 +221,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChecklistListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(UserChecklistListItem);

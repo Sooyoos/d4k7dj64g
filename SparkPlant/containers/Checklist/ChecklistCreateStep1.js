@@ -11,7 +11,6 @@ import { ActionCreators } from '../../actions';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
 import HeaderChecklist from "../../components/Header/HeaderChecklist";
 import FooterButton from "../../components/Footer/FooterButton";
-import ChecklistList from '../../components/Checklist/ChecklistList';
 
 let styles = StyleSheet.create({
     login: {

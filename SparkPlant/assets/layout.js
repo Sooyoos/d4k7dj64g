@@ -10,6 +10,7 @@ export const height93 = responsiveHeight(93);
 export const width90 = responsiveWidth(90);
 
 export const width88 = responsiveWidth(88);
+export const height86 = responsiveHeight(86);
 export const width84 = responsiveWidth(84);
 export const height83 = responsiveHeight(83);
 export const width83 = responsiveWidth(83);
@@ -20,9 +21,11 @@ export const width80 = responsiveWidth(80);
 export const width78 = responsiveWidth(78);
 export const height78 = responsiveHeight(78);
 export const width75 = responsiveWidth(75);
+export const width73 = responsiveWidth(73);
 export const width70 = responsiveWidth(70);
 
 export const width65 = responsiveWidth(65);
+export const width63 = responsiveWidth(63);
 export const width60 = responsiveWidth(60);
 
 export const height55 = responsiveHeight(55);
@@ -31,19 +34,25 @@ export const height50 = responsiveHeight(50);
 export const width50 = responsiveWidth(50);
 
 export const height46p5 = responsiveHeight(46.5);
+export const height45 = responsiveHeight(45);
+export const width45 = responsiveWidth(45);
 export const width40 = responsiveWidth(40);
 export const height40 = responsiveHeight(40);
 
 export const height35 = responsiveHeight(35);
+export const width35 = responsiveWidth(35);
 export const width30 = responsiveWidth(30);
 export const height30 = responsiveHeight(30);
 
 export const width25 = responsiveWidth(25);
 export const height23p25 = responsiveHeight(23.25);
+export const height23 = responsiveHeight(23);
 export const width23 = responsiveWidth(23);
 export const width20 = responsiveWidth(20);
 export const height20 = responsiveHeight(20);
 
+export const width18 = responsiveWidth(18);
+export const height18 = responsiveHeight(18);
 export const width16 = responsiveWidth(16);
 export const height15 = responsiveHeight(15);
 export const width15 = responsiveWidth(15);
@@ -72,6 +81,7 @@ export const height3p5 = responsiveHeight(3.5);
 export const height3 = responsiveHeight(3);
 export const width3 = responsiveWidth(3);
 export const height2p5 = responsiveHeight(2.5);
+export const width2p5 = responsiveWidth(2.5);
 export const width2 = responsiveWidth(2);
 export const height2 = responsiveHeight(2);
 export const width1p9 = responsiveWidth(1.9);
