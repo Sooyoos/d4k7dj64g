@@ -15,7 +15,6 @@ import com.github.wumke.RNExitApp.RNExitAppPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
-import com.github.wumke.RNExitApp.RNExitAppPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
