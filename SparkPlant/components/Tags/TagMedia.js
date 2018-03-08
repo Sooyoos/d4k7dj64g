@@ -69,24 +69,44 @@ class TagMedia extends Component {
         console.log(this.props.media);
         if(this.props.active === true)
         {
-            return(
-                <ElevatedView style={styles.mediaCard} elevation={2}>
-                    <TouchableWithoutFeedback onPress={() => { this.props.deactivateItem() }}>
-                        <View style={styles.buttonView}>
-                            <TouchableOpacity onPress={() => { this.props.removeItem(this.props.index) }}>
-                                <ElevatedView style={styles.deleteButton} elevation={2}>
-                                    <Icon name="trash-o" style={styles.buttonIcon} />
-                                </ElevatedView>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => { this.props.expandItem(this.props.media) }}>
-                                <ElevatedView style={styles.fullscreenButton} elevation={2}>
-                                    <Icon name="expand" style={styles.buttonIcon} />
-                                </ElevatedView>
-                            </TouchableOpacity>
-                        </View>
-                    </TouchableWithoutFeedback>
-                </ElevatedView>
-            );
+            if(this.props.media.type && this.props.media.type.indexOf("video") === -1) // image
+            {
+                return(
+                    <ElevatedView style={styles.mediaCard} elevation={2}>
+                        <TouchableWithoutFeedback onPress={() => { this.props.deactivateItem() }}>
+                            <View style={styles.buttonView}>
+                                <TouchableOpacity onPress={() => { this.props.removeItem(this.props.index) }}>
+                                    <ElevatedView style={styles.deleteButton} elevation={2}>
+                                        <Icon name="trash-o" style={styles.buttonIcon} />
+                                    </ElevatedView>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => { this.props.expandItem(this.props.media) }}>
+                                    <ElevatedView style={styles.fullscreenButton} elevation={2}>
+                                        <Icon name="expand" style={styles.buttonIcon} />
+                                    </ElevatedView>
+                                </TouchableOpacity>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </ElevatedView>
+                );
+            }
+            else
+            {
+                return(
+                    <ElevatedView style={styles.mediaCard} elevation={2}>
+                        <TouchableWithoutFeedback onPress={() => { this.props.deactivateItem() }}>
+                            <View style={styles.buttonView}>
+                                <TouchableOpacity onPress={() => { this.props.removeItem(this.props.index) }}>
+                                    <ElevatedView style={styles.deleteButton} elevation={2}>
+                                        <Icon name="trash-o" style={styles.buttonIcon} />
+                                    </ElevatedView>
+                                </TouchableOpacity>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </ElevatedView>
+                );
+            }
+
         }
         else
         {
