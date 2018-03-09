@@ -23,8 +23,8 @@ function navigateTags()
 export function goToTagsPage(navState)
 {
     return dispatch => {
-        if(checkNbActions(navState) === true)
-            dispatch(resetTags());
+        /*if(checkNbActions(navState) === true)
+            dispatch(resetTags());*/
         dispatch(navigateTags());
     }
 }
@@ -40,8 +40,8 @@ function navigateTagsFull()
 export function goToTagsFull(navState)
 {
     return dispatch => {
-        if (checkNbActions(navState) === true)
-            dispatch(resetTags());
+        /*if (checkNbActions(navState) === true)
+            dispatch(resetTags());*/
         dispatch(navigateTagsFull());
     }
 
@@ -90,8 +90,8 @@ function navigateTagDetails()
 export function goToTagDetails(navState)
 {
     return dispatch => {
-        if (checkNbActions(navState) === true)
-            dispatch(resetTags());
+        /*if (checkNbActions(navState) === true)
+            dispatch(resetTags());*/
         dispatch(navigateTagDetails());
     }
 }
@@ -107,8 +107,8 @@ function navigateTagHistory()
 export function goToTagHistory(navState)
 {
     return dispatch => {
-        if (checkNbActions(navState) === true)
-            dispatch(resetTags());
+        /*if (checkNbActions(navState) === true)
+            dispatch(resetTags());*/
         dispatch(navigateTagHistory());
     }
 }
@@ -124,8 +124,8 @@ function navigateTagActions()
 export function goToTagAction(navState)
 {
     return dispatch => {
-        if (checkNbActions(navState) === true)
-            dispatch(resetTags());
+        /*if (checkNbActions(navState) === true)
+            dispatch(resetTags());*/
         dispatch(navigateTagActions());
     }
 }
@@ -141,8 +141,8 @@ function navigateTagComment()
 export function goToTagComment(navState)
 {
     return dispatch => {
-        if (checkNbActions(navState) === true)
-            dispatch(resetTags());
+        /*if (checkNbActions(navState) === true)
+            dispatch(resetTags());*/
         dispatch(navigateTagComment());
     }
 }
@@ -158,8 +158,8 @@ function navigateTagTransfer()
 export function goToTagTransfer(navState)
 {
     return dispatch => {
-        if (checkNbActions(navState) === true)
-            dispatch(resetTags());
+        /*if (checkNbActions(navState) === true)
+            dispatch(resetTags());*/
         dispatch(navigateTagTransfer());
     }
 }
@@ -175,8 +175,8 @@ function navigateTagSearch()
 export function goToSearchTags(navState)
 {
     return dispatch => {
-        if (checkNbActions(navState) === true)
-            dispatch(resetTags());
+        /*if (checkNbActions(navState) === true)
+            dispatch(resetTags());*/
         dispatch(navigateTagSearch());
     }
 }
@@ -192,8 +192,8 @@ function navigateTagFilter()
 export function goToFilterTags(navState)
 {
     return dispatch => {
-        if (checkNbActions(navState) === true)
-            dispatch(resetTags());
+        /*if (checkNbActions(navState) === true)
+            dispatch(resetTags());*/
         dispatch(navigateTagFilter());
     }
 }

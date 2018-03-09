@@ -39,8 +39,8 @@ function navigateChecklistPage()
 export function goToChecklistPage(navState)
 {
     return dispatch => {
-        if(checkNbActions(navState) === true)
-            dispatch(resetChecklists());
+        /*if(checkNbActions(navState) === true)
+            dispatch(resetChecklists());*/
         dispatch(navigateChecklistPage());
     }
 }
@@ -56,8 +56,8 @@ function navigateChecklistLibrary()
 export function goToChecklistLibrary(navState)
 {
     return dispatch => {
-        if(checkNbActions(navState) === true)
-            dispatch(resetChecklists());
+        /*if(checkNbActions(navState) === true)
+            dispatch(resetChecklists());*/
         dispatch(navigateChecklistLibrary());
     }
 }
@@ -73,8 +73,8 @@ function navigateChecklistDetails()
 export function goToChecklistDetails(navState)
 {
     return dispatch => {
-        if(checkNbActions(navState) === true)
-            dispatch(resetChecklists());
+        /*if(checkNbActions(navState) === true)
+            dispatch(resetChecklists());*/
         dispatch(navigateChecklistDetails());
     }
 }
@@ -98,8 +98,8 @@ function navigateChecklistExecute()
 export function goToChecklistExecute(navState)
 {
     return dispatch => {
-        if(checkNbActions(navState) === true)
-            dispatch(resetChecklists());
+        /*if(checkNbActions(navState) === true)
+            dispatch(resetChecklists());*/
         dispatch(navigateChecklistExecute());
     }
 }
