@@ -271,7 +271,7 @@ export const ChecklistNavigator = StackNavigator(
     }
 );
 
-export const MainNavigator = DrawerNavigator(
+/*export const MainNavigator = DrawerNavigator(
     {
         Dashboard: { screen: DashboardScreen},
         Tags: { screen: TagNavigator},
@@ -284,7 +284,34 @@ export const MainNavigator = DrawerNavigator(
     {
         contentComponent: DrawerMenu,
     }
-);
+);*/
+
+export const MainNavigator = StackNavigator({
+    Dashboard: {
+        screen: DashboardScreen,
+        navigationOptions : {
+            header : null,
+        }
+    },
+    Tags: {
+        screen: TagNavigator
+    },
+    News : {
+        screen : NewsNavigator
+    },
+    Checklists : {
+        screen : ChecklistNavigator
+    },
+    Charts : {
+        screen : ChartsNavigator
+    },
+    Info: {
+        screen: InfoScreen
+    },
+    Scoring: {
+        screen: ScoringScreen
+    }
+});
 
 export const AppNavigator = StackNavigator({
         LoginTab: {
@@ -295,6 +322,12 @@ export const AppNavigator = StackNavigator({
         },
         HomeTab: {
             screen: MainNavigator,
+            navigationOptions : {
+                header : null,
+            }
+        },
+        Menu: {
+            screen: DrawerMenu,
             navigationOptions : {
                 header : null,
             }
@@ -377,8 +410,7 @@ const initialNavState = {
             routes: [
                 { key: 'LoginTab', routeName: 'LoginTab' },
                 { key: 'HomeTab', routeName: 'HomeTab' },
-                { key: 'DrawerOpen', routeName: 'DrawerOpen' },
-                { key: 'DrawerClose', routeName: 'DrawerClose' },
+                { key: 'Menu', routeName: 'Menu' },
             ],
             index: 0,
         },
