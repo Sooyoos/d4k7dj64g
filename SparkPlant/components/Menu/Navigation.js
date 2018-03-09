@@ -134,7 +134,7 @@ class Navigation extends Component {
         {
             let routeName = routes[i];
 
-            if(i === active)
+            if(routeName === active)
             {
                 list.push(
                     <TouchableWithoutFeedback key={i} onPress={() => { this.resetAndGo(routeName) }}>
@@ -166,7 +166,7 @@ class Navigation extends Component {
 
         return(
             <View style={styles.body}>
-                { this.buildNavigationItems(routes, 0) }
+                { this.buildNavigationItems(routes, this.props.nav.from) }
             </View>
         );
     }

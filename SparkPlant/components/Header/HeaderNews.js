@@ -54,7 +54,7 @@ class HeaderNews extends Component {
         {
             return (
                 <View style={styles.header}>
-                    <TouchableWithoutFeedback onPress={() => {this.props.navigation.navigate('Menu');}}>
+                    <TouchableWithoutFeedback onPress={() => {this.props.goToMenu('News');}}>
                         <View style={styles.menuButton}>
                             <Icon style={styles.menuIcon} name="menu"/>
                         </View>

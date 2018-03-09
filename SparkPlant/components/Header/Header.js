@@ -46,7 +46,7 @@ class Header extends Component {
     render() {
         return (
             <View style={styles.header}>
-                <TouchableWithoutFeedback onPress={() => {this.props.navigate('Menu');}}>
+                <TouchableWithoutFeedback onPress={() => {this.props.goToMenu(this.props.from);}}>
                     <View style={styles.menuButton}>
                         <Icon style={styles.menuIcon} name="menu"/>
                     </View>

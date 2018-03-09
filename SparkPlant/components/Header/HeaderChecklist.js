@@ -50,7 +50,7 @@ class HeaderChecklist extends Component {
     render() {
         return (
             <View style={styles.header}>
-                <TouchableWithoutFeedback onPress={() => {this.props.navigation.navigate('Menu');}}>
+                <TouchableWithoutFeedback onPress={() => {this.props.goToMenu('Checklist');}}>
                     <View style={styles.menuButton}>
                         <Icon style={styles.menuIcon} name="menu"/>
                     </View>

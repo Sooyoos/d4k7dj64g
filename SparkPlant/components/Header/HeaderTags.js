@@ -52,7 +52,7 @@ class HeaderTags extends Component {
     render() {
         return (
             <View style={styles.header}>
-                <TouchableWithoutFeedback onPress={() => {this.props.navigation.navigate('Menu');}}>
+                <TouchableWithoutFeedback onPress={() => {this.props.goToMenu('Tags');}}>
                     <View style={styles.menuButton}>
                         <Icon style={styles.menuIcon} name="menu"/>
                     </View>

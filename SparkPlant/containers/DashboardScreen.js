@@ -74,7 +74,7 @@ class DashboardScreen extends Component {
         {
             return (
                 <View style={styles.login}>
-                    <Header props={this.props}/>
+                    <Header props={this.props} from="Dashboard"/>
                     <View style={styles.body}>
                         <DashboardNavigation {... this.props} />
                         <DashboardNews news={this.props.news.news} responsable={this.isResponsable()}/>
