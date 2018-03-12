@@ -94,7 +94,7 @@ class NewsScreen extends Component {
             }
         }
 
-        return list;
+        return list.reverse();
     }
 
     render() {
