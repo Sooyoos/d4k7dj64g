@@ -123,9 +123,12 @@ class CreateNewsPreview extends Component {
         {
             for(var i = 0; i < medias.length; i++)
             {
-                mediaList.push(
-                    <Image key={i} style={styles.image} source={{uri : medias[i].uri}} />
-                );
+                if(medias[i])
+                {
+                    mediaList.push(
+                        <Image key={i} style={styles.image} source={{uri : medias[i].uri}} />
+                    );
+                }
             }
         }
         else
