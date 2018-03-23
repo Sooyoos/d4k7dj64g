@@ -77,7 +77,7 @@ class DashboardScreen extends Component {
                     <Header props={this.props} from="Dashboard"/>
                     <View style={styles.body}>
                         <DashboardNavigation {... this.props} />
-                        <DashboardNews news={this.props.news.news.reverse()} responsable={this.isResponsable()}/>
+                        <DashboardNews news={this.props.news.news} responsable={this.isResponsable()}/>
                     </View>
                 </View>
             );
