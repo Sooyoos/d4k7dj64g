@@ -322,10 +322,9 @@ class ChartsScreen extends Component {
         console.log(this.props.charts.unsolvedTags);
         if(this.props.charts.loading === true || this.props.charts.solvedTags === null || this.props.charts.unsolvedTags === null || this.props.utils.places === null || this.props.utils.units === null)
         {
-            console.log("LOADERS");
             return (
                 <View style={styles.login}>
-                    <Header props={this.props} />
+                    <Header props={this.props} from="Charts"/>
                     <View style={styles.body}>
                         <View style={styles.chartFilters}>
                             <ActivityIndicator color="#3f51b5" size="large"/>
@@ -348,10 +347,9 @@ class ChartsScreen extends Component {
         }
         else if(this.props.charts.loading === false && this.props.charts.solvedTags.length === 0 && this.props.charts.unsolvedTags.length  === 0)
         {
-            console.log("NO DATA");
             return (
                 <View style={styles.login}>
-                    <Header props={this.props} />
+                    <Header props={this.props} from="Charts"/>
                     <View style={styles.body}>
                         <View style={styles.chartFilters}>
                             <View style={{flexDirection: 'row'}}>
@@ -395,10 +393,9 @@ class ChartsScreen extends Component {
         }
         else if(this.props.charts.loading === false && this.props.charts.solvedTags.length !== 0 && this.props.charts.unsolvedTags.length  === 0)
         {
-            console.log("SOLVED DATA");
             return (
                 <View style={styles.login}>
-                    <Header props={this.props} />
+                    <Header props={this.props} from="Charts"/>
                     <View style={styles.body}>
                         <View style={styles.chartFilters}>
                             <View style={{flexDirection: 'row'}}>
@@ -440,10 +437,9 @@ class ChartsScreen extends Component {
         }
         else if(this.props.charts.loading === false && this.props.charts.solvedTags.length === 0 && this.props.charts.unsolvedTags.length !== 0)
         {
-            console.log("UNSOLVED DATA");
             return (
                 <View style={styles.login}>
-                    <Header props={this.props} />
+                    <Header props={this.props} from="Charts"/>
                     <View style={styles.body}>
                         <View style={styles.chartFilters}>
                             <View style={{flexDirection: 'row'}}>
@@ -485,10 +481,9 @@ class ChartsScreen extends Component {
         }
         else
         {
-            console.log("ALL THE DATA");
             return (
                 <View style={styles.login}>
-                    <Header props={this.props} />
+                    <Header props={this.props} from="Charts"/>
                         <View style={styles.body}>
                             <View style={styles.chartFilters}>
                                 <View style={{flexDirection: 'row'}}>

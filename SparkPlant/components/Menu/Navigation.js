@@ -122,7 +122,6 @@ class Navigation extends Component {
 
     resetAndGo(routeName)
     {
-        //this.props.resetAll();
         this.props.navigate(routeName);
     }
 

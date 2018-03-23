@@ -51,8 +51,8 @@ function menu(routeName)
 export function goToMenu(routeName)
 {
     return (dispatch) => {
-        dispatch(navigate('Menu'));
         dispatch(menu(routeName));
+        dispatch(navigate('Menu'));
     }
 }
 

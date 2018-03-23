@@ -291,10 +291,16 @@ export const MainNavigator = StackNavigator({
         screen : ChartsNavigator
     },
     Info: {
-        screen: InfoScreen
+        screen: InfoScreen,
+        navigationOptions : {
+            header : null,
+        }
     },
     Scoring: {
-        screen: ScoringScreen
+        screen: ScoringScreen,
+        navigationOptions : {
+            header : null,
+        }
     }
 });
 
