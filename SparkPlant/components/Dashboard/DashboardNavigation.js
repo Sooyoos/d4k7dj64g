@@ -11,6 +11,7 @@ import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
 import * as layout from "../../assets/layout";
+import { baseUrl } from "../../actions/types";
 
 let styles = StyleSheet.create({
     dashboardNav: {
@@ -76,7 +77,7 @@ class DashboardNavigation extends Component {
                             <Image
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
-                                source={{uri : "icon_tags"}}
+                                source={{uri : baseUrl + "/img/" + "icon-tags.png"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Tags
@@ -88,7 +89,7 @@ class DashboardNavigation extends Component {
                             <Image
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
-                                source={{uri : "icon_checklists"}}
+                                source={{uri : baseUrl + "/img/" + "icon-checklists.png"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Checklists
@@ -102,7 +103,7 @@ class DashboardNavigation extends Component {
                             <Image
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
-                                source={{uri : "icon_news"}}
+                                source={{uri : baseUrl + "/img/" + "icon-news.png"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 News
@@ -114,7 +115,7 @@ class DashboardNavigation extends Component {
                             <Image
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
-                                source={{ uri : "icon_analytics"}}
+                                source={{ uri : baseUrl + "/img/" + "icon-analytics.png"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Analytics
