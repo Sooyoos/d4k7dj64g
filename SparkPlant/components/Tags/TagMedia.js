@@ -66,7 +66,6 @@ class TagMedia extends Component {
     }
 
     render() {
-        console.log(this.props.media);
         if(this.props.active === true)
         {
             if(this.props.media.type && this.props.media.type.indexOf("video") === -1) // image

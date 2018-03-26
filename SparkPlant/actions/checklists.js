@@ -6,7 +6,6 @@ function fetchUserChecklists(login)
     return dispatch => {
         dispatch(userChecklistsRequested());
 
-        console.log(login);
         fetch(types.baseUrl + login.userToken["@id"] + "/checklists?order[checklist.name]=asc", {
             method: 'GET',
             headers: {
@@ -438,11 +437,11 @@ function fetchCreateUserChecklist(login, checklist, user)
                 checklist : checklist["@id"],
             })
         })
-            .then((response) => console.log(response))
+            .then((response) => console.log("OK"))
             .then((responseJson) => {
                 dispatch(fetchCreateUserChecklistSuccess());
             })
-            .catch((error) => { console.error(error); dispatch(fetchCreateUserChecklistFailure()); });
+            .catch((error) => { dispatch(fetchCreateUserChecklistFailure()); });
     }
 }
 
@@ -495,7 +494,6 @@ function fetchCreateChecklistInstance(login, checklist, user, navState)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(fetchCreateChecklistInstanceSuccess(responseJson));
                 dispatch(goToChecklistExecute(navState));
             })
@@ -547,7 +545,6 @@ function fetchUpdateChecklistInstance(login, navState, checklist)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(fetchUpdateChecklistInstanceSuccess(responseJson));
                 dispatch(goToChecklistPage(navState));
             })
@@ -587,8 +584,6 @@ export function tryUpdateChecklistInstance(login, navState, checklist)
 
 function fetchUpdateChecklistInstanceTask(login, index, task)
 {
-    console.log(task);
-
     return dispatch => {
         dispatch(fetchUpdateChecklistInstanceTaskRequested());
 
@@ -602,10 +597,9 @@ function fetchUpdateChecklistInstanceTask(login, index, task)
         })
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
                 dispatch(fetchUpdateChecklistInstanceTaskSuccess(index, responseJson));
             })
-            .catch((error) => { console.error(error); dispatch(fetchUpdateChecklistInstanceTaskFailure()); });
+            .catch((error) => { dispatch(fetchUpdateChecklistInstanceTaskFailure()); });
     }
 }
 
@@ -701,7 +695,6 @@ function fetchDeleteChecklistInstance(login, navState, instance)
             },
         })
             .then((response) => {
-                console.log(response);
                 dispatch(fetchDeleteChecklistInstanceSuccess());
                 dispatch(goToChecklistPage(navState));
             })

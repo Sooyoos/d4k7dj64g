@@ -45,8 +45,6 @@ class ChecklistList extends Component {
         let lists = this.props.items;
         let list = [];
 
-        console.log(lists);
-
         if(lists && this.props.checklists.loading === false)
         {
             for(var i = 0; i < lists.length; i++)

@@ -109,9 +109,6 @@ class UserChecklistList extends Component {
             {
                 if(i === this.state.activeItem)
                 {
-                    console.log(i);
-                    console.log(this.state.activeItem);
-
                     list.push(
                         <UserChecklistListItem active={true} index={i} toDo={this.shouldBeExecuted(lists[i])} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
                     );

@@ -318,8 +318,6 @@ class ChartsScreen extends Component {
     }
 
     render() {
-        console.log(this.props.charts.solvedTags);
-        console.log(this.props.charts.unsolvedTags);
         if(this.props.charts.loading === true || this.props.charts.solvedTags === null || this.props.charts.unsolvedTags === null || this.props.utils.places === null || this.props.utils.units === null)
         {
             return (

@@ -213,7 +213,6 @@ class Task extends Component {
 
     displayButton(name, style)
     {
-        console.log(this.state.instanceTask.status + " :: " + name);
         if(this.state.instanceTask.status === name)
         {
             return(

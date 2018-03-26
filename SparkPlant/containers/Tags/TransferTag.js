@@ -107,7 +107,7 @@ class TransferTag extends Component {
                 'Pas d\'utilisateur',
                 'Merci de sélectionner un utilisateur',
                 [
-                    {text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                    {text: 'Ok', onPress: () => {}, style: 'cancel'},
                 ],
                 { cancelable: false }
             );
