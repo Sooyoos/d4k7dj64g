@@ -76,8 +76,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                source={{uri : baseUrl + "/img/" + "icon-tags.png"}}
-                                cache="force-cache"
+                                source={{uri : "icon_tags"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Tags
@@ -88,8 +87,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                source={{uri : baseUrl + "/img/" + "icon-checklists.png"}}
-                                cache="force-cache"
+                                source={{uri : "icon_checklists"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Checklists
@@ -102,8 +100,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                source={{uri : baseUrl + "/img/" + "icon-news.png"}}
-                                cache="force-cache"
+                                source={{uri : "icon_news"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 News
@@ -114,8 +111,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                source={{ uri : baseUrl + "/img/" + "icon-analytics.png"}}
-                                cache="force-cache"
+                                source={{ uri : "icon_analytics"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Analytics
