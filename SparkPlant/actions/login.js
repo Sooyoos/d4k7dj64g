@@ -4,6 +4,7 @@ import { tryUserNews } from './news';
 import { goToLogin } from './navigation/login';
 import Base64 from 'base-64';
 import { AsyncStorage, Platform } from 'react-native';
+import RNExitApp from 'react-native-exit-app';
 /*import firebase from "react-native-firebase";
 
 const configurationOptions = {
