@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
 import * as layout from "../../assets/layout";
 import { baseUrl } from "../../actions/types";
@@ -28,6 +27,7 @@ let styles = StyleSheet.create({
     dashboardNavIcon : {
         width:layout.height12,
         height:layout.height12,
+        resizeMode : Image.resizeMode.contain,
     },
     dashboardNavLabel : {
         textAlign : 'center',
@@ -76,7 +76,6 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                resizeMode="contain"
                                 source={{uri : baseUrl + "/img/" + "icon-tags.png"}}
                                 cache="force-cache"
                             />
@@ -89,7 +88,6 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                resizeMode="contain"
                                 source={{uri : baseUrl + "/img/" + "icon-checklists.png"}}
                                 cache="force-cache"
                             />
@@ -104,7 +102,6 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                resizeMode="contain"
                                 source={{uri : baseUrl + "/img/" + "icon-news.png"}}
                                 cache="force-cache"
                             />
@@ -117,7 +114,6 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                resizeMode="contain"
                                 source={{ uri : baseUrl + "/img/" + "icon-analytics.png"}}
                                 cache="force-cache"
                             />

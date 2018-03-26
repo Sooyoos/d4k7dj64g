@@ -87,8 +87,8 @@ class DashboardScreen extends Component {
         {
             return(
                 <View style={styles.login}>
+                    <Header props={this.props} from="Dashboard"/>
                     <View style={styles.body}>
-                        <Header props={this.props} from="Dashboard"/>
                         <DashboardNavigation {... this.props} />
                         <View style={{height : height46p5, width : fullWidth, alignItems: 'center', justifyContent: 'center'}}>
                             <ActivityIndicator color="#3f51b5" size="large"/>
