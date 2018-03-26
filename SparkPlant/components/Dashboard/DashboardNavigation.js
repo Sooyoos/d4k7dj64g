@@ -78,6 +78,7 @@ class DashboardNavigation extends Component {
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
                                 source={{uri : baseUrl + "/img/" + "icon-tags.png"}}
+                                cache="force-cache"
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Tags
@@ -90,6 +91,7 @@ class DashboardNavigation extends Component {
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
                                 source={{uri : baseUrl + "/img/" + "icon-checklists.png"}}
+                                cache="force-cache"
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Checklists
@@ -104,6 +106,7 @@ class DashboardNavigation extends Component {
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
                                 source={{uri : baseUrl + "/img/" + "icon-news.png"}}
+                                cache="force-cache"
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 News
@@ -116,6 +119,7 @@ class DashboardNavigation extends Component {
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
                                 source={{ uri : baseUrl + "/img/" + "icon-analytics.png"}}
+                                cache="force-cache"
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Analytics
