@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     ScrollView,
     StyleSheet,
+    FlatList,
 } from 'react-native';
 import TagListItem from './TagListItem';
 import {height1, height20, height80} from "../../assets/layout";
@@ -31,13 +32,19 @@ export default class TagList extends Component {
                 if(this.props.items[i].tag)
                 {
                     list.push(
-                        <TagListItem {...this.props} key={i} tag={this.props.items[i].tag} />
+                        {
+                            key : i,
+                            tag : this.props.items[i].tag,
+                        }
                     );
                 }
                 else
                 {
                     list.push(
-                        <TagListItem {...this.props} key={i} tag={this.props.items[i]} />
+                        {
+                            key : i,
+                            tag : this.props.items[i],
+                        }
                     );
                 }
 
@@ -50,10 +57,14 @@ export default class TagList extends Component {
     }
 
     render() {
+        let list = this.buildList() && this.buildList().length > 0 ? this.buildList() : [];
+        console.log(list);
         return (
-            <ScrollView style={styles.list} showsVerticalScrollIndicator={false}>
-                {this.buildList()}
-            </ScrollView>
+            <FlatList
+                data={list}
+                renderItem={({item}) => <TagListItem key={item.key} tag={item.tag} />}
+                showsVerticalScrollIndicator={false}
+            />
         );
     }
 };
