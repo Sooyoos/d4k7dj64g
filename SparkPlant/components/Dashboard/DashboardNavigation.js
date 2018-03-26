@@ -76,7 +76,7 @@ class DashboardNavigation extends Component {
                             <Image
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
-                                source={require("../../assets/img/icon-tags.png")}
+                                source={{uri : "icon_tags"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Tags
@@ -88,7 +88,7 @@ class DashboardNavigation extends Component {
                             <Image
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
-                                source={require("../../assets/img/icon-checklists.png")}
+                                source={{uri : "icon_checklists"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Checklists
@@ -102,7 +102,7 @@ class DashboardNavigation extends Component {
                             <Image
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
-                                source={require("../../assets/img/icon-news.png")}
+                                source={{uri : "icon_news"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 News
@@ -114,7 +114,7 @@ class DashboardNavigation extends Component {
                             <Image
                                 style={styles.dashboardNavIcon}
                                 resizeMode="contain"
-                                source={require("../../assets/img/icon-analytics.png")}
+                                source={{ uri : "icon_analytics"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Analytics
