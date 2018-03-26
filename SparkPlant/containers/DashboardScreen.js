@@ -76,7 +76,7 @@ class DashboardScreen extends Component {
                 <View style={styles.login}>
                     <Header props={this.props} from="Dashboard"/>
                     <View style={styles.body}>
-                        <DashboardNavigation {... this.props} />
+                        <DashboardNavigation />
                         <DashboardNews news={this.props.news.news} responsable={this.isResponsable()}/>
                     </View>
                 </View>
@@ -89,7 +89,7 @@ class DashboardScreen extends Component {
                 <View style={styles.login}>
                     <Header props={this.props} from="Dashboard"/>
                     <View style={styles.body}>
-                        <DashboardNavigation {... this.props} />
+                        <DashboardNavigation />
                         <View style={{height : height46p5, width : fullWidth, alignItems: 'center', justifyContent: 'center'}}>
                             <ActivityIndicator color="#3f51b5" size="large"/>
                         </View>
