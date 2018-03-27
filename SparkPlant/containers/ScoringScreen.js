@@ -38,7 +38,7 @@ let styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        marginVertical: layout.height0p5,
+        marginVertical: layout.height1,
     },
     cardScore : {
         width : layout.height10,

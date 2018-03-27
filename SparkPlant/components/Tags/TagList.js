@@ -58,7 +58,6 @@ export default class TagList extends Component {
 
     render() {
         let list = this.buildList() && this.buildList().length > 0 ? this.buildList() : [];
-        console.log(list);
         return (
             <FlatList
                 data={list}
