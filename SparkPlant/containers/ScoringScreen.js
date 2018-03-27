@@ -3,7 +3,7 @@ import {
     View,
     StyleSheet,
     ActivityIndicator,
-    ScrollView,
+    FlatList,
     Text,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -86,61 +86,34 @@ class ScoringScreen extends Component {
             if(actions[i].type === "add_tag")
             {
                 list.push(
-                    <View style={styles.card} key={i}>
-                        <View style={styles.cardScore}>
-                            <Text style={styles.cardScoreText}>
-                                + {actions[i].points}
-                            </Text>
-                        </View>
-                        <View style={styles.cardInfo}>
-                            <Text style={styles.cardTitle}>
-                                Création d'un tag
-                            </Text>
-                            <Text style={styles.cardDate}>
-                                Le {moment(actions[i].createdAt, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY à HH:mm")}
-                            </Text>
-                        </View>
-                    </View>
+                    {
+                        key : i,
+                        points : actions[i].points,
+                        label : "Création d'un tag",
+                        date : "Le " + moment(actions[i].createdAt, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY à HH:mm"),
+                    }
                 );
             }
             else if(actions[i].type === "add_news")
             {
                 list.push(
-                    <View style={styles.card} key={i}>
-                        <View style={styles.cardScore}>
-                            <Text style={styles.cardScoreText}>
-                                + {actions[i].points}
-                            </Text>
-                        </View>
-                        <View style={styles.cardInfo}>
-                            <Text style={styles.cardTitle}>
-                                Création d'une news
-                            </Text>
-                            <Text style={styles.cardDate}>
-                                Le {moment(actions[i].createdAt, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY à HH:mm")}
-                            </Text>
-                        </View>
-                    </View>
+                    {
+                        key : i,
+                        points : actions[i].points,
+                        label : "Création d'une news",
+                        date : "Le " + moment(actions[i].createdAt, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY à HH:mm"),
+                    }
                 );
             }
             else if(actions[i].type === "add_checklist")
             {
                 list.push(
-                    <View style={styles.card} key={i}>
-                        <View style={styles.cardScore}>
-                            <Text style={styles.cardScoreText}>
-                                + {actions[i].points}
-                            </Text>
-                        </View>
-                        <View style={styles.cardInfo}>
-                            <Text style={styles.cardTitle}>
-                                Création d'une checkliste
-                            </Text>
-                            <Text style={styles.cardDate}>
-                                Le {moment(actions[i].createdAt, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY à HH:mm")}
-                            </Text>
-                        </View>
-                    </View>
+                    {
+                        key : i,
+                        points : actions[i].points,
+                        label : "Création d'une checkliste",
+                        date : "Le " + moment(actions[i].createdAt, "YYYY-MM-DD HH:mm:ss").format("DD/MM/YYYY à HH:mm"),
+                    }
                 );
             }
         }
@@ -163,13 +136,30 @@ class ScoringScreen extends Component {
         }
         else
         {
+            let list = this.buildCardList();
             return (
                 <View style={styles.login}>
                     <Header props={this.props} />
                     <View style={styles.body}>
-                        <ScrollView>
-                            { this.buildCardList() }
-                        </ScrollView>
+                        <FlatList
+                            data={list}
+                            showsVerticalScrollIndicator={false}
+                            renderItem={({item}) => <View style={styles.card} key={item.key}>
+                                <View style={styles.cardScore}>
+                                    <Text style={styles.cardScoreText}>
+                                        + {item.points}
+                                    </Text>
+                                </View>
+                                <View style={styles.cardInfo}>
+                                    <Text style={styles.cardTitle}>
+                                        { item.label }
+                                    </Text>
+                                    <Text style={styles.cardDate}>
+                                        { item.date }
+                                    </Text>
+                                </View>
+                            </View>}
+                        />
                     </View>
                 </View>
             );
