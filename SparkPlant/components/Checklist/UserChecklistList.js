@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    ScrollView,
+    FlatList,
     TouchableWithoutFeedback,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -110,13 +110,31 @@ class UserChecklistList extends Component {
                 if(i === this.state.activeItem)
                 {
                     list.push(
-                        <UserChecklistListItem active={true} index={i} toDo={this.shouldBeExecuted(lists[i])} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
+                        {
+                            active : true,
+                            index : i,
+                            todo : this.shouldBeExecuted(lists[i]),
+                            activateItem : this.activateItem.bind(this),
+                            deactivateItem : this.deactivateItem.bind(this),
+                            route : this.props.itemRoute,
+                            key : i,
+                            item : lists[i],
+                        }
                     );
                 }
                 else
                 {
                     list.push(
-                        <UserChecklistListItem active={false} index={i} toDo={this.shouldBeExecuted(lists[i])} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
+                        {
+                            active : false,
+                            index : i,
+                            todo : this.shouldBeExecuted(lists[i]),
+                            activateItem : this.activateItem.bind(this),
+                            deactivateItem : this.deactivateItem.bind(this),
+                            route : this.props.itemRoute,
+                            key : i,
+                            item : lists[i],
+                        }
                     );
                 }
             }
@@ -125,14 +143,17 @@ class UserChecklistList extends Component {
     }
 
     render() {
+        let list = this.buildList();
         return (
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <TouchableWithoutFeedback onPress={() => {this.deactivateItem()}}>
-                    <View style={styles.list}>
-                        {this.buildList()}
-                    </View>
-                </TouchableWithoutFeedback>
-            </ScrollView>
+            <TouchableWithoutFeedback onPress={() => {this.deactivateItem()}}>
+                <View style={styles.list}>
+                    <FlatList
+                        data={list}
+                        showsVerticalScrollIndicator={false}
+                        renderItem={({item}) => <UserChecklistListItem active={item.active} index={item.key} toDo={item.todo} activateItem={item.activateItem} deactivateItem={item.deactivateItem} route={item.route} key={item.key} item={item.item}/>}
+                    />
+                </View>
+            </TouchableWithoutFeedback>
         );
     }
 }

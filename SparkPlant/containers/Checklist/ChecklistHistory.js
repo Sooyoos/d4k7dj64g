@@ -100,7 +100,7 @@ class ChecklistHistory extends Component {
                             { this.state.checklist.description }
                         </Text>
                     </ElevatedView>
-                    <ScrollView showsVerticalScrollIndicator={false} style={styles.list}>
+                    <ScrollView showsVerticalScrollIndicator={false} style={styles.list} contentContainerStyle={{alignItems: 'center', justifyContent: 'center'}}>
                         <ChecklistHistoryList />
                     </ScrollView>
                 </View>

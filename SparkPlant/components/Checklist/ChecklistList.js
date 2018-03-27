@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    ScrollView,
+    FlatList,
     TouchableWithoutFeedback,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -52,13 +52,29 @@ class ChecklistList extends Component {
                 if(i === this.state.activeItem)
                 {
                     list.push(
-                        <ChecklistListItem active={true} index={i} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
+                        {
+                            active : true,
+                            index : i,
+                            activateItem : this.activateItem.bind(this),
+                            deactivateItem : this.deactivateItem.bind(this),
+                            route : this.props.itemRoute,
+                            key : i,
+                            item : lists[i],
+                        }
                     );
                 }
                 else
                 {
                     list.push(
-                        <ChecklistListItem active={false} index={i} activateItem={this.activateItem.bind(this)} deactivateItem={this.deactivateItem.bind(this)} route={this.props.itemRoute} key={i} item={lists[i]}/>
+                        {
+                            active : false,
+                            index : i,
+                            activateItem : this.activateItem.bind(this),
+                            deactivateItem : this.deactivateItem.bind(this),
+                            route : this.props.itemRoute,
+                            key : i,
+                            item : lists[i],
+                        }
                     );
                 }
             }
@@ -67,14 +83,15 @@ class ChecklistList extends Component {
     }
 
     render() {
+        let list = this.buildList();
         return (
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <TouchableWithoutFeedback onPress={() => {this.deactivateItem()}}>
-                    <View style={styles.list}>
-                        {this.buildList()}
-                    </View>
-                </TouchableWithoutFeedback>
-            </ScrollView>
+            <TouchableWithoutFeedback onPress={() => {this.deactivateItem()}}>
+                <FlatList
+                    data={list}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({item}) => <ChecklistListItem active={item.active} index={item.index} activateItem={item.activateItem} deactivateItem={item.deactivateItem} route={item.route} key={item.key} item={item.item}/>}
+                />
+            </TouchableWithoutFeedback>
         );
     }
 }
