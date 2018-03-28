@@ -437,7 +437,7 @@ function fetchCreateUserChecklist(login, checklist, user)
                 checklist : checklist["@id"],
             })
         })
-            .then((response) => console.log("OK"))
+            .then((response) => {})
             .then((responseJson) => {
                 dispatch(fetchCreateUserChecklistSuccess());
             })
