@@ -65,7 +65,7 @@ class DashboardNavigation extends Component {
 
     navigateToAnalytics()
     {
-        this.props.navigation.navigate('Charts');
+        this.props.navigate('Charts');
     }
 
     render() {
