@@ -20,7 +20,7 @@ let styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
-        padding : 10,
+        paddingTop : layout.height2,
     },
     title : {
         color:'#ffffff',
