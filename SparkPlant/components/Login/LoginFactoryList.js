@@ -24,7 +24,7 @@ class LoginFactoryList extends Component {
     render() {
 
         return(
-            <TextInput style={styles.input} placeholder="Code usine" value={this.props.login.factory} onChangeText={(factory) => this.props.setLoginFactory(factory)}/>
+            <TextInput style={styles.input} placeholderTextColor="#555555" placeholder="Code usine" value={this.props.login.factory} onChangeText={(factory) => this.props.setLoginFactory(factory)}/>
         );
     }
 };

@@ -26,7 +26,7 @@ class LoginPasswordInput extends Component {
 
     render() {
         return (
-            <TextInput  style={styles.input} placeholder="Mot de passe" secureTextEntry={true} value={this.props.login.password} onChangeText={(value) => this.props.setLoginPassword(value)}/>
+            <TextInput  style={styles.input} placeholderTextColor="#555555" placeholder="Mot de passe" secureTextEntry={true} value={this.props.login.password} onChangeText={(value) => this.props.setLoginPassword(value)}/>
         );
     }
 };
