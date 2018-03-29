@@ -18,17 +18,16 @@ let styles = StyleSheet.create({
         height:layout.height7,
     },
     body: {
-        height:layout.height80,
+        height:layout.height83,
         backgroundColor : "#efefef",
         alignItems:'center',
         justifyContent: 'center',
     },
     footer: {
-        height:layout.height13,
+        height:layout.height10,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
-        paddingBottom : layout.height3,
     },
 });
 

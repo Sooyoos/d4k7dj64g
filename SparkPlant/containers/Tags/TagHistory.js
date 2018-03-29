@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import * as layout from "../../assets/layout";
-import FooterButton from "../../components/Footer/FooterButton";
+import FooterButtonSmall from "../../components/Footer/FooterButtonSmall";
 import HeaderTagDetails from "../../components/Header/HeaderTags";
 import TagHistoryList from "../../components/Tags/TagHistoryList";
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -24,17 +24,16 @@ let styles = StyleSheet.create({
         height : layout.height7,
     },
     list: {
-        height : layout.height80,
+        height : layout.height83,
         backgroundColor: '#FFFFFF',
         alignItems:'center',
         justifyContent: 'center',
     },
     footer: {
-        height : layout.height13,
+        height : layout.height10,
         alignItems: 'center',
         backgroundColor: '#3f51b5',
         flexDirection: 'row',
-        paddingBottom : layout.height3,
     },
 });
 
@@ -72,9 +71,9 @@ class TagHistory extends Component {
                         <ActivityIndicator color="#3f51b5" size="large"/>
                     </View>
                     <View style={styles.footer}>
-                        <FooterButton {...this.props} active={false} tag={null} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
-                        <FooterButton {...this.props} active={true} tag={null} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
-                        <FooterButton {...this.props} active={false} tag={null} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
+                        <FooterButtonSmall {...this.props} active={false} tag={null} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
+                        <FooterButtonSmall {...this.props} active={true} tag={null} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
+                        <FooterButtonSmall {...this.props} active={false} tag={null} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
                     </View>
                 </View>
             );
@@ -91,9 +90,9 @@ class TagHistory extends Component {
                             <TagHistoryList {...this.props} items={tag.history} />
                         </View>
                         <View style={styles.footer}>
-                            <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
-                            <FooterButton {...this.props} active={true} tag={tag} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
-                            <FooterButton {...this.props} active={false} tag={tag} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
+                            <FooterButtonSmall {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
+                            <FooterButtonSmall {...this.props} active={true} tag={tag} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
+                            <FooterButtonSmall {...this.props} active={false} tag={tag} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
                         </View>
                     </View>
                 );
@@ -107,9 +106,9 @@ class TagHistory extends Component {
 
                         </View>
                         <View style={styles.footer}>
-                            <FooterButton {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
-                            <FooterButton {...this.props} active={true} tag={tag} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
-                            <FooterButton {...this.props} active={false} tag={tag} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
+                            <FooterButtonSmall {...this.props} active={false} tag={tag} iconName="sticky-note-o" text="Contenu" route={() => { this.props.goToTagDetails(this.props.nav) }}/>
+                            <FooterButtonSmall {...this.props} active={true} tag={tag} iconName="info" text="Historique" route={() => { this.props.goToTagHistory(this.props.nav) }}/>
+                            <FooterButtonSmall {...this.props} active={false} tag={tag} iconName="exchange" text="Actions" route={() => { this.props.goToTagAction(this.props.nav) }}/>
                         </View>
                     </View>
                 );

@@ -9,13 +9,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {fontSize1p4, fontSize2p4, height10, width50} from "../../assets/layout";
+import {fontSize1p4, fontSize2p4, height10, width33p3} from "../../assets/layout";
 
 
 let inactiveStyles = StyleSheet.create({
     button : {
         height:height10,
-        width:width50,
+        width:width33p3,
         alignItems: 'center',
         justifyContent: 'center',
         padding : 5,
@@ -29,7 +29,7 @@ let inactiveStyles = StyleSheet.create({
 let activeStyles = StyleSheet.create({
     button : {
         height:height10,
-        width:width50,
+        width:width33p3,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor : '#303f9f',
@@ -41,7 +41,7 @@ let activeStyles = StyleSheet.create({
     }
 });
 
-class FooterButton extends Component {
+class FooterButtonSmall extends Component {
     constructor(props)
     {
         super(props);
@@ -95,4 +95,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(FooterButton);
+export default connect(mapStateToProps, mapDispatchToProps)(FooterButtonSmall);
