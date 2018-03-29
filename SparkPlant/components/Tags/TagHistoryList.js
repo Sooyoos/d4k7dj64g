@@ -3,6 +3,7 @@ import {
     ScrollView,
     StyleSheet,
     Alert,
+    FlatList,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -30,7 +31,10 @@ class TagHistoryList extends Component {
             for(var i = 0; i < this.props.items.length ; i++)
             {
                 list.push(
-                    <TagHistoryItem {...this.props} key={i} item={this.props.items[i]} />
+                    {
+                        key : i,
+                        item : this.props.items[i],
+                    }
                 );
             }
         }
@@ -39,10 +43,13 @@ class TagHistoryList extends Component {
     }
 
     render() {
+        let list = this.buildList();
         return (
-            <ScrollView style={styles.list} showsVerticalScrollIndicator={false}>
-                {this.buildList()}
-            </ScrollView>
+            <FlatList
+                data={list}
+                showsVerticalScrollIndicator={false}
+                renderItem={({item}) => <TagHistoryItem key={item.key} item={item.item} />}
+            />
         );
     }
 };

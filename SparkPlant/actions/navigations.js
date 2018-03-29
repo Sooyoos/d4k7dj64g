@@ -40,6 +40,22 @@ export function resetChecklists() {
     };
 }
 
+function menu(routeName)
+{
+    return {
+        type : types.NAVIGATE_MENU,
+        routeName : routeName,
+    }
+}
+
+export function goToMenu(routeName)
+{
+    return (dispatch) => {
+        dispatch(menu(routeName));
+        dispatch(navigate('Menu'));
+    }
+}
+
 export function navigate(routeName)
 {
     return {

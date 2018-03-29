@@ -3,6 +3,7 @@ export const NAVIGATE_BACK = 'NAVIGATE_BACK';
 export const NAVIGATE_RESET_TAGS = 'NAVIGATE_RESET_TAGS';
 export const NAVIGATE_RESET_NEWS = 'NAVIGATE_RESET_NEWS';
 export const NAVIGATE_RESET_CHECKLISTS = 'NAVIGATE_RESET_CHECKLISTS';
+export const NAVIGATE_MENU = 'NAVIGATE_MENU';
 
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -257,8 +258,8 @@ export const UNSOLVED_TAGS_REQUESTED = "UNSOLVED_TAGS_REQUESTED";
 export const UNSOLVED_TAGS_SUCCESS = "UNSOLVED_TAGS_SUCCESS";
 export const UNSOLVED_TAGS_ERROR = "UNSOLVED_TAGS_ERROR";
 
-export const baseUrl = "https://sparkplant-api-testing.sooyoos.com";
-//export const baseUrl = "http://sparkplant-api-develop.sooyoos.com";
+//export const baseUrl = "https://sparkplant-api-testing.sooyoos.com";
+export const baseUrl = "https://api.sparkplant.com/";
 
 export const RESET_LOGIN_ERROR = "RESET_LOGIN_ERROR";
 

@@ -113,7 +113,7 @@ function fetchUserNews(login, user)
                     }
                 }
 
-                dispatch(userNewsSuccess(news.reverse()));
+                dispatch(userNewsSuccess(news));
             })
             .catch((error) => { dispatch(userNewsFailure()); });
     }

@@ -37,7 +37,7 @@ export default class TakeVideoTag extends Component {
     takePicture() {
         const options = {};
         this.camera.capture({metadata: options})
-            .then((data) => console.log(data))
+            .then((data) => {})
             .catch(err => console.error(err));
     }
 

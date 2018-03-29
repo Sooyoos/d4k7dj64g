@@ -23,8 +23,8 @@ function navigateNews()
 export function goToNewsPage(navState)
 {
     return dispatch => {
-        if(checkNbActions(navState) === true)
-            dispatch(resetNews());
+        /*if(checkNbActions(navState) === true)
+            dispatch(resetNews());*/
         dispatch(navigateNews());
     }
 }
@@ -40,8 +40,8 @@ function navigateWaitingNews()
 export function goToWaitingNews(navState)
 {
     return dispatch => {
-        if(checkNbActions(navState) === true)
-            dispatch(resetNews());
+        /*if(checkNbActions(navState) === true)
+            dispatch(resetNews());*/
         dispatch(navigateWaitingNews());
     }
 }
@@ -57,8 +57,8 @@ function navigateNewsDetail()
 export function goToNewsDetail(navState)
 {
     return dispatch => {
-        if(checkNbActions(navState) === true)
-            dispatch(resetNews());
+        /*if(checkNbActions(navState) === true)
+            dispatch(resetNews());*/
         dispatch(navigateNewsDetail());
     }
 }
@@ -74,8 +74,8 @@ function navigateWaitingNewsDetail()
 export function goToWaitingNewsDetail(navState)
 {
     return dispatch => {
-        if(checkNbActions(navState) === true)
-            dispatch(resetNews());
+        /*if(checkNbActions(navState) === true)
+            dispatch(resetNews());*/
         dispatch(navigateWaitingNewsDetail());
     }
 }
@@ -115,8 +115,8 @@ function navigateSearchNews()
 export function goToSearchNews(navState)
 {
     return dispatch => {
-        if(checkNbActions(navState) === true)
-            dispatch(resetNews());
+        /*if(checkNbActions(navState) === true)
+            dispatch(resetNews());*/
         dispatch(navigateSearchNews());
     }
 }
@@ -132,8 +132,8 @@ function navigateSearchWaitingNews()
 export function goToSearchWaitingNews(navState)
 {
     return dispatch => {
-        if(checkNbActions(navState) === true)
-            dispatch(resetNews());
+        /*if(checkNbActions(navState) === true)
+            dispatch(resetNews());*/
         dispatch(navigateSearchWaitingNews());
     }
 }

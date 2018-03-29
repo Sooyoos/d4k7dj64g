@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "661055480224",
-    "firebase_url": "https://sparkplant-fc8d2.firebaseio.com",
-    "project_id": "sparkplant-fc8d2",
-    "storage_bucket": "sparkplant-fc8d2.appspot.com"
+    "project_number": "1012727670494",
+    "firebase_url": "https://sparkplant-testing.firebaseio.com",
+    "project_id": "sparkplant-testing",
+    "storage_bucket": "sparkplant-testing.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:661055480224:android:2ec3bca4faa3054e",
+        "mobilesdk_app_id": "1:1012727670494:android:2ec3bca4faa3054e",
         "android_client_info": {
           "package_name": "com.sparkplant"
         }
       },
       "oauth_client": [
         {
-          "client_id": "661055480224-5psiurg8b9iise86jfk0qpfggi1v2lv3.apps.googleusercontent.com",
+          "client_id": "1012727670494-8hucfpo3d2a901peqrsnbml7pi65mk1r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAaXNkCOd1LmwmL7kC0axIGXfogolOVZy8"
+          "current_key": "AIzaSyAIuZwM0T7CPy4wlfn2D5j5oUcErSZ7Pg4"
         }
       ],
       "services": {

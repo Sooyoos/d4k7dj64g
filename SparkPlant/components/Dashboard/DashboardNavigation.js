@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
 import * as layout from "../../assets/layout";
+import { baseUrl } from "../../actions/types";
 
 let styles = StyleSheet.create({
     dashboardNav: {
@@ -27,6 +27,7 @@ let styles = StyleSheet.create({
     dashboardNavIcon : {
         width:layout.height12,
         height:layout.height12,
+        resizeMode : Image.resizeMode.contain,
     },
     dashboardNavLabel : {
         textAlign : 'center',
@@ -64,7 +65,7 @@ class DashboardNavigation extends Component {
 
     navigateToAnalytics()
     {
-        this.props.navigation.navigate('Charts');
+        this.props.navigate('Charts');
     }
 
     render() {
@@ -75,8 +76,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                resizeMode="contain"
-                                source={require("../../assets/img/icon-tags.png")}
+                                source={{uri : "icon_tags"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Tags
@@ -87,8 +87,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                resizeMode="contain"
-                                source={require("../../assets/img/icon-checklists.png")}
+                                source={{uri : "icon_checklists"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Checklists
@@ -101,8 +100,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                resizeMode="contain"
-                                source={require("../../assets/img/icon-news.png")}
+                                source={{uri : "icon_news"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 News
@@ -113,8 +111,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                resizeMode="contain"
-                                source={require("../../assets/img/icon-analytics.png")}
+                                source={{ uri : "icon_analytics"}}
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Analytics

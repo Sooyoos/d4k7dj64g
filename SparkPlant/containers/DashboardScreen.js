@@ -16,7 +16,7 @@ import { ActionCreators } from '../actions';
 import Header from '../components/Header/Header';
 import DashboardNavigation from '../components/Dashboard/DashboardNavigation';
 import DashboardNews from '../components/Dashboard/DashboardNews';
-import {fullHeight, fullWidth, height93} from "../assets/layout";
+import {fullHeight, fullWidth, height46p5, height93} from "../assets/layout";
 
 let styles = StyleSheet.create({
     login: {
@@ -74,9 +74,9 @@ class DashboardScreen extends Component {
         {
             return (
                 <View style={styles.login}>
-                    <Header props={this.props}/>
+                    <Header props={this.props} from="Dashboard"/>
                     <View style={styles.body}>
-                        <DashboardNavigation {... this.props} />
+                        <DashboardNavigation />
                         <DashboardNews news={this.props.news.news} responsable={this.isResponsable()}/>
                     </View>
                 </View>
@@ -87,8 +87,12 @@ class DashboardScreen extends Component {
         {
             return(
                 <View style={styles.login}>
+                    <Header props={this.props} from="Dashboard"/>
                     <View style={styles.body}>
-                        <ActivityIndicator color="#3f51b5" size="large"/>
+                        <DashboardNavigation />
+                        <View style={{height : height46p5, width : fullWidth, alignItems: 'center', justifyContent: 'center'}}>
+                            <ActivityIndicator color="#3f51b5" size="large"/>
+                        </View>
                     </View>
                 </View>
             );
