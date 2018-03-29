@@ -14,8 +14,9 @@ let styles = StyleSheet.create({
     dashboardNewsItem: {
         flex:3,
         width: layout.fullWidth,
-        borderTopWidth: 0.5,
+        borderTopWidth: 1,
         borderTopColor: '#bdbdbd',
+        paddingRight: layout.width1,
     },
     itemImage : {
         height: layout.width25,

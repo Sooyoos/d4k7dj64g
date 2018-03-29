@@ -14,7 +14,7 @@ import { baseUrl } from "../../actions/types";
 
 let styles = StyleSheet.create({
     dashboardNav: {
-        height:layout.height46p5,
+        height:layout.height47,
         width:layout.fullWidth,
         alignItems:'center',
     },

@@ -12,11 +12,11 @@ import Moment from 'moment';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../../actions';
-import {fullWidth, height46p5} from "../../assets/layout"
+import {fullWidth, height45} from "../../assets/layout"
 
 let styles = StyleSheet.create({
     dashboardNews: {
-        height : height46p5,
+        height : height45,
         width:fullWidth,
     },
 });
