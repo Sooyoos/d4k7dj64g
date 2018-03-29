@@ -168,7 +168,7 @@ class WaitingNewsDetail extends Component {
             'Publier la news',
             'Êtes vous sûr de vouloir publier la news ?',
             [
-                {text: 'Annuler', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                {text: 'Annuler', onPress: () => {}, style: 'cancel'},
                 {text: 'Publier', onPress: () => {
                     this.props.tryPublishNews(this.props.login, this.props.news.currentNews);
                     this.props.goToWaitingNews(this.props.nav);
@@ -184,7 +184,7 @@ class WaitingNewsDetail extends Component {
             'Transférer la news',
             'Êtes vous sûr de vouloir transférer la news?',
             [
-                {text: 'Annuler', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                {text: 'Annuler', onPress: () => {}, style: 'cancel'},
                 {text: 'Transférer', onPress: () => {this.props.tryTransferNews(this.props.login, this.props.news.currentNews); this.props.goToWaitingNews(this.props.nav);}},
             ],
             { cancelable: false }
@@ -197,7 +197,7 @@ class WaitingNewsDetail extends Component {
             'Supprimer la news',
             'Êtes vous sûr de vouloir supprimer la news ?',
             [
-                {text: 'Annuler', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                {text: 'Annuler', onPress: () => {}, style: 'cancel'},
                 {text: 'Supprimer', onPress: () => {
                     this.props.tryDeleteNews(this.props.login, this.props.news.currentNews);
                     this.props.goToWaitingNews(this.props.nav);

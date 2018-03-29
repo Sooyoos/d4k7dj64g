@@ -12,8 +12,6 @@ function fetchSolvedTags(login, beginDate, endDate, place, unit)
         if(unit !== null)
             url += '&place.unit.id=' + unit["@id"];
 
-        console.log(url);
-
         fetch(url, {
             method: 'GET',
             headers: {
@@ -69,8 +67,6 @@ function fetchUnsolvedTags(login, beginDate, endDate, place, unit)
             url += '&place.id=' + place["@id"];
         if(unit !== null)
             url += '&place.unit.id=' + unit["@id"];
-
-        console.log(url);
 
         fetch(url, {
             method: 'GET',

@@ -282,7 +282,6 @@ class ChecklistExecute extends Component {
     displayTasks()
     {
         let tasks = this.state.checklist.checklistInstanceTasks;
-        console.log(tasks);
         let list = [];
 
         for(var i = 0; i < tasks.length; i++)

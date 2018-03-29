@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    ScrollView,
+    FlatList,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -30,7 +30,11 @@ class NewsList extends Component {
             for(var i = 0; i < news.length; i++)
             {
                 list.push(
-                    <NewsListItem route={this.props.itemRoute} key={i} item={news[i]}/>
+                    {
+                        route : this.props.itemRoute,
+                        key : i,
+                        item : news[i],
+                    }
                 );
             }
         }
@@ -38,10 +42,14 @@ class NewsList extends Component {
     }
 
     render() {
+        let list = this.buildList();
         return (
-            <ScrollView style={styles.list} showsVerticalScrollIndicator={false}>
-                {this.buildList()}
-            </ScrollView>
+            <FlatList
+                data={list}
+                style={styles.list}
+                showsVerticalScrollIndicator={false}
+                renderItem={({item}) => <NewsListItem route={item.route} key={item.key} item={item.item}/>}
+            />
         );
     }
 }

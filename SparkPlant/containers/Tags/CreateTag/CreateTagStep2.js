@@ -250,7 +250,6 @@ class CreateTagStep2 extends Component {
 
     expandItem(media)
     {
-        console.log(media);
         this.props.setCurrentImage(media.uri);
         this.props.goToFullscreenImage();
     }
@@ -356,7 +355,6 @@ class CreateTagStep2 extends Component {
     }
 
     render() {
-        console.log("ACTIVE ITEM : " + this.state.activeMedia);
         return (
             <View style={{flex : 1}}>
                 <HeaderTagDetails {...this.props} headerTitle="Créer un tag" />

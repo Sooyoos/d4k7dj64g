@@ -467,7 +467,6 @@ class ChecklistHistory extends Component {
     }
 
     render() {
-        console.log(this.state.history);
         return (
             <View style={styles.login}>
                 <HeaderChecklist {...this.props} headerTitle="Checklists"/>

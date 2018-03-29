@@ -122,7 +122,6 @@ class Navigation extends Component {
 
     resetAndGo(routeName)
     {
-        this.props.resetAll();
         this.props.navigate(routeName);
     }
 
@@ -134,7 +133,7 @@ class Navigation extends Component {
         {
             let routeName = routes[i];
 
-            if(i === active)
+            if(routeName === active)
             {
                 list.push(
                     <TouchableWithoutFeedback key={i} onPress={() => { this.resetAndGo(routeName) }}>
@@ -166,7 +165,7 @@ class Navigation extends Component {
 
         return(
             <View style={styles.body}>
-                { this.buildNavigationItems(routes, this.props.nav.routes[1].routes[0].index) }
+                { this.buildNavigationItems(routes, this.props.nav.from) }
             </View>
         );
     }

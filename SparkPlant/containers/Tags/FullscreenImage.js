@@ -67,7 +67,6 @@ class FullscreenImage extends Component {
     }
 
     render() {
-        console.log(this.state);
         return(
             <View style={styles.body}>
                 <TouchableWithoutFeedback onPress={() => { this.props.navigateBack() }}>

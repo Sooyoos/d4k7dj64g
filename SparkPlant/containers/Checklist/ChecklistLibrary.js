@@ -26,6 +26,7 @@ let styles = StyleSheet.create({
         backgroundColor : "#efefef",
         alignItems:'center',
         justifyContent: 'center',
+        paddingTop: layout.height2,
     },
     placePicker : {
         width: layout.width90,

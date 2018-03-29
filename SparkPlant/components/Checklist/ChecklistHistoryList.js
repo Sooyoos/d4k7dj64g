@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     View,
     StyleSheet,
-    ScrollView,
+    FlatList,
     TouchableWithoutFeedback,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -39,7 +39,10 @@ class ChecklistHistoryList extends Component {
             for(var i = 0; i < lists.length; i++)
             {
                 list.push(
-                    <ChecklistHistoryItem key={i} item={lists[i]}/>
+                    {
+                        key : i,
+                        item : lists[i],
+                    }
                 );
             }
         }
@@ -47,14 +50,15 @@ class ChecklistHistoryList extends Component {
     }
 
     render() {
+        let list = this.buildList();
         return (
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <TouchableWithoutFeedback onPress={() => {this.deactivateItem()}}>
-                    <View style={styles.list}>
-                        {this.buildList()}
-                    </View>
-                </TouchableWithoutFeedback>
-            </ScrollView>
+            <TouchableWithoutFeedback onPress={() => {this.deactivateItem()}}>
+                <FlatList
+                    data={list}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({item}) => <ChecklistHistoryItem key={item.key} item={item.item}/>}
+                />
+            </TouchableWithoutFeedback>
         );
     }
 }
