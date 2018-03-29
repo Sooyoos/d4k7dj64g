@@ -76,7 +76,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                source={{uri : "icon_tags"}}
+                                source={ require("../../assets/img/icon-tags.png") }
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Tags
@@ -87,7 +87,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                source={{uri : "icon_checklists"}}
+                                source={ require("../../assets/img/icon-checklists.png") }
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Checklists
@@ -100,7 +100,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                source={{uri : "icon_news"}}
+                                source={ require("../../assets/img/icon-news.png") }
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 News
@@ -111,7 +111,7 @@ class DashboardNavigation extends Component {
                         <View style={{alignItems : 'center'}}>
                             <Image
                                 style={styles.dashboardNavIcon}
-                                source={{ uri : "icon_analytics"}}
+                                source={ require("../../assets/img/icon-analytics.png") }
                             />
                             <Text style={styles.dashboardNavLabel}>
                                 Analytics
