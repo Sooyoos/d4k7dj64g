@@ -68,6 +68,54 @@ export function tryUser(token, tokenString, data)
     }
 }
 
+function fetchUserActions(user)
+{
+    return dispatch => {
+        dispatch(userRequested());
+
+        fetch(types.baseUrl + user["@id"] + "/actions", {
+            method: 'GET',
+            headers: {
+                'Authorization' : 'Bearer ' + tokenString,
+            },
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                dispatch(userActionsSuccess(responseJson));
+            })
+            .catch((error) => { console.error(error); dispatch(userActionsFailure()); });
+    }
+}
+
+function userActionsRequested()
+{
+    return {
+        type : types.USER_ACTIONS_REQUESTED,
+    }
+}
+
+function userActionsSuccess(actions)
+{
+    return {
+        type : types.USER_ACTIONS_SUCCESS,
+        actions : actions,
+    }
+}
+
+function userActionsFailure()
+{
+    return {
+        type : types.USER_ACTIONS_FAILURE,
+    }
+}
+
+export function tryUserActions(user)
+{
+    return (dispatch, getState) => {
+        return dispatch(fetchUserActions(user));
+    }
+}
+
 function fetchSetAvailability(login, user, availability)
 {
     return dispatch => {
