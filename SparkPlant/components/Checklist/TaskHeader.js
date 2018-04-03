@@ -25,6 +25,8 @@ let styles = StyleSheet.create({
         width : layout.height8,
         borderRadius : layout.height4,
         backgroundColor : "#888888",
+        alignItems : 'center',
+        justifyContent: 'center',
     },
     taskIndexText : {
         color : "#ffffff",
