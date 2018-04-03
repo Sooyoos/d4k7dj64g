@@ -62,7 +62,19 @@ let styles = StyleSheet.create({
         color : "#232323",
         fontSize : fontSize2,
         textAlign : 'center',
-    }
+    },
+    dataUsage : {
+        paddingVertical: height2,
+        width : width90,
+        marginHorizontal : width5,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    dataUsageText : {
+        textAlign: 'center',
+        color : '#232323',
+        fontSize : fontSize2,
+    },
 });
 
 let appVersion = "05-03-2018-build231";
@@ -92,6 +104,14 @@ class InfoScreen extends Component {
                             </Text>
                         </View>
                     </TouchableWithoutFeedback>
+                    <View style={styles.dataUsage}>
+                        <Text style={styles.dataUsageText}>
+                            Toutes les informations collectées via le microphone et/ou l'appareil photo et la caméra de votre téléphone ou tablette
+                            sont transmises à notre serveur de façon sécurisée au moyen d'un protocole HTTPS.
+                            De plus vos informations ne sont consultables qu'au sein de votre organisation ou,
+                            à votre demande, par l'équipe de SparkPlant.
+                        </Text>
+                    </View>
                 </View>
             </View>
         );
