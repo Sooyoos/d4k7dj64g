@@ -95,6 +95,11 @@ class DrawerMenu extends Component {
         }
     }
 
+    componentWillMount()
+    {
+        this.props.tryUserById(this.props.login, this.props.users.loggedUser);
+    }
+
     setUserAvailable(value) {
         this.props.trySetAvailability(this.props.login, this.props.users.loggedUser, value);
         this.setState({userAvailable: value});

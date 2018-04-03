@@ -78,7 +78,7 @@ class ScoringScreen extends Component {
 
     componentWillMount()
     {
-        this.props.tryUserActions(this.props.users.loggedUser);
+        this.props.tryUserActions(this.props.users.loggedUser, this.props.login);
     }
 
     buildCardList()
