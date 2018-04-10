@@ -240,6 +240,10 @@ export const USER_REQUESTED = "USER_REQUESTED";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_FAILURE = "GET_USER_FAILURE";
 
+export const USER_ACTIONS_REQUESTED = "USER_ACTIONS_REQUESTED";
+export const USER_ACTIONS_SUCCESS = "USER_ACTIONS_SUCCESS";
+export const USER_ACTIONS_FAILURE = "USER_ACTIONS_FAILURE";
+
 export const SET_AVAILABILITY_REQUESTED = "SET_AVAILABILITY_REQUESTED";
 export const SET_AVAILABILITY_SUCCESS = "SET_AVAILABILITY_SUCCESS";
 export const SET_AVAILABILITY_FAILURE = "SET_AVAILABILITY_FAILURE";
@@ -258,8 +262,8 @@ export const UNSOLVED_TAGS_REQUESTED = "UNSOLVED_TAGS_REQUESTED";
 export const UNSOLVED_TAGS_SUCCESS = "UNSOLVED_TAGS_SUCCESS";
 export const UNSOLVED_TAGS_ERROR = "UNSOLVED_TAGS_ERROR";
 
-//export const baseUrl = "https://sparkplant-api-testing.sooyoos.com";
-export const baseUrl = "https://api.sparkplant.com/";
+export const baseUrl = "https://sparkplant-api-testing.sooyoos.com";
+//export const baseUrl = "https://api.sparkplant.com/";
 
 export const RESET_LOGIN_ERROR = "RESET_LOGIN_ERROR";
 
