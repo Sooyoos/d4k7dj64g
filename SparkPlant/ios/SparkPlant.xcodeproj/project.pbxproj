@@ -48,6 +48,7 @@
 		9F206D01207CE9E8003B93D5 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2432111F82809F009BB114 /* libRNImagePicker.a */; };
 		9F206D02207CEC16003B93D5 /* libQBImagePickerController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FD3B762206E316F004E50EA /* libQBImagePickerController.a */; };
 		9F206D03207CED1D003B93D5 /* libRSKImageCropper.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F371DED204EDD7900B6D820 /* libRSKImageCropper.a */; };
+		9F206D1B207E5C90003B93D5 /* libRNImageRotate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F572212204E9E9D0069A82F /* libRNImageRotate.a */; };
 		9F371DF0204EE31100B6D820 /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F57220D204E9E9D0069A82F /* libRNExitApp.a */; };
 		9F371DF1204EE59B00B6D820 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD902D81FC867D7007A176B /* libRNFirebase.a */; };
 		B0D03E2306FF423FB0B51983 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED963CB0FBC54D4DB915D04E /* Octicons.ttf */; };
@@ -555,6 +556,7 @@
 				9F371DF1204EE59B00B6D820 /* libRNFirebase.a in Frameworks */,
 				9F206D02207CEC16003B93D5 /* libQBImagePickerController.a in Frameworks */,
 				9F206D03207CED1D003B93D5 /* libRSKImageCropper.a in Frameworks */,
+				9F206D1B207E5C90003B93D5 /* libRNImageRotate.a in Frameworks */,
 				9F206D01207CE9E8003B93D5 /* libRNImagePicker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -34,6 +34,14 @@ let styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    buttonViewBlack : {
+        flexDirection : 'row',
+        height : layout.height20,
+        width : layout.width40,
+        backgroundColor : "#000000",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     deleteButton : {
         height : layout.width15,
         width : layout.width15,
@@ -68,7 +76,7 @@ class TagMedia extends Component {
     render() {
         if(this.props.active === true)
         {
-            if(this.props.media.uri.indexOf(".mov") === -1) // image
+            if(this.props.media.uri.indexOf(".mov") === -1 && this.props.media.uri.indexOf(".MOV") === -1) // image
             {
                 return(
                     <ElevatedView style={styles.mediaCard} elevation={2}>
@@ -109,7 +117,20 @@ class TagMedia extends Component {
         }
         else
         {
-            if((this.props.media.originalFile && (this.props.media.originalFile.indexOf(".jpg") !== -1 || this.props.media.originalFile.indexOf(".jpeg") !== -1 || this.props.media.originalFile.indexOf(".png") !== -1)) || this.props.media.uri.indexOf(".mov") === -1) // image
+            if(this.props.media.originalFile && (this.props.media.originalFile.indexOf(".jpg") !== -1 || this.props.media.originalFile.indexOf(".jpeg") !== -1 || this.props.media.originalFile.indexOf(".png") !== -1)) // image
+            {
+                return(
+                    <ElevatedView style={styles.mediaCard} elevation={2}>
+                        <TouchableWithoutFeedback onPress={() => { this.props.activateItem(this.props.index) }}>
+                            <Image
+                                style={styles.image}
+                                source={{uri : this.props.media.uri}}
+                            />
+                        </TouchableWithoutFeedback>
+                    </ElevatedView>
+                );
+            }
+            else if(this.props.media.uri && (this.props.media.uri.indexOf(".jpg") !== -1 || this.props.media.uri.indexOf(".jpeg") !== -1 || this.props.media.uri.indexOf(".png") !== -1))
             {
                 return(
                     <ElevatedView style={styles.mediaCard} elevation={2}>
@@ -127,7 +148,7 @@ class TagMedia extends Component {
                 return(
                     <ElevatedView style={styles.mediaCard} elevation={2}>
                         <TouchableWithoutFeedback onPress={() => { this.props.activateItem(this.props.index) }}>
-                            <View style={styles.buttonView}>
+                            <View style={styles.buttonViewBlack}>
                                 <Icon name="play-circle" style={styles.buttonIcon} />
                             </View>
                         </TouchableWithoutFeedback>
