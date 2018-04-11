@@ -190,7 +190,7 @@ class CreateTagStep2 extends Component {
 
             }
             else {
-                let source = { uri: response.uri, type: "video/mp4", name: response.path.substring(response.path.lastIndexOf("/") +1 ) };
+                let source = { uri: response.uri, type: "video/mov", name: response.uri.substring(response.uri.lastIndexOf("/") +1 ) };
 
                 let medias = this.state.tag.media;
                 medias.push(source);

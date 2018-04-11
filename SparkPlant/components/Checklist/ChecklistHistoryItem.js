@@ -24,7 +24,7 @@ let styles = StyleSheet.create({
         flexDirection: 'row',
     },
     itemInfos : {
-        width : layout.width63,
+        width : layout.width50,
         height : layout.height13,
         paddingHorizontal: layout.width2,
         paddingVertical: layout.height1,
@@ -40,7 +40,7 @@ let styles = StyleSheet.create({
         marginTop : layout.height2,
     },
     itemResult : {
-        width : layout.width23,
+        width : layout.width36,
         height : layout.height13,
         paddingHorizontal: layout.width2,
         paddingVertical: layout.height1,
@@ -48,7 +48,7 @@ let styles = StyleSheet.create({
         justifyContent: 'center',
     },
     itemSuccessRate : {
-        fontSize : layout.fontSize4p75,
+        fontSize : layout.fontSize4,
         color : "#000000",
         textAlign: 'center',
     },

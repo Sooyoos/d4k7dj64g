@@ -17,7 +17,7 @@ import { bindActionCreators } from 'redux';
 import * as layout from '../assets/layout';
 import ElevatedView from 'react-native-elevated-view';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
-import ModalPicker from 'react-native-modal-picker';
+import  ModalSelector from 'react-native-modal-selector';
 import { ActionCreators } from '../actions';
 import LoginUsernameInput from '../components/Login/LoginUserNameInput';
 import LoginPasswordInput from '../components/Login/LoginPasswordInput';
@@ -195,7 +195,7 @@ class LoginScreen extends Component {
             );
         }
 
-        return <ModalPicker
+        return <ModalSelector
             data={list}
             initValue="Utilisateur"
             style={styles.userSelect}

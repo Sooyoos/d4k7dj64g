@@ -3,55 +3,55 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "icon-notification-40x40.png",
+      "filename" : "icon-notification-40x40.jpg",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "icon-notification-60x60.png",
+      "filename" : "icon-notification-60x60.jpg",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "icon-spotlight-58x58.png",
+      "filename" : "icon-spotlight-58x58.jpg",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "icon-spotlight-87x87.png",
+      "filename" : "icon-spotlight-87x87.jpg",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "icon-spotlight-80x80.png",
+      "filename" : "icon-spotlight-80x80.jpg",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "icon-iphone-120x120-1.png",
+      "filename" : "icon-iphone-120x120.jpg",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "icon-iphone-120x120.png",
+      "filename" : "icon-iphone-120x120-1.jpg",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "icon-iphone-180x180.png",
+      "filename" : "icon-iphone-180x180.jpg",
       "scale" : "3x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "icon-app-store-1024x1024.png",
+      "filename" : "icon-app-store-1024x1024.jpg",
       "scale" : "1x"
     }
   ],

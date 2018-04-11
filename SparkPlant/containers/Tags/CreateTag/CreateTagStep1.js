@@ -20,7 +20,7 @@ import ElevatedView from 'react-native-elevated-view';
 import * as layout from "../../../assets/layout";
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import HeaderTagDetails from "../../../components/Header/HeaderTags";
-import ModalPicker from 'react-native-modal-picker';
+import ModalSelector from 'react-native-modal-selector';
 
 let styles = StyleSheet.create({
     card : {
@@ -64,7 +64,7 @@ let styles = StyleSheet.create({
         padding : layout.width4,
     },
     locationPicker : {
-        width: layout.width50,
+        width: layout.width80,
         height : layout.height8,
         alignItems : 'center',
         justifyContent : 'center',
@@ -229,20 +229,20 @@ class CreateTagStep1 extends Component {
 
         if(primary === 'primary')
         {
-            return <ModalPicker
+            return <ModalSelector
                 data={items}
                 initValue="Sélectionnez le type principal"
                 style={styles.locationPicker}
-                selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
+                selectStyle={{ height : layout.height8, width : layout.width80, alignItems : 'center', justifyContent : 'center'}}
                 onChange={(option) => this.props.setCurrentCreationPrimaryAxis(option.value)} />;
         }
         else
         {
-            return <ModalPicker
+            return <ModalSelector
                 data={items}
                 initValue="Sélectionnez le type secondaire"
                 style={styles.locationPicker}
-                selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
+                selectStyle={{ height : layout.height8, width : layout.width80, alignItems : 'center', justifyContent : 'center'}}
                 onChange={(option) => this.props.setCurrentCreationSecondaryAxis(option.value)} />;
         }
     }
@@ -289,11 +289,11 @@ class CreateTagStep1 extends Component {
             }
         }
 
-        return <ModalPicker
+        return <ModalSelector
             data={items}
             initValue="Sélectionnez le lieu"
             style={styles.locationPicker}
-            selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
+            selectStyle={{ height : layout.height8, width : layout.width80, alignItems : 'center', justifyContent : 'center'}}
             onChange={(option) => this.props.setCurrentCreationPlace(option.value)} />;
     }
 

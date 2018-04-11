@@ -21,7 +21,7 @@ import HeaderNews from "../../components/Header/HeaderNews";
 import ElevatedView from "react-native-elevated-view";
 import RadioButton from "../../components/Utils/RadioButton";
 import ImagePicker from 'react-native-image-picker';
-import ModalPicker from 'react-native-modal-picker';
+import ModalSelector from 'react-native-modal-selector';
 
 let styles = StyleSheet.create({
     login: {
@@ -236,7 +236,7 @@ class CreateNewsStep1 extends Component {
             }
         }
 
-        return <ModalPicker
+        return <ModalSelector
             data={list}
             initValue="Unité"
             style={styles.unitPicker}

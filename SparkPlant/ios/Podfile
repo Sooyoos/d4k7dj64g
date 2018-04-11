@@ -11,6 +11,8 @@ target 'SparkPlant' do
     pod 'RSKImageCropper'
     pod 'QBImagePickerController'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
 end
 
 

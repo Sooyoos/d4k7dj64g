@@ -68,7 +68,7 @@ class TagMedia extends Component {
     render() {
         if(this.props.active === true)
         {
-            if(this.props.media.type && this.props.media.type.indexOf("video") === -1) // image
+            if(this.props.media.uri.indexOf(".mov") === -1) // image
             {
                 return(
                     <ElevatedView style={styles.mediaCard} elevation={2}>
@@ -109,7 +109,7 @@ class TagMedia extends Component {
         }
         else
         {
-            if((this.props.media.originalFile && (this.props.media.originalFile.indexOf(".jpg") !== -1 || this.props.media.originalFile.indexOf(".jpeg") !== -1 || this.props.media.originalFile.indexOf(".png") !== -1)) ||(this.props.media.type && this.props.media.type.indexOf("video") === -1)) // image
+            if((this.props.media.originalFile && (this.props.media.originalFile.indexOf(".jpg") !== -1 || this.props.media.originalFile.indexOf(".jpeg") !== -1 || this.props.media.originalFile.indexOf(".png") !== -1)) || this.props.media.uri.indexOf(".mov") === -1) // image
             {
                 return(
                     <ElevatedView style={styles.mediaCard} elevation={2}>

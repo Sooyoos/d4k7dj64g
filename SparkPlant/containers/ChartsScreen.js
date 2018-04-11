@@ -17,7 +17,7 @@ import * as layout from "../assets/layout";
 import Header from "../components/Header/Header";
 import { Bar } from 'react-native-pathjs-charts';
 import DatePicker from 'react-native-datepicker';
-import ModalPicker from 'react-native-modal-picker';
+import ModalSelector from 'react-native-modal-selector';
 import moment from 'moment';
 
 let solvedTagOptions = {
@@ -212,7 +212,7 @@ class ChartsScreen extends Component {
             );
         }
 
-        return <ModalPicker
+        return <ModalSelector
             data={list}
             initValue={this.state.filters[filter] ? this.state.filters[filter] : listLabel}
             style={styles.select}

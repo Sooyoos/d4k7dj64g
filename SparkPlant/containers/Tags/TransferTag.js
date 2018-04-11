@@ -16,7 +16,7 @@ import ElevatedView from "react-native-elevated-view";
 import * as layout from "../../assets/layout";
 import FooterButton from "../../components/Footer/FooterButton";
 import HeaderTagDetails from "../../components/Header/HeaderTags";
-import ModalPicker from 'react-native-modal-picker';
+import ModalSelector from 'react-native-modal-selector';
 
 let styles = StyleSheet.create({
     login: {
@@ -150,7 +150,7 @@ class TransferTag extends Component {
                     );
                 }
 
-                list = <ModalPicker
+                list = <ModalSelector
                     data={userList}
                     initValue="Sélectionnez le destinataire"
                     style={styles.picker}

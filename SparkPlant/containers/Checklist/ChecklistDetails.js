@@ -16,7 +16,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { ActionCreators } from '../../actions';
 import * as layout from "../../assets/layout";
 import HeaderChecklist from "../../components/Header/HeaderChecklist";
-import ModalPicker from 'react-native-modal-picker';
+import ModalSelector from 'react-native-modal-selector';
 
 let styles = StyleSheet.create({
     login: {
@@ -216,7 +216,7 @@ class ChecklistDetails extends Component {
             }
         }
 
-        return <ModalPicker
+        return <ModalSelector
         data={list}
         initValue="Affecter à l'unité"
         style={styles.unitPicker}

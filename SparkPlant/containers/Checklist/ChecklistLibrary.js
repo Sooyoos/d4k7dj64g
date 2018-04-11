@@ -9,7 +9,7 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import ModalPicker from 'react-native-modal-picker';
+import ModalSelector from 'react-native-modal-selector';
 import ElevatedView from 'react-native-elevated-view';
 import { ActionCreators } from '../../actions';
 import * as layout from "../../assets/layout";
@@ -108,7 +108,7 @@ class ChecklistLibrary extends Component {
             }
         }
 
-        return <ModalPicker
+        return <ModalSelector
             data={list}
             initValue="Lieu"
             style={styles.placePicker}
