@@ -90,6 +90,8 @@ class RecordAudio extends Component {
                         name: data.audioFileURL.substring(data.audioFileURL.lastIndexOf("/"))
                     });
                 }
+
+                this.setState({ file : data.audioFileURL });
             }
         };
         this.prepareRecordingPath(filename);
@@ -162,18 +164,22 @@ class RecordAudio extends Component {
         let mode = this.props.tags.toRecord;
         let file = "";
 
-        if(mode === "place")
+        if(mode === "place" && this.props.tags.creation_current.placeDetailsAudio)
         {
             file = this.props.tags.creation_current.placeDetailsAudio.path;
         }
-        else
+        else if(mode !== "place" && this.props.tags.creation_current.descriptionAudio)
         {
             file = this.props.tags.creation_current.descriptionAudio.path;
         }
+        else
+        {
+            file = this.state.file;
+        }
 
-        let sound = new Sound(file, Sound.MAIN_BUNDLE, (error) => {
+        let sound = new Sound(file, null, (error) => {
             if (error) {
-
+                console.error(error);
             }
 
             sound.play((success) => {

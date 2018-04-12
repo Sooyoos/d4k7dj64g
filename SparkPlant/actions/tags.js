@@ -1019,6 +1019,8 @@ function fetchTagsUploadPlaceAudio(login, file)
 
         body.append("file", file);
 
+        console.warn(file);
+
         fetch(types.baseUrl + "/fileUpload", {
             method: 'POST',
             headers: {
@@ -1029,6 +1031,7 @@ function fetchTagsUploadPlaceAudio(login, file)
         })
             .then((response) => response.json())
             .then((responseJson) => {
+                console.warn(responseJson);
                 dispatch(tagsUploadPlaceAudioSuccess(responseJson));
             })
             .catch((error) => { dispatch(tagsUploadPlaceAudioFailure()); });
@@ -1082,6 +1085,7 @@ function fetchTagsUploadDescriptionAudio(login, file)
         })
             .then((response) => response.json())
             .then((responseJson) => {
+                console.warn(responseJson);
                 dispatch(tagsUploadDescriptionAudioSuccess(responseJson));
             })
             .catch((error) => { dispatch(tagsUploadDescriptionAudioFailure()); });
