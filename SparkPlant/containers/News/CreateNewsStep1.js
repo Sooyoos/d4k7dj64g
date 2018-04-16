@@ -285,7 +285,7 @@ class CreateNewsStep1 extends Component {
 
     setUnit(unit)
     {
-        let item = Object.assign({}, this.state.item, {unit : unit});
+        let item = Object.assign({}, this.state.item, {unit : unit.value});
         this.setState({item : item});
     }
 
