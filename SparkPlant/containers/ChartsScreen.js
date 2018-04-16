@@ -214,7 +214,7 @@ class ChartsScreen extends Component {
 
         return <ModalSelector
             data={list}
-            initValue={this.state.filters[filter] ? this.state.filters[filter] : listLabel}
+            initValue={this.state.filters[filter] ? this.state.filters[filter].label : listLabel}
             style={styles.select}
             selectStyle={{ height : layout.height5, width : layout.width35, alignItems : 'center', justifyContent : 'center'}}
             onChange={(option) => { this.changeFilter(filter, option); }} />;
