@@ -17,7 +17,7 @@ function filterChecklists(list, place)
 {
     let shortList = [];
 
-    if(place === "all" || place === null)
+    if(place.value === "all" || place.value === null)
     {
         return null;
     }
@@ -25,7 +25,7 @@ function filterChecklists(list, place)
     {
         for(var i = 0; i < list.length; i++)
         {
-            if(list[i].place["@id"] === place["@id"])
+            if(list[i].place["@id"] === place.value["@id"])
             {
                 shortList.push(list[i]);
             }

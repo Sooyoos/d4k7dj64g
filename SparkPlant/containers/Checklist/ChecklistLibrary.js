@@ -94,6 +94,14 @@ class ChecklistLibrary extends Component {
         let places = this.props.utils.places;
         let list = [];
 
+        list.push(
+            {
+                key : -1,
+                label : "Tous les lieux",
+                value : "all"
+            }
+        );
+
         if(places)
         {
             for(var i = 0; i < places.length; i++)
