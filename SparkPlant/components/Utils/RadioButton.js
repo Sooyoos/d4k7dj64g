@@ -53,26 +53,53 @@ class RadioButton extends Component {
     }
 
     render() {
-        if(this.props.value === this.props.news.creation_current.visibility)
+        if(this.props.news.creation_current.visibility)
         {
-            return (
-                <TouchableWithoutFeedback onPress={this.select.bind(this)}>
-                    <View style={this.props.style}>
-                        <View style={this.props.styleSelected}/>
-                    </View>
-                </TouchableWithoutFeedback>
-            );
+            if(this.props.value === this.props.news.creation_current.visibility)
+            {
+                return (
+                    <TouchableWithoutFeedback onPress={this.select.bind(this)}>
+                        <View style={this.props.style}>
+                            <View style={this.props.styleSelected}/>
+                        </View>
+                    </TouchableWithoutFeedback>
+                );
+            }
+            else
+            {
+                return (
+                    <TouchableWithoutFeedback onPress={this.select.bind(this)}>
+                        <View style={this.props.style}>
+                        </View>
+                    </TouchableWithoutFeedback>
+                );
+
+            }
         }
         else
         {
-            return (
-                <TouchableWithoutFeedback onPress={this.select.bind(this)}>
-                    <View style={this.props.style}>
-                    </View>
-                </TouchableWithoutFeedback>
-            );
+            if(this.props.value === "public")
+            {
+                return (
+                    <TouchableWithoutFeedback onPress={this.select.bind(this)}>
+                        <View style={this.props.style}>
+                            <View style={this.props.styleSelected}/>
+                        </View>
+                    </TouchableWithoutFeedback>
+                );
+            }
+            else
+            {
+                return (
+                    <TouchableWithoutFeedback onPress={this.select.bind(this)}>
+                        <View style={this.props.style}>
+                        </View>
+                    </TouchableWithoutFeedback>
+                );
 
+            }
         }
+
     }
 };
 

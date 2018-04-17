@@ -441,6 +441,7 @@ function fetchCreateNews(login, news)
         })
             .then((response) => response.json())
             .then((responseJson) => {
+                console.error(responseJson);
                 dispatch(createNewsSuccess(responseJson["hydra:member"]));
             })
             .catch((error) => { dispatch(createNewsFailure()); });

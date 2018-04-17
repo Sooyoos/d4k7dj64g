@@ -343,7 +343,7 @@ class CreateNewsStep1 extends Component {
         ImagePicker.showImagePicker(options, (response) => {
 
             if (response.didCancel) {
-
+                this.setState(Object.assign({}, this.state.item, {media : []}));
             }
             else if (response.error) {
 

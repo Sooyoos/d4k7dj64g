@@ -34,7 +34,7 @@ let styles = StyleSheet.create({
     },
     /* the picker for Android cannot be styled using RN (https://stackoverflow.com/questions/38921492/how-to-style-the-standard-react-native-android-picker/39141949#39141949) */
     picker : {
-        width: layout.width50,
+        width: layout.width80,
         height : layout.height8,
         alignItems : 'center',
         justifyContent : 'center',
@@ -91,7 +91,7 @@ class TransferTag extends Component {
 
     refresh(user)
     {
-        this.setState({selected : user});
+        this.setState({selected : user.value});
     }
 
     forward()
@@ -154,7 +154,7 @@ class TransferTag extends Component {
                     data={userList}
                     initValue="Sélectionnez le destinataire"
                     style={styles.picker}
-                    selectStyle={{ height : layout.height5, width : layout.width50, alignItems : 'center', justifyContent : 'center'}}
+                    selectStyle={{ height : layout.height8, width : layout.width80, alignItems : 'center', justifyContent : 'center'}}
                     onChange={(value) => this.refresh(value)} />
             }
 
