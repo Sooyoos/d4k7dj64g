@@ -349,7 +349,7 @@ class CreateNewsStep1 extends Component {
 
             }
             else {
-                let source = { uri: response.uri, type: response.type, name: response.fileName };
+                let source = { uri: encodeURI(response.uri), type: response.type, name: response.fileName };
 
                 let medias = this.state.item.media;
                 medias.push(source);

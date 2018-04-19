@@ -340,7 +340,7 @@ function fetchChecklistHistory(login, checklist)
             .then((responseJson) => {
                 dispatch(fetchChecklistHistorySuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => { console.error(error); dispatch(fetchChecklistHistoryFailure()); });
+            .catch((error) => { dispatch(fetchChecklistHistoryFailure()); });
     }
 }
 
@@ -388,7 +388,7 @@ function fetchDeleteUserChecklist(login, checklist)
             .then((responseJson) => {
                 dispatch(fetchDeleteUserChecklistSuccess(checklist["@id"]));
             })
-            .catch((error) => { console.error(error); dispatch(fetchDeleteUserChecklistFailure()); });
+            .catch((error) => { dispatch(fetchDeleteUserChecklistFailure()); });
     }
 }
 
@@ -497,7 +497,7 @@ function fetchCreateChecklistInstance(login, checklist, user, navState)
                 dispatch(fetchCreateChecklistInstanceSuccess(responseJson));
                 dispatch(goToChecklistExecute(navState));
             })
-            .catch((error) => { console.error(error); dispatch(fetchCreateChecklistInstanceFailure()); });
+            .catch((error) => { dispatch(fetchCreateChecklistInstanceFailure()); });
     }
 }
 
@@ -548,7 +548,7 @@ function fetchUpdateChecklistInstance(login, navState, checklist)
                 dispatch(fetchUpdateChecklistInstanceSuccess(responseJson));
                 dispatch(goToChecklistPage(navState));
             })
-            .catch((error) => { console.error(error); dispatch(fetchUpdateChecklistInstanceFailure()); });
+            .catch((error) => { dispatch(fetchUpdateChecklistInstanceFailure()); });
     }
 }
 
@@ -649,7 +649,7 @@ function fetchFullChecklistHistory(login)
             .then((responseJson) => {
                 dispatch(fetchFullChecklistHistorySuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => { console.error(error); dispatch(fetchFullChecklistHistoryFailure()); });
+            .catch((error) => { dispatch(fetchFullChecklistHistoryFailure()); });
     }
 }
 
@@ -698,7 +698,7 @@ function fetchDeleteChecklistInstance(login, navState, instance)
                 dispatch(fetchDeleteChecklistInstanceSuccess());
                 dispatch(goToChecklistPage(navState));
             })
-            .catch((error) => { console.error(error); dispatch(fetchDeleteChecklistInstanceFailure()); });
+            .catch((error) => { dispatch(fetchDeleteChecklistInstanceFailure()); });
     }
 }
 

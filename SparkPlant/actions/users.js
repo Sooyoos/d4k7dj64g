@@ -32,7 +32,7 @@ function fetchUserById(login, user)
             .then((responseJson) => {
                 dispatch(userByIdSuccess(responseJson));
             })
-            .catch((error) => { console.error(error); dispatch(userByIdFailure()); });
+            .catch((error) => { dispatch(userByIdFailure()); });
     }
 }
 
@@ -83,7 +83,7 @@ function fetchUser(token, tokenString, data)
                 dispatch(tryUserNews({ tokenString : tokenString }, responseJson));
                 dispatch(userSuccess(responseJson));
             })
-            .catch((error) => { console.error(error); dispatch(userFailure()); });
+            .catch((error) => { dispatch(userFailure()); });
     }
 }
 
@@ -131,7 +131,7 @@ function fetchUserActions(user, login)
             .then((responseJson) => {
                 dispatch(userActionsSuccess(responseJson["hydra:member"]));
             })
-            .catch((error) => { console.error(error); dispatch(userActionsFailure()); });
+            .catch((error) => { dispatch(userActionsFailure()); });
     }
 }
 

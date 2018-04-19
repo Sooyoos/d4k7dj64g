@@ -51,7 +51,7 @@ class FullscreenImage extends Component {
                         Image.getSize(uri, (width, height) => { this.setState({ uri : uri, width : width, height : height }) });
                     },
                     (error) => {
-                        console.error(error);
+
                     }
                 );
             }

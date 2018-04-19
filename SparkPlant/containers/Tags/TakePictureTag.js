@@ -68,7 +68,7 @@ export default class TakePictureTag extends Component {
             .then((data) => {
                 this.setState({ path: data.path });
             })
-            .catch(err => console.error(err));
+            .catch((err) => {});
     }
 
     renderCamera() {
