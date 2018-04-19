@@ -441,6 +441,11 @@ function fetchCreateNews(login, news)
         })
             .then((response) => response.json())
             .then((responseJson) => {
+                if(__DEV__)
+                {
+                    console.warn(responseJson);
+                }
+
                 dispatch(createNewsSuccess(responseJson["hydra:member"]));
             })
             .catch((error) => { dispatch(createNewsFailure()); });
@@ -489,6 +494,27 @@ function fetchNewsUploadMedia(login, file)
     return dispatch => {
         dispatch(newsUploadMediaRequested());
         let body = new FormData();
+
+        var extension = file.name.substring(file.name.lastIndexOf("."));
+
+        if(file.type === null && (extension === ".jpg" || extension === ".jpeg"))
+        {
+            file.type = "image/jpeg";
+        }
+        else if(file.type === null && extension === ".png")
+        {
+            file.type = "image/png";
+        }
+        else if(file.type === null && extension === ".bmp")
+        {
+            file.type = "image/bmp";
+        }
+        else if(file.type === null && extension === ".gif")
+        {
+            file.type = "image/gif";
+        }
+
+        file.name = new Date().getTime() + extension;
 
         body.append("file", file);
 

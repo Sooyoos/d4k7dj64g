@@ -901,6 +901,35 @@ function fetchTagsUploadMedia(login, file)
         dispatch(tagsUploadMediaRequested());
         let body = new FormData();
 
+        var extension = file.name.substring(file.name.lastIndexOf("."));
+
+        if(file.type === null && (extension === ".jpg" || extension === ".jpeg"))
+        {
+            file.type = "image/jpeg";
+        }
+        else if(file.type === null && extension === ".png")
+        {
+            file.type = "image/png";
+        }
+        else if(file.type === null && extension === ".bmp")
+        {
+            file.type = "image/bmp";
+        }
+        else if(file.type === null && extension === ".gif")
+        {
+            file.type = "image/gif";
+        }
+        else if(file.type === null && extension === ".mov")
+        {
+            file.type = "video/mov";
+        }
+        else if(file.type === null && extension === ".mp4")
+        {
+            file.type = "video/mpeg4";
+        }
+
+        file.name = new Date().getTime() + extension;
+
         body.append("file", file);
 
         fetch(types.baseUrl + "/fileUpload", {
