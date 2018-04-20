@@ -6,7 +6,7 @@ import {
     Image,
     ScrollView,
     TouchableWithoutFeedback,
-    Alert,
+    ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -153,37 +153,52 @@ class CreateNewsPreview extends Component {
 
     render() {
         let item = this.props.news.creation_current;
-        return (
-            <View style={styles.login}>
-                <HeaderNews {...this.props} headerTitle="News"/>
-                <View style={styles.body}>
-                    <ElevatedView elevation={2} style={styles.slider}>
-                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                            <View style={{flexDirection:'row'}}>
-                                {this.buildMediaList()}
-                            </View>
-                        </ScrollView>
-                    </ElevatedView>
-                    <ElevatedView style={styles.content} elevation={2}>
-                        <Text style={styles.title}>
-                            {item.title}
-                        </Text>
-                        <Text style={styles.contentText} numberOfLines={12}>
-                            {item.content}
-                        </Text>
-                    </ElevatedView>
-                    <View style={styles.actions}>
-                        <ElevatedView style={styles.forward} elevation={4}>
-                            <TouchableWithoutFeedback onPress={this.create.bind(this)}>
-                                <View>
-                                    <Icon style={styles.icon} name="check"/>
+        if(this.props.news.loading === false && this.props.news.creation_current.uploadedMedias === this.props.news.creation_current.media.length)
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderNews {...this.props} headerTitle="News"/>
+                    <View style={styles.body}>
+                        <ElevatedView elevation={2} style={styles.slider}>
+                            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                                <View style={{flexDirection:'row'}}>
+                                    {this.buildMediaList()}
                                 </View>
-                            </TouchableWithoutFeedback>
+                            </ScrollView>
                         </ElevatedView>
+                        <ElevatedView style={styles.content} elevation={2}>
+                            <Text style={styles.title}>
+                                {item.title}
+                            </Text>
+                            <Text style={styles.contentText} numberOfLines={12}>
+                                {item.content}
+                            </Text>
+                        </ElevatedView>
+                        <View style={styles.actions}>
+                            <ElevatedView style={styles.forward} elevation={4}>
+                                <TouchableWithoutFeedback onPress={this.create.bind(this)}>
+                                    <View>
+                                        <Icon style={styles.icon} name="check"/>
+                                    </View>
+                                </TouchableWithoutFeedback>
+                            </ElevatedView>
+                        </View>
                     </View>
                 </View>
-            </View>
-        );
+            );
+        }
+        else
+        {
+            return (
+                <View style={styles.login}>
+                    <HeaderNews {...this.props} headerTitle="News"/>
+                    <View style={styles.body}>
+                        <ActivityIndicator color="#3f51b5" size="large"/>
+                    </View>
+                </View>
+            );
+        }
+
     }
 }
 

@@ -11,6 +11,7 @@ const initialState = {
         media : [
 
         ],
+        uploadedMedias : 0,
         published : false,
         publishedBySupervisor : false,
         search : null,
@@ -110,6 +111,7 @@ export const newsReducer = {
 
                     ],
                     published : false,
+                    uploadedMedias : 0,
                 }});
             }
             case types.CREATE_NEWS_FAILURE: {
@@ -125,13 +127,28 @@ export const newsReducer = {
                 if(index !== -1)
                 {
                     let medias = state.creation_current.media;
+                    let uploadedMedias = parseInt(state.creation_current.uploadedMedias) + 1;
                     let original = medias[index].uri;
                     medias[index] = {
                         id : action.media["@id"],
                         uri : original
                     };
-                    let creationCurrent = Object.assign({}, state.creation_current, {media : medias});
-                    return Object.assign({}, state, {creation_current : creationCurrent});
+                    let creationCurrent = Object.assign({}, state.creation_current, {media : medias, uploadedMedias : uploadedMedias});
+                    return Object.assign({}, state, {creation_current : creationCurrent, loading : false});
+                }
+                else
+                {
+                    let medias = state.creation_current.media;
+                    let uploadedMedias = parseInt(state.creation_current.uploadedMedias) + 1;
+                    medias.push(
+                        {
+                            id : action.media["@id"],
+                            uri : action.media.path,
+                            originalFile : action.media.originalFilename,
+                        }
+                    );
+                    let creationCurrent = Object.assign({}, state.creation_current, {visibility : action.visibility, media : medias, uploadedMedia : uploadedMedias});
+                    return Object.assign({}, state, {creation_current : creationCurrent, loading : false, uploadedMedias : uploadedMedias});
                 }
             }
             case types.NEWS_UPLOAD_MEDIA_FAILURE : {

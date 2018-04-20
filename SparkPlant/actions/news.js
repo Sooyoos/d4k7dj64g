@@ -528,9 +528,19 @@ function fetchNewsUploadMedia(login, file)
         })
             .then((response) => response.json())
             .then((responseJson) => {
+                if (__DEV__)
+                {
+                    console.warn(responseJson);
+                }
                 dispatch(newsUploadMediaSuccess(responseJson));
             })
-            .catch((error) => { dispatch(newsUploadMediaFailure()); });
+            .catch((error) => {
+                if (__DEV__)
+                {
+                    console.error(error);
+                }
+                dispatch(newsUploadMediaFailure());
+            });
     }
 }
 

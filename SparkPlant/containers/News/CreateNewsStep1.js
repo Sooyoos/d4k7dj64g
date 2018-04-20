@@ -343,13 +343,19 @@ class CreateNewsStep1 extends Component {
         ImagePicker.showImagePicker(options, (response) => {
 
             if (response.didCancel) {
-
+                if (__DEV__)
+                {
+                    console.warn("candeled");
+                }
             }
             else if (response.error) {
-
+                if (__DEV__)
+                {
+                    console.error(response.error);
+                }
             }
             else {
-                let source = { uri: response.uri, type: response.type, name: encodeURI(response.fileName) };
+                let source = { uri: response.uri, type: response.type, name: response.fileName };
 
                 let medias = this.state.item.media;
                 medias.push(source);
