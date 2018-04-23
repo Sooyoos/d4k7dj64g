@@ -24,8 +24,8 @@ let styles = StyleSheet.create({
         width: fullWidth
     },
     img: {
-        height: fullHeight,
-        width: fullWidth
+        height: Math.round(fullHeight),
+        width: Math.round(fullWidth),
     },
     capture: {
         width: 70,
@@ -99,6 +99,7 @@ export default class TakePictureTag extends Component {
                 <Image
                     source={{ uri: this.state.path }}
                     style={styles.img}
+                    resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}
                 />
                 <Text
                     style={styles.cancel}

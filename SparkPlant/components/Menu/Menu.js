@@ -49,9 +49,9 @@ let styles = StyleSheet.create({
         alignItems: 'center',
     },
     menuHeaderUserImage : {
-        borderRadius : layout.width8,
-        width : layout.width16,
-        height: layout.width16,
+        borderRadius : Math.round(layout.width8),
+        width : Math.round(layout.width16),
+        height: Math.round(layout.width16),
         marginRight : layout.width5,
     },
     menuHeaderUsername : {
@@ -110,13 +110,13 @@ class DrawerMenu extends Component {
         if(user.avatar)
         {
             return(
-                <Image style={styles.menuHeaderUserImage} source={{ uri : user.avatar.path}}/>
+                <Image style={styles.menuHeaderUserImage} source={{ uri : user.avatar.path}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
             );
         }
         else
         {
             return(
-                <Image style={styles.menuHeaderUserImage} source={{ uri : 'http://via.placeholder.com/500x500/00bcd4/ffffff/?text=' + initials.toUpperCase()}}/>
+                <Image style={styles.menuHeaderUserImage} source={{ uri : 'http://via.placeholder.com/500x500/00bcd4/ffffff/?text=' + initials.toUpperCase()}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
             );
         }
     }
@@ -243,7 +243,7 @@ class DrawerMenu extends Component {
                             </Text>
                         </View>
                         <View style={styles.menuHeaderUserInfosView}>
-                            <Image style={styles.menuHeaderUserImage} source={{ uri : 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg'}}/>
+                            <Image style={styles.menuHeaderUserImage} source={{ uri : 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/0b5/262/34e1dde.jpg'}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                             <View>
                                 <Text style={styles.menuHeaderUsername}>
                                     ...

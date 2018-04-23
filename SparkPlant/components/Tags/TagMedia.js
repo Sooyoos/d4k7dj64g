@@ -22,8 +22,8 @@ let styles = StyleSheet.create({
         marginHorizontal: layout.width1,
     },
     image : {
-        height : layout.height20,
-        width : layout.width40,
+        height : Math.round(layout.height20),
+        width : Math.round(layout.width40),
         backgroundColor : "#aaaaaa",
     },
     buttonView : {
@@ -117,6 +117,7 @@ class TagMedia extends Component {
                             <Image
                                 style={styles.image}
                                 source={{uri : this.props.media.uri}}
+                                resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}
                             />
                         </TouchableWithoutFeedback>
                     </ElevatedView>

@@ -41,8 +41,8 @@ let styles = StyleSheet.create({
         alignItems:'center',
     },
     logo : {
-        margin: layout.width8,
-        width : layout.width80,
+        margin: Math.round(layout.width8),
+        width : Math.round(layout.width80),
         resizeMode : 'contain',
     },
     button: {
@@ -239,7 +239,7 @@ class LoginScreen extends Component {
                 return (
                     <View style={styles.login}>
                         <ElevatedView elevation={2} style={styles.body}>
-                            <Image source={require('../assets/img/Logo-sparkplant.png')} style={styles.logo} />
+                            <Image source={require('../assets/img/Logo-sparkplant.png')} style={styles.logo} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                             <Text style={{fontSize: layout.fontSize1p5, marginVertical : layout.height1}}>
                                 Connectez vous avec l'un des utilisateurs suivants :
                             </Text>
@@ -264,7 +264,7 @@ class LoginScreen extends Component {
                 return (
                     <View style={styles.login}>
                         <ElevatedView elevation={2} style={styles.body}>
-                            <Image source={require('../assets/img/Logo-sparkplant.png')} style={styles.logo} />
+                            <Image source={require('../assets/img/Logo-sparkplant.png')} style={styles.logo} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                             <LoginFactoryList/>
                             <LoginUsernameInput/>
                             <LoginPasswordInput />

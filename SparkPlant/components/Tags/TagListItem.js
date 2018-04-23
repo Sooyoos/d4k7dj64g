@@ -61,9 +61,9 @@ let styles = StyleSheet.create({
         fontSize:layout.fontSize1p6,
     },
     itemImage : {
-        width:layout.width3p8,
-        height:layout.width3p8,
-        borderRadius : layout.width1p9,
+        width:Math.round(layout.width3p8),
+        height:Math.round(layout.width3p8),
+        borderRadius : Math.round(layout.width1p9),
         marginLeft:layout.width0p5,
         marginRight:layout.width0p5,
     },
@@ -135,7 +135,7 @@ class TagListItem extends Component {
                                 <Text style={styles.itemId}>
                                     #{lpad(this.props.tag["@id"].substr(this.props.tag["@id"].lastIndexOf("/") +1), 6)}
                                 </Text>
-                                <Image style={styles.itemImage} source={{uri : this.props.tag.supervisor.avatar ? this.props.tag.supervisor.avatar.path : "http://via.placeholder.com/50x50" }} />
+                                <Image style={styles.itemImage} source={{uri : this.props.tag.supervisor.avatar ? this.props.tag.supervisor.avatar.path : "http://via.placeholder.com/50x50" }} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                                 <Text style={styles.itemFullname}>
                                     {this.props.tag.supervisor.firstName} {this.props.tag.supervisor.lastName}
                                 </Text>

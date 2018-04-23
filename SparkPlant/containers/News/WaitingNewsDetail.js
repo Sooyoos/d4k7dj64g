@@ -36,8 +36,8 @@ let styles = StyleSheet.create({
         backgroundColor: "#ffffff",
     },
     image : {
-        width:layout.fullWidth,
-        height : layout.height40,
+        width: Math.round(layout.fullWidth),
+        height : Math.round(layout.height40),
         marginRight:layout.width5,
     },
     content : {
@@ -63,9 +63,9 @@ let styles = StyleSheet.create({
         justifyContent: 'center',
     },
     infoImage : {
-        height: layout.height3p5,
-        width : layout.height3p5,
-        borderRadius : layout.height1p75,
+        height: Math.round(layout.height3p5),
+        width : Math.round(layout.height3p5),
+        borderRadius : Math.round(layout.height1p75),
         marginHorizontal: layout.width1,
     },
     title : {
@@ -148,14 +148,14 @@ class WaitingNewsDetail extends Component {
             for(var i = 0; i < medias.length; i++)
             {
                 mediaList.push(
-                    <Image key={i} style={styles.image} source={{uri : medias[i].path}} />
+                    <Image key={i} style={styles.image} source={{uri : medias[i].path}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                 );
             }
         }
         else
         {
              mediaList.push(
-                    <Image key={0} style={styles.image} source={{uri : "http://via.placeholder.com/1500x500"}} />
+                    <Image key={0} style={styles.image} source={{uri : "http://via.placeholder.com/1500x500"}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                 );
         }
 
@@ -231,7 +231,7 @@ class WaitingNewsDetail extends Component {
                                 <Text style={styles.infoText}>
                                     Le {Moment(item.createdAt).format('DD/MM/YYYY')} par {item.user.firstName} {item.user.lastName}
                                 </Text>
-                                <Image style={styles.infoImage} source={{uri : item.user.avatar ? item.user.avatar.path : "http://via.placeholder.com/50x50"}}/>
+                                <Image style={styles.infoImage} source={{uri : item.user.avatar ? item.user.avatar.path : "http://via.placeholder.com/50x50"}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                             </View>
                             <Text style={styles.contentText} numberOfLines={12}>
                                 {item.content}

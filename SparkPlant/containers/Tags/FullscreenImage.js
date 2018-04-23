@@ -72,7 +72,9 @@ class FullscreenImage extends Component {
                 <TouchableWithoutFeedback onPress={() => { this.props.navigateBack() }}>
                     <Image
                         style={{width : this.state.width, height : this.state.height, maxWidth: layout.fullWidth, maxHeight: layout.fullHeight}}
-                        source={{uri : this.state.uri}} />
+                        source={{uri : this.state.uri}}
+                        resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}
+                    />
                 </TouchableWithoutFeedback>
             </View>
         );

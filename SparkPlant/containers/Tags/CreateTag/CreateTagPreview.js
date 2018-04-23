@@ -34,8 +34,8 @@ let styles = StyleSheet.create({
         flexDirection : 'row',
     },
     sliderImage : {
-        width : layout.width70,
-        height: layout.height30,
+        width : Math.round(layout.width70),
+        height: Math.round(layout.height30),
         marginHorizontal: 25,
     },
     infos : {
@@ -149,13 +149,13 @@ class CreateTagPreview extends Component {
         for(var i = 0; i < medias.length; i++)
         {
             list.push(
-                <Image key={i} style={styles.sliderImage} source={{uri : medias[i].uri}} />
+                <Image key={i} style={styles.sliderImage} source={{uri : medias[i].uri}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
             );
         }
 
         if(list.length === 0)
             return(
-                <Image style={styles.sliderImage} source={{uri : "http://via.placeholder.com/" + Math.round(layout.width70) + "x" + Math.round(layout.height30) + "/000000.jpg"}} />
+                <Image style={styles.sliderImage} source={{uri : "http://via.placeholder.com/" + Math.round(layout.width70) + "x" + Math.round(layout.height30) + "/000000.jpg"}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
             );
         else
             return list;
@@ -206,7 +206,7 @@ class CreateTagPreview extends Component {
                             </View>
                             <View style={styles.section}>
                                 <View style={styles.sectionVisual}>
-                                    <Image source={{uri : tag.supervisor && tag.supervisor.avatar ? tag.supervisor.avatar.path : "http://placehold.it/200x200"}} style={{width:layout.width8, height:layout.width8, borderRadius:layout.width4}}/>
+                                    <Image source={{uri : tag.supervisor && tag.supervisor.avatar ? tag.supervisor.avatar.path : "http://placehold.it/200x200"}} style={{width:Math.round(layout.width8), height:Math.round(layout.width8), borderRadius:Math.round(layout.width4)}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                                 </View>
                                 <View style={styles.sectionContent}>
                                     <View>

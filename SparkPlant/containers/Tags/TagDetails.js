@@ -46,9 +46,10 @@ let styles = StyleSheet.create({
         flexDirection : 'row',
     },
     sliderImage : {
-        width : layout.width70,
-        height: layout.height30,
+        width : Math.round(layout.width70),
+        height: Math.round(layout.height30),
         marginHorizontal: 25,
+        resizeMode: 'contain',
     },
     infos : {
         width : layout.fullWidth,
@@ -99,6 +100,10 @@ class TagDetails extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = {
+            loadingImage : true
+        };
     }
 
     componentWillMount()
@@ -135,9 +140,10 @@ class TagDetails extends Component {
                 if(medias[i].filetype.indexOf("video") === -1)
                 {
                     let media = medias[i].path;
+
                     list.push(
                         <TouchableWithoutFeedback key={i} onPress={() => { this.props.setCurrentImage(media); this.props.goToFullscreenImage(); }}>
-                            <Image style={styles.sliderImage} source={{uri : media}} />
+                            <Image style={styles.sliderImage} source={{uri : media}} resizeMethod={"resize"} onProgress={(e) => { if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }} />
                         </TouchableWithoutFeedback>
                     );
                 }

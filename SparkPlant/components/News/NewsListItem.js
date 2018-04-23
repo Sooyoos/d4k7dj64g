@@ -23,8 +23,8 @@ let styles = StyleSheet.create({
         flexDirection: 'row',
     },
     image : {
-        height : layout.height15,
-        width : layout.height15,
+        height : Math.round(layout.height15),
+        width : Math.round(layout.height15),
     },
     main : {
         height : layout.height15,
@@ -137,7 +137,7 @@ class NewsListItem extends Component {
             return (
                 <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
                     <ElevatedView style={styles.item} elevation={2}>
-                        <Image style={styles.image} source={{uri : this.getMainImage()}} />
+                        <Image style={styles.image} source={{uri : this.getMainImage()}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                         <View style={styles.main}>
                             <View style={styles.content}>
                                 <Text style={styles.textContent} numberOfLine={2}>
@@ -166,7 +166,7 @@ class NewsListItem extends Component {
             return (
                 <TouchableWithoutFeedback onPress={this.goToDetails.bind(this)}>
                     <ElevatedView style={styles.item} elevation={2}>
-                        <Image style={styles.image} source={{uri : this.getMainImage()}} />
+                        <Image style={styles.image} source={{uri : this.getMainImage()}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                         <View style={styles.main}>
                             <View style={styles.content}>
                                 <Text style={styles.textContent} numberOfLine={2}>

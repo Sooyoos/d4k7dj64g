@@ -33,8 +33,8 @@ let styles = StyleSheet.create({
         backgroundColor: "#ffffff",
     },
     image : {
-        width:layout.fullWidth,
-        height : layout.height40,
+        width:Math.round(layout.fullWidth),
+        height : Math.round(layout.height40),
         marginRight:layout.width5,
     },
     content : {
@@ -126,7 +126,7 @@ class CreateNewsPreview extends Component {
                 if(medias[i])
                 {
                     mediaList.push(
-                        <Image key={i} style={styles.image} source={{uri : medias[i].uri}} />
+                        <Image key={i} style={styles.image} source={{uri : medias[i].uri}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                     );
                 }
             }
@@ -137,7 +137,7 @@ class CreateNewsPreview extends Component {
             for(var i = 0; i < medias.length; i++)
             {
                 mediaList.push(
-                    <Image key={i} style={styles.image} source={{uri : medias[i]}} />
+                    <Image key={i} style={styles.image} source={{uri : medias[i]}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                 );
             }
         }

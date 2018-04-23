@@ -25,9 +25,9 @@ let styles = StyleSheet.create({
         width: layout.width12,
     },
     image : {
-        width: layout.width8,
-        height: layout.width8,
-        borderRadius: layout.width4,
+        width: Math.round(layout.width8),
+        height: Math.round(layout.width8),
+        borderRadius: Math.round(layout.width4),
     },
     contentSection : {
         width: layout.width88,
@@ -97,7 +97,7 @@ class TagHistoryItem extends Component {
         return (
             <View style={styles.item}>
                 <View style={styles.imageSection}>
-                    <Image style={styles.image} source={{uri : this.props.item.user.avatar ? this.props.item.user.avatar.path : "http://via.placeholder.com/50x50" }} />
+                    <Image style={styles.image} source={{uri : this.props.item.user.avatar ? this.props.item.user.avatar.path : "http://via.placeholder.com/50x50" }} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }} />
                 </View>
                 <View style={styles.contentSection}>
                     <Text style={styles.contentFirst}>

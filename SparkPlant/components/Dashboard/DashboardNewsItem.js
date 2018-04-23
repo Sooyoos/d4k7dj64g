@@ -18,8 +18,8 @@ let styles = StyleSheet.create({
         borderTopColor: '#bdbdbd',
     },
     itemImage : {
-        height: layout.width25,
-        width : layout.width25,
+        height: Math.round(layout.width25),
+        width : Math.round(layout.width25),
     },
     itemData : {
         width : layout.width75,
@@ -44,7 +44,7 @@ export default class DashboardNewsItem extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { userIcon : null};
+        this.state = { userIcon : null, loadingImage : true};
     }
 
     render() {
@@ -54,7 +54,7 @@ export default class DashboardNewsItem extends Component {
                 <TouchableWithoutFeedback onPress={() => {this.props.route(this.props.item)}}>
                     <View style={styles.dashboardNewsItem}>
                         <View style={{flexDirection : 'row'}}>
-                            <Image style={styles.itemImage} source={{uri : this.props.imgSrc }} />
+                            <Image style={styles.itemImage} source={{uri : this.props.imgSrc }} resizeMethod="resize" onProgress={(e) => { if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }} />
                             <View style={styles.itemData}>
                                 <Text style={styles.itemExcerpt} numberOfLines={2} adjustsFontSizeToFit={true}>
                                     {this.props.newsExcerpt}
@@ -77,7 +77,7 @@ export default class DashboardNewsItem extends Component {
                 <TouchableWithoutFeedback onPress={() => {this.props.route(this.props.item)}}>
                     <View style={styles.dashboardNewsItem}>
                         <View style={{flexDirection : 'row'}}>
-                            <Image style={styles.itemImage} source={{uri : this.props.imgSrc }} />
+                            <Image style={styles.itemImage} source={{uri : this.props.imgSrc }} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }} />
                             <View style={styles.itemData}>
                                 <Text style={styles.itemExcerpt} numberOfLines={2} adjustsFontSizeToFit={true}>
                                     {this.props.newsExcerpt}

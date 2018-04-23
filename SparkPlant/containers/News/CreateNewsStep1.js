@@ -79,8 +79,8 @@ let styles = StyleSheet.create({
         backgroundColor : "#ffffff",
     },
     media : {
-        height : layout.height10,
-        width : layout.width25,
+        height : Math.round(layout.height10),
+        width : Math.round(layout.width25),
     },
     addMedia : {
         height : layout.height10,
@@ -300,7 +300,7 @@ class CreateNewsStep1 extends Component {
             {
                 mediaList.push(
                     <ElevatedView key={i} style={styles.mediaCard} elevation={4}>
-                        <Image style={styles.media} source={{uri : medias[i].uri}} />
+                        <Image style={styles.media} source={{uri : medias[i].uri}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                     </ElevatedView>
                 );
             }
@@ -309,7 +309,7 @@ class CreateNewsStep1 extends Component {
         {
             mediaList.push(
                 <ElevatedView key={0} style={styles.mediaCard} elevation={4}>
-                    <Image style={styles.media} source={{uri : 'http://via.placeholder.com/750x500'}} />
+                    <Image style={styles.media} source={{uri : 'http://via.placeholder.com/750x500'}} resizeMethod="resize" onProgress={(e) => { console.warn(e.nativeEvent.loaded); if(e.nativeEvent.loaded === e.nativeEvent.total){ this.setState({loadingImage : false}) } }}/>
                 </ElevatedView>
             );
         }
