@@ -50,6 +50,7 @@ export const ChartsNavigator = StackNavigator(
             screen: ChartsScreen,
             navigationOptions: {
                 header: null,
+                gesturesEnabled: false,
             }
         },
     }
@@ -61,12 +62,14 @@ export const TagNavigator = StackNavigator(
             screen: TagsScreen,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         TagsFull: {
             screen: TagsFull,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         TagDetail: {
@@ -74,6 +77,7 @@ export const TagNavigator = StackNavigator(
             path: 'tag/:tag',
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         TagHistory: {
@@ -81,6 +85,7 @@ export const TagNavigator = StackNavigator(
             path: 'tag/:tag',
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         TagActions: {
@@ -88,78 +93,91 @@ export const TagNavigator = StackNavigator(
             path: 'tag/:tag',
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         CreateTagStep1: {
             screen: CreateTagStep1,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         CreateTagStep2: {
             screen: CreateTagStep2,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         CreateTagStep3: {
             screen: CreateTagStep3,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         CreateTagPreview: {
             screen: CreateTagPreview,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         CommentTag: {
             screen: CommentTag,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         TransferTag: {
             screen: TransferTag,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         TakePictureTag: {
             screen: TakePictureTag,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         TagVideoTag: {
             screen: TakeVideoTag,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         FilterTag: {
             screen: FilterTag,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         SearchTags: {
             screen: SearchTags,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         RecordAudio: {
             screen: RecordAudio,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         FullscreenImage: {
             screen: FullscreenImage,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
     }
@@ -171,54 +189,63 @@ export const NewsNavigator = StackNavigator(
             screen: NewsScreen,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         WaitingNews: {
             screen: WaitingNews,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         NewsDetail: {
             screen: NewsDetail,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         WaitingNewsDetail: {
             screen: WaitingNewsDetail,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         CreateNewsStep1: {
             screen: CreateNewsStep1,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         CreateNewsStep2: {
             screen: CreateNewsStep2,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         CreateNewsPreview: {
             screen: CreateNewsPreview,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         SearchNews: {
             screen: SearchNews,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         SearchWaitingNews: {
             screen: SearchWaitingNews,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
     }
@@ -230,42 +257,49 @@ export const ChecklistNavigator = StackNavigator(
             screen: ChecklistScreen,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         ChecklistLibrary: {
             screen: ChecklistLibrary,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         ChecklistDetails: {
             screen: ChecklistDetails,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         CreateChecklistStep1: {
             screen: ChecklistCreateStep1,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         ChecklistExecute: {
             screen: ChecklistExecute,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         ChecklistHistory: {
             screen: ChecklistHistory,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         ChecklistHistoryDetails: {
             screen: ChecklistHistoryDetails,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         }
     }
@@ -276,6 +310,7 @@ export const MainNavigator = StackNavigator({
         screen: DashboardScreen,
         navigationOptions : {
             header : null,
+            gesturesEnabled: false,
         }
     },
     Tags: {
@@ -294,12 +329,14 @@ export const MainNavigator = StackNavigator({
         screen: InfoScreen,
         navigationOptions : {
             header : null,
+            gesturesEnabled: false,
         }
     },
     Scoring: {
         screen: ScoringScreen,
         navigationOptions : {
             header : null,
+            gesturesEnabled: false,
         }
     }
 });
@@ -309,24 +346,28 @@ export const AppNavigator = StackNavigator({
             screen: LoginScreen,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         HomeTab: {
             screen: MainNavigator,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         Menu: {
             screen: DrawerMenu,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             }
         },
         Tags: {
             screen: TagNavigator,
             navigationOptions : {
                 header : null,
+                gesturesEnabled: false,
             },
         },
 });
