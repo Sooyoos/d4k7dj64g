@@ -89,7 +89,7 @@ class Navigation extends Component {
             }
             case "Charts" : {
                 iconName = "bar-chart";
-                label = "STATISTIQUES";
+                label = "ANALYTICS";
                 break;
             }
             default :
